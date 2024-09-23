@@ -1,0 +1,639 @@
+/* GENERAL STYLES */
+
+:root {
+
+  
+  
+    --color-one: rgb(43, 38, 71);
+    --color-two: rgb(229, 212, 206);
+    --color-three: rgb(222, 110, 75);
+    --color-four: rgb(127, 209, 185);
+    --color-five: rgb(229, 99, 153);
+    --color-six: #dbc5af;
+    --main-bg-color: var(--color-one);
+    --font-headings: "SpecialElite", monospace;
+    --font-body: "Sora", sans-serif;
+    --padding: 2rem;
+  }
+  
+
+/* @font-face {
+  font-family: "Playwrite DE Grund";
+  src: url("");
+} */
+
+/* GET RID OF TWINE STYLES */
+#story {
+    margin: 0;
+  }
+  
+  #passages {
+    max-width: 100%;
+    width: 100%;
+  }
+
+.passage{
+    width: 100%; 
+    height: 100%; 
+}
+  
+  #story a.link-external:after {
+    content: "";
+  }
+
+  #story a.link-external:after {
+    content: "";
+  }
+  
+  #story {
+    margin: 0;
+    width: 100%;
+  }
+  
+  body[data-tags~="t8n-dissolve"] .transition-in {
+    position: absolute;
+    opacity: 0;
+  }
+  body[data-tags~="t8n-dissolve"] .passage {
+    transition: 1s;
+    -webkit-transition: 1s;
+  }
+  body[data-tags~="t8n-dissolve"] .transition-out {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .hide{
+    display: none;
+}
+
+  @media screen and (max-width: 700px) {
+    #passages {
+  height: 100%;
+    font-size: 1.8rem;
+      font-weight: 300;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  #story {
+  height: 100%;
+  width: 100%;
+  }
+  
+  #passage-prestart{
+    height: 100%
+  }
+  
+  main {
+    height: 100%;
+  
+  }
+  
+  a:active {
+    background-color: #f2647d;
+  }
+  
+  input[type=text] {
+      min-width: 14em;
+  }
+  
+  }
+
+  /* BUTTONS & LINKS  */
+  
+  button,
+  .inline-btn-wrapper > a {
+    background-color: var(--color-yellow);
+    color: var(--color-two);
+    border: var(--color-two) 1px solid;
+    border-radius: 3px;
+    font-family: var(--font-headings);
+    text-transform: uppercase;
+    padding: 5px;
+    box-shadow: var(--accent-color-shadow) 4px 4px;
+  }
+  
+  button:hover {
+    background-color: var(--color-five);
+    border: var(--color-two) 1px solid;
+    color: var(--color-two);
+  }
+  
+  button:focus,
+  .inline-btn-wrapper > a {
+    transform: translate(2px, 2px);
+    box-shadow: var(--accent-color-shadow) 1px 1px;
+  }
+  
+  a {
+    color: var(--accent-color-secondary);
+  }
+  
+  a:active {
+    background-color: var(--color-five);
+  }
+  
+  a:hover {
+    color: var(--color-two);
+  }
+  
+
+.hide{
+    display: none;
+}
+
+/* STRUCTURAL */
+
+header, footer, main{
+  width: 100%;
+  padding: 2rem;
+}
+
+body {
+	background-color: var(--main-bg-color);
+    /* background-color: #a14506; */
+	font-family: var(--font-body);
+	/* font-size: 10px; */
+	height: 100vh;
+	display:flex;
+  color: var(--color-two);
+	justify-content:center;
+	align-items: center;
+  overflow: scroll;
+}
+
+body.light{
+background-color: var(--color-six);
+}
+/* FOOTER  */
+footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  padding: 1rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+
+/* TYPOGRAPHY  */
+
+h1, h2, h3{
+  font-family: var(--font-headings);
+  font-weight: 600;
+}
+p{
+  font-size: 1.6rem;
+}
+
+/* INPUT  */
+
+input[type="text"] {
+  text-align: center;
+ 	color: black;
+	background-color: white;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+}
+input[type="text"]:hover {
+  text-align: center;
+	color: white;	
+  	background-color: black;
+}
+input[type="text"]:focus{
+  text-align: center;
+	color: white;	
+  	background-color: black;
+}
+
+.biginput input[type="text"] {
+  text-align: center;
+ 	color: #9900ff;
+  background-color: black;
+  font-size: 35px;
+}
+.biginput input[type="text"]:hover {
+  text-align: center;
+	color: black;	
+  	background-color: #9900ff;
+  font-size: 35px;
+}
+.biginput input[type="text"]:focus{
+  text-align: center;
+	color: #9900ff;	
+  	background-color: black;
+  font-size: 35px;
+}
+
+/* WORD EATING */
+.main-words{
+  overflow: hidden;
+}
+
+.main-words.added > .words{
+  text-align: left;
+  }
+
+.words {
+  /* position: relative; */
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+
+
+.word {
+  display: inline-block;
+  font-size: 2em;
+  color: #888585;
+  transform-origin: center center;
+  font-family: "Playwrite DE Grund";
+}
+
+.wordDisappear{
+  animation: move1 15s infinite ease-in-out;
+  opacity: 0;
+  /* position: absolute; */
+}
+
+.wordLeft-container{
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.wordLeft {
+  animation: wordsLeft 15s forwards;
+  font-size: 3em;
+  margin-block-end: 3rem;
+  /* position: inherit; */
+  /* margin-block-end: 2rem; */
+
+}
+
+@keyframes wordsLeft {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0; }
+  20% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; color: var(--color-two)}
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; color: var(--color-two)}
+}
+
+
+/* MAP INSTRUCTIONS */
+
+/* MAP  */
+
+main.map{
+  height: initial;
+}
+
+footer.map {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.map-container {
+  position: relative;
+  width: fit-content;
+  margin-block-end: 2rem;
+}
+
+.instruction {
+  background-color: rgb(66 54 49);
+  padding: 1rem;
+  border-radius: 1rem;
+  border: solid white 2px;
+  margin-block-end: 1rem;
+  color: white;
+  font-weight: 900;
+  p {
+    margin-block-end: 0;
+  }
+}
+
+.location {
+  background-color: #3cc00e;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.guard {
+  background-color: rgb(227, 51, 51);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.location.one {
+  left: 41%;
+  bottom: 3%;
+}
+
+.location.two {
+  left: 41%;
+  bottom: 13%;
+}
+
+.location.three {
+  left: 41%;
+  bottom: 57%;
+}
+
+.location.four {
+  left: 41%;
+  top: 20%
+}
+
+.location.five {
+  left: 32%;
+  bottom: 72%;
+}
+
+.location.six {
+  right: 3%;
+  top: 20%;
+}
+
+.guard.hide{
+display: none;
+}
+
+.guard.gone{
+  right: 3%;
+  top: 20%;
+}
+
+.guard.gtwo{
+  right: 44%;
+  top: 20%;
+}
+
+.guard.gthree{
+  right: 44%;
+  top: 61%;
+}
+
+.guard.gfour{
+  right: 75%;
+  top: 61%;
+}
+
+
+ /* 360 IMAGE  */
+
+ header.pano{
+  position: inherit;
+  }
+  
+  header.pano > span{
+    font-size: 1.4rem;
+  }
+  
+  main.pano{
+      margin: 0;
+      padding: 0;
+  }
+  main.pano > iframe {
+      min-height: 65vh;
+    }
+    
+    footer.pano {
+      display: flex;
+      gap: 1rem;
+  
+    }
+    
+    footer.pano > #codewordWrapper {
+      border: 2px solid white;
+      color: black;
+      background-color: rgb(147, 70, 182);
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 0.5rem;
+      label {
+        width: 100%;
+        text-align: center;
+        font-weight: 900;
+      }
+      .input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .button-wrapper {
+          button {
+            font-size: 1.6rem;
+          }
+        }
+      }
+      .code-input {
+        input {
+          min-width: inherit;
+          width: 12rem;
+        }
+      }
+      #coderesult > h2 {
+        margin-block-end: 0;
+      }
+    }
+  
+    .code-input.pano > input{
+      margin-top: 0;
+    }
+
+
+/* DRAGGABLE IMAGES  */
+
+header.drag{
+position: absolute;
+left:0;
+width: 100%;
+display: flex;
+justify-content: end;
+}
+
+#port-container {
+  position: relative;
+  width: 100%;  /* Full width on mobile */
+  height: 100vh; /* Full height of the viewport */
+  max-width: 500px; /* Limit maximum width for usability */
+  margin: 0 auto;
+  overflow: hidden; /* Hide overflow to prevent issues */
+}
+
+#book-image {
+  width: 100%;
+  /* height: 100%; */
+  position: absolute;
+  object-fit: contain;
+  background-size: cover;
+  bottom: 20%;
+}
+
+.draggable-image{
+  position: absolute;
+  left: 0;
+  width: 20%; /* Adjust size as needed */
+  cursor: grab;
+  z-index: 999999;
+}
+#boat-image {
+  left: 0;
+}  
+
+#elephant-image {
+  left: 20%;
+}  
+#boat-image.win, #elephant-image.win{
+  border: solid red 10px;
+}
+
+/* TIMER  */
+
+/* TIMER  */
+
+
+#countdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#countdown > .secs {
+  font-family: var(--font-headings);
+  font-size: 7rem;
+  line-height: 5rem;
+}
+
+#countdown > .extra {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+}
+
+
+header.timer{
+  /* position: fixed; */
+  top:0;
+  left:0;
+  display: flex;
+  justify-content: end;
+  padding: 4rem;
+  background-color: black;
+  width: 100%;
+}
+
+main.timer{
+  margin-top: 15rem;
+}
+
+main.timermap{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+#countdown.timermap > .secs{
+  font-size: 12rem;
+  line-height: 10rem;
+}
+
+.motto-container {
+  text-align: center;
+}
+
+.motto-container > span{
+  font-size: 7rem;
+}
+
+
+/* TALKING  & MESSAGE */
+
+header.talking {
+display: flex;
+justify-content: left;
+align-items: center;
+color:black;
+font-weight: 600;
+background: var(--color-four);
+border-bottom: solid 3px black;
+}
+
+header.talking > .userInfo > h2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  font-size: 1em;
+  font-family: var(--font-headings);
+}
+header.talking > .avatar-icon {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-inline-end: 3rem;
+}
+
+header.talking > .userInfo > span {
+  font-size: 0.8em;
+  text-align: center;
+  font-weight: 300;
+}
+
+header.talking > .userInfo > span.online-dot {
+color:green;
+margin-inline-end: 1rem;
+}
+
+header.talking > .avatar-icon > img {
+  position: inherit;
+  margin-top: inherit;
+  margin-bottom: 0.8rem;
+  max-width: 60px;
+
+}
+
+#msgMount > .message{
+  background-color: var(--color-six);
+  color:black;
+  width: fit-content;
+  padding: 0.4rem 1rem;
+  margin-block-end: 2rem;
+  border: black solid 2px;
+  border-radius: 0.8rem;
+  box-shadow: 0.5rem 0.5rem black
+}
+
+#msgMount > .message > p{
+  width: fit-content;
+  margin-block-end: 0;
+  font-weight: 600;
+}
+
+#msgMount > .sender{
+  color: black;
+  font-size: 0.6em;
+  font-weight: 600;
+}

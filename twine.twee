@@ -1,0 +1,714 @@
+:: StoryTitle
+The Book Monster
+
+
+:: StoryData
+{
+	"ifid": "5AC7574A-0BC8-4EAE-924F-164E9D0C540A",
+	"format": "SugarCube",
+	"format-version": "2.36.1",
+	"start": "landing",
+	"zoom": 1
+}
+
+
+
+:: Story Stylesheet [stylesheet]
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&family=Sora:wght@100..800&display=swap');
+@import url("styles/generics.css");
+@import url("styles/styles.css");
+
+
+
+:: UserScript [script]
+/* Import external libraries. */
+
+// importScripts(["https://code.jquery.com/jquery-3.5.1.slim.min.js",
+// "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js", 
+// "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"]);
+
+
+
+:: Story JavaScript [script]
+$('#ui-bar').remove();
+$(document.head).find('#style-ui-bar').remove();
+
+setup.moveWords = () => {
+      console.log("running")
+    const words = document.querySelectorAll('.wordDisappear');
+    console.log("words", words)
+
+        // Helper function to generate random values
+        function getRandom(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        words.forEach((word, index) => {
+            const duration = getRandom(10, 20); // Random animation duration between 10 and 20 seconds
+            const delay = getRandom(0, 5);      // Random delay between 0 and 5 seconds
+
+            // Create random movement and scale values
+            const keyframes = `
+                @keyframes move${index} {
+                    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0; }
+                    20% { transform: translate(${getRandom(-50, 50)}vw, ${getRandom(-50, 50)}vh) scale(${getRandom(0.5, 1.5)}) rotate(${getRandom(-360, 360)}deg); opacity: ${getRandom(0.1, 0.5)}; }
+                    50% { transform: translate(${getRandom(-50, 50)}vw, ${getRandom(-50, 50)}vh) scale(${getRandom(0.5, 1.5)}) rotate(${getRandom(-360, 360)}deg); opacity: ${getRandom(0.5, 1)}; }
+                    75% { transform: translate(${getRandom(-50, 50)}vw, ${getRandom(-50, 50)}vh) scale(${getRandom(0.5, 1.5)}) rotate(${getRandom(-360, 360)}deg); opacity: ${getRandom(0.5, 1)}; }
+                    100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+                }
+            `;
+
+            // Inject keyframes into a style element in the document
+            const styleSheet = document.styleSheets[0];
+            styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
+            // Apply the animation to the word
+            word.style.animation = `move${index} ${duration}s infinite ease-in-out`;
+            word.style.animationDelay = `${delay}s`;
+        });
+}
+setup.stillWords = () => {
+    const words = document.querySelectorAll('.wordDisappear');
+     // Helper function to generate random values
+        function getRandom(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    words.forEach((word, index) => {
+            const duration = getRandom(10, 20); // Random animation duration between 10 and 20 seconds
+            const delay = getRandom(0, 5);      // Random delay between 0 and 5 seconds
+
+            // Create random movement and scale values
+            const keyframes = `
+                @keyframes move${index} {
+                    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0; }
+                    20% { transform: translate(${getRandom(-50, 50)}vw, ${getRandom(-50, 50)}vh) scale(${getRandom(0.5, 1.5)}) rotate(${getRandom(-360, 360)}deg); opacity: ${getRandom(0.1, 0.5)}; }
+                    50% { transform: translate(${getRandom(-50, 50)}vw, ${getRandom(-50, 50)}vh) scale(${getRandom(0.5, 1.5)}) rotate(${getRandom(-360, 360)}deg); opacity: ${getRandom(0.5, 1)}; }
+                    75% { transform: translate(${getRandom(-50, 50)}vw, ${getRandom(-50, 50)}vh) scale(${getRandom(0.5, 1.5)}) rotate(${getRandom(-360, 360)}deg); opacity: ${getRandom(0.5, 1)}; }
+                    100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; font-size: 1.4em; color: #fff}
+                }
+            `;
+
+            // Inject keyframes into a style element in the document
+            const styleSheet = document.styleSheets[0];
+            styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
+            // Apply the animation to the word
+
+            word.style.animation = `move${index} ${duration}s forwards ease-in`;
+            word.style.animationDelay = `${delay}s`;
+        }); 
+}
+
+
+setup.handleFileUpload = () => {
+
+async function uploadImage(file) {
+    const uploadPreset = 'f4uwtwnx';
+    const cloudinaryURL = 'https://api.cloudinary.com/v1_1/dzutg2kf2/image/upload';
+    const errorMount = document.getElementById("error")
+    const successMount = document.getElementById("success")
+  
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', uploadPreset);
+console.log("trying")
+errorMount.innerText = "Image uploading..."
+  try {
+    const response = await fetch(`${cloudinaryURL}`, {
+      method: 'POST',
+      body: formData
+    });
+    if (!response.ok) {
+      throw new Error('Image upload failed');
+ errorMount.innerText = "Image upload failed"
+      
+    }
+
+    const data = await response.json();
+    console.log('Image uploaded successfully:', data);
+    errorMount.innerText = "Image uploaded"
+  } catch (error) {
+    console.error('Error uploading image:', error.message);
+    errorMount.innerText = "Image upload failed"
+  }
+}
+// Example usage
+const inputElement = document.getElementById('inputImg');
+console.log(inputElement)
+inputElement.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  uploadImage(file);
+});
+  inputElement.click();
+};
+
+setup.boatMultiDraggable = () => {
+  let completed = [];
+  const completeList = ["boat", "elephant"];
+  console.log("boatMultiDraggable running");
+
+  const messageContainer = document.getElementById("message");
+
+  // Get device width and height
+  const deviceWidth = window.innerWidth;
+  const deviceHeight = window.innerHeight;
+
+  // Define target areas for boat and elephant
+  const targetAreas = {
+    boat: { 
+      x: 0,                      // Start from the left
+      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
+      width: deviceWidth,         // Full width of the screen
+      height: deviceHeight * 0.3  // 20% of the screen height
+    },
+    elephant: { 
+      x: 0,                      // Start from the left
+      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
+      width: deviceWidth,         // Full width of the screen
+      height: deviceHeight * 0.3  // 20% of the screen height
+    }
+  };
+
+  const elements = [
+    { id: 'boat-image', targetArea: targetAreas.boat, name: 'boat' },
+    { id: 'elephant-image', targetArea: targetAreas.elephant, name: 'elephant' }
+  ];
+
+  const portContainer = document.getElementById('port-container');
+
+  // Function to handle the drag logic
+  const makeDraggable = (element, name, targetArea) => {
+    let offsetX, offsetY;
+    const elem = document.getElementById(element);
+
+    elem.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      offsetX = touch.clientX - elem.getBoundingClientRect().left;
+      offsetY = touch.clientY - elem.getBoundingClientRect().top;
+      elem.style.cursor = 'grabbing';
+    });
+
+    elem.addEventListener('touchmove', (e) => {
+      e.preventDefault(); // Prevent scrolling
+      const touch = e.touches[0];
+      const x = touch.clientX - offsetX;
+      const y = touch.clientY - offsetY;
+      elem.style.left = `${x}px`;
+      elem.style.top = `${y}px`;
+    });
+
+    elem.addEventListener('touchend', () => {
+      elem.style.cursor = 'grab';
+
+      // Check if the element is within the target area
+      const elemRect = elem.getBoundingClientRect();
+      const portRect = portContainer.getBoundingClientRect();
+      const elemX = elemRect.left - portRect.left;
+      const elemY = elemRect.top - portRect.top;
+
+      console.log(`${name} position: (${elemX}, ${elemY})`);
+      console.log(`Target area: (${targetArea.x}, ${targetArea.y})`);
+
+      if (
+        elemX >= targetArea.x &&
+        elemX + elemRect.width <= targetArea.x + targetArea.width &&
+        elemY >= targetArea.y &&
+        elemY + elemRect.height <= targetArea.y + targetArea.height
+      ) {
+        elem.classList.add('win');
+        updateCompletion(name, true);
+        console.log(`win ${name}!`, completed);
+      } else {
+        elem.classList.remove('win');
+        updateCompletion(name, false);
+        console.log(`lose ${name}.`, completed);
+      }
+    });
+  };
+
+  // Update the completion status of elements
+  const updateCompletion = (name, isComplete) => {
+    const index = completed.indexOf(name);
+    if (isComplete && index === -1) {
+      completed.push(name);
+    } else if (!isComplete && index > -1) {
+      completed.splice(index, 1);
+    }
+    checkCompleted();
+  };
+
+  // Check if all tasks are completed
+  const checkCompleted = () => {
+    if (completeList.every(item => completed.includes(item))) {
+      messageContainer.textContent = "WINNER!!";
+      console.log("WINN!!");
+    } else {
+      messageContainer.textContent = "Keep going...";
+      console.log("keep going");
+    }
+  };
+
+  // Initialize draggable elements
+  elements.forEach(({ id, targetArea, name }) => makeDraggable(id, name, targetArea));
+};
+
+:: StoryInit
+<<cacheaudio "timer" "../assets/sound/timer.mp3">>
+
+
+:: header[nobr]
+<header>
+</header>
+
+:: footer[nobr]
+<footer>
+    <<button "Back">>
+        <<goto "landing">>
+    <</button>>
+</footer>
+
+
+:: landing [nobr] 
+<main>
+    <<button "Enter">>
+        <<goto "toc">>
+    <</button>>
+</main>
+
+
+:: toc [toc]
+<main>
+[[geraldineTalking]]
+[[wordsLeft]]
+[[wordsAdded]]
+[[code4]]
+[[mapInstructions]]
+[[picUpload]]
+[[360image]]
+[[dragIntoBook]]
+</main>
+
+:: headerGeraldine [nobr]
+<header class="talking">
+<div class="avatar-icon">[img[./assets/img/user.png]]</div>
+<div class="userInfo">
+  <h2>Geraldine</h2>
+ <span class="online-dot">●</span><span>Online</span>
+</div>
+
+
+</header>
+
+:: geraldineTalking[nobr]
+<<addclass "body" "light">>
+<<include "headerGeraldine">>
+<main class="talking">
+    <div id="msgMount"></div>
+    <<timed 0.5s>>
+        /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Hello</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+        <p>You must be the people who I’m working with today.  </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 6s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+        <p>I’m Geraldine</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 10s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>I work for OCTOPUS</p>
+       </div>
+        <</append>>
+    <</timed>>
+</main>
+
+
+<<include "footer">>
+
+:: wordsLeft [nobr]
+<main class="main-words">
+
+    <main>
+    <div class="wordLeft-container">
+      <div class="wordLeft word">Sandwich</div>
+       <div class="wordLeft word">Woman</div>
+       <div class="wordLeft word">Disguise</div>
+    </div>
+    <div class="words">
+        <div class="wordDisappear word">were</div>
+        <div class="wordDisappear word">some</div>
+        <div class="wordDisappear word">of</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">hidden</div>
+        <div class="wordDisappear word">of</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">Navy</div>
+        <div class="wordDisappear word">Some</div>
+        <div class="wordDisappear word">would</div>
+        <div class="wordDisappear word">mend</div>
+    
+        <div class="wordDisappear word">some</div>
+        <div class="wordDisappear word">would</div>
+        <div class="wordDisappear word">make</div>
+        <div class="wordDisappear word">ropes</div>
+        <div class="wordDisappear word">Some</div>
+        <div class="wordDisappear word">even</div>
+        <div class="wordDisappear word">dressed</div>
+        <div class="wordDisappear word">like</div>
+        <div class="wordDisappear word">men</div>
+        <div class="wordDisappear word">to</div>
+        <div class="wordDisappear word">fight</div>
+        <div class="wordDisappear word">in</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">war</div>
+    </div>
+</main>
+
+
+
+
+<<include "footer">>
+
+<<done>>
+<<set $move to setup.moveWords()>>
+<</done>>
+
+:: wordsAdded [nobr]
+<main class="main-words added">
+    <div class="words">
+        <div class="wordDisappear word">Women</div>
+        <div class="wordDisappear word">were</div>
+        <div class="wordDisappear word">some</div>
+        <div class="wordDisappear word">of</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">hidden</div>
+         <div class="wordDisappear word">heroes</div>
+        <div class="wordDisappear word">of</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">Navy.</div>
+        <br/>
+         <br/>
+        <div class="wordDisappear word">Some</div>
+        <div class="wordDisappear word">would</div>
+        <div class="wordDisappear word">mend</div>
+         <div class="wordDisappear word">ships,</div>
+        <div class="wordDisappear word">some</div>
+        <div class="wordDisappear word">would</div>
+        <div class="wordDisappear word">make</div>
+        <div class="wordDisappear word">ropes.</div>
+         <br/>
+         <br/>
+        <div class="wordDisappear word">Some</div>
+        <div class="wordDisappear word">even</div>
+        <div class="wordDisappear word">dressed</div>
+        <div class="wordDisappear word">like</div>
+        <div class="wordDisappear word">men</div>
+        <div class="wordDisappear word">to</div>
+        <div class="wordDisappear word">fight</div>
+        <div class="wordDisappear word">in</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">war.</div>
+    </div>
+</main>
+
+
+<<include "footer">>
+
+<<done>>
+  <<set $still to setup.stillWords()>>
+<</done>>
+<<timed 5s>>
+  <<removeclass ".wordDisappear" "wordDisappear">>
+<</timed>>
+
+
+:: code4
+
+<<include "footer">>
+
+:: mapInstructions [nobr]
+
+ /* <<addclass "body" "orange">>
+ <<addclass "html" "orange" >> */
+<<set $currentInstructionIndex = 1>>
+<<set $instructions = {
+    1: { text: "We're ready to go.<br/>
+Step through the doors - then take 19 steps forward and you'll be near a mark on the floor.", coords: "one", nxtcoord: "three"},
+    2: { text: "The stamp exhibition looks quiet but<br/>Hold on. 
+Someone is going past. 
+Stay very still.", coords: "three" },
+    3: { text: "Ok, he's gone. Clearly in a rush!<br/>Let's get our prize.<br/>Head quickly towards the lift.<br/>The exhibit we need is there.<br/>Get the trophy.<br/> Touch the cup!", coords: "six" }
+}>>
+
+<header>
+    <div class="instruction" id="instruction">
+    <p>
+    /* <<print $currentInstructionIndex>>. */
+    <<print $instructions[$currentInstructionIndex].text>></p>
+    
+    </div>
+</header>
+	<main id="main" class="map">
+
+	<div>
+<div class="map-container" id="mapContainer">
+<img src="assets/img/map.jpeg"/>
+<div class="location one pulse" id="location"></div>
+<div class="guard hide pulse" id="guard"></div>
+</div>
+	</div>
+
+	</main>
+	<<include "footermap">>
+
+<<include "footer">>
+
+
+:: footermap [nobr]
+
+<footer class="map">
+<<button "Back">><<goto "landing">><</button>>
+
+<span class="button-wrapper" id="btnMount" aria-label="Click a button or link to move on">
+<<button "Next instruction!">>
+  
+    /* <<removeclass "#location" $instructions[$currentInstructionIndex].coords>> */
+<<set $currentInstructionIndex += 1>>
+  <<timed 0.1s>>
+<<if $currentInstructionIndex === 2 >>
+  <<replace "#audio">>
+    <audio src="assets/audio/PHONE_3_linkintocafespace_5.mp3" autoplay>Audio not supported in your browser</audio>
+    <</replace>>
+  <<timed 1s>>
+       <<removeclass "#guard" "hide">>
+    <<addclass "#guard" "gone">>
+    <</timed>>
+ <<timed 4s>>
+   <<removeclass "#guard" "gone">>
+    <<addclass "#guard" "gtwo">>
+    <</timed>>
+ <<timed 6s>>
+    <<removeclass "#guard" "gtwo">>
+    <<addclass "#guard" "gthree">>
+    <</timed>>
+ <<timed 9s>>
+    <<removeclass "#guard" "gthree">>
+    <<addclass "#guard" "gfour">>
+    <</timed>>
+ <<timed 11s>>
+    <<removeclass "#guard" "gfour">>
+        <<addclass "#guard" "hide">>
+    <</timed>>
+    <</if>>
+    <</timed>>
+      <<timed 0.1s>>
+  <<if $currentInstructionIndex === 3 >>
+    <<replace "#audio">>
+    <audio src="assets/audio/PHONE_3_linkintocafespace_6_alt-trophy.mp3" autoplay>Audio not supported in your browser</audio>
+    <</replace>>
+      <<replace "#btnMount">>
+    <span class="button-wrapper" aria-label="Click a button or link to move on">
+        <<button [[I'm next to the trophy|landing]]>><</button>>
+      </span>
+    <</replace>>
+    <<replace "#instruction">>
+      /* <<print $currentInstructionIndex>> */
+      <p><<print $instructions[$currentInstructionIndex].text>></p>
+    <</replace>>
+     <<timed 2s>>
+   <<removeclass "#location" "three">>
+    <<addclass "#location" "four">>
+    <</timed>>
+    <<timed 4s>>
+    <<removeclass "#location" "four">>
+    <<addclass "#location" "six">>
+    <</timed>>
+
+    <</if>>
+      <</timed>>
+  <<if $currentInstructionIndex === 3>>
+    
+    <<else>>
+    
+    <<replace "#instruction">>
+      /* <<print $currentInstructionIndex>> */
+      <p><<print $instructions[$currentInstructionIndex].text>></p>
+  
+    <</replace>>
+    <<removeclass "#location" "one">>
+    <<set $position to $instructions[$currentInstructionIndex].coords >>
+    <<addclass "#location" $position >>
+  <</if>>
+<</button>>
+</span>
+</footer>
+
+<<timed 0.1s>>
+<<if $currentInstructionIndex === 1 >>
+  <<timed 4s>>
+    <<removeclass "#location" "one">>
+    <<addclass "#location" "three">>
+    <</timed>>
+    <</if>>
+    <</timed>>
+
+
+:: picUpload
+<main class="main-section">
+
+<h3>Find a spot out to the river</h3>
+<br>
+<p>Upload an image of something interesting </p>
+<br>
+<input type="file" accept="image/*" capture="camera" id="inputImg" class="hide">
+<br>
+  <br>
+<div id="success">
+<<button "Upload Image">>
+  <<set $e to setup.handleFileUpload()>><</button>>
+</div>
+  <br>
+  <br>
+  <div id="error"></div>
+
+</main> 
+<<include "footerupload">>
+
+:: footerupload [nobr]
+<footer id="footerField"><<button "Back">><<goto $prevpass>><</button>>
+</footer>
+<<timed 12s>>
+    <<append "#footerField">>
+  <<button "I've uploaded my image">> <<goto $nextpass>><</button>>
+    <</append>><</timed>>
+
+:: timer [nobr]
+  <<audio "timer" "play">>
+<<set $seconds to 90>>
+<span id="countdown"><span class="secs">$seconds</span> <span class="extra">seconds</span></span>
+
+
+<<silently>>
+	<<repeat 1s>>
+		<<set $seconds to $seconds - 1>>
+		<<if $seconds gt 0>>
+			<<replace "#countdown">><span class="secs">$seconds</span> <span class="extra">seconds</span><</replace>>
+		<<else>>
+			<<replace "#countdown">><strong>Too Late</strong><</replace>>
+      <<timed 1s>>
+        <<goto "notime">>
+        <</timed>>
+  
+			<<stop>>
+		<</if>>
+	<</repeat>>
+<</silently>>
+
+:: header360elephant[nobr]
+<header class="pano timer "><span>Find the name of the road</span>
+  <<include "timer">></header>
+
+:: 360image [nobr]
+
+<<include "header360elephant">>
+	<main id="main" class="pano">
+	/* <<if $audioOn is true>><audio src="https://remote.co.com/MoTT/AgentTraining/assets/audio/Welcome1.mp3" autoplay>Audio not supported in your browser</audio><</if>> */
+
+<iframe width="90%" height="500px" allowFullScreen="true" allow="accelerometer; magnetometer; gyroscope" style="display:block; margin:20px auto; border:0 none; max-width:880px;border-radius:8px; box-shadow: 0 1px 1px rgba(0,0,0,0.11),0 2px 2px rgba(0,0,0,0.11),0 4px 4px rgba(0,0,0,0.11),0 6px 8px rgba(0,0,0,0.11),0 8px 16px rgba(0,0,0,0.11);" src="https://panoraven.com/en/embed/S8FIEpERCW"></iframe>
+
+
+	</main>
+	<<include "footer360elephant">>
+
+
+:: pw360elephant [nobr]
+<div id="codewordWrapper" class="codeword-wrapper">
+
+    <label for="textbox--password" tabindex="0" ><span aria-label="Enter the word below" role="label">CODEWORD:</span></label>
+
+    /% CODEWORD INPUT %/
+      <div class="input-wrapper">
+     <div class="code-input pano">
+       <<textbox "_password" "" >>
+      </div>
+   <span class="button-wrapper" aria-label="Click Button to go Check your answer">
+     <<button "Enter">>  
+   /% STANDARDISE INPUT %/
+       <<set _password to _password.toUpperCase()>>
+   /% CODEWORD CORRECT %/
+       <<if _password isnot "" and _password is "NEWNHAM STREET">>
+            <<audio "correct" play>>
+       <<replace "#elecoderesult">><h2 class="">Correct!</h2><</replace>>
+       <<timed 3s>><<goto $nextpass>><</timed>>
+      <</if>>
+        /% CODEWORD INCORRECT %/
+     <<if _password isnot "" and _password isnot "NEWNHAM STREET">>
+        <<replace "#elecoderesult">><h2>Thats not right.</h2><</replace>>
+      <<timed 1.5s>><<replace "#elecoderesult">><</replace>><</timed>>
+        <</if>><</button>> 
+     </span>
+
+   
+    /% CODEWORD FEEDBACK %/
+    </div>
+        <div id="elecoderesult"></div>
+</div>
+
+:: footer360elephant [nobr]
+
+<footer class="pano">
+<nav class=""><div id="back" class="button-wrapper">
+ <<button "Back">>
+        <<goto "landing">>
+    <</button>>
+</div></nav>
+  <<include "pw360elephant">></footer>
+
+
+:: headerDrag [nobr]
+<header class="drag">
+<div id="message">DRAG THE ITEMS</div>
+</header>
+
+:: dragIntoBook[nobr]
+<<include "headerDrag">>
+<div id="port-container">
+  <img id="book-image" src="assets/img/open-book.png" alt="Port">
+  <div id="target-area1"></div>
+   <div id="target-area2"></div>
+   
+  <img id="boat-image" class="draggable-image" src="https://png.pngtree.com/png-vector/20231020/ourmid/pngtree-3d-illustration-of-wooden-boat-png-image_10298350.png" alt="Boat" draggable="true">
+  <img id="elephant-image" class="draggable-image" src="https://png.pngtree.com/png-clipart/20230411/original/pngtree-elephant-asian-elephant-png-image_9043910.png" alt="Elephant" draggable="true">
+</div>
+<<include "footer">>
+
+<<done>>
+<<set $s to setup.boatMultiDraggable()>><</done>>
+
+:: alarm
+
+<<include "footer">>
+
+
