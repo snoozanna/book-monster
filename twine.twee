@@ -439,9 +439,7 @@ setup.boatMultiDraggable = () => {
 <<done>>
   <<set $still to setup.stillWords()>>
 <</done>>
-<<timed 5s>>
-  <<removeclass ".wordDisappear" "wordDisappear">>
-<</timed>>
+
 
 
 :: code4
