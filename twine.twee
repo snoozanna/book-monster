@@ -257,8 +257,6 @@ setup.boatMultiDraggable = () => {
 
 :: StoryInit
 <<cacheaudio "timer" "../assets/sound/timer.mp3">>
-
-
 :: header[nobr]
 <header>
 </header>
@@ -268,9 +266,9 @@ setup.boatMultiDraggable = () => {
 
 :: footer[nobr]
 <footer>
-    <<button "Back">>
+    <<link "Back">>
         <<goto "landing">>
-    <</button>>
+    <</link>>
     <div id="nextButtonContainer"></div>
 </footer>
 
@@ -285,7 +283,16 @@ setup.boatMultiDraggable = () => {
 
 :: toc [toc]
 <main>
-[[geraldineTalking]]
+<<link "Geraldine Talking - Light (Retro UI)">>
+  <<set $colorScheme to "_templateGeraldine">>
+    <<goto "gerIntro-1" >>
+<</link>>
+
+<<link "Geraldine Talking - Dark (Early computer)">>
+  <<set $colorScheme to "_templateGeraldineDark">>
+  <<goto "gerIntro-1" >>
+<</link>>
+
 [[wordsLeft]]
 [[wordsAdded]]
 [[code4]]
@@ -306,12 +313,43 @@ setup.boatMultiDraggable = () => {
 
 </header>
 
-:: geraldineTalking[nobr]
+:: _templateGeraldineDark[nobr]
+<<addclass "body" "dark">>
+<<include "headerGeraldine">>
+<main class="talking">
+    <div id="msgMount"></div>
+        <<if $pass>>
+            <<set $uniqueContent to $pass+"-messages">>
+            <<include $uniqueContent>>
+        <<else>>
+            No content provided.
+        <</if>>
+</main>
+<<include "footer">>
+
+:: _templateGeraldine[nobr]
 <<addclass "body" "light">>
 <<include "headerGeraldine">>
 <main class="talking">
     <div id="msgMount"></div>
-    <<timed 0.5s>>
+        <<if $pass>>
+            <<set $uniqueContent to $pass+"-messages">>
+            <<include $uniqueContent>>
+        <<else>>
+            No content provided.
+        <</if>>
+</main>
+<<include "footer">>
+
+:: gerIntro-1 [nobr]
+<<set $prevpass to "landing">>
+<<set $pass to "gerIntro-1">>
+<<set $nextpass to "gerIntro-2">>
+
+<<include $colorScheme>>
+
+:: gerIntro-1-messages [nobr]
+<<timed 0.5s>>
         /* <<audio "ping1" "play">> */
         <<append "#msgMount">>
        <div class="message"> 
@@ -349,16 +387,189 @@ setup.boatMultiDraggable = () => {
 
      <<timed 12s>>
         /* <<audio "ping1" "play">> */
-         <<replace "#nextButtonContainer">>
-     <<button "Next">>
-      <<goto "landing">>
-      <</button>>
-        <</replace>>
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Love the work.</p>
+       </div>
+        <</append>>
     <</timed>>
-</main>
+
+     <<timed 14s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Protecting Unrooted Stories. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 16s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>I’m so excited to be here.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 18s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+        <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: gerIntro-2 [nobr]
+<<set $prevpass to "landing">>
+<<set $pass to "gerIntro-2">>
+<<set $nextpass to "gerIntro-3">>
+
+<<include $colorScheme>>
 
 
-<<include "footer">>
+:: gerIntro-2-messages [nobr]
+<<timed 0.5s>>
+        /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+           <p>This is actually my first day. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>My first Rooting in fact.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 6s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+     <p>Never done it before</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 10s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+         <p>But we’ll be fine</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 12s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Totally fine.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 15s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: gerIntro-3 [nobr]
+<<set $prevpass to "landing">>
+<<set $pass to "gerIntro-3">>
+<<set $nextpass to "landing">>
+
+<<include $colorScheme>>
+
+:: gerIntro-3-messages [nobr]
+<<timed 0.5s>>
+        /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+           <p>Ok let me load up the book.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Chatham Stories. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 6s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+     <p>A book that was once full of stories of my local town Chatham</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 10s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+         <p>But now…it seems they have all been taken</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 12s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Written by UNKNOWN.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 14s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Written by Unknown is odd - maybe together we can discover who the author was. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 16s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>It must be because of the Book Monster. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+       <<timed 18s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Let’s load up the information from OCTOPUS to find out what they know.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 20s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Load Info">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
 
 :: wordsLeft [nobr]
 <main class="main-words">

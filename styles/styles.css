@@ -2,11 +2,14 @@
 
 :root {  
     --color-one: rgb(43, 38, 71);
+    /* --color-one: black; */
     --color-two: #f7ece2;
+    /* --color-two: #2eec99; */
     --color-three: rgb(222, 110, 75);
     --color-four: rgb(127, 209, 185);
     --color-five: rgb(229, 99, 153);
     --color-six: #dbc5af;
+    --neon-green: #39FF14;
     --main-bg-color: var(--color-one);
     --font-headings: "SpecialElite", monospace;
     --font-body: "Sora", sans-serif;
@@ -175,6 +178,39 @@ body.light > #story > #passages > .passage > footer > #nextButtonContainer > but
   font-weight: 700;
   box-shadow:var(--box-shadow)
 }
+
+/* dark */
+body.dark{
+  background-color: black;
+  }
+
+body.dark > #story > #passages > .passage > main > #msgMount > .message{
+  background-color: transparent;
+  box-shadow: none;
+}
+
+body.dark > #story > #passages > .passage > main > #msgMount > .message > p {
+  color: var(--neon-green);
+  font-weight: 600;
+  font-family: monospace;
+}
+
+body.dark > #story > #passages > .passage > header{
+  background-color: transparent;
+  color: white;
+  border-bottom: solid 3px var(--neon-green);
+
+}
+
+body.dark > #story > #passages > .passage > footer > button, 
+body.dark > #story > #passages > .passage > footer > #nextButtonContainer > button{
+  border: none;
+  color:black;
+  font-weight: 700;
+  background: var(--neon-green);
+}
+
+
 
 /* FOOTER  */
 footer{
@@ -623,7 +659,7 @@ header.talking > .userInfo > span {
 }
 
 header.talking > .userInfo > span.online-dot {
-color:green;
+color:var(--neon-green);
 margin-inline-end: 1rem;
 }
 
@@ -632,6 +668,15 @@ header.talking > .avatar-icon > img {
   margin-top: inherit;
   max-width: 40px;
 
+}
+
+main.talking{
+  height: initial;
+  margin-block-end: 15rem;
+}
+
+#msgMount{
+  margin-block-end: 15rem;
 }
 
 #msgMount > .message{
