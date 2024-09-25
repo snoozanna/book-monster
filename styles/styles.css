@@ -1,11 +1,8 @@
 /* GENERAL STYLES */
 
-:root {
-
-  
-  
+:root {  
     --color-one: rgb(43, 38, 71);
-    --color-two: rgb(229, 212, 206);
+    --color-two: #f7ece2;
     --color-three: rgb(222, 110, 75);
     --color-four: rgb(127, 209, 185);
     --color-five: rgb(229, 99, 153);
@@ -14,6 +11,7 @@
     --font-headings: "SpecialElite", monospace;
     --font-body: "Sora", sans-serif;
     --padding: 2rem;
+    --box-shadow:  0.5rem 0.5rem black;
   }
   
 
@@ -112,7 +110,7 @@
     font-family: var(--font-headings);
     text-transform: uppercase;
     padding: 5px;
-    box-shadow: var(--accent-color-shadow) 4px 4px;
+    box-shadow:var(--box-shadow)
   }
   
   button:hover {
@@ -164,9 +162,20 @@ body {
   overflow: scroll;
 }
 
+/* light  */
+
 body.light{
 background-color: var(--color-six);
 }
+
+body.light > #story > #passages > .passage > footer > button, 
+body.light > #story > #passages > .passage > footer > #nextButtonContainer > button{
+  border: black 2px solid;
+  color:black;
+  font-weight: 700;
+  box-shadow:var(--box-shadow)
+}
+
 /* FOOTER  */
 footer{
   display: flex;
@@ -296,7 +305,6 @@ input[type="text"]:focus{
 
 /* MAP INSTRUCTIONS */
 
-/* MAP  */
 
 main.map{
   height: initial;
@@ -328,10 +336,11 @@ footer.map {
 
 .location {
   background-color: #3cc00e;
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   position: absolute;
+ 
 }
 
 .guard {
@@ -343,33 +352,38 @@ footer.map {
 }
 
 .location.one {
-  left: 41%;
-  bottom: 3%;
+  left: 46%;
+  top: 10%;
 }
 
 .location.two {
-  left: 41%;
-  bottom: 13%;
+  left: 52%;
+  top: 10%;
 }
 
 .location.three {
-  left: 41%;
-  bottom: 57%;
+  left: 52%;
+  top: 24%;
 }
 
 .location.four {
-  left: 41%;
-  top: 20%
+  right: 16%;
+  top: 24%;
 }
 
 .location.five {
-  left: 32%;
-  bottom: 72%;
+  right: 16%;
+  bottom: 32%;
 }
 
 .location.six {
-  right: 3%;
-  top: 20%;
+  left: 20%;
+  bottom: 18%;
+}
+
+.location.seven {
+  left: 3%;
+  bottom: 6%;
 }
 
 .guard.hide{
@@ -377,13 +391,13 @@ display: none;
 }
 
 .guard.gone{
-  right: 3%;
-  top: 20%;
+  left: 50%;
+  bottom: 64%;
 }
 
 .guard.gtwo{
-  right: 44%;
-  top: 20%;
+  left: 50%;
+  bottom: 36%;
 }
 
 .guard.gthree{
@@ -579,6 +593,12 @@ background: var(--color-four);
 border-bottom: solid 3px black;
 }
 
+header.talking > .userInfo{
+display: flex;
+justify-content: space-between;
+width: 100%;
+}
+
 header.talking > .userInfo > h2 {
   display: flex;
   flex-direction: column;
@@ -610,13 +630,12 @@ margin-inline-end: 1rem;
 header.talking > .avatar-icon > img {
   position: inherit;
   margin-top: inherit;
-  margin-bottom: 0.8rem;
-  max-width: 60px;
+  max-width: 40px;
 
 }
 
 #msgMount > .message{
-  background-color: var(--color-six);
+  background-color: var(--color-two);
   color:black;
   width: fit-content;
   padding: 0.4rem 1rem;
@@ -636,4 +655,97 @@ header.talking > .avatar-icon > img {
   color: black;
   font-size: 0.6em;
   font-weight: 600;
+}
+
+#nextButtonContainer > button{
+  background: var(--color-four);
+}
+
+
+
+/* CODEBREAKING  */
+.main-section.codebreaking {
+  min-height: inherit;
+}
+
+footer.codebreaking {
+  position: inherit;
+}
+
+.wordcontainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.letter-item.current > a {
+  border: goldenrod solid 2px;
+}
+
+.letter-item > a {
+  display: block;
+  border: white 1px solid;
+  min-width: 2em;
+  min-height: 2em;
+  padding: 0.5em;
+  max-width: 2em;
+  margin-inline-end: 10px;
+  margin-bottom: 0;
+}
+
+.letter-item > input[type="text"] {
+  border: white 1px solid;
+  min-width: 2em;
+  max-width: 2em;
+  margin-inline-end: 10px;
+}
+
+.letter-item > .correct-letter {
+  max-width: 2em;
+  margin-inline-end: 10px;
+  font-size: 3rem;
+}
+
+#inputMount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#inputMount > .code-input > input[type="text"] {
+  border: none;
+  border-bottom: solid 2px white;
+  margin-bottom: 2rem;
+  min-width: inherit;
+  width: 60px;
+  font-size: 3rem;
+  text-align: center;
+}
+
+#clueMount {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.8rem;
+  justify-content: center;
+  width: 100%;
+}
+
+#clueMount > span {
+  text-align: center;
+  font-family: var(--font-headings);
+  font-size: 2rem;
+  color: var(--asparagus-light);
+  font-weight: 900;
+}
+
+#clueMount > span.title {
+  color: black;
+}
+
+#mainMount > h3 {
+  text-align: center;
+  width: 100%;
 }

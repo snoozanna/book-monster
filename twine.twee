@@ -263,11 +263,15 @@ setup.boatMultiDraggable = () => {
 <header>
 </header>
 
+
+
+
 :: footer[nobr]
 <footer>
     <<button "Back">>
         <<goto "landing">>
     <</button>>
+    <div id="nextButtonContainer"></div>
 </footer>
 
 
@@ -341,6 +345,15 @@ setup.boatMultiDraggable = () => {
         <p>I work for OCTOPUS</p>
        </div>
         <</append>>
+    <</timed>>
+
+     <<timed 12s>>
+        /* <<audio "ping1" "play">> */
+         <<replace "#nextButtonContainer">>
+     <<button "Next">>
+      <<goto "landing">>
+      <</button>>
+        <</replace>>
     <</timed>>
 </main>
 
@@ -440,10 +453,229 @@ setup.boatMultiDraggable = () => {
   <<set $still to setup.stillWords()>>
 <</done>>
 
+:: checkcorrectans
+
+<<if $correctans.includesAll("L", "A", "C", "Y")>>
+<<timed 2s>>
+  <<replace "#clueMount">>
+    <p>That’s it - Mary Lacy!</p>
+    <</replace>>
+
+<</timed>>
+<<timed 5s>>
+  <<goto "landing">>
+  <</timed>>
+<</if>>
+
+:: codeheader [nobr]
+<header id="header" class="column">
+  <div id="clueMount">
+    <p>4 letters to find.</p>
+    <p>Let’s load the first one up first.</p>
+  </div>
+</header>
+
+:: code4 [nobr]
+<<set $correctans to []>>
+<<include "codeheader">>
+$correctans
+<main class="main-section codebreaking" id="mainMount">
+
+<div class="wordcontainer">
+<<set $current to "">>
+/* Letter S  */
+<div class="letter-item l" id="letterItemL">
+  <<link "">>
+   /* <<textbox "$s" "">> */
+   /* <<toggleclass $current "current">> */
+   <<set $current to "l">>
+    <<if $current is "l">> 
+    <<replace "#clueMount">>
+        /* Make box gold, turn off any other gold boxes */
+         <<addclass "#letterItemL" "current">> 
+        <<removeclass "#letterItemA" "current">>   
+        <<removeclass "#letterItemC" "current">>   
+        <<removeclass "#letterItemY" "current">> 
+       <p>There is a clock near the exit - underneath a name of someone who open the Library - enter the 2nd letter of the Surname. </p>
+
+    <</replace>>
+  
+    <<replace "#inputMount">>
+        <div id="coderesult"></div>
+    
+        <div class="code-input"><<textbox "$l" "">></div>
+        <<button "Enter">>
+       
+        /% PASSWORD CODE %/
+        <<set $l to $l.toUpperCase()>>
+        /% CODEWORD CORRECT %/
+        <<if $l isnot "" and $l is "L">>
+        <<timed 0.1s>>
+         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+        <</timed>>
+        <<timed 1s>>
+            <<run $correctans.push("L")>>
+            <<include "checkcorrectans">>
+            <<replace "#letterItemL">><div class="correct-letter">L</div>
+            <</replace>>
+            <<replace "#inputMount">><</replace>>
+             <<replace "#clueMount">><</replace>>
+        <</timed>>
+        <</if>>
+        /% CODEWORD INCORRECT %/
+        <<if $l isnot "" and $l isnot "L">>
+        <<timed 0.1s>>
+          <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
+         <</timed>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+        <</if>><</button>>
+    <</replace>>
+   <</if>>   
+
+  <</link>>
+</div>
+/* Letter A  */
+<div class="letter-item a" id="letterItemA">
+  <<link "">>
+
+   <<set $current to "a">>
+    <<if $current is "a">> 
+    <<replace "#clueMount">>
+        /* Make box gold, turn off any other gold boxes */
+         <<removeclass "#letterItemL" "current">> 
+        <<addclass "#letterItemA" "current">>   
+        <<removeclass "#letterItemL" "current">>   
+        <<removeclass "#letterItemY" "current">>   
+       <p>Shakespeare’s quote is on the wall - find it up above a door - and enter the first letter of the quote</p>
+    <</replace>>
+    <<replace "#inputMount">>
+        <div id="coderesult"></div>
+        <div class="code-input"><<textbox "$a" "">></div>
+        <<button "Enter">>
+       
+        /% PASSWORD CODE %/
+        <<set $a to $a.toUpperCase()>>
+        /% CODEWORD CORRECT %/
+        <<if $a isnot "" and $a is "A">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+        <<run $correctans.push("A")>>
+            <<include "checkcorrectans">>
+        <<timed 1s>>
+            <<replace "#letterItemA">><div class="correct-letter">A</div>
+            <</replace>>
+            <<replace "#inputMount">><</replace>>
+             <<replace "#clueMount">><</replace>>
+        <</timed>>
+        <</if>>
+        /% CODEWORD INCORRECT %/
+        <<if $a isnot "" and $a isnot "A">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+        <</if>><</button>>
+    <</replace>>
+   <</if>>   
+   /* <<toggleclass "#sclue" "hide">> */
+  <</link>>
+</div>
+/* Letter L  */
+<div class="letter-item l" id="letterItemC">
+  <<link "">>
+   /* <<textbox "$s" "">> */
+   /* <<toggleclass $current "current">> */
+   <<set $current to "l">>
+    <<if $current is "l">> 
+    <<replace "#clueMount">>
+        /* Make box gold, turn off any other gold boxes */
+         <<removeclass "#letterItemL" "current">> 
+        <<removeclass "#letterItemA" "current">>   
+        <<addclass "#letterItemC" "current">>   
+        <<removeclass "#letterItemY" "current">>   
+       <p>Far on the other side of the Library there is an area for Kids’ what is the name of this area? Enter the first letter of that word. </p>
+    <</replace>>
+    <<replace "#inputMount">>
+        <div id="coderesult"></div>
+        <div class="code-input"><<textbox "$c" "">></div>
+        <<button "Enter">>
+       
+        /% PASSWORD CODE %/
+        <<set $c to $c.toUpperCase()>>
+        /% CODEWORD CORRECT %/
+        <<if $c isnot "" and $c is "C">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+        <<timed 1s>>
+            <<run $correctans.push("C")>>
+            <<include "checkcorrectans">>
+            <<replace "#letterItemC">><div class="correct-letter">C</div>
+            <</replace>>
+            <<replace "#inputMount">><</replace>>
+             <<replace "#clueMount">><</replace>>
+        <</timed>>
+        <</if>>
+        /% CODEWORD INCORRECT %/
+        <<if $c isnot "" and $c isnot "C">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+        <</if>><</button>>
+    <</replace>>
+   <</if>>   
+   /* <<toggleclass "#sclue" "hide">> */
+  <</link>>
+</div>
 
 
-:: code4
+/* Letter Y  */
+<div class="letter-item y" id="letterItemY">
+  <<link "">>
+   /* <<textbox "$s" "">> */
+   /* <<toggleclass $current "current">> */
+   <<set $current to "y">>
+    <<if $current is "y">> 
+    <<replace "#clueMount">>
+        /* Make box gold, turn off any other gold boxes */
+         <<removeclass "#letterItemL" "current">> 
+        <<removeclass "#letterItemA" "current">>   
+        <<removeclass "#letterItemL" "current">>   
+        <<addclass "#letterItemY" "current">>   
+       <p>Hidden near Local Fiction (where the Chatham’s Stories Book should be)  an Ark can be found - a Sound Ark - what is the last letter of the first word of this Sound Ark? </p>
+    <</replace>>
+    <<replace "#inputMount">>
+        <div id="coderesult"></div>
+        <div class="code-input"><<textbox "$y" "">></div>
+        <<button "Enter">>
+       
+        /% PASSWORD CODE %/
+        <<set $y to $y.toUpperCase()>>
+        /% CODEWORD CORRECT %/
+        <<if $y isnot "" and $y is "Y">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+        <<timed 1s>>
+            <<run $correctans.push("Y")>>
+            <<include "checkcorrectans">>
+            <<replace "#letterItemY">><div class="correct-letter">Y</div>
+            <</replace>>
+            <<replace "#inputMount">><</replace>>
+             <<replace "#clueMount">><</replace>>
+        <</timed>>
+        <</if>>
+        /% CODEWORD INCORRECT %/
+        <<if $y isnot "" and $y isnot "Y">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+        <</if>><</button>>
+    <</replace>>
+   <</if>>   
 
+  <</link>>
+</div>
+</div>
+<br>
+<br>
+<div id="inputMount"></div>
+<br>
+<br>
+
+
+</main>
 <<include "footer">>
 
 :: mapInstructions [nobr]
@@ -451,14 +683,21 @@ setup.boatMultiDraggable = () => {
  /* <<addclass "body" "orange">>
  <<addclass "html" "orange" >> */
 <<set $currentInstructionIndex = 1>>
+
 <<set $instructions = {
-    1: { text: "We're ready to go.<br/>
-Step through the doors - then take 19 steps forward and you'll be near a mark on the floor.", coords: "one", nxtcoord: "three"},
-    2: { text: "The stamp exhibition looks quiet but<br/>Hold on. 
-Someone is going past. 
-Stay very still.", coords: "three" },
-    3: { text: "Ok, he's gone. Clearly in a rush!<br/>Let's get our prize.<br/>Head quickly towards the lift.<br/>The exhibit we need is there.<br/>Get the trophy.<br/> Touch the cup!", coords: "six" }
+    1: { text: "Face the vending machines <br/>
+Take 2 steps backwards and turn right (you should be facing the double doors)
+", coords: "one"},
+    2: { text: "Walk backwards down the central aisle <br/>
+HOLD", coords: "three" },
+ 3: { text: "Slowly turn left and walk backwards towards the wall", coords: "four" }, 
+  4: { text: "Walk along the wall towards reception - past the Jigsaws.<br/>
+Stop before the reception - it’s too open there. <br/>", coords: "five" }, 
+  5: { text: "You need to make your way across to the Poetry Corner sign by the door.  <br/>", coords: "six" }, 
+   6: { text: "Head out the door and out of the cage.<br/>
+  Enter the word to let me know you have made it out alive!", coords: "seven" }
 }>>
+  <<set $position to $instructions[$currentInstructionIndex].coords >>
 
 <header>
     <div class="instruction" id="instruction">
@@ -472,7 +711,7 @@ Stay very still.", coords: "three" },
 
 	<div>
 <div class="map-container" id="mapContainer">
-<img src="assets/img/map.jpeg"/>
+<img src="assets/img/map.png"/>
 <div class="location one pulse" id="location"></div>
 <div class="guard hide pulse" id="guard"></div>
 </div>
@@ -481,7 +720,7 @@ Stay very still.", coords: "three" },
 	</main>
 	<<include "footermap">>
 
-<<include "footer">>
+
 
 
 :: footermap [nobr]
@@ -489,91 +728,120 @@ Stay very still.", coords: "three" },
 <footer class="map">
 <<button "Back">><<goto "landing">><</button>>
 
-<span class="button-wrapper" id="btnMount" aria-label="Click a button or link to move on">
+<span class="button-wrapper hide" id="btnMount" aria-label="Click a button or link to move on">
+<<if $currentInstructionIndex === 1>>
+  <<timed 4s>>
+      <<removeclass "#location" "one">>
+      <<addclass "#location" "two">>
+      <</timed>>
+    <<timed 5s>>
+      <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<</if>>
 <<button "Next instruction!">>
-  
+ 
     /* <<removeclass "#location" $instructions[$currentInstructionIndex].coords>> */
 <<set $currentInstructionIndex += 1>>
-  <<timed 0.1s>>
+
 <<if $currentInstructionIndex === 2 >>
-  <<replace "#audio">>
-    <audio src="assets/audio/PHONE_3_linkintocafespace_5.mp3" autoplay>Audio not supported in your browser</audio>
-    <</replace>>
-  <<timed 1s>>
-       <<removeclass "#guard" "hide">>
-    <<addclass "#guard" "gone">>
-    <</timed>>
- <<timed 4s>>
-   <<removeclass "#guard" "gone">>
-    <<addclass "#guard" "gtwo">>
-    <</timed>>
- <<timed 6s>>
-    <<removeclass "#guard" "gtwo">>
-    <<addclass "#guard" "gthree">>
-    <</timed>>
- <<timed 9s>>
-    <<removeclass "#guard" "gthree">>
-    <<addclass "#guard" "gfour">>
-    <</timed>>
- <<timed 11s>>
-    <<removeclass "#guard" "gfour">>
-        <<addclass "#guard" "hide">>
-    <</timed>>
-    <</if>>
-    <</timed>>
-      <<timed 0.1s>>
-  <<if $currentInstructionIndex === 3 >>
-    <<replace "#audio">>
-    <audio src="assets/audio/PHONE_3_linkintocafespace_6_alt-trophy.mp3" autoplay>Audio not supported in your browser</audio>
-    <</replace>>
-      <<replace "#btnMount">>
-    <span class="button-wrapper" aria-label="Click a button or link to move on">
-        <<button [[I'm next to the trophy|landing]]>><</button>>
-      </span>
-    <</replace>>
-    <<replace "#instruction">>
-      /* <<print $currentInstructionIndex>> */
-      <p><<print $instructions[$currentInstructionIndex].text>></p>
-    <</replace>>
-     <<timed 2s>>
-   <<removeclass "#location" "three">>
-    <<addclass "#location" "four">>
-    <</timed>>
+   <<timed 1s>>
+     <<include "updateInstruction">>
+  <</timed>>
+    /* <<replace "#audio">>
+      <audio src="assets/audio/PHONE_3_linkintocafespace_5.mp3" autoplay>Audio not supported in your browser</audio>
+      <</replace>> */
     <<timed 4s>>
-    <<removeclass "#location" "four">>
-    <<addclass "#location" "six">>
+        <<removeclass "#guard" "hide">>
+      <<addclass "#guard" "gone">>
+      <</timed>>
+  <<timed 6s>>
+     <<replace "#instruction">>
+      <p>The Book Monster.</p>
+      <</replace>>
+   <</timed>>
+  <<timed 7s>>
+    <<removeclass "#btnMount" "hide">>
     <</timed>>
 
-    <</if>>
-      <</timed>>
-  <<if $currentInstructionIndex === 3>>
-    
-    <<else>>
-    
-    <<replace "#instruction">>
-      /* <<print $currentInstructionIndex>> */
-      <p><<print $instructions[$currentInstructionIndex].text>></p>
-  
+<<elseif $currentInstructionIndex === 3 >>
+  <<timed 1s>>
+     <<removeclass "#location" "two">>
+     <<include "updateInstruction">>
+  <</timed>>
+  <<timed 4s>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<<elseif $currentInstructionIndex === 4 >>
+    <<timed 0.1s>>
+      <<include "updateInstruction">>
+    <</timed>>
+    <<timed 4s>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<<elseif $currentInstructionIndex === 5 >>
+    <<timed 0.1s>>
+       <<addclass "#btnMount" "hide">>
+      <<replace "#instruction">>
+        <p>$currentInstructionIndex<<print $instructions[$currentInstructionIndex].text>></p>
     <</replace>>
-    <<removeclass "#location" "one">>
-    <<set $position to $instructions[$currentInstructionIndex].coords >>
-    <<addclass "#location" $position >>
-  <</if>>
+    <<timed 4s>>
+        <<replace "#instruction">>
+        <p>WAIT FOR THE MONSTER TO MOVE</p>
+        <</replace>>
+      <</timed>>
+      <<timed 7s>>
+        <<removeclass "#guard" "gone">>
+      <<addclass "#guard" "gtwo">>
+      <</timed>>
+      <<timed 8s>>
+         <<replace "#instruction">>
+        <p>Go!</p>
+        <</replace>>
+        <<timed 1s>>
+         <<removeclass "#location" "five">>
+         <<addclass "#location" "six" >>
+         <<set $position to "six">>
+         <</timed>>
+         <<timed 2s>>
+          <<removeclass "#btnMount" "hide">>
+          <</timed>>
+      <</timed>>
+     
+    <</timed>>
+<<elseif $currentInstructionIndex === 6 >>
+ <<timed 0.1s>>
+      <<include "updateInstruction">>
+    <</timed>>
+    <<timed 4s>>
+      <<replace "#btnMount">>
+        <span class="button-wrapper" aria-label="Click a button or link to move on">
+            <<button [[I've made it!|landing]]>><</button>>
+          </span>
+        <</replace>>
+      <</timed>>
+<<else>>
+  <<include "updateInstruction">>
+<</if>>
 <</button>>
 </span>
 </footer>
 
-<<timed 0.1s>>
-<<if $currentInstructionIndex === 1 >>
-  <<timed 4s>>
-    <<removeclass "#location" "one">>
-    <<addclass "#location" "three">>
-    <</timed>>
-    <</if>>
-    <</timed>>
+    
 
+:: updateInstruction [nobr]
+<<timed 1s>>
+  <<addclass "#btnMount" "hide">>
+  <<replace "#instruction">>
+    <p><<print $instructions[$currentInstructionIndex].text>></p>
+  <</replace>>
+ <</timed>>
+ <<timed 2s>>
+  <<removeclass "#location" $position>>
+  <<set $position to $instructions[$currentInstructionIndex].coords >>
+  <<addclass "#location" $position >>
+<</timed>>
 
-:: picUpload
+:: picUpload [nobr]
 <main class="main-section">
 
 <h3>Find a spot out to the river</h3>
@@ -595,7 +863,7 @@ Stay very still.", coords: "three" },
 <<include "footerupload">>
 
 :: footerupload [nobr]
-<footer id="footerField"><<button "Back">><<goto $prevpass>><</button>>
+<footer id="footerField"><<button "Back">><<goto "landing">><</button>>
 </footer>
 <<timed 12s>>
     <<append "#footerField">>
