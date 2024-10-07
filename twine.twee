@@ -257,6 +257,21 @@ setup.boatMultiDraggable = () => {
 
 :: StoryInit
 <<cacheaudio "timer" "../assets/sound/timer.mp3">>
+<<cacheaudio "ping" "../assets/sound/ping1.mp3">>
+<<set $currentChapter to 1>>
+
+:: findChapTitle [nobr]
+<<set $chapters to {
+    1: "Women in Disguise",
+    2: "The Lion Queen",
+    3: "Sea Unicorn",
+    4: "Painted Elephant", 
+    5: "The Lifesaving Club"
+}>>
+
+
+
+
 :: header[nobr]
 <header>
 </header>
@@ -267,31 +282,57 @@ setup.boatMultiDraggable = () => {
 :: footer[nobr]
 <footer>
     <<link "Back">>
-        <<goto "landing">>
+        <<goto $prevpass>>
     <</link>>
-    <div id="nextButtonContainer"></div>
+    <<link "Next">>
+        <<goto $nextpass>>
+    <</link>>
+    <div id="nextButtonContainer">
+     </div>
+</footer>
+
+:: footerger[nobr]
+<footer>
+    <<link "Back">>
+        <<goto $prevpass>>
+    <</link>>
+    <<link "Next">>
+        <<goto $nextpass>>
+    <</link>>
+   
 </footer>
 
 
+:: footernext[nobr]
+<footer>
+    <div/>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+   
+</footer>
+
+
+
 :: landing [nobr] 
-<main>
-    <<button "Enter">>
-        <<goto "toc">>
+<<set $prevpass to "landing">>
+<<set $pass to "landing">>
+<<set $nextpass to "intro">>
+<main class="logospin">
+<div class="logo-wrapper slowRotate">
+<img src="/assets/img/logo.png" alt="logo"/>
+</div>
+  <<button "Start">>
+        <<goto "intro">>
     <</button>>
 </main>
 
 
+
+
 :: toc [toc]
 <main>
-<<link "Geraldine Talking - Light (Retro UI)">>
-  <<set $colorScheme to "_templateGeraldine">>
-    <<goto "gerIntro-1" >>
-<</link>>
 
-<<link "Geraldine Talking - Dark (Early computer)">>
-  <<set $colorScheme to "_templateGeraldineDark">>
-  <<goto "gerIntro-1" >>
-<</link>>
 
 [[wordsLeft]]
 [[wordsAdded]]
@@ -300,8 +341,115 @@ setup.boatMultiDraggable = () => {
 [[picUpload]]
 [[360image]]
 [[dragIntoBook]]
+[[landing]]
 </main>
 
+:: headerintro
+<header class="intro">
+  <div class="logo-wrapper rotate">
+  <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+</header>
+:: intro [nobr] 
+<<set $prevpass to "landing">>
+<<set $pass to "intro">>
+<<set $nextpass to "connecting">>
+<<include "headerintro">>
+<main class="intro">
+<p>Welcome to the OCTOPUS Rooter</p>
+<p>Use this if you come across a Book Monster. </p>
+<p>We can connect you to a book that needs rooting</p>
+<p>And stop the Book Monster</p>
+<p>Enter the name of the book that needs rooting. </p>
+
+  <<include "pwChathamStories">>
+</main>
+
+:: pwChathamStories [nobr]
+<div class="css-input code-input codeword-input">
+    <<textbox "$codeword" "">>
+    <<button "Enter">>
+      <<set $codeword to $codeword.toUpperCase()>>
+      
+      /% CODEWORD CORRECT %/
+      <<if $codeword != "" and $codeword == "CHATHAM STORIES">>
+        <<replace "#coderesult">>CORRECT<</replace>>
+        /* <<audio "correct" play>> */
+
+        <<timed 3s>><<goto $nextpass>><</timed>>
+      
+      /% CODEWORD INCORRECT %/
+      <<else>>
+        <<replace "#coderesult">><p>That's not right.</p><</replace>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+      <</if>>
+    <</button>>
+
+    <div id="coderesult"></div>
+    <br/>
+</div>
+
+/* :: initialising [nobr]
+<<set $prevpass to "landing">>
+<<set $pass to "initialising">>
+<<set $nextpass to "connecting">>
+<main>
+  <div class="logo-wrapper rotate">
+  <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+</main> */
+
+:: connecting [nobr]
+<<set $prevpass to "intro">>
+<<set $pass to "connecting">>
+<<set $nextpass to "gerIntro-1">>
+<main class="connecting">
+  <div class="book-wrapper">
+  <img src="/assets/img/open-book.png" alt="open book"/>
+  </div>
+  <div id="mount"></div>
+  <<timed 0.1s>>
+    <<replace "#mount">>
+   <<type 80ms>><p> Welcome.</p><</type>>
+    <</replace>>
+  <</timed>>
+  <<timed 4s>>
+    <<replace "#mount">>
+      <<type 80ms>><p> Thank you</p><</type>>
+    <</replace>>
+  <</timed>>
+  <<timed 8s>>
+    <<replace "#mount">>
+      <<type 80ms>><p> You are connecting to...</p><</type>>
+    <</replace>>
+  <</timed>>
+  <<timed 12s>>
+    <<replace "#mount">>
+       <<type 80ms>><p> You are connecting to...</p><</type>>
+    <</replace>>
+  <</timed>>
+  <<timed 16s>>
+    <<replace "#mount">>
+      <<type 80ms>><p> You are connecting to...</p><</type>>
+    <</replace>>
+  <</timed>>
+ <<timed 20s>>
+    <<replace "#mount">>
+      <h2 class="fancy"> Geraldine</h2>
+    <</replace>>
+  <</timed>>
+
+  <<timed 23s>>
+    <<append "#mount">>
+      <br/>
+      <<button "Next">>
+        <<goto $nextpass>>
+        <</button>>
+    <</append>>
+  <</timed>>
+
+</main>
+<<include "footer">>
 :: headerGeraldine [nobr]
 <header class="talking">
 <div class="avatar-icon">[img[./assets/img/user.png]]</div>
@@ -309,26 +457,13 @@ setup.boatMultiDraggable = () => {
   <h2>Geraldine</h2>
  <span class="online-dot">●</span><span>Online</span>
 </div>
-
-
 </header>
 
-:: _templateGeraldineDark[nobr]
-<<addclass "body" "dark">>
-<<include "headerGeraldine">>
-<main class="talking">
-    <div id="msgMount"></div>
-        <<if $pass>>
-            <<set $uniqueContent to $pass+"-messages">>
-            <<include $uniqueContent>>
-        <<else>>
-            No content provided.
-        <</if>>
-</main>
-<<include "footer">>
+
 
 :: _templateGeraldine[nobr]
 <<addclass "body" "light">>
+
 <<include "headerGeraldine">>
 <main class="talking">
     <div id="msgMount"></div>
@@ -338,15 +473,17 @@ setup.boatMultiDraggable = () => {
         <<else>>
             No content provided.
         <</if>>
+     <div id="nextButtonContainer">
+     </div>
 </main>
 <<include "footer">>
 
 :: gerIntro-1 [nobr]
-<<set $prevpass to "landing">>
+<<set $prevpass to "connecting">>
 <<set $pass to "gerIntro-1">>
 <<set $nextpass to "gerIntro-2">>
 
-<<include $colorScheme>>
+<<include "_templateGeraldine">>
 
 :: gerIntro-1-messages [nobr]
 <<timed 0.5s>>
@@ -421,11 +558,11 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
 :: gerIntro-2 [nobr]
-<<set $prevpass to "landing">>
+<<set $prevpass to "gerIntro-1">>
 <<set $pass to "gerIntro-2">>
 <<set $nextpass to "gerIntro-3">>
 
-<<include $colorScheme>>
+<<include "_templateGeraldine">>
 
 
 :: gerIntro-2-messages [nobr]
@@ -483,11 +620,11 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
 :: gerIntro-3 [nobr]
-<<set $prevpass to "landing">>
+<<set $prevpass to "gerIntro-2">>
 <<set $pass to "gerIntro-3">>
-<<set $nextpass to "landing">>
+<<set $nextpass to "gerIntro-4">>
 
-<<include $colorScheme>>
+<<include "_templateGeraldine">>
 
 :: gerIntro-3-messages [nobr]
 <<timed 0.5s>>
@@ -570,8 +707,248 @@ setup.boatMultiDraggable = () => {
           <</replace>>
     <</timed>>
 
+:: bookmonsterprofile [nobr]
+<main>
 
-:: wordsLeft [nobr]
+  <div class="cipher-wrapper">
+    <div class="bm-info-wrapper cipherpaper">
+    <span><b>DOB:</b> Unknown</span>
+    <span><b>Nickname:</b> Googly Moogly</span>
+    <span><b>Likes:</b> Eating Books</span>
+    <span><b>Dislikes:</b> Books, Stories & Characters! </span>
+    <span><b>Appearance:</b> uncertain- images on file from previous encounters</span>
+  </div>
+  </div>
+</main>
+
+
+:: gerIntro-4 [nobr]
+<<set $prevpass to "gerIntro-3">>
+<<set $pass to "gerIntro-4">>
+<<set $nextpass to "gerIntro-5">>
+
+<<include "_templateGeraldine">>
+
+
+
+
+
+:: gerIntro-4-messages [nobr]
+
+<<timed 0.1s>>
+   <<append "#msgMount">>
+      <<include "bookmonsterprofile">>
+      <</append>>
+    <</timed>>
+
+     <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>There have only been a few sightings of the monster,but those who have encountered it in the past have drawn images of what they saw   </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+   <<timed 5s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Let’s load that up and see what we are facing.   </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+  <<timed 7s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Load Info">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: gerIntro-5 [nobr]
+<<set $prevpass to "gerIntro-4">>
+<<set $pass to "gerIntro-5">>
+<<set $nextpass to "gerIntro-6">>
+
+<<include "_templateGeraldine">>
+
+
+
+:: gerIntro-5-messages [nobr]
+<<timed 0.1s>>
+  <<append "#msgMount">>
+      <<include "bookmonsterimages">>
+    <</append>>
+    <</timed>>
+
+<<timed 2s>>
+      <<include "footerimages">>
+    <</timed>>
+   
+   
+:: bookmonsterimages [nobr]
+<main>
+  <div class="bm-wrapper" id="imgMount">
+    <img id="monsterImage" src="/assets/img/monster1.png" alt="Monster Image 1"/>
+  </div>
+</main>
+
+
+:: footerimages [nobr]
+<<set $imageIndex to 1>>
+
+<<replace "#nextButtonContainer">>
+index: $imageIndex
+      <<button "Load Next Image">>
+         <<if $imageIndex < 4>>
+        <<set $imageIndex to $imageIndex + 1>>
+        <<replace "#imgMount">>
+          $imageIndex
+          <img id="monsterImage" sc-eval:src="'/assets/img/monster' + [$imageIndex] + '.png'"  alt="Monster Image"/>
+            /* <img id="monsterImage" src="/assets/img/monster2.png" alt="Monster Image"/> */
+        <</replace>>
+        <<else>>
+          <<replace "#nextButtonContainer">>
+      <<button "Next">>
+        <<goto $nextpass>>
+      <</button>>
+      <</replace>>
+        <</if>>
+      <</button>>
+    
+
+<</replace>>
+
+
+:: gerIntro-6 [nobr]
+<<set $prevpass to "gerIntro-5">>
+<<set $pass to "gerIntro-6">>
+<<set $nextpass to "chapterTitle1">>
+
+<<include "_templateGeraldine">>
+
+
+:: gerIntro-6-messages [nobr]
+<<timed 0.1s>>
+        /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+           <p>I know it wasn't what I was expecting either. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Something that you can’t see but is always nearby books.  </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 6s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+     <p>That’s why it likes the library so much. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 10s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+         <p>It has a taste for books that are being forgotten. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 12s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>And it seems Chatham Stories are next. .</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 14s>>
+        /* <<audio "ping1" "play">> */
+         <<replace "#msgMount">>
+       <div class="message"> 
+        <p>But there is hope</p>
+       </div>
+        <</replace>>
+    <</timed>>
+
+     <<timed 16s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>You are that hope. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+       <<timed 18s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>The Monster is using the stories it is eating to set challenges.
+        You need to stop the Monster by completing the challenges
+Fragments may come through in mysterious ways that we need to work out. 
+But we need to be quick. 
+/
+I know this is a lot to take on, and we’ve only just met, but I need your help. 
+
+Would you be up for helping me? 
+
+If you are - hit the button below and we can begin rooting the stories. 
+</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 20s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Begin Rooting">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+
+<<set $imageIndex to 1>>
+
+:: _chapterTitleTemplate [nobr]
+<<include "findChapTitle">>
+<<timed 0.1s>>
+<main class="chapter-title">
+<div class="logo-wrapper ">
+<img id="chapterImage" sc-eval:src="'/assets/img/chap' + [$currentChapter] + '.png'"  alt="Chapter Image"/>
+</div>
+<div class="chapter-title-wrapper"><h2>$chapters[$currentChapter]</h2></div>
+</main>
+<</timed>>
+<<timed 5s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+:: chapterTitle1 [nobr]
+<<set $prevpass to "gerIntro-6">>
+<<set $pass to "chapterTitle1">>
+<<set $nextpass to "wordsLeft1">>
+<<set $currentChapter to 1>>
+<<include "_chapterTitleTemplate">>
+<<include "footer">>
+:: wordsLeft1 [nobr]
+<<set $prevpass to "chapterTitle1">>
+<<set $pass to "wordsLeft1">>
+<<set $nextpass to "ger2-1">>
 <main class="main-words">
 
     <main>
@@ -610,83 +987,147 @@ setup.boatMultiDraggable = () => {
     </div>
 </main>
 
-
-
-
 <<include "footer">>
 
 <<done>>
 <<set $move to setup.moveWords()>>
 <</done>>
 
-:: wordsAdded [nobr]
-<main class="main-words added">
-    <div class="words">
-        <div class="wordDisappear word">Women</div>
-        <div class="wordDisappear word">were</div>
-        <div class="wordDisappear word">some</div>
-        <div class="wordDisappear word">of</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">hidden</div>
-         <div class="wordDisappear word">heroes</div>
-        <div class="wordDisappear word">of</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">Navy.</div>
-        <br/>
-         <br/>
-        <div class="wordDisappear word">Some</div>
-        <div class="wordDisappear word">would</div>
-        <div class="wordDisappear word">mend</div>
-         <div class="wordDisappear word">ships,</div>
-        <div class="wordDisappear word">some</div>
-        <div class="wordDisappear word">would</div>
-        <div class="wordDisappear word">make</div>
-        <div class="wordDisappear word">ropes.</div>
-         <br/>
-         <br/>
-        <div class="wordDisappear word">Some</div>
-        <div class="wordDisappear word">even</div>
-        <div class="wordDisappear word">dressed</div>
-        <div class="wordDisappear word">like</div>
-        <div class="wordDisappear word">men</div>
-        <div class="wordDisappear word">to</div>
-        <div class="wordDisappear word">fight</div>
-        <div class="wordDisappear word">in</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">war.</div>
-    </div>
-</main>
-
-
-<<include "footer">>
-
-<<done>>
-  <<set $still to setup.stillWords()>>
-<</done>>
-
-:: checkcorrectans
-
-<<if $correctans.includesAll("L", "A", "C", "Y")>>
-<<timed 2s>>
-  <<replace "#clueMount">>
-    <p>That’s it - Mary Lacy!</p>
-    <</replace>>
-
-<</timed>>
-<<timed 5s>>
-  <<goto "landing">>
+<<timed 10s>>
+  <<goto $nextpass>>
   <</timed>>
-<</if>>
 
-:: codeheader [nobr]
-<header id="header" class="column">
-  <div id="clueMount">
-    <p>4 letters to find.</p>
-    <p>Let’s load the first one up first.</p>
-  </div>
-</header>
+
+:: ger2-1 [nobr]
+<<set $prevpass to "wordsLeft1">>
+<<set $pass to "ger2-1">>
+<<set $nextpass to "code4">>
+
+<<include "_templateGeraldine">>
+
+:: ger2-1-messages [nobr]
+
+<<timed 0.1s>>
+      <<append "#msgMount">>
+       <div class="message"> 
+          <p>What does that mean?  </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Maybe we’re too late </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+   <<timed 5s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Wait. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+
+     <<timed 7s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Disguised...</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 9s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>They were disguised...</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+      <<timed 12s>>
+    /* <<audio "ping1" "play">> */
+        <<replace "#msgMount">>
+       <div class="message"> 
+          <p>And the name is disguised. </p>
+       </div>
+        <</replace>>
+    <</timed>>
+
+
+    <<timed 15s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>It must be the Book Monster. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 18s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>There are 4 letters.  </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 21s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Maybe they can be found where you are. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+       <<timed 24s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Break the code they have set </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+       <<timed 27s>>
+    /* <<audio "ping1" "play">> */
+        <<replace "#msgMount">>
+       <div class="message"> 
+          <p>4 letters to find. </p>
+       </div>
+        <</replace>>
+
+    <</timed>>
+         <<timed 30s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Let’s load the first one up first. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+  <<timed 31s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
 
 :: code4 [nobr]
+<<set $prevpass to "ger2-1">>
+<<set $pass to "code4">>
+<<set $nextpass to "ger3-1">>
 <<set $correctans to []>>
 <<include "codeheader">>
 $correctans
@@ -707,6 +1148,7 @@ $correctans
         <<removeclass "#letterItemA" "current">>   
         <<removeclass "#letterItemC" "current">>   
         <<removeclass "#letterItemY" "current">> 
+        <h2>1</h2>
        <p>There is a clock near the exit - underneath a name of someone who open the Library - enter the 2nd letter of the Surname. </p>
 
     <</replace>>
@@ -757,6 +1199,7 @@ $correctans
         <<addclass "#letterItemA" "current">>   
         <<removeclass "#letterItemL" "current">>   
         <<removeclass "#letterItemY" "current">>   
+        <h2>2</h2>
        <p>Shakespeare’s quote is on the wall - find it up above a door - and enter the first letter of the quote</p>
     <</replace>>
     <<replace "#inputMount">>
@@ -800,7 +1243,8 @@ $correctans
          <<removeclass "#letterItemL" "current">> 
         <<removeclass "#letterItemA" "current">>   
         <<addclass "#letterItemC" "current">>   
-        <<removeclass "#letterItemY" "current">>   
+        <<removeclass "#letterItemY" "current">>
+        <h2>3</h2>
        <p>Far on the other side of the Library there is an area for Kids’ what is the name of this area? Enter the first letter of that word. </p>
     <</replace>>
     <<replace "#inputMount">>
@@ -847,6 +1291,7 @@ $correctans
         <<removeclass "#letterItemA" "current">>   
         <<removeclass "#letterItemL" "current">>   
         <<addclass "#letterItemY" "current">>   
+        <h2>4</h2>
        <p>Hidden near Local Fiction (where the Chatham’s Stories Book should be)  an Ark can be found - a Sound Ark - what is the last letter of the first word of this Sound Ark? </p>
     <</replace>>
     <<replace "#inputMount">>
@@ -889,10 +1334,492 @@ $correctans
 </main>
 <<include "footer">>
 
-:: mapInstructions [nobr]
 
- /* <<addclass "body" "orange">>
- <<addclass "html" "orange" >> */
+:: checkcorrectans
+
+<<if $correctans.includesAll("L", "A", "C", "Y")>>
+
+<<timed 3s>>
+  <<goto $nextpass>>
+  <</timed>>
+<</if>>
+
+:: codeheader [nobr]
+<header id="header" class="column">
+  <div id="clueMount">
+    <p>4 letters to find.</p>
+    <p>Let’s load the first one up first.</p>
+  </div>
+</header>
+
+
+:: ger3-1 [nobr]
+<<set $prevpass to "code4">>
+<<set $pass to "ger3-1">>
+<<set $nextpass to "wordsAdded1">>
+
+<<include "_templateGeraldine">>
+
+
+:: ger3-1-messages [nobr]
+<<timed 0.5s>>
+        /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>LACY</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+        <p>That’s it - Mary Lacy!</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+   <<timed 7s>>
+    <<goto $nextpass>>
+    <</timed>>
+
+:: wordsAdded1 [nobr]
+<<set $prevpass to "ger3-1">>
+<<set $pass to "wordsAdded1">>
+<<set $nextpass to "ger3-2">>
+
+<main class="main-words added">
+    <div class="words">
+        <div class="wordDisappear word">Women</div>
+        <div class="wordDisappear word">were</div>
+        <div class="wordDisappear word">some</div>
+        <div class="wordDisappear word">of</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">hidden</div>
+         <div class="wordDisappear word">heroes</div>
+        <div class="wordDisappear word">of</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">Navy.</div>
+        <br/>
+         <br/>
+        <div class="wordDisappear word">Some</div>
+        <div class="wordDisappear word">would</div>
+        <div class="wordDisappear word">mend</div>
+         <div class="wordDisappear word">ships,</div>
+        <div class="wordDisappear word">some</div>
+        <div class="wordDisappear word">would</div>
+        <div class="wordDisappear word">make</div>
+        <div class="wordDisappear word">ropes.</div>
+         <br/>
+         <br/>
+        <div class="wordDisappear word">Some</div>
+        <div class="wordDisappear word">even</div>
+        <div class="wordDisappear word">dressed</div>
+        <div class="wordDisappear word">like</div>
+        <div class="wordDisappear word">men</div>
+        <div class="wordDisappear word">to</div>
+        <div class="wordDisappear word">fight</div>
+        <div class="wordDisappear word">in</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">war.</div>
+    </div>
+</main>
+
+
+<<include "footer">>
+
+<<done>>
+  <<set $still to setup.stillWords()>>
+<</done>>
+<<timed 25s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+
+:: ger3-2 [nobr]
+<<set $prevpass to "wordsAdded1">>
+<<set $pass to "ger3-2">>
+<<set $nextpass to "ger3-3">>
+
+<<include "_templateGeraldine">>
+
+
+:: ger3-2-messages [nobr]
+<<timed 0.1s>>
+        /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Mary Lacy travelled to Chatham in her fathers’ clothes and she became William Chandler.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+        <p>Not long after that, she joined the HMS Sandwich and set sail. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 5s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+        <p>Although they didn't know she was a ‘she’ at the time. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+
+
+   <<timed 7s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: ger3-3 [nobr]
+<<set $prevpass to "ger3-2">>
+<<set $pass to "ger3-3">>
+<<set $nextpass to "ger3-4">>
+
+<<include "_templateGeraldine">>
+
+
+:: ger3-3-messages [nobr]
+<<timed 0.1s>>
+        /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>She fought in wars and survived hurricanes!</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+        <p>She stayed in disguise for many years until her identity was revealed and she was discharged. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+   <<timed 5s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: ger3-4 [nobr]
+<<set $prevpass to "ger3-3">>
+<<set $pass to "ger3-4">>
+<<set $nextpass to "ger3-5">>
+
+<<include "_templateGeraldine">>
+
+
+:: ger3-4-messages [nobr]
+<<timed 0.1s>>
+        /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>It is said that Lacy had one of the most successful careers as a woman in disguise, even gaining a pension from Admiralty in her true name.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+   
+
+   <<timed 3s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto "bookrooting">>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+
+:: bookrooting
+<main class="rooting">
+  <div class="book-wrapper">
+  <img src="/assets/img/open-book.png" alt="open book"/>
+  </div>
+  <h2>Book Rooting...</h2>
+</main>
+
+  <<timed 5s>>
+  
+          <<goto $nextpass>>
+    
+    <</timed>>
+
+:: ger3-5 [nobr]
+<<set $prevpass to "ger3-4">>
+<<set $pass to "ger3-5">>
+<<set $nextpass to "ger3-6">>
+
+<<include "_templateGeraldine">>
+
+:: ger3-5-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>I’m going to be honest I have been a bit nervous about starting this job.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I was doubting myself.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>But Mary’s story is so inspirational.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Maybe it’ll be ok.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>One chapter rooted.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 15s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger3-6 [nobr]
+<<set $prevpass to "ger3-5">>
+<<set $pass to "ger3-6">>
+<<set $nextpass to "chapterTitle2">>
+
+<<include "_templateGeraldine">>
+
+:: ger3-6-messages [nobr]
+<<timed 0.1s>>
+    <<audio "ping" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>ROAR</p>
+       </div>
+    <</append>>
+<</timed>>
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>But I think the Book Monster now knows what we are trying to do.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Do we call it Book Monster or Googly Moogly!?</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>To start the next chapter, head to the refreshments area, have a hot chocolate if you’d like!</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>When there click below</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Here">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+
+:: chapterTitle2 [nobr]
+<<set $prevpass to "ger3-6">>
+<<set $pass to "chapterTitle2">>
+<<set $nextpass to "wordsLeft2">>
+<<set $currentChapter to 2>>
+<<include "_chapterTitleTemplate">>
+<<include "footer">>
+
+:: wordsLeft2 [nobr]
+<<set $prevpass to "chapterTitle2">>
+<<set $pass to "wordsLeft2">>
+<<set $nextpass to "ger4-1">>
+<main class="main-words">
+
+    <main>
+    <div class="wordLeft-container">
+      <div class="wordLeft word">Wombwell's Travelling Menagerie</div>
+       <div class="wordLeft word">Tiger</div>
+       <div class="wordLeft word">Cage</div>
+    </div>
+   <div class="words">
+    <div class="wordDisappear word">In</div>
+    <div class="wordDisappear word">1850</div>
+    <div class="wordDisappear word">17-year-old</div>
+    <div class="wordDisappear word">Ellen</div>
+    <div class="wordDisappear word">Bright</div>
+    <div class="wordDisappear word">who</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">dubbed</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">Lion</div>
+    <div class="wordDisappear word">Queen</div>
+    <div class="wordDisappear word">died</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">Chatham</div>
+    <div class="wordDisappear word">during</div>
+    <div class="wordDisappear word">her</div>
+    <div class="wordDisappear word">act</div>
+    <div class="wordDisappear word">with</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">Lion</div>
+    <div class="wordDisappear word">.</div>
+    <div class="wordDisappear word">She</div>
+    <div class="wordDisappear word">tamed</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">Lion</div>
+    <div class="wordDisappear word">but</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">attacked</div>
+    <div class="wordDisappear word">by</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">Tiger</div>
+    <div class="wordDisappear word">who</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">also</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">cage</div>
+</div>
+
+</main>
+
+<<include "footer">>
+
+<<done>>
+<<set $move to setup.moveWords()>>
+<</done>>
+
+<<timed 7s>>
+  /* REPLACE ROAR */
+   <<audio "ping1" "play">>
+  <</timed>>
+
+<<timed 10s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+:: ger4-1 [nobr]
+<<set $prevpass to "wordsLeft2">>
+<<set $pass to "ger4-1">>
+<<set $nextpass to "mapInstructions">>
+
+<<include "_templateGeraldine">>
+
+:: ger4-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Keep your eyes focused forward and follow the instructions.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>You need to follow the map but keep looking forwards.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>We are in the Monster’s Cage - the Library and we need to get out.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Don’t turn your back on the monster.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+
+:: mapInstructions [nobr]
+<<set $prevpass to "ger4-1">>
+<<set $pass to "mapInstructions">>
+<<set $nextpass to "ger5-1">>
+
+/* <<goto $nextpass>> */
+
 <<set $currentInstructionIndex = 1>>
 
 <<set $instructions = {
@@ -930,7 +1857,6 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
 
 	</main>
 	<<include "footermap">>
-
 
 
 
@@ -1037,6 +1963,7 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
 </span>
 </footer>
 
+
     
 
 :: updateInstruction [nobr]
@@ -1052,7 +1979,533 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
   <<addclass "#location" $position >>
 <</timed>>
 
+
+:: ger5-1 [nobr]
+<<set $prevpass to "mapInstructions">>
+<<set $pass to "ger5-1">>
+<<set $nextpass to "wordsAdded2">>
+
+<<include "_templateGeraldine">>
+
+:: ger5-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>You made it.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>And unlocked the story in the chapter too.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Oh.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Well this is sad.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I’m sorry to say that, although we made it out of the cage, the Lion Queen did not.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 15s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+
+
+:: wordsAdded2 [nobr]
+<<set $prevpass to "ger5-1">>
+<<set $pass to "wordsAdded2">>
+<<set $nextpass to "ger5-2">>
+
+<main class="main-words added">
+  <div class="words">
+    <div class="wordDisappear word">In</div>
+    <div class="wordDisappear word">1850</div>
+    <div class="wordDisappear word">17-year-old</div>
+    <div class="wordDisappear word">Ellen</div>
+    <div class="wordDisappear word">Bright</div>
+    <div class="wordDisappear word">who</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">dubbed</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">Lion</div>
+    <div class="wordDisappear word">Queen</div>
+    <div class="wordDisappear word">died</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">Chatham</div>
+    <div class="wordDisappear word">during</div>
+    <div class="wordDisappear word">her</div>
+    <div class="wordDisappear word">act</div>
+    <div class="wordDisappear word">with</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">Lion</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">She</div>
+    <div class="wordDisappear word">tamed</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">Lion</div>
+    <div class="wordDisappear word">but</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">attacked</div>
+    <div class="wordDisappear word">by</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">Tiger</div>
+    <div class="wordDisappear word">who</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">also</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">cage</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">Her</div>
+    <div class="wordDisappear word">final</div>
+    <div class="wordDisappear word">performance</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">part</div>
+    <div class="wordDisappear word">of</div>
+    <div class="wordDisappear word">‘Wombwell’s</div>
+    <div class="wordDisappear word">Travelling</div>
+    <div class="wordDisappear word">Menagerie’</div>
+    <div class="wordDisappear word">which</div>
+    <div class="wordDisappear word">toured</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">country</div>
+    <div class="wordDisappear word">exhibiting</div>
+    <div class="wordDisappear word">elephants</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">giraffes</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">tigers</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">panthers</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">lions</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">gorilla</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">and</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">kangaroo</div>
+    <div class="wordDisappear word">.</div>
+</div>
+
+</main>
+
+
+<<include "footer">>
+
+<<done>>
+  <<set $still to setup.stillWords()>>
+<</done>>
+<<timed 45s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+
+:: ger5-2 [nobr]
+<<set $prevpass to "wordsAdded2">>
+<<set $pass to "ger5-2">>
+<<set $nextpass to "chapterTitle3">>
+
+<<include "_templateGeraldine">>
+
+:: ger5-2-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Wow - that is a sad story.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>A fearless woman.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>But one we will remember now.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Because we have rooted her story here.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Well done.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 15s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>And we have escaped the Monster’s Cage.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 18s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Let’s keep going.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 21s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto "bookrooting">>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: chapterTitle3 [nobr]
+<<set $prevpass to "ger5-2">>
+<<set $pass to "chapterTitle3">>
+<<set $nextpass to "wordsLeft3">>
+<<set $currentChapter to 3>>
+<<include "_chapterTitleTemplate">>
+<<include "footer">>
+
+:: wordsLeft3 [nobr]
+<<set $prevpass to "chapterTitle3">>
+<<set $pass to "wordsLeft3">>
+<<set $nextpass to "ger6-1">>
+<main class="main-words">
+
+<main>
+    <div class="wordLeft-container">
+      <div class="wordLeft word">River Medway</div>
+       <div class="wordLeft word">Mysterious</div>
+       <div class="wordLeft word">Spotted</div>
+    </div>
+  <div class="words">
+    <div class="wordDisappear word">It</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">1949</div>
+    <div class="wordDisappear word">-</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">narwhal</div>
+    <div class="wordDisappear word">-</div>
+    <div class="wordDisappear word">considered</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">‘Sea</div>
+    <div class="wordDisappear word">Unicorn’</div>
+    <div class="wordDisappear word">because</div>
+    <div class="wordDisappear word">of</div>
+    <div class="wordDisappear word">its</div>
+    <div class="wordDisappear word">long</div>
+    <div class="wordDisappear word">tusk</div>
+    <div class="wordDisappear word">-</div>
+    <div class="wordDisappear word">washed</div>
+    <div class="wordDisappear word">up</div>
+    <div class="wordDisappear word">along</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">river.</div>
+    <div class="wordDisappear word">Many</div>
+    <div class="wordDisappear word">myths</div>
+    <div class="wordDisappear word">and</div>
+    <div class="wordDisappear word">legends</div>
+    <div class="wordDisappear word">are</div>
+    <div class="wordDisappear word">based</div>
+    <div class="wordDisappear word">on</div>
+    <div class="wordDisappear word">misunderstood</div>
+    <div class="wordDisappear word">sightings</div>
+    <div class="wordDisappear word">of</div>
+    <div class="wordDisappear word">real</div>
+    <div class="wordDisappear word">creatures.</div>
+    <div class="wordDisappear word">But</div>
+    <div class="wordDisappear word">they</div>
+    <div class="wordDisappear word">normally</div>
+    <div class="wordDisappear word">are</div>
+    <div class="wordDisappear word">found</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">arctic</div>
+    <div class="wordDisappear word">-</div>
+    <div class="wordDisappear word">so</div>
+    <div class="wordDisappear word">finding</div>
+    <div class="wordDisappear word">one</div>
+    <div class="wordDisappear word">here</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">incredibly</div>
+    <div class="wordDisappear word">rare.</div>
+    <div class="wordDisappear word">It</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">so</div>
+    <div class="wordDisappear word">rare</div>
+    <div class="wordDisappear word">that</div>
+    <div class="wordDisappear word">it</div>
+    <div class="wordDisappear word">is</div>
+    <div class="wordDisappear word">now</div>
+    <div class="wordDisappear word">documented</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">Natural</div>
+    <div class="wordDisappear word">History</div>
+    <div class="wordDisappear word">Museum</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">London.</div>
+</div>
+
+
+</main>
+
+<<include "footer">>
+
+<<done>>
+<<set $move to setup.moveWords()>>
+<</done>>
+
+
+
+<<timed 10s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+
+:: ger6-1 [nobr]
+<<set $prevpass to "wordsLeft3">>
+<<set $pass to "ger6-1">>
+<<set $nextpass to "ger6-2">>
+
+<<include "_templateGeraldine">>
+
+:: ger6-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>The next chapter seems to be linked to the River Medway. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Let’s head there. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Go to the Red Lifeguard Ring and let me know when you are there. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    <<replace "#nextButtonContainer">>
+    <<button "I'm here">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger6-2 [nobr]
+<<set $prevpass to "ger6-1">>
+<<set $pass to "ger6-2">>
+<<set $nextpass to "ger6-3">>
+
+<<include "_templateGeraldine">>
+
+:: ger6-2-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Something has been bothering me - why don’t we know who the author is?</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Come on Geraldine, focus, this is no time to ponder.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I love the River.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>The river changes.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Much like us.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 15s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>It is said you can’t stand in the same river twice.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 18s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Some say you can’t even stand in the same river once.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 21s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Because it changes constantly.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 23s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger6-3 [nobr]
+<<set $prevpass to "ger6-2">>
+<<set $pass to "ger6-3">>
+<<set $nextpass to "picUpload">>
+
+<<include "_templateGeraldine">>
+
+:: ger6-3-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>The next ROOTING Challenge seems to be that you need to spot something.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Something interesting that you can see.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Something that catches your attention.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Whatever you think is the most interesting sight on the river. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Upload Picture">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
 :: picUpload [nobr]
+<<set $prevpass to "ger6-3">>
+<<set $pass to "picUpload">>
+<<set $nextpass to "ger7-1">>
 <main class="main-section">
 
 <h3>Find a spot out to the river</h3>
@@ -1081,9 +2534,676 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
   <<button "I've uploaded my image">> <<goto $nextpass>><</button>>
     <</append>><</timed>>
 
+:: ger7-1 [nobr]
+<<set $prevpass to "picUpload">>
+<<set $pass to "ger7-1">>
+<<set $nextpass to "wordsAdded3a">>
+
+<<include "_templateGeraldine">>
+
+:: ger7-1-messages [nobr]
+
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message">
+       <p>Yes - you seem to have unlocked the next chapter.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: wordsAdded3a [nobr]
+/* NARWAL  */
+<<set $prevpass to "ger7-1">>
+<<set $pass to "wordsAdded3a">>
+<<set $nextpass to "ger8-1">>
+
+<main class="main-words added">
+  <div class="words">
+    <div class="wordDisappear word">It</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">1949</div>
+    <div class="wordDisappear word">-</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">narwhal</div>
+    <div class="wordDisappear word">-</div>
+    <div class="wordDisappear word">considered</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">‘Sea</div>
+    <div class="wordDisappear word">Unicorn’</div>
+    <div class="wordDisappear word">because</div>
+    <div class="wordDisappear word">of</div>
+    <div class="wordDisappear word">its</div>
+    <div class="wordDisappear word">long</div>
+    <div class="wordDisappear word">tusk</div>
+    <div class="wordDisappear word">-</div>
+    <div class="wordDisappear word">washed</div>
+    <div class="wordDisappear word">up</div>
+    <div class="wordDisappear word">along</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">river</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">Many</div>
+    <div class="wordDisappear word">myths</div>
+    <div class="wordDisappear word">and</div>
+    <div class="wordDisappear word">legends</div>
+    <div class="wordDisappear word">are</div>
+    <div class="wordDisappear word">based</div>
+    <div class="wordDisappear word">on</div>
+    <div class="wordDisappear word">misunderstood</div>
+    <div class="wordDisappear word">sightings</div>
+    <div class="wordDisappear word">of</div>
+    <div class="wordDisappear word">real</div>
+    <div class="wordDisappear word">creatures</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">But</div>
+    <div class="wordDisappear word">they</div>
+    <div class="wordDisappear word">normally</div>
+    <div class="wordDisappear word">are</div>
+    <div class="wordDisappear word">found</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">arctic</div>
+    <div class="wordDisappear word">-</div>
+    <div class="wordDisappear word">so</div>
+    <div class="wordDisappear word">finding</div>
+    <div class="wordDisappear word">one</div>
+    <div class="wordDisappear word">here</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">incredibly</div>
+    <div class="wordDisappear word">rare</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">It</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">so</div>
+    <div class="wordDisappear word">rare</div>
+    <div class="wordDisappear word">that</div>
+    <div class="wordDisappear word">it</div>
+    <div class="wordDisappear word">is</div>
+    <div class="wordDisappear word">now</div>
+    <div class="wordDisappear word">documented</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">Natural</div>
+    <div class="wordDisappear word">History</div>
+    <div class="wordDisappear word">Museum</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">London</div>
+    <div class="wordDisappear word">.</div>
+</div>
+
+
+</main>
+
+<<include "footer">>
+
+<<done>>
+  <<set $still to setup.stillWords()>>
+<</done>>
+<<timed 35s>>
+  <<goto "bookrooting">>
+  <</timed>>
+
+:: ger8-1 [nobr]
+<<set $prevpass to "ger7-1">>
+<<set $pass to "ger8-1">>
+<<set $nextpass to "ger8-2">>
+
+<<include "_templateGeraldine">>
+
+:: ger8-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Yes! Another chapter rooted! </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I want to stop the Book Monster and find out who the author is - all on my first day. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger8-2 [nobr]
+<<set $prevpass to "ger8-1">>
+<<set $pass to "ger8-2">>
+<<set $nextpass to "chapterTitle4">>
+
+<<include "_templateGeraldine">>
+
+:: ger8-2-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Wait, this is strange.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>This chapter doesn’t seem to have been eaten in the same way. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>You could find a bench to sit down if you’d like. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I’ll open it to see what is going on. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+
+<<timed 12s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: chapterTitle4 [nobr]
+<<set $prevpass to "ger8-2">>
+<<set $pass to "chapterTitle4">>
+<<set $nextpass to "wordsAdded4a">>
+<<set $currentChapter to 4>>
+<<include "_chapterTitleTemplate">>
+<<include "footer">>
+
+:: ger9-1 [nobr]
+/* SPARE IN CASE THIS IS SUPPOSED TO BE GERALDINE */
+<<set $prevpass to "chapterTitle4">>
+<<set $pass to "ger9-1">>
+<<set $nextpass to "ger9-2">>
+
+<<include "_templateGeraldine">>
+
+:: ger9-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Deep below the ground, there are mysteries to be found. Big ones.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>In 1913, a prehistoric elephant skeleton was found in Upnor.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>It weighed 10 tonnes, which is the same as the weight of the Big Ben Bell.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>It was HUGE.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>And it used to roam here.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 15s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>They think around 130,000 and 40,000 years ago.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 18s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>The skeleton was discovered by Sydney Turner and he became famous because of the find.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 21s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Here’s his picture.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 23s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message-img-wrapper">
+        <img id="book-image" src="assets/img/sydney.png" alt="Sydney Turner">
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 25s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+
+
+:: wordsAdded4a [nobr]
+/* THIS ONE THE WORDS ARE THERE  */
+<<set $prevpass to "chapterTitle4">>
+<<set $pass to "wordsAdded4a">>
+<<set $nextpass to "ger9-2">>
+
+<main class="main-words added">
+  <div class="words stationary">
+    <div class="word">Deep</div>
+    <div class=" word">below</div>
+    <div class=" word">the</div>
+    <div class=" word">ground</div>
+    <div class=" word">,</div>
+    <div class="word">there</div>
+    <div class="word">are</div>
+    <div class="word">mysteries</div>
+    <div class="word">to</div>
+    <div class="word">be</div>
+    <div class="word">found</div>
+    <div class="word">.</div><br/>
+    <div class="word">Big</div>
+    <div class="word">ones</div>
+    <div class="word">.</div><br/>
+    <div class="word">In</div>
+    <div class="word">1913</div>
+    <div class="word">,</div>
+    <div class="word">a</div>
+    <div class="word">prehistoric</div>
+    <div class="word">elephant</div>
+    <div class="word">skeleton</div>
+    <div class="word">was</div>
+    <div class="word">found</div>
+    <div class="word">in</div>
+    <div class="word">Upnor</div>
+    <div class="word">.</div><br/>
+    <div class="word">It</div>
+    <div class="word">weighed</div>
+    <div class="word">10</div>
+    <div class="word">tonnes</div>
+    <div class="word">,</div>
+    <div class="word">which</div>
+    <div class="word">is</div>
+    <div class="word">the</div>
+    <div class="word">same</div>
+    <div class="word">as</div>
+    <div class="word">the</div>
+    <div class="word">weight</div>
+    <div class="word">of</div>
+    <div class="word">the</div>
+    <div class="word">Big</div>
+    <div class="word">Ben</div>
+    <div class="word">Bell</div>
+    <div class="word">.</div><br/>
+    <div class="word">It</div>
+    <div class="word">was</div>
+    <div class="word">HUGE</div>
+    <div class="word">.</div><br/>
+    <div class="word">And</div>
+    <div class="word">it</div>
+    <div class="word">used</div>
+    <div class="word">to</div>
+    <div class="word">roam</div>
+    <div class="word">here</div>
+    <div class="word">.</div><br/>
+    <div class="word">They</div>
+    <div class="word">think</div>
+    <div class="word">around</div>
+    <div class="word">130,000</div>
+    <div class="word">and</div>
+    <div class="word">40,000</div>
+    <div class="word">years</div>
+    <div class="word">ago</div>
+    <div class="word">.</div><br/>
+    <div class="word">The</div>
+    <div class="word">skeleton</div>
+    <div class="word">was</div>
+    <div class="word">discovered</div>
+    <div class="word">by</div>
+    <div class="word">Sydney</div>
+    <div class="word">Turner</div>
+    <div class="word">and</div>
+    <div class="word">he</div>
+    <div class="word">became</div>
+    <div class="word">famous</div>
+    <div class="word">because</div>
+    <div class="word">of</div>
+    <div class="word">the</div>
+    <div class="word">find</div>
+    <div class="word">.</div><br/>
+    <div class="word">Here’s</div>
+    <div class="word">his</div>
+    <div class="word">picture</div>
+    <div class="word">.</div>
+     <div class="message-img-wrapper">
+        <img  src="assets/img/sydney.jpg" alt="Sydney Turner">
+       </div>
+</div>
+
+
+</main>
+
+
+<<include "footer">>
+
+<<done>>
+  <<set $still to setup.stillWords()>>
+<</done>>
+<<timed 45s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+:: ger9-2 [nobr]
+<<set $prevpass to "wordsAdded4a">>
+<<set $pass to "ger9-2">>
+<<set $nextpass to "wordsAdded4b">>
+
+<<include "_templateGeraldine">>
+
+:: ger9-2-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>It seems the story has been rooted by local residents. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: wordsAdded4b [nobr]
+/* THIS ONE THE WORDS ARE THERE AND GET TAKEN AWAY  */
+<<set $prevpass to "ger9-2">>
+<<set $pass to "wordsAdded4b">>
+<<set $nextpass to "ger10-1">>
+
+<main class="main-words added">
+   <div class="wordLeft-container">
+      <div class="wordLeft word">Elephant</div>
+       <div class="wordLeft word">Big Ben Bell</div>
+       <div class="wordLeft word">Mural</div>
+    </div>
+  <div class="words">
+    <div class="wordDisappear word">Deep</div>
+    <div class="wordDisappear word">below</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">ground</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">there</div>
+    <div class="wordDisappear word">are</div>
+    <div class="wordDisappear word">mysteries</div>
+    <div class="wordDisappear word">to</div>
+    <div class="wordDisappear word">be</div>
+    <div class="wordDisappear word">found</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">Big</div>
+    <div class="wordDisappear word">ones</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">In</div>
+    <div class="wordDisappear word">1913</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">a</div>
+    <div class="wordDisappear word">prehistoric</div>
+    <div class="wordDisappear word">elephant</div>
+    <div class="wordDisappear word">skeleton</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">found</div>
+    <div class="wordDisappear word">in</div>
+    <div class="wordDisappear word">Upnor</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">It</div>
+    <div class="wordDisappear word">weighed</div>
+    <div class="wordDisappear word">10</div>
+    <div class="wordDisappear word">tonnes</div>
+    <div class="wordDisappear word">,</div>
+    <div class="wordDisappear word">which</div>
+    <div class="wordDisappear word">is</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">same</div>
+    <div class="wordDisappear word">as</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">weight</div>
+    <div class="wordDisappear word">of</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">Big</div>
+    <div class="wordDisappear word">Ben</div>
+    <div class="wordDisappear word">Bell</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">It</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">HUGE</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">And</div>
+    <div class="wordDisappear word">it</div>
+    <div class="wordDisappear word">used</div>
+    <div class="wordDisappear word">to</div>
+    <div class="wordDisappear word">roam</div>
+    <div class="wordDisappear word">here</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">They</div>
+    <div class="wordDisappear word">think</div>
+    <div class="wordDisappear word">around</div>
+    <div class="wordDisappear word">130,000</div>
+    <div class="wordDisappear word">and</div>
+    <div class="wordDisappear word">40,000</div>
+    <div class="wordDisappear word">years</div>
+    <div class="wordDisappear word">ago</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">The</div>
+    <div class="wordDisappear word">skeleton</div>
+    <div class="wordDisappear word">was</div>
+    <div class="wordDisappear word">discovered</div>
+    <div class="wordDisappear word">by</div>
+    <div class="wordDisappear word">Sydney</div>
+    <div class="wordDisappear word">Turner</div>
+    <div class="wordDisappear word">and</div>
+    <div class="wordDisappear word">he</div>
+    <div class="wordDisappear word">became</div>
+    <div class="wordDisappear word">famous</div>
+    <div class="wordDisappear word">because</div>
+    <div class="wordDisappear word">of</div>
+    <div class="wordDisappear word">the</div>
+    <div class="wordDisappear word">find</div>
+    <div class="wordDisappear word">.</div><br/>
+    <div class="wordDisappear word">Here’s</div>
+    <div class="wordDisappear word">his</div>
+    <div class="wordDisappear word">picture</div>
+    <div class="wordDisappear word">.</div>
+</div>
+
+
+</main>
+
+
+<<include "footer">>
+
+<<done>>
+  <<timed 5s>>
+  <<set $move to setup.moveWords()>>
+  <</timed>>
+<</done>>
+
+<<timed 10s>>
+  /* REPLACE ROAR */
+   <<audio "ping1" "play">>
+  <</timed>>
+
+<<timed 45s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+:: ger10-1 [nobr]
+<<set $prevpass to "wordsAdded4b">>
+<<set $pass to "ger10-1">>
+<<set $nextpass to "ger10-2">>
+
+<<include "_templateGeraldine">>
+
+:: ger10-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Ok I spoke too soon. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>It has been partially rooted. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>It is in Chatham as a mural. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>But unless we find out where it is we might lose the Chapter. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger10-2 [nobr]
+<<set $prevpass to "ger10-1">>
+<<set $pass to "ger10-2">>
+<<set $nextpass to "360image">>
+
+<<include "_templateGeraldine">>
+
+:: ger10-2-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>I’m going to see if I can patch you into a CCTV camera near the mural by unlocking something here at OCTOPUS. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>See if you can work out what the name is of the place the mural is in. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Ok - I don’t want to rush you but it seems we only have 30 seconds to find out the information. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Okay!">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+
 :: timer [nobr]
   <<audio "timer" "play">>
-<<set $seconds to 90>>
+<<set $seconds to 30>>
 <span id="countdown"><span class="secs">$seconds</span> <span class="extra">seconds</span></span>
 
 
@@ -1108,7 +3228,9 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
   <<include "timer">></header>
 
 :: 360image [nobr]
-
+<<set $prevpass to "ger10-2">>
+<<set $pass to "360image">>
+<<set $nextpass to "ger11-1">>
 <<include "header360elephant">>
 	<main id="main" class="pano">
 	/* <<if $audioOn is true>><audio src="https://remote.co.com/MoTT/AgentTraining/assets/audio/Welcome1.mp3" autoplay>Audio not supported in your browser</audio><</if>> */
@@ -1134,20 +3256,19 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
      <<button "Enter">>  
    /% STANDARDISE INPUT %/
        <<set _password to _password.toUpperCase()>>
-   /% CODEWORD CORRECT %/
-       <<if _password isnot "" and _password is "NEWNHAM STREET">>
+     /% CODEWORD CORRECT %/
+       <<if _password isnot "" and (_password is "NEWNHAM STREET" or _password is "NEWNHAM")>>
             <<audio "correct" play>>
        <<replace "#elecoderesult">><h2 class="">Correct!</h2><</replace>>
        <<timed 3s>><<goto $nextpass>><</timed>>
       <</if>>
         /% CODEWORD INCORRECT %/
-     <<if _password isnot "" and _password isnot "NEWNHAM STREET">>
-        <<replace "#elecoderesult">><h2>Thats not right.</h2><</replace>>
+     <<if _password isnot "" and (_password isnot "NEWNHAM STREET" and _password isnot "NEWNHAM")>>
+        <<replace "#elecoderesult">><h2>That's not right.</h2><</replace>>
       <<timed 1.5s>><<replace "#elecoderesult">><</replace>><</timed>>
         <</if>><</button>> 
      </span>
 
-   
     /% CODEWORD FEEDBACK %/
     </div>
         <div id="elecoderesult"></div>
@@ -1163,6 +3284,703 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
 </div></nav>
   <<include "pw360elephant">></footer>
 
+:: ger11-1 [nobr]
+<<set $prevpass to "360image">>
+<<set $pass to "ger11-1">>
+<<set $nextpass to "chapterTitle5">>
+
+<<include "_templateGeraldine">>
+
+:: ger11-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>You did it. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Ok we are so close this is the fifth and final chapter. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>And maybe finding out who the author is! </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Let’s load up the final chapter. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Okay!">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: chapterTitle5 [nobr]
+<<set $prevpass to "ger11-1">>
+<<set $pass to "chapterTitle5">>
+<<set $nextpass to "wordsLeft5">>
+<<set $currentChapter to 5>>
+<<include "_chapterTitleTemplate">>
+<<include "footer">>
+
+:: wordsLeft5 [nobr]
+<<set $prevpass to "chapterTitle5">>
+<<set $pass to "wordsLeft5">>
+<<set $nextpass to "ger12-1">>
+<main class="main-words">
+
+    <main>
+    <div class="wordLeft-container">
+      <div class="wordLeft word">Mines</div>
+       <div class="wordLeft word">Detonation</div>
+       <div class="wordLeft word">Explosion</div>
+    </div>
+    <div class="words">
+        <div class="wordDisappear word">The</div>
+        <div class="wordDisappear word">Medway</div>
+        <div class="wordDisappear word">Queen</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">A</div>
+        <div class="wordDisappear word">Paddle</div>
+        <div class="wordDisappear word">Steamer</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">With</div>
+        <div class="wordDisappear word">a</div>
+        <div class="wordDisappear word">twist</div>
+        <div class="wordDisappear word">The</div>
+        <div class="wordDisappear word">Medway</div>
+        <div class="wordDisappear word">Queen</div>
+        <div class="wordDisappear word">had</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">ability</div>
+        <div class="wordDisappear word">to</div>
+        <div class="wordDisappear word">sweep</div>
+        <div class="wordDisappear word">for</div>
+        <div class="wordDisappear word">mines</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">And</div>
+        <div class="wordDisappear word">save</div>
+        <div class="wordDisappear word">lives</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">She</div>
+        <div class="wordDisappear word">swept</div>
+        <div class="wordDisappear word">mines</div>
+        <div class="wordDisappear word">to</div>
+        <div class="wordDisappear word">protect</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">waters</div>
+        <div class="wordDisappear word">in</div>
+        <div class="wordDisappear word">WW2</div>
+        <div class="wordDisappear word">in</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">10th</div>
+        <div class="wordDisappear word">Minesweeping</div>
+        <div class="wordDisappear word">Flotilla</div>
+        <div class="wordDisappear word">.</div>
+</div>
+
+</main>
+
+<<include "footer">>
+
+<<done>>
+<<set $move to setup.moveWords()>>
+<</done>>
+
+<<timed 10s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+:: ger12-1 [nobr]
+/* TODO CHANGE TO ALARM  */
+<<set $prevpass to "wordsLeft5">>
+<<set $pass to "ger12-1">>
+<<set $nextpass to "minesChallenge">>
+
+<<include "_templateGeraldine">>
+
+:: ger12-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Wait - what is that? Did you set off an alarm here at OCTOPUS? </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Those words didn’t sound good either. Mines. Detonation. Explosion. 3 things I would like to avoid. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>It’s saying here we need to stop mines from exploding. Exploding here at OCTOPUS HQ. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Mines that have been placed by the Monster. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>How can this be happening!? How is the Monster doing this?! </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 11s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>This can’t be good. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 13s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I’m sending the locations to your screen. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 15s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Head to the locations now and send me the codes. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 17s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Okay!">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: minesChallenge
+<<set $prevpass to "ger12-1">>
+<<set $pass to "minesChallenge">>
+<<set $nextpass to "ger13-1">>
+<main>
+<p>1 - Facing the Library - the Cannon on the left - the number on there.</p>
+<p>2 - Near the middle cannon - there’s a sign - the number is the range of the 18 pounder cannon in yards</p>
+<p>3- Code on the Lamp Post near the Soldier & Dog (you may need to look up)</p>
+
+<<include "pwMines">>
+</main>
+
+<<include "footer">>
+:: pwMines [nobr]
+
+<div id="resultbutton">
+  /% CODEWORD INPUT %/
+  <div class="code-input multibox center-col">
+    <div class="multi-input-wrapper">
+      <<textbox "$code1" "">>
+      <<textbox "$code2" "">>
+      <<textbox "$code3" "">>
+    </div>
+    <br/>
+    <div id="coderesult"></div>
+    <br/>
+ <span class="button-wrapper" aria-label="Click button to see if answer is correct ">
+    
+    <<button "Enter">>
+  </div>
+  /% PASSWORD CODE %/
+  <<set $code1 to $code1.toUpperCase()>>
+  <<set $code2 to $code2.toUpperCase()>>
+  <<set $code3 to $code3.toUpperCase()>>
+  /% CODEWORD CORRECT %/
+  <<if $code1 isnot "" and $code2 isnot "" and $code3 isnot "">>
+    <<if ($code1 + $code2 + $code3) is "243500GCC319">>
+     <<replace "#coderesult">><p>CORRECT</p><</replace>>
+      <<audio "correct" play>>
+      <<timed 3s>><<goto $nextpass>><</timed>>
+    <</if>>
+  <</if>>
+  /% CODEWORD INCORRECT %/
+  <<if $code1 isnot "" and $code2 isnot "" and $code3 isnot "">>
+    <<if ($code1 + $code2 + $code3) isnot "243500GCC319">>
+         <<replace "#coderesult">><p>That's not right.</p><</replace>>
+      <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+    <</if>>
+  <</if>>
+<</button>>
+
+</span>
+</div>
+</div>
+
+:: ger13-1 [nobr]
+<<set $prevpass to "minesChallenge">>
+<<set $pass to "ger13-1">>
+<<set $nextpass to "wordsAdded5">>
+
+<<include "_templateGeraldine">>
+
+:: ger13-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>You have unlocked the fifth and final chapter . </p>
+       </div>
+    <</append>>
+<</timed>>
+
+   <<timed 4s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: wordsAdded5 [nobr]
+<<set $prevpass to "ger13-1">>
+<<set $pass to "wordsAdded5">>
+<<set $nextpass to "ger14-1">>
+
+<main class="main-words added">
+    <div class="words">
+        <div class="wordDisappear word">The</div>
+        <div class="wordDisappear word">Medway</div>
+        <div class="wordDisappear word">Queen</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">A</div>
+        <div class="wordDisappear word">Paddle</div>
+        <div class="wordDisappear word">Steamer</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">With</div>
+        <div class="wordDisappear word">a</div>
+        <div class="wordDisappear word">twist</div>
+        <div class="wordDisappear word">The</div>
+        <div class="wordDisappear word">Medway</div>
+        <div class="wordDisappear word">Queen</div>
+        <div class="wordDisappear word">had</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">ability</div>
+        <div class="wordDisappear word">to</div>
+        <div class="wordDisappear word">sweep</div>
+        <div class="wordDisappear word">for</div>
+        <div class="wordDisappear word">mines</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">And</div>
+        <div class="wordDisappear word">save</div>
+        <div class="wordDisappear word">lives</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">She</div>
+        <div class="wordDisappear word">swept</div>
+        <div class="wordDisappear word">mines</div>
+        <div class="wordDisappear word">to</div>
+        <div class="wordDisappear word">protect</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">waters</div>
+        <div class="wordDisappear word">in</div>
+        <div class="wordDisappear word">WW2</div>
+        <div class="wordDisappear word">in</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">10th</div>
+        <div class="wordDisappear word">Minesweeping</div>
+        <div class="wordDisappear word">Flotilla</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">Next</div>
+        <div class="wordDisappear word">,</div>
+        <div class="wordDisappear word">she</div>
+        <div class="wordDisappear word">was</div>
+        <div class="wordDisappear word">part</div>
+        <div class="wordDisappear word">of</div>
+        <div class="wordDisappear word">Operation</div>
+        <div class="wordDisappear word">Dynamo</div>
+        <div class="wordDisappear word">,</div>
+        <div class="wordDisappear word">where</div>
+        <div class="wordDisappear word">around</div>
+        <div class="wordDisappear word">850</div>
+        <div class="wordDisappear word">small</div>
+        <div class="wordDisappear word">ships</div>
+        <div class="wordDisappear word">braved</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">channel</div>
+        <div class="wordDisappear word">crossing</div>
+        <div class="wordDisappear word">to</div>
+        <div class="wordDisappear word">save</div>
+        <div class="wordDisappear word">Allied</div>
+        <div class="wordDisappear word">Troops</div>
+        <div class="wordDisappear word">from</div>
+        <div class="wordDisappear word">Dunkirk</div>
+        <div class="wordDisappear word">.</div>
+        <div class="wordDisappear word">She</div>
+        <div class="wordDisappear word">saved</div>
+        <div class="wordDisappear word">around</div>
+        <div class="wordDisappear word">7000</div>
+        <div class="wordDisappear word">Allied</div>
+        <div class="wordDisappear word">soldiers</div>
+        <div class="wordDisappear word">,</div>
+        <div class="wordDisappear word">and</div>
+        <div class="wordDisappear word">was</div>
+        <div class="wordDisappear word">dubbed</div>
+        <div class="wordDisappear word">the</div>
+        <div class="wordDisappear word">"Heroine</div>
+        <div class="wordDisappear word">of</div>
+        <div class="wordDisappear word">Dunkirk"</div>
+        <div class="wordDisappear word">.</div>
+</div>
+
+</main>
+
+
+<<include "footer">>
+
+<<done>>
+  <<set $still to setup.stillWords()>>
+<</done>>
+<<timed 25s>>
+  <<goto $nextpass>>
+  <</timed>>
+
+:: ger14-1 [nobr]
+<<set $prevpass to "wordsAdded5">>
+<<set $pass to "ger14-1">>
+<<set $nextpass to "ger14-2">>
+
+<<include "_templateGeraldine">>
+
+:: ger14-1-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Wow - what a boat. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I never thought I’d say that sentence. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>And after its lifesaving service, it took on a new life. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>The life of the party. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>The Lifesaving Boat became the Lifesaving Club. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 11s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>A club for all to dance the night away. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 13s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto "bookrooting">>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger14-2 [nobr]
+<<set $prevpass to "ger14-1">>
+<<set $pass to "ger14-2">>
+<<set $nextpass to "ger14-3">>
+
+<<include "_templateGeraldine">>
+
+
+:: ger14-2-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>TWIST. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I love a good twist. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I wasn’t expecting that at all. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Were you? </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 13s>>
+    <<replace "#nextButtonContainer">>
+    <<button "No!">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger14-3 [nobr]
+<<set $prevpass to "ger14-2">>
+<<set $pass to "ger14-3">>
+<<set $nextpass to "ger14-4">>
+
+<<include "_templateGeraldine">>
+
+
+:: ger14-3-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Ok we have all of the parts we need. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>5 chapters. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>We need to go to the Medway Map to complete the rooting.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Doing this will root the book forever. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 10s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Near the casemates you can find the map of Chatham.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+
+<<timed 13s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Stand around the map.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+
+<<timed 16s>>
+    <<replace "#nextButtonContainer">>
+    <<button "We're there">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+
+:: ger14-4 [nobr]
+/* ROOTING  */
+<<set $prevpass to "ger14-3">>
+<<set $pass to "ger14-4">>
+<<set $nextpass to "dragIntoBook">>
+
+<<include "_templateGeraldine">>
+
+
+:: ger14-4-messages [nobr]
+<<timed 0.1s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>We stand here at the Chatham map.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>A place where we can see some of the places of modern day Chatham </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>The present shaped by the past</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 7s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Some of the past that you have just discovered</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 10s>>
+    /* <<audio "ping1" "play">> */
+    <<replace "#msgMount">>
+       <div class="message"> 
+        <p>It’s time to fill the book again </p>
+       </div>
+    <</replace>>
+<</timed>>
+
+
+<<timed 13s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>It’s time to root the book again.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 16s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Here in the present.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 19s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>We are halting the Book Monster with every act we have taken </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 24s>>
+    /* <<audio "ping1" "play">> */
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Drag the chapters into the book. And when I say, join me in saying BE GONE GOOGLY MOOGLY. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+
+<<timed 16s>>
+    <<replace "#nextButtonContainer">>
+    <<button "We're ready">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
 
 :: headerDrag [nobr]
 <header class="drag">
@@ -1170,6 +3988,9 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
 </header>
 
 :: dragIntoBook[nobr]
+<<set $prevpass to "ger14-4">>
+<<set $pass to "dragIntoBook">>
+<<set $nextpass to "ger15-1">>
 <<include "headerDrag">>
 <div id="port-container">
   <img id="book-image" src="assets/img/open-book.png" alt="Port">
@@ -1183,6 +4004,118 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
 
 <<done>>
 <<set $s to setup.boatMultiDraggable()>><</done>>
+
+
+:: ger15-1 [nobr]
+
+<<set $prevpass to "dragIntoBook">>
+<<set $pass to "ger15-1">>
+<<set $nextpass to "begone">>
+
+<<include "_templateGeraldine">>
+
+:: ger15-1-messages [nobr]
+
+<<timed 0.1s>>
+      <<append "#msgMount">>
+       <div class="message"> 
+          <p>We are now ready to vanquish the Book Monster</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 3s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>You have proven you have connected to Chatham’s past </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+   <<timed 5s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>And with that, rooted it in the present.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+
+     <<timed 8s>>
+    /* <<audio "ping1" "play">> */
+        <<replace "#msgMount">>
+       <div class="message"> 
+          <p>You have proven you can face the Book Monster. </p>
+       </div>
+        <</replace>>
+    <</timed>>
+
+     <<timed 11s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>That you are not afraid to look at our past</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+      <<timed 14s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>And how it has shaped our present.  </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+
+    <<timed 17s>>
+    /* <<audio "ping1" "play">> */
+        <<replace "#msgMount">>
+       <div class="message"> 
+          <p>You have stopped Googly Moogly. </p>
+       </div>
+        <</replace>>
+    <</timed>>
+
+     <<timed 20s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>And you have helped OCTOPUS </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 21s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>You are OCTOPUS. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+
+  <<timed 24s>>
+      <<replace "#nextButtonContainer">>
+      <<button "We're ready">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: begone
+<<set $prevpass to "ger15-1">>
+<<set $pass to "begone">>
+<<set $nextpass to "begone">>
+<main>
+  <div class="motto-container"><span>BE GONE GOOGLY MOOGLY</span></div>
+  
+</main>
+<<include "footer">>
 
 :: alarm
 
