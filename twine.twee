@@ -18,6 +18,7 @@ The Book Monster
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&family=Sora:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 @import url("styles/generics.css");
 @import url("styles/styles.css");
 
@@ -129,10 +130,10 @@ errorMount.innerText = "Image uploading..."
 
     const data = await response.json();
     console.log('Image uploaded successfully:', data);
-    errorMount.innerText = "Image uploaded"
+    errorMount.innerText = "Image uploaded!"
   } catch (error) {
     console.error('Error uploading image:', error.message);
-    errorMount.innerText = "Image upload failed"
+    errorMount.innerText = "Image upload failed."
   }
 }
 // Example usage
@@ -147,7 +148,7 @@ inputElement.addEventListener('change', (event) => {
 
 setup.boatMultiDraggable = () => {
   let completed = [];
-  const completeList = ["boat", "elephant"];
+  const completeList = ["chapOne", "chapTwo"];
   console.log("boatMultiDraggable running");
 
   const messageContainer = document.getElementById("message");
@@ -158,23 +159,45 @@ setup.boatMultiDraggable = () => {
 
   // Define target areas for boat and elephant
   const targetAreas = {
-    boat: { 
+    chapOne: { 
       x: 0,                      // Start from the left
       y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
       width: deviceWidth,         // Full width of the screen
       height: deviceHeight * 0.3  // 20% of the screen height
     },
-    elephant: { 
+    chapTwo: { 
+      x: 0,                      // Start from the left
+      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
+      width: deviceWidth,         // Full width of the screen
+      height: deviceHeight * 0.3  // 20% of the screen height
+    },
+     chapThree: { 
+      x: 0,                      // Start from the left
+      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
+      width: deviceWidth,         // Full width of the screen
+      height: deviceHeight * 0.3  // 20% of the screen height
+    },
+    chapFour: { 
+      x: 0,                      // Start from the left
+      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
+      width: deviceWidth,         // Full width of the screen
+      height: deviceHeight * 0.3  // 20% of the screen height
+    },
+     chapFive: { 
       x: 0,                      // Start from the left
       y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
       width: deviceWidth,         // Full width of the screen
       height: deviceHeight * 0.3  // 20% of the screen height
     }
+
   };
 
   const elements = [
-    { id: 'boat-image', targetArea: targetAreas.boat, name: 'boat' },
-    { id: 'elephant-image', targetArea: targetAreas.elephant, name: 'elephant' }
+    { id: 'chapter-one', targetArea: targetAreas.chapOne, name: 'chapOne' },
+    { id: 'chapter-two', targetArea: targetAreas.chapTwo, name: 'chapTwo' }, 
+    { id: 'chapter-three', targetArea: targetAreas.chapTwo, name: 'chapThree' }, 
+    { id: 'chapter-four', targetArea: targetAreas.chapTwo, name: 'chapFour' }, 
+    { id: 'chapter-five', targetArea: targetAreas.chapTwo, name: 'chapFive' }
   ];
 
   const portContainer = document.getElementById('port-container');
@@ -313,6 +336,18 @@ setup.boatMultiDraggable = () => {
 </footer>
 
 
+:: footerend[nobr]
+<footer>
+    <<link "Back">>
+        <<goto $prevpass>>
+    <</link>>
+    <<link "Start again">>
+        <<goto "landing">>
+    <</link>>
+    
+</footer>
+
+
 
 :: landing [nobr] 
 <<set $prevpass to "landing">>
@@ -344,10 +379,14 @@ setup.boatMultiDraggable = () => {
 [[landing]]
 </main>
 
-:: headerintro
+:: headerintro [nobr]
 <header class="intro">
-  <div class="logo-wrapper rotate">
+  <div class="logo-wrapper ">
   <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+  <div class="octo-title-wrapper">
+    <h2 class="octo-title">OCTOPUS</h2>
+    <span>Rooter</span>
   </div>
 </header>
 :: intro [nobr] 
@@ -356,13 +395,44 @@ setup.boatMultiDraggable = () => {
 <<set $nextpass to "connecting">>
 <<include "headerintro">>
 <main class="intro">
-<p>Welcome to the OCTOPUS Rooter</p>
-<p>Use this if you come across a Book Monster. </p>
-<p>We can connect you to a book that needs rooting</p>
-<p>And stop the Book Monster</p>
-<p>Enter the name of the book that needs rooting. </p>
+<div id="mount"></div>
+<<timed 0.5s>>
+    <<replace "#mount">>
+  <p>Welcome to the OCTOPUS Rooter</p>
+    <</replace>>
+  <</timed>>
+<<timed 4s>>
+    <<append "#mount">>
+      <p>Use this if you come across a Book Monster. </p>
+    <</append>>
+  <</timed>>
+  <<timed 8s>>
+    <<append "#mount">>
+     <p>We can connect you to a book that needs rooting</p>
+    <</append>>
+  <</timed>>
+  <<timed 12s>>
+    <<append "#mount">>
+      <p>And stop the Book Monster</p>
+    <</append>>
+  <</timed>>
+  <<timed 12s>>
+    <<append "#mount">>
+     <p>Enter the name of the book that needs rooting. </p>
+    <</append>>
+  <</timed>>
+    <<timed 15s>>
+    <<append "#mount">>
+     <<include "pwChathamStories">>
+    <</append>>
+  <</timed>>
 
-  <<include "pwChathamStories">>
+
+
+
+
+
+
 </main>
 
 :: pwChathamStories [nobr]
@@ -403,37 +473,39 @@ setup.boatMultiDraggable = () => {
 <<set $prevpass to "intro">>
 <<set $pass to "connecting">>
 <<set $nextpass to "gerIntro-1">>
+<<include "headerintro">>
 <main class="connecting">
-  <div class="book-wrapper">
+  <div class="book-wrapper" id="wrapper">
   <img src="/assets/img/open-book.png" alt="open book"/>
   </div>
   <div id="mount"></div>
   <<timed 0.1s>>
     <<replace "#mount">>
-   <<type 80ms>><p> Welcome.</p><</type>>
+   <<type 80ms>><p class="octo-welcome-text"> Welcome.</p><</type>>
     <</replace>>
   <</timed>>
   <<timed 4s>>
     <<replace "#mount">>
-      <<type 80ms>><p> Thank you</p><</type>>
+      <<type 80ms>><p class="octo-welcome-text"> Thank you</p><</type>>
     <</replace>>
   <</timed>>
   <<timed 8s>>
     <<replace "#mount">>
-      <<type 80ms>><p> You are connecting to...</p><</type>>
+      <<type 80ms>><p class="octo-welcome-text"> You are connecting to...</p><</type>>
     <</replace>>
   <</timed>>
   <<timed 12s>>
     <<replace "#mount">>
-       <<type 80ms>><p> You are connecting to...</p><</type>>
+       <<type 80ms>><p class="octo-welcome-text"> You are connecting to...</p><</type>>
     <</replace>>
   <</timed>>
   <<timed 16s>>
     <<replace "#mount">>
-      <<type 80ms>><p> You are connecting to...</p><</type>>
+      <<type 80ms>><p class="octo-welcome-text"> You are connecting to...</p><</type>>
     <</replace>>
   <</timed>>
  <<timed 20s>>
+      <<replace "#wrapper">><</replace>>
     <<replace "#mount">>
       <h2 class="fancy"> Geraldine</h2>
     <</replace>>
@@ -442,7 +514,8 @@ setup.boatMultiDraggable = () => {
   <<timed 23s>>
     <<append "#mount">>
       <br/>
-      <<button "Next">>
+      <br/>
+      <<button "Let's go!">>
         <<goto $nextpass>>
         <</button>>
     <</append>>
@@ -452,7 +525,7 @@ setup.boatMultiDraggable = () => {
 <<include "footer">>
 :: headerGeraldine [nobr]
 <header class="talking">
-<div class="avatar-icon">[img[./assets/img/user.png]]</div>
+<div class="avatar-icon">[img[./assets/img/logo.png]]</div>
 <div class="userInfo">
   <h2>Geraldine</h2>
  <span class="online-dot">●</span><span>Online</span>
@@ -708,24 +781,28 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
 :: bookmonsterprofile [nobr]
-<main>
+
 
   <div class="cipher-wrapper">
+  <span class="cipher-title"><soan class="octo-title">OCTOPUS</soan> Profile</span>
     <div class="bm-info-wrapper cipherpaper">
+    <h2>The Book Monster</h2>
     <span><b>DOB:</b> Unknown</span>
     <span><b>Nickname:</b> Googly Moogly</span>
     <span><b>Likes:</b> Eating Books</span>
     <span><b>Dislikes:</b> Books, Stories & Characters! </span>
     <span><b>Appearance:</b> uncertain- images on file from previous encounters</span>
   </div>
+  <div class="logo-wrapper-cipher">
+  <img src="/assets/img/logo.png" alt="logo"/>
   </div>
-</main>
+  </div>
 
 
 :: gerIntro-4 [nobr]
 <<set $prevpass to "gerIntro-3">>
 <<set $pass to "gerIntro-4">>
-<<set $nextpass to "gerIntro-5">>
+<<set $nextpass to "octopusgallery">>
 
 <<include "_templateGeraldine">>
 
@@ -745,12 +822,21 @@ setup.boatMultiDraggable = () => {
     /* <<audio "ping1" "play">> */
         <<append "#msgMount">>
        <div class="message"> 
-          <p>There have only been a few sightings of the monster,but those who have encountered it in the past have drawn images of what they saw   </p>
+          <p>There have only been a few sightings of the monster. </p>
        </div>
         <</append>>
     <</timed>>
 
-   <<timed 5s>>
+      <<timed 6s>>
+    /* <<audio "ping1" "play">> */
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>But those who have encountered it in the past have drawn images of what they saw. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+   <<timed 9s>>
     /* <<audio "ping1" "play">> */
         <<append "#msgMount">>
        <div class="message"> 
@@ -759,58 +845,76 @@ setup.boatMultiDraggable = () => {
         <</append>>
     <</timed>>
 
-  <<timed 7s>>
+  <<timed 12s>>
       <<replace "#nextButtonContainer">>
-      <<button "Load Info">>
+      <<button "Load Images">>
           <<goto $nextpass>>
         <</button>>
           <</replace>>
     <</timed>>
 
-:: gerIntro-5 [nobr]
+
+:: galleryheader[nobr]
+<header class="intro">
+  <div class="logo-wrapper ">
+  <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+  <div class="octo-title-wrapper">
+    <h2 class="octo-title">OCTOPUS</h2>
+    <span>Gallery</span>
+  </div>
+</header>
+
+
+:: octopusgallery [nobr]
 <<set $prevpass to "gerIntro-4">>
-<<set $pass to "gerIntro-5">>
+<<set $pass to "octopusgallery">>
 <<set $nextpass to "gerIntro-6">>
-
-<<include "_templateGeraldine">>
-
-
-
-:: gerIntro-5-messages [nobr]
-<<timed 0.1s>>
-  <<append "#msgMount">>
+<<include "galleryheader">>
+<main class="gallery">
       <<include "bookmonsterimages">>
-    <</append>>
-    <</timed>>
+</main>
+<<include "galleryfooter">>
+
+:: galleryfooter[nobr]
+<footer> 
+<div/>
+<div id="nextImageBtn"></div></footer>
 
 <<timed 2s>>
       <<include "footerimages">>
     <</timed>>
+
+
    
    
 :: bookmonsterimages [nobr]
-<main>
+
   <div class="bm-wrapper" id="imgMount">
     <img id="monsterImage" src="/assets/img/monster1.png" alt="Monster Image 1"/>
   </div>
-</main>
+  <div class="img-desc" id="imgDesc">
+    <h3>Sighting 1</h3>
+  </div>
+
 
 
 :: footerimages [nobr]
 <<set $imageIndex to 1>>
 
-<<replace "#nextButtonContainer">>
-index: $imageIndex
+<<replace "#nextImageBtn">>
       <<button "Load Next Image">>
          <<if $imageIndex < 4>>
         <<set $imageIndex to $imageIndex + 1>>
         <<replace "#imgMount">>
-          $imageIndex
           <img id="monsterImage" sc-eval:src="'/assets/img/monster' + [$imageIndex] + '.png'"  alt="Monster Image"/>
             /* <img id="monsterImage" src="/assets/img/monster2.png" alt="Monster Image"/> */
         <</replace>>
+        <<replace "#imgDesc">>
+            <h3>Sighting $imageIndex</h3>
+        <</replace>>
         <<else>>
-          <<replace "#nextButtonContainer">>
+          <<replace "#nextImageBtn">>
       <<button "Next">>
         <<goto $nextpass>>
       <</button>>
@@ -823,9 +927,9 @@ index: $imageIndex
 
 
 :: gerIntro-6 [nobr]
-<<set $prevpass to "gerIntro-5">>
+<<set $prevpass to "octopusgallery">>
 <<set $pass to "gerIntro-6">>
-<<set $nextpass to "chapterTitle1">>
+<<set $nextpass to "gerIntro-6b">>
 
 <<include "_templateGeraldine">>
 
@@ -871,12 +975,30 @@ index: $imageIndex
         /* <<audio "ping1" "play">> */
          <<append "#msgMount">>
        <div class="message"> 
-        <p>And it seems Chatham Stories are next. .</p>
+        <p>And it seems Chatham Stories are next.</p>
        </div>
         <</append>>
     <</timed>>
 
-     <<timed 14s>>
+
+     <<timed 15s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+<<set $imageIndex to 1>>
+:: gerIntro-6b [nobr]
+<<set $prevpass to "gerIntro-6">>
+<<set $pass to "gerIntro-6b">>
+<<set $nextpass to "gerIntro-6c">>
+
+<<include "_templateGeraldine">>
+
+:: gerIntro-6b-messages [nobr]
+ <<timed 0.5s>>
         /* <<audio "ping1" "play">> */
          <<replace "#msgMount">>
        <div class="message"> 
@@ -885,7 +1007,7 @@ index: $imageIndex
         <</replace>>
     <</timed>>
 
-     <<timed 16s>>
+     <<timed 3s>>
         /* <<audio "ping1" "play">> */
          <<append "#msgMount">>
        <div class="message"> 
@@ -894,26 +1016,89 @@ index: $imageIndex
         <</append>>
     <</timed>>
 
-       <<timed 18s>>
+     <<timed 6s>>
         /* <<audio "ping1" "play">> */
          <<append "#msgMount">>
        <div class="message"> 
-        <p>The Monster is using the stories it is eating to set challenges.
-        You need to stop the Monster by completing the challenges
-Fragments may come through in mysterious ways that we need to work out. 
-But we need to be quick. 
-/
-I know this is a lot to take on, and we’ve only just met, but I need your help. 
-
-Would you be up for helping me? 
-
-If you are - hit the button below and we can begin rooting the stories. 
-</p>
+        <p>The Monster is using the stories it is eating to set challenges. </p>
        </div>
         <</append>>
     <</timed>>
 
-     <<timed 20s>>
+     <<timed 9s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>You need to stop the Monster by completing the challenges </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 12s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Fragments may come through in mysterious ways that we need to work out.  </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+      <<timed 15s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>But we need to be quick.  </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 18s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+
+
+:: gerIntro-6c [nobr]
+<<set $prevpass to "gerIntro-6b">>
+<<set $pass to "gerIntro-6c">>
+<<set $nextpass to "chapterTitle1">>
+
+<<include "_templateGeraldine">>
+
+:: gerIntro-6c-messages [nobr]
+
+ <<timed 0.5s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>I know this is a lot to take on, and we’ve only just met, but I need your help. </p>
+       </div>
+        <</append>>
+  <</timed>>
+
+   <<timed 4s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Would you be up for helping me? </p>
+       </div>
+        <</append>>
+  <</timed>>
+
+  <<timed 4s>>
+        /* <<audio "ping1" "play">> */
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>If you are - hit the button below and we can begin rooting the stories.  </p>
+       </div>
+        <</append>>
+  <</timed>>
+
+     <<timed 8s>>
       <<replace "#nextButtonContainer">>
       <<button "Begin Rooting">>
           <<goto $nextpass>>
@@ -921,17 +1106,18 @@ If you are - hit the button below and we can begin rooting the stories.
           <</replace>>
     <</timed>>
 
-
-<<set $imageIndex to 1>>
-
 :: _chapterTitleTemplate [nobr]
+<<addclass "body" "grey">>
 <<include "findChapTitle">>
 <<timed 0.1s>>
 <main class="chapter-title">
-<div class="logo-wrapper ">
-<img id="chapterImage" sc-eval:src="'/assets/img/chap' + [$currentChapter] + '.png'"  alt="Chapter Image"/>
+<h2>Chapter $currentChapter</h2>
+<div class="logo-wrapper chapter-img-wrapper">
+<img id="chapterImage" sc-eval:src="'/assets/img/chapter' + [$currentChapter] + '.png'"  alt="Chapter Image"/>
 </div>
-<div class="chapter-title-wrapper"><h2>$chapters[$currentChapter]</h2></div>
+<div class="chapter-title-wrapper">
+
+<h3>$chapters[$currentChapter]</h3></div>
 </main>
 <</timed>>
 <<timed 5s>>
@@ -939,7 +1125,7 @@ If you are - hit the button below and we can begin rooting the stories.
   <</timed>>
 
 :: chapterTitle1 [nobr]
-<<set $prevpass to "gerIntro-6">>
+<<set $prevpass to "gerIntro-6c">>
 <<set $pass to "chapterTitle1">>
 <<set $nextpass to "wordsLeft1">>
 <<set $currentChapter to 1>>
@@ -1124,6 +1310,12 @@ If you are - hit the button below and we can begin rooting the stories.
           <</replace>>
     <</timed>>
 
+:: codeheader [nobr]
+<header id="header" class="code">
+ 
+</header>
+
+
 :: code4 [nobr]
 <<set $prevpass to "ger2-1">>
 <<set $pass to "code4">>
@@ -1137,7 +1329,7 @@ $correctans
 <<set $current to "">>
 /* Letter S  */
 <div class="letter-item l" id="letterItemL">
-  <<link "">>
+  <<link "1">>
    /* <<textbox "$s" "">> */
    /* <<toggleclass $current "current">> */
    <<set $current to "l">>
@@ -1148,7 +1340,7 @@ $correctans
         <<removeclass "#letterItemA" "current">>   
         <<removeclass "#letterItemC" "current">>   
         <<removeclass "#letterItemY" "current">> 
-        <h2>1</h2>
+      <h2 class="octo-title">Clue</h2>
        <p>There is a clock near the exit - underneath a name of someone who open the Library - enter the 2nd letter of the Surname. </p>
 
     <</replace>>
@@ -1189,7 +1381,7 @@ $correctans
 </div>
 /* Letter A  */
 <div class="letter-item a" id="letterItemA">
-  <<link "">>
+  <<link "2">>
 
    <<set $current to "a">>
     <<if $current is "a">> 
@@ -1197,9 +1389,9 @@ $correctans
         /* Make box gold, turn off any other gold boxes */
          <<removeclass "#letterItemL" "current">> 
         <<addclass "#letterItemA" "current">>   
-        <<removeclass "#letterItemL" "current">>   
+        <<removeclass "#letterItemC" "current">>   
         <<removeclass "#letterItemY" "current">>   
-        <h2>2</h2>
+    <h2 class="octo-title">Clue</h2>
        <p>Shakespeare’s quote is on the wall - find it up above a door - and enter the first letter of the quote</p>
     <</replace>>
     <<replace "#inputMount">>
@@ -1233,7 +1425,7 @@ $correctans
 </div>
 /* Letter L  */
 <div class="letter-item l" id="letterItemC">
-  <<link "">>
+  <<link "3">>
    /* <<textbox "$s" "">> */
    /* <<toggleclass $current "current">> */
    <<set $current to "l">>
@@ -1244,7 +1436,7 @@ $correctans
         <<removeclass "#letterItemA" "current">>   
         <<addclass "#letterItemC" "current">>   
         <<removeclass "#letterItemY" "current">>
-        <h2>3</h2>
+    <h2 class="octo-title">Clue</h2>
        <p>Far on the other side of the Library there is an area for Kids’ what is the name of this area? Enter the first letter of that word. </p>
     <</replace>>
     <<replace "#inputMount">>
@@ -1280,7 +1472,7 @@ $correctans
 
 /* Letter Y  */
 <div class="letter-item y" id="letterItemY">
-  <<link "">>
+  <<link "4">>
    /* <<textbox "$s" "">> */
    /* <<toggleclass $current "current">> */
    <<set $current to "y">>
@@ -1289,9 +1481,9 @@ $correctans
         /* Make box gold, turn off any other gold boxes */
          <<removeclass "#letterItemL" "current">> 
         <<removeclass "#letterItemA" "current">>   
-        <<removeclass "#letterItemL" "current">>   
+        <<removeclass "#letterItemC" "current">>   
         <<addclass "#letterItemY" "current">>   
-        <h2>4</h2>
+    <h2 class="octo-title">Clue</h2>
        <p>Hidden near Local Fiction (where the Chatham’s Stories Book should be)  an Ark can be found - a Sound Ark - what is the last letter of the first word of this Sound Ark? </p>
     <</replace>>
     <<replace "#inputMount">>
@@ -1325,6 +1517,9 @@ $correctans
 </div>
 </div>
 <br>
+ <div id="clueMount">
+    <span>4 letters to find.</span>
+  </div>
 <br>
 <div id="inputMount"></div>
 <br>
@@ -1344,13 +1539,6 @@ $correctans
   <</timed>>
 <</if>>
 
-:: codeheader [nobr]
-<header id="header" class="column">
-  <div id="clueMount">
-    <p>4 letters to find.</p>
-    <p>Let’s load the first one up first.</p>
-  </div>
-</header>
 
 
 :: ger3-1 [nobr]
@@ -1547,15 +1735,25 @@ $correctans
     <</timed>>
 
 
-:: bookrooting
+:: bookrooting [nobr]
 <main class="rooting">
   <div class="book-wrapper">
   <img src="/assets/img/open-book.png" alt="open book"/>
   </div>
-  <h2>Book Rooting...</h2>
+  <div id="mount"></div>
+  <<timed 0.3s>>
+  <<replace "#mount">>
+   <<type 90ms>><h2>Book Rooting...</h2><</type>>
+  <</replace>>
+  <</timed>>
+   <<timed 4s>>
+  <<replace "#mount">>
+   <<type 90ms>><h2>Book Rooting...</h2><</type>>
+  <</replace>>
+  <</timed>>
 </main>
 
-  <<timed 5s>>
+  <<timed 6s>>
   
           <<goto $nextpass>>
     
@@ -1817,44 +2015,54 @@ $correctans
 <<set $prevpass to "ger4-1">>
 <<set $pass to "mapInstructions">>
 <<set $nextpass to "ger5-1">>
-
+<<addclass "body" "light">>
 /* <<goto $nextpass>> */
 
-<<set $currentInstructionIndex = 1>>
+<<set $currentInstructionIndex = 0>>
 
 <<set $instructions = {
+  0:{ text: "", 
+    coords: ""
+  },
     1: { text: "Face the vending machines <br/>
-Take 2 steps backwards and turn right (you should be facing the double doors)
+Don’t turn around – I need to work out where the Book Monster is.  <br/>
+We can’t see it – but trust me – we want to avoid it. )
 ", coords: "one"},
-    2: { text: "Walk backwards down the central aisle <br/>
-HOLD", coords: "three" },
- 3: { text: "Slowly turn left and walk backwards towards the wall", coords: "four" }, 
-  4: { text: "Walk along the wall towards reception - past the Jigsaws.<br/>
-Stop before the reception - it’s too open there. <br/>", coords: "five" }, 
-  5: { text: "You need to make your way across to the Poetry Corner sign by the door.  <br/>", coords: "six" }, 
-   6: { text: "Head out the door and out of the cage.<br/>
-  Enter the word to let me know you have made it out alive!", coords: "seven" }
+    2: { text: "Take 2 steps backwards and turn right (you should be facing the double doors). Don’t turn around. ", coords: "two" },
+ 3: { text: "Walk backwards down the central aisle.", coords: "three" }, 
+  4: { text: "HOLD IT.<br/>
+The Book Monster.<br/>
+We need to go a different route. Re-routing.", coords: "three" }, 
+  5: { text: "Slowly turn left and walk backwards towards the wall.", coords: "four" }, 
+   6: { text: "Walk along the wall towards reception - past the Jigsaws.", coords: "five" }, 
+ 7: { text: "Stop before the reception - it’s too open there.", coords: "six" }, 
+  8: { text: "We’re going to make a dash for it. You are going to go to the Poetry Corner.<br/> Wait for the Book Monster to move... and then I will tell you when to go.", coords: "six"}, 
+  9: { text: "Go!", coords: "seven" }, 
+  10: { text: "Head out the door and out of the cage <br/>Enter the word on the wall on the left side to let me know you have made it out alive!", 
+  coords: "eight"}
 }>>
   <<set $position to $instructions[$currentInstructionIndex].coords >>
 
-<header>
-    <div class="instruction" id="instruction">
-    <p>
-    /* <<print $currentInstructionIndex>>. */
-    <<print $instructions[$currentInstructionIndex].text>></p>
-    
-    </div>
+<header class="map">
+ <h2 class="octo-title">Monster's Cage</h2>
 </header>
 	<main id="main" class="map">
 
 	<div>
 <div class="map-container" id="mapContainer">
 <img src="assets/img/map.png"/>
-<div class="location one pulse" id="location"></div>
+<div class="location hide pulse" id="location">
+<img src="/assets/img/arrow.png" src="arrow"/></div>
 <div class="guard hide pulse" id="guard"></div>
 </div>
 	</div>
-
+   <div class="instruction" id="instruction">
+ 
+    <p>
+    /* <<print $currentInstructionIndex>>. */
+    <<print $instructions[$currentInstructionIndex].text>></p>
+    
+    </div>
 	</main>
 	<<include "footermap">>
 
@@ -1865,50 +2073,37 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
 <footer class="map">
 <<button "Back">><<goto "landing">><</button>>
 
-<span class="button-wrapper hide" id="btnMount" aria-label="Click a button or link to move on">
+<span class="button-wrapper" id="btnMount" aria-label="Click a button or link to move on">
+
+<<button "I'm ready">>
+<<set $currentInstructionIndex += 1>>
 <<if $currentInstructionIndex === 1>>
-  <<timed 4s>>
-      <<removeclass "#location" "one">>
-      <<addclass "#location" "two">>
+
+  <<timed 1s>>
+    <<removeclass "#location" "hide">>
+      <<addclass "#location" "one">>
+       <<include "updateInstruction">>
       <</timed>>
-    <<timed 5s>>
-      <<removeclass "#btnMount" "hide">>
+   <<timed 5s>>
+    <<removeclass "#btnMount" "hide">>
     <</timed>>
 <</if>>
-<<button "Next instruction!">>
- 
-    /* <<removeclass "#location" $instructions[$currentInstructionIndex].coords>> */
-<<set $currentInstructionIndex += 1>>
-
-<<if $currentInstructionIndex === 2 >>
+ <<if $currentInstructionIndex === 2 >>
    <<timed 1s>>
      <<include "updateInstruction">>
   <</timed>>
-    /* <<replace "#audio">>
-      <audio src="assets/audio/PHONE_3_linkintocafespace_5.mp3" autoplay>Audio not supported in your browser</audio>
-      <</replace>> */
-    <<timed 4s>>
-        <<removeclass "#guard" "hide">>
-      <<addclass "#guard" "gone">>
-      <</timed>>
-  <<timed 6s>>
-     <<replace "#instruction">>
-      <p>The Book Monster.</p>
-      <</replace>>
-   <</timed>>
   <<timed 7s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
-
 <<elseif $currentInstructionIndex === 3 >>
   <<timed 1s>>
-     <<removeclass "#location" "two">>
      <<include "updateInstruction">>
   <</timed>>
   <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
 <<elseif $currentInstructionIndex === 4 >>
+/* TODO ADD BOOK Monster */
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
@@ -1917,63 +2112,98 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
     <</timed>>
 <<elseif $currentInstructionIndex === 5 >>
     <<timed 0.1s>>
-       <<addclass "#btnMount" "hide">>
-      <<replace "#instruction">>
-        <p>$currentInstructionIndex<<print $instructions[$currentInstructionIndex].text>></p>
-    <</replace>>
-    <<timed 4s>>
-        <<replace "#instruction">>
-        <p>WAIT FOR THE MONSTER TO MOVE</p>
-        <</replace>>
-      <</timed>>
-      <<timed 7s>>
-        <<removeclass "#guard" "gone">>
-      <<addclass "#guard" "gtwo">>
-      <</timed>>
-      <<timed 8s>>
-         <<replace "#instruction">>
-        <p>Go!</p>
-        <</replace>>
-        <<timed 1s>>
-         <<removeclass "#location" "five">>
-         <<addclass "#location" "six" >>
-         <<set $position to "six">>
-         <</timed>>
-         <<timed 2s>>
-          <<removeclass "#btnMount" "hide">>
-          <</timed>>
-      <</timed>>
-     
-    <</timed>>
-<<elseif $currentInstructionIndex === 6 >>
- <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
     <<timed 4s>>
-      <<replace "#btnMount">>
-        <span class="button-wrapper" aria-label="Click a button or link to move on">
-            <<button [[I've made it!|landing]]>><</button>>
-          </span>
-        <</replace>>
-      <</timed>>
-<<else>>
-  <<include "updateInstruction">>
-<</if>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<<elseif $currentInstructionIndex === 6 >>
+    <<timed 0.1s>>
+      <<include "updateInstruction">>
+    <</timed>>
+    <<timed 4s>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<<elseif $currentInstructionIndex === 7 >>
+    <<timed 0.1s>>
+      <<include "updateInstruction">>
+    <</timed>>
+    <<timed 4s>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<<elseif $currentInstructionIndex === 8 >>
+    <<timed 0.1s>>
+      <<include "updateInstruction">>
+    <</timed>>
+    <<timed 4s>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<<elseif $currentInstructionIndex === 9 >>
+    <<timed 0.1s>>
+      <<include "updateInstruction">>
+    <</timed>>
+    <<timed 4s>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<<elseif $currentInstructionIndex === 10 >>
+    <<timed 0.1s>>
+      <<include "updateInstruction">>
+    <</timed>>
+    <<timed 4s>>
+    <<replace "#btnMount">>
+      <<include "pwMap">>
+      <</replace>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+  
+  <</if>>
+
 <</button>>
 </span>
 </footer>
 
+:: pwMap [nobr]
 
+<div class="css-input map-input">
+    <div class="result-input-wrapper">
+      <div id="coderesult"></div>
+      <<textbox "$codeword" "">>
+    </div>
+    <<button "Enter">>
+      <<set $codeword to $codeword.toUpperCase()>>
+      
+      /% CODEWORD CORRECT %/
+      <<if $codeword != "" and $codeword == "ENTRANCE">>
+        <<replace "#coderesult">><span>CORRECT</span><</replace>>
+        /* <<audio "correct" play>> */
+
+        <<timed 3s>><<goto $nextpass>><</timed>>
+      
+      /% CODEWORD INCORRECT %/
+      <<else>>
+        <<replace "#coderesult">><span>That's not right.</span><</replace>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+      <</if>>
+    <</button>>
+
+    
+    <br/>
+</div>
     
 
 :: updateInstruction [nobr]
-<<timed 1s>>
   <<addclass "#btnMount" "hide">>
+  <<timed 0.1s>>
+     <<replace "#instruction">>
+      <</replace>>
+  <</timed>>
+  <<timed 1s>>
   <<replace "#instruction">>
+   <h3>Instruction</h3>
     <p><<print $instructions[$currentInstructionIndex].text>></p>
   <</replace>>
- <</timed>>
- <<timed 2s>>
+  <</timed>>
+ <<timed 3s>>
   <<removeclass "#location" $position>>
   <<set $position to $instructions[$currentInstructionIndex].coords >>
   <<addclass "#location" $position >>
@@ -2502,10 +2732,22 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
     <</replace>>
 <</timed>>
 
+:: headerUpload [nobr]
+<header class="intro">
+  <div class="logo-wrapper ">
+  <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+  <div class="octo-title-wrapper">
+    <h2 class="octo-title">OCTOPUS</h2>
+    <span>Upload</span>
+  </div>
+</header>
+
 :: picUpload [nobr]
 <<set $prevpass to "ger6-3">>
 <<set $pass to "picUpload">>
 <<set $nextpass to "ger7-1">>
+<<include "headerUpload">>
 <main class="main-section">
 
 <h3>Find a spot out to the river</h3>
@@ -3984,8 +4226,22 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
 
 :: headerDrag [nobr]
 <header class="drag">
-<div id="message">DRAG THE ITEMS</div>
+ <div id="message">DRAG THE ITEMS</div>
 </header>
+
+/* :: headerDrag [nobr]
+<header class="intro">
+  <div class="logo-wrapper ">
+  <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+  <div class="octo-title-wrapper">
+    <h2 class="octo-title">OCTOPUS</h2>
+ 
+    <span>Rooting</span>
+  </div>
+
+</header> */
+    
 
 :: dragIntoBook[nobr]
 <<set $prevpass to "ger14-4">>
@@ -3997,8 +4253,11 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
   <div id="target-area1"></div>
    <div id="target-area2"></div>
    
-  <img id="boat-image" class="draggable-image" src="https://png.pngtree.com/png-vector/20231020/ourmid/pngtree-3d-illustration-of-wooden-boat-png-image_10298350.png" alt="Boat" draggable="true">
-  <img id="elephant-image" class="draggable-image" src="https://png.pngtree.com/png-clipart/20230411/original/pngtree-elephant-asian-elephant-png-image_9043910.png" alt="Elephant" draggable="true">
+  <img id="chapter-one" class="draggable-image" src="/assets/img/chapter1.png" alt="Chapter 1" draggable="true">
+  <img id="chapter-two" class="draggable-image" src="/assets/img/chapter2.png" alt="Chapter 2" draggable="true">
+  <img id="chapter-three" class="draggable-image" src="/assets/img/chapter3.png" alt="Chapter 3" draggable="true">
+ <img id="chapter-four" class="draggable-image" src="/assets/img/chapter4.png" alt="Chapter 4" draggable="true">
+  <img id="chapter-five" class="draggable-image" src="/assets/img/chapter5.png" alt="Chapter 5" draggable="true">
 </div>
 <<include "footer">>
 
@@ -4115,7 +4374,7 @@ Stop before the reception - it’s too open there. <br/>", coords: "five" },
   <div class="motto-container"><span>BE GONE GOOGLY MOOGLY</span></div>
   
 </main>
-<<include "footer">>
+<<include "footerend">>
 
 :: alarm
 
