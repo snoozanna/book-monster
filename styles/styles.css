@@ -1,12 +1,12 @@
 /* GENERAL STYLES */
 
 :root {  
-    --color-one:  rgb(55 37 77);
+    --color-one:  #37254d;
     /* --color-one: black; */
     --color-two: #f7ece2;
-    /* --color-two: #2eec99; */
+    /* --color-two: rgb(46, 236, 153); */
     --color-three: rgb(222, 110, 75);
-    --color-four: rgb(127, 209, 185);
+    --color-four: #7fd1b9;
     --color-five: rgb(229, 99, 153);
     --color-six: #dbc5af;
     --color-seven: rgb(55 37 77);
@@ -175,6 +175,11 @@ body.light{
 background-color: var(--color-six);
 color:black;
 }
+
+body.green{
+  background-color: var(--color-four);
+  color:black;
+  }
 
 body.grey{
   background-color: var(--color-eight);
@@ -347,7 +352,7 @@ input[type="text"]:focus{
 .words.stationary > .word{
   transform: (1) rotate(0deg); 
   opacity: 1; 
-  font-size: 1.2em; 
+  font-size: 1em; 
   color: #fff
 }
 
@@ -382,8 +387,9 @@ input[type="text"]:focus{
 
 .wordLeft {
   animation: wordsLeft 15s forwards;
-  font-size: 3em;
+  font-size: 2.5em;
   margin-block-end: 3rem;
+  text-align: center;
   /* position: inherit; */
   /* margin-block-end: 2rem; */
 
@@ -693,7 +699,7 @@ text-align: center;
   top: 12%;
 }  
 #chapter-one.win, #chapter-two.win, #chapter-three.win, #chapter-four.win, #chapter-five.win{
-  border: solid red 10px;
+  display: none;
 }
 
 /* TIMER  */
@@ -989,6 +995,20 @@ main.logospin > .logo-wrapper{
   animation: slowRotate 100s linear infinite;
 }
 
+@keyframes fastRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fastRotate {
+  animation: slowRotate 4s linear infinite;
+}
+
+
 
 /* CONNECTING  */
 main.connecting {
@@ -1264,7 +1284,22 @@ header.intro > .logo-wrapper{
 }
 
 /* UPLOAD */
+#loadingLogo{
+  display: none;
+  max-width: 80%;
+}
 
+#loadingLogo > img{
+  margin-block-end: 2rem;
+}
+main.upload{
+  width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
 /* ALARM  */
 header.alarm{
@@ -1279,4 +1314,13 @@ body.alarm{
 #inputMount.mine-input  > .code-input > input[type="text"]{
   width: inherit;
  font-size: inherit;
+}
+
+/* BE GONE  */
+main.begone{
+  display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }

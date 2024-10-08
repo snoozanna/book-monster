@@ -106,45 +106,55 @@ setup.stillWords = () => {
 
 setup.handleFileUpload = () => {
 
-async function uploadImage(file) {
+  async function uploadImage(file) {
     const uploadPreset = 'f4uwtwnx';
     const cloudinaryURL = 'https://api.cloudinary.com/v1_1/dzutg2kf2/image/upload';
-    const errorMount = document.getElementById("error")
-    const successMount = document.getElementById("success")
-  
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', uploadPreset);
-console.log("trying")
-errorMount.innerText = "Image uploading..."
-  try {
-    const response = await fetch(`${cloudinaryURL}`, {
-      method: 'POST',
-      body: formData
-    });
-    if (!response.ok) {
-      throw new Error('Image upload failed');
- errorMount.innerText = "Image upload failed"
-      
-    }
+    const errorMount = document.getElementById("error");
+    const successMount = document.getElementById("success");
+    const logo = document.getElementById("loadingLogo"); // Get the logo element
 
-    const data = await response.json();
-    console.log('Image uploaded successfully:', data);
-    errorMount.innerText = "Image uploaded!"
-  } catch (error) {
-    console.error('Error uploading image:', error.message);
-    errorMount.innerText = "Image upload failed."
+    // Show the rotating logo when the upload starts
+    logo.style.display = "block";
+    errorMount.innerText = "Image uploading...";
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', uploadPreset);
+
+    try {
+      const response = await fetch(`${cloudinaryURL}`, {
+        method: 'POST',
+        body: formData
+      });
+      if (!response.ok) {
+        throw new Error('Image upload failed');
+      }
+
+      const data = await response.json();
+      console.log('Image uploaded successfully:', data);
+      errorMount.innerText = "Image uploaded successfully!";
+    } catch (error) {
+      console.error('Error uploading image:', error.message);
+      errorMount.innerText = "Image upload failed.";
+    } finally {
+      // Hide the rotating logo after the upload finishes
+      logo.style.display = "none";
+      successMount.style.display = "none";
+      setTimeout(() => {
+      Engine.play("ger7-1");
+      }, 5000); //
+    }
   }
-}
-// Example usage
-const inputElement = document.getElementById('inputImg');
-console.log(inputElement)
-inputElement.addEventListener('change', (event) => {
-  const file = event.target.files[0];
-  uploadImage(file);
-});
+
+  // Example usage
+  const inputElement = document.getElementById('inputImg');
+  inputElement.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    uploadImage(file);
+  });
   inputElement.click();
 };
+
 
 setup.boatMultiDraggable = () => {
   let completed = [];
@@ -160,47 +170,49 @@ setup.boatMultiDraggable = () => {
   // Define target areas for boat and elephant
   const targetAreas = {
     chapOne: { 
-      x: 0,                      // Start from the left
-      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
-      width: deviceWidth,         // Full width of the screen
-      height: deviceHeight * 0.3  // 20% of the screen height
+      x: 0,
+      y: deviceHeight * 0.7,
+      width: deviceWidth,
+      height: deviceHeight * 0.3
     },
     chapTwo: { 
-      x: 0,                      // Start from the left
-      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
-      width: deviceWidth,         // Full width of the screen
-      height: deviceHeight * 0.3  // 20% of the screen height
+      x: 0,
+      y: deviceHeight * 0.7,
+      width: deviceWidth,
+      height: deviceHeight * 0.3
     },
-     chapThree: { 
-      x: 0,                      // Start from the left
-      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
-      width: deviceWidth,         // Full width of the screen
-      height: deviceHeight * 0.3  // 20% of the screen height
+    chapThree: { 
+      x: 0,
+      y: deviceHeight * 0.7,
+      width: deviceWidth,
+      height: deviceHeight * 0.3
     },
     chapFour: { 
-      x: 0,                      // Start from the left
-      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
-      width: deviceWidth,         // Full width of the screen
-      height: deviceHeight * 0.3  // 20% of the screen height
+      x: 0,
+      y: deviceHeight * 0.7,
+      width: deviceWidth,
+      height: deviceHeight * 0.3
     },
-     chapFive: { 
-      x: 0,                      // Start from the left
-      y: deviceHeight * 0.7,      // Start from 80% of the height (bottom 20%)
-      width: deviceWidth,         // Full width of the screen
-      height: deviceHeight * 0.3  // 20% of the screen height
+    chapFive: { 
+      x: 0,
+      y: deviceHeight * 0.7,
+      width: deviceWidth,
+      height: deviceHeight * 0.3
     }
-
   };
 
   const elements = [
     { id: 'chapter-one', targetArea: targetAreas.chapOne, name: 'chapOne' },
     { id: 'chapter-two', targetArea: targetAreas.chapTwo, name: 'chapTwo' }, 
-    { id: 'chapter-three', targetArea: targetAreas.chapTwo, name: 'chapThree' }, 
-    { id: 'chapter-four', targetArea: targetAreas.chapTwo, name: 'chapFour' }, 
-    { id: 'chapter-five', targetArea: targetAreas.chapTwo, name: 'chapFive' }
+    { id: 'chapter-three', targetArea: targetAreas.chapThree, name: 'chapThree' }, 
+    { id: 'chapter-four', targetArea: targetAreas.chapFour, name: 'chapFour' }, 
+    { id: 'chapter-five', targetArea: targetAreas.chapFive, name: 'chapFive' }
   ];
 
   const portContainer = document.getElementById('port-container');
+
+  // Predefined color sequence
+  const colorSequence = ['#37254d', '#8054b5', '#5464b5', '#54b1b5', '#7fd1b9']; // Array of 5 colors
 
   // Function to handle the drag logic
   const makeDraggable = (element, name, targetArea) => {
@@ -252,6 +264,17 @@ setup.boatMultiDraggable = () => {
     });
   };
 
+  // Function to update the background color based on the number of wins
+  const updateBackgroundColor = () => {
+    const totalWins = completed.length;
+    const maxWins = completeList.length;
+
+    if (totalWins > 0 && totalWins <= maxWins) {
+      // Apply color from the sequence based on how many wins have been completed
+      document.body.style.backgroundColor = colorSequence[totalWins - 1];
+    }
+  };
+
   // Update the completion status of elements
   const updateCompletion = (name, isComplete) => {
     const index = completed.indexOf(name);
@@ -260,6 +283,7 @@ setup.boatMultiDraggable = () => {
     } else if (!isComplete && index > -1) {
       completed.splice(index, 1);
     }
+    updateBackgroundColor(); // Update color on each win/lose
     checkCompleted();
   };
 
@@ -268,6 +292,10 @@ setup.boatMultiDraggable = () => {
     if (completeList.every(item => completed.includes(item))) {
       messageContainer.textContent = "WINNER!!";
       console.log("WINN!!");
+
+      // Transition to the next passage in SugarCube
+      Engine.play("ger15-1");  
+
     } else {
       messageContainer.textContent = "Keep going...";
       console.log("keep going");
@@ -278,9 +306,26 @@ setup.boatMultiDraggable = () => {
   elements.forEach(({ id, targetArea, name }) => makeDraggable(id, name, targetArea));
 };
 
+
+
 :: StoryInit
 <<cacheaudio "timer" "../assets/sound/timer.mp3">>
-<<cacheaudio "ping" "../assets/sound/ping1.mp3">>
+<<cacheaudio "ping1" "../assets/sound/ping1.mp3">>
+<<cacheaudio "alarm" "../assets/sound/alarm.mp3">>
+<<cacheaudio "correct" "../assets/sound/Correct1.mp3">>
+<<cacheaudio "correct2" "../assets/sound/correct2.mp3">>
+<<cacheaudio "error" "../assets/sound/error1.mp3">>
+<<cacheaudio "LQintensity1" "../assets/sound/LQintensity1.mp3">>
+<<cacheaudio "30s" "../assets/sound/30secEle.mp3">>
+<<cacheaudio "loading" "../assets/sound/loading.mp3">>
+<<cacheaudio "monster1" "../assets/sound/monster1.mp3">>
+<<cacheaudio "monster2" "../assets/sound/monster2.mp3">>
+<<cacheaudio "monster3" "../assets/sound/monster3.mp3">>
+<<cacheaudio "monster4" "../assets/sound/monster4.mp3">>
+<<cacheaudio "monster5" "../assets/sound/monster5.mp3">>
+<<cacheaudio "monsterannoyed" "../assets/sound/monsterannoyed.mp3">>
+<<cacheaudio "rooting" "../assets/sound/Rooting.mp3">>
+<<cacheaudio "wordeat" "../assets/sound/WordEating.mp3">>
 <<cacheaudio "siren" "../assets/sound/siren.mp3">>
 <<set $currentChapter to 1>>
 
@@ -305,12 +350,12 @@ setup.boatMultiDraggable = () => {
 
 :: footer[nobr]
 <footer>
-    <<link "Back">>
+    <<button "Back">>
         <<goto $prevpass>>
-    <</link>>
-    <<link "Next">>
+    <</button>>
+    <<button "Next">>
         <<goto $nextpass>>
-    <</link>>
+    <</button>>
     <div id="nextButtonContainer">
      </div>
 </footer>
@@ -445,7 +490,7 @@ setup.boatMultiDraggable = () => {
       /% CODEWORD CORRECT %/
       <<if $codeword != "" and $codeword == "CHATHAM STORIES">>
         <<replace "#coderesult">>CORRECT<</replace>>
-        /* <<audio "correct" play>> */
+        <<audio "correct" play>>
 
         <<timed 3s>><<goto $nextpass>><</timed>>
       
@@ -460,20 +505,11 @@ setup.boatMultiDraggable = () => {
     <br/>
 </div>
 
-/* :: initialising [nobr]
-<<set $prevpass to "landing">>
-<<set $pass to "initialising">>
-<<set $nextpass to "connecting">>
-<main>
-  <div class="logo-wrapper rotate">
-  <img src="/assets/img/logo.png" alt="logo"/>
-  </div>
-</main> */
-
 :: connecting [nobr]
 <<set $prevpass to "intro">>
 <<set $pass to "connecting">>
 <<set $nextpass to "gerIntro-1">>
+    <<audio "loading" play loop>>
 <<include "headerintro">>
 <main class="connecting">
   <div class="book-wrapper" id="wrapper">
@@ -508,7 +544,9 @@ setup.boatMultiDraggable = () => {
  <<timed 20s>>
       <<replace "#wrapper">><</replace>>
     <<replace "#mount">>
+      <<audio ":all" stop>>
       <h2 class="fancy"> Geraldine</h2>
+       <<audio "correct" play>>
     <</replace>>
   <</timed>>
 
@@ -561,7 +599,7 @@ setup.boatMultiDraggable = () => {
 
 :: gerIntro-1-messages [nobr]
 <<timed 0.5s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Hello</p>
@@ -570,7 +608,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
         <p>You must be the people who I’m working with today.  </p>
@@ -579,7 +617,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
         <p>I’m Geraldine</p>
@@ -588,7 +626,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 10s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>I work for OCTOPUS</p>
@@ -597,7 +635,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 12s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>Love the work.</p>
@@ -606,7 +644,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 14s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>Protecting Unrooted Stories. </p>
@@ -615,7 +653,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 16s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>I’m so excited to be here.</p>
@@ -1130,12 +1168,14 @@ setup.boatMultiDraggable = () => {
 <<set $pass to "chapterTitle1">>
 <<set $nextpass to "wordsLeft1">>
 <<set $currentChapter to 1>>
+<<audio ":all" stop>>
 <<include "_chapterTitleTemplate">>
 <<include "footer">>
 :: wordsLeft1 [nobr]
 <<set $prevpass to "chapterTitle1">>
 <<set $pass to "wordsLeft1">>
 <<set $nextpass to "ger2-1">>
+<<audio "wordeat" play loop>>
 <main class="main-words">
 
     <main>
@@ -1189,7 +1229,7 @@ setup.boatMultiDraggable = () => {
 <<set $prevpass to "wordsLeft1">>
 <<set $pass to "ger2-1">>
 <<set $nextpass to "code4">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger2-1-messages [nobr]
@@ -1359,6 +1399,7 @@ $correctans
         <<timed 0.1s>>
          <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
         <</timed>>
+        <<audio "correct" play>>
         <<timed 1s>>
             <<run $correctans.push("L")>>
             <<include "checkcorrectans">>
@@ -1371,6 +1412,7 @@ $correctans
         /% CODEWORD INCORRECT %/
         <<if $l isnot "" and $l isnot "L">>
         <<timed 0.1s>>
+           <<audio "error" play>>
           <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
          <</timed>>
         <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
@@ -1405,6 +1447,7 @@ $correctans
         /% CODEWORD CORRECT %/
         <<if $a isnot "" and $a is "A">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+         <<audio "correct" play>>
         <<run $correctans.push("A")>>
             <<include "checkcorrectans">>
         <<timed 1s>>
@@ -1416,6 +1459,7 @@ $correctans
         <</if>>
         /% CODEWORD INCORRECT %/
         <<if $a isnot "" and $a isnot "A">>
+           <<audio "error" play>>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
         <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
         <</if>><</button>>
@@ -1450,6 +1494,7 @@ $correctans
         /% CODEWORD CORRECT %/
         <<if $c isnot "" and $c is "C">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+         <<audio "correct" play>>
         <<timed 1s>>
             <<run $correctans.push("C")>>
             <<include "checkcorrectans">>
@@ -1461,6 +1506,7 @@ $correctans
         <</if>>
         /% CODEWORD INCORRECT %/
         <<if $c isnot "" and $c isnot "C">>
+           <<audio "error" play>>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
         <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
         <</if>><</button>>
@@ -1497,6 +1543,7 @@ $correctans
         /% CODEWORD CORRECT %/
         <<if $y isnot "" and $y is "Y">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+         <<audio "correct" play>>
         <<timed 1s>>
             <<run $correctans.push("Y")>>
             <<include "checkcorrectans">>
@@ -1508,6 +1555,7 @@ $correctans
         <</if>>
         /% CODEWORD INCORRECT %/
         <<if $y isnot "" and $y isnot "Y">>
+           <<audio "error" play>>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
         <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
         <</if>><</button>>
@@ -1546,7 +1594,7 @@ $correctans
 <<set $prevpass to "code4">>
 <<set $pass to "ger3-1">>
 <<set $nextpass to "wordsAdded1">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 
@@ -1577,7 +1625,7 @@ $correctans
 <<set $prevpass to "ger3-1">>
 <<set $pass to "wordsAdded1">>
 <<set $nextpass to "ger3-2">>
-
+<<audio "wordeat" play loop>>
 <main class="main-words added">
     <div class="words">
         <div class="wordDisappear word">Women</div>
@@ -1630,7 +1678,7 @@ $correctans
 <<set $prevpass to "wordsAdded1">>
 <<set $pass to "ger3-2">>
 <<set $nextpass to "ger3-3">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 
@@ -1737,6 +1785,7 @@ $correctans
 
 
 :: bookrooting [nobr]
+<<audio "rooting" play>>
 <main class="rooting">
   <div class="book-wrapper">
   <img src="/assets/img/open-book.png" alt="open book"/>
@@ -1744,14 +1793,9 @@ $correctans
   <div id="mount"></div>
   <<timed 0.3s>>
   <<replace "#mount">>
-   <<type 90ms>><h2>Book Rooting...</h2><</type>>
+<h2 class="octo-title">Book Rooting...</h2>
   <</replace>>
-  <</timed>>
-   <<timed 4s>>
-  <<replace "#mount">>
-   <<type 90ms>><h2>Book Rooting...</h2><</type>>
-  <</replace>>
-  <</timed>>
+<</timed>>
 </main>
 
   <<timed 6s>>
@@ -1830,12 +1874,8 @@ $correctans
 
 :: ger3-6-messages [nobr]
 <<timed 0.1s>>
-    <<audio "ping" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-          <p>ROAR</p>
-       </div>
-    <</append>>
+    <<audio "monster1" "play">>
+
 <</timed>>
 <<timed 3s>>
     /* <<audio "ping1" "play">> */
@@ -1887,6 +1927,7 @@ $correctans
 <<set $pass to "chapterTitle2">>
 <<set $nextpass to "wordsLeft2">>
 <<set $currentChapter to 2>>
+<<audio ":all" stop>>
 <<include "_chapterTitleTemplate">>
 <<include "footer">>
 
@@ -1894,6 +1935,7 @@ $correctans
 <<set $prevpass to "chapterTitle2">>
 <<set $pass to "wordsLeft2">>
 <<set $nextpass to "ger4-1">>
+    <<audio "wordeat" "play" loop>>
 <main class="main-words">
 
     <main>
@@ -1952,10 +1994,10 @@ $correctans
 
 <<timed 7s>>
   /* REPLACE ROAR */
-   <<audio "ping1" "play">>
+   <<audio "monster2" "play">>
   <</timed>>
 
-<<timed 10s>>
+<<timed 11s>>
   <<goto $nextpass>>
   <</timed>>
 
@@ -1963,7 +2005,7 @@ $correctans
 <<set $prevpass to "wordsLeft2">>
 <<set $pass to "ger4-1">>
 <<set $nextpass to "mapInstructions">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger4-1-messages [nobr]
@@ -2176,7 +2218,7 @@ We need to go a different route. Re-routing.", coords: "three" },
       /% CODEWORD CORRECT %/
       <<if $codeword != "" and $codeword == "ENTRANCE">>
         <<replace "#coderesult">><span>CORRECT</span><</replace>>
-        /* <<audio "correct" play>> */
+        <<audio "correct" play>>
 
         <<timed 3s>><<goto $nextpass>><</timed>>
       
@@ -2449,6 +2491,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $pass to "chapterTitle3">>
 <<set $nextpass to "wordsLeft3">>
 <<set $currentChapter to 3>>
+<<audio ":all" stop>>
 <<include "_chapterTitleTemplate">>
 <<include "footer">>
 
@@ -2456,6 +2499,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "chapterTitle3">>
 <<set $pass to "wordsLeft3">>
 <<set $nextpass to "ger6-1">>
+<<audio "wordeat" play loop>>
 <main class="main-words">
 
 <main>
@@ -2554,7 +2598,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "wordsLeft3">>
 <<set $pass to "ger6-1">>
 <<set $nextpass to "ger6-2">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger6-1-messages [nobr]
@@ -2749,11 +2793,19 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $pass to "picUpload">>
 <<set $nextpass to "ger7-1">>
 <<include "headerUpload">>
-<main class="main-section">
+<main class="main-section upload">
 
+<br>
 <h3>Find a spot out to the river</h3>
 <br>
-<p>Upload an image of something interesting </p>
+<h3>Upload an image of something interesting </h3>
+
+<br/>
+<div class="logo-wrapper" id="loadingLogo">
+<img src="/assets/img/logo.png" alt="logo" class="fastRotate"/>
+<br/>
+<h2 class="octo-title">Uploading...</h2>
+</div>
 <br>
 <input type="file" accept="image/*" capture="camera" id="inputImg" class="hide">
 <br>
@@ -3206,7 +3258,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "wordsAdded4a">>
 <<set $pass to "ger9-2">>
 <<set $nextpass to "wordsAdded4b">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger9-2-messages [nobr]
@@ -3232,7 +3284,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "ger9-2">>
 <<set $pass to "wordsAdded4b">>
 <<set $nextpass to "ger10-1">>
-
+<<audio "wordeat" play loop>>
 <main class="main-words added">
    <div class="wordLeft-container">
       <div class="wordLeft word">Elephant</div>
@@ -3340,11 +3392,11 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</done>>
 
 <<timed 10s>>
-  /* REPLACE ROAR */
-   <<audio "ping1" "play">>
+
+   <<audio "monster4" "play">>
   <</timed>>
 
-<<timed 45s>>
+<<timed 20s>>
   <<goto $nextpass>>
   <</timed>>
 
@@ -3352,7 +3404,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "wordsAdded4b">>
 <<set $pass to "ger10-1">>
 <<set $nextpass to "ger10-2">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger10-1-messages [nobr]
@@ -3404,7 +3456,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "ger10-1">>
 <<set $pass to "ger10-2">>
 <<set $nextpass to "360image">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger10-2-messages [nobr]
@@ -3445,7 +3497,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 
 :: timer [nobr]
-  <<audio "timer" "play">>
+  <<audio "30s" "play">>
 <<set $seconds to 30>>
 <span id="countdown"><span class="secs">$seconds</span> <span class="extra">seconds</span></span>
 
@@ -3457,9 +3509,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 			<<replace "#countdown">><span class="secs">$seconds</span> <span class="extra">seconds</span><</replace>>
 		<<else>>
 			<<replace "#countdown">><strong>Too Late</strong><</replace>>
-      <<timed 1s>>
-        <<goto "notime">>
-        <</timed>>
+    
   
 			<<stop>>
 		<</if>>
@@ -3507,6 +3557,7 @@ We need to go a different route. Re-routing.", coords: "three" },
       <</if>>
         /% CODEWORD INCORRECT %/
      <<if _password isnot "" and (_password isnot "NEWNHAM STREET" and _password isnot "NEWNHAM")>>
+        <<audio "error" play>>
         <<replace "#elecoderesult">><h2>That's not right.</h2><</replace>>
       <<timed 1.5s>><<replace "#elecoderesult">><</replace>><</timed>>
         <</if>><</button>> 
@@ -3531,7 +3582,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "360image">>
 <<set $pass to "ger11-1">>
 <<set $nextpass to "chapterTitle5">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger11-1-messages [nobr]
@@ -3591,6 +3642,8 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "chapterTitle5">>
 <<set $pass to "wordsLeft5">>
 <<set $nextpass to "alarm">>
+<<audio ":all" stop>>
+<<audio "wordeat" play>>
 <main class="main-words">
 
     <main>
@@ -3659,6 +3712,8 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "wordsLeft5">>
 <<set $pass to "alarm">>
 <<set $nextpass to "ger12-1">>
+<<audio ":all" stop>>
+<<audio "siren" "play">>
 <main>
 <h2>ALARM</h2>
 </main>
@@ -3669,6 +3724,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "alarm">>
 <<set $pass to "ger12-1">>
 <<set $nextpass to "minesChallenge">>
+<<audio ":all" stop>>
 <<timed 0.1s>>
 <<addclass "header" "alarm">>
 <<addclass "body" "alarm">>
@@ -4576,15 +4632,23 @@ We need to go a different route. Re-routing.", coords: "three" },
           <</replace>>
     <</timed>>
 
-:: begone
+:: begone [nobr]
 <<set $prevpass to "ger15-1">>
 <<set $pass to "begone">>
 <<set $nextpass to "begone">>
-<main>
-  <div class="motto-container"><span>BE GONE GOOGLY MOOGLY</span></div>
-  
+<<addclass "body" "green">>
+<main class="begone">
+  <div class="motto-container"><span class="octo-title">BE GONE GOOGLY MOOGLY</span></div>
+  <br/>
+  <div id="mount"></div>
 </main>
 <<include "footerend">>
+
+<<timed 5s>>
+  <<replace "#mount">>
+    <b>Head back to the library and ask for the OCTOPUS LEDGER</b>
+    <</replace>>
+  <</timed>>
 
 
 
