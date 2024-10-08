@@ -11,6 +11,7 @@
     --color-six: #dbc5af;
     --color-seven: rgb(55 37 77);
     --color-eight: #d2cccd;
+    --color-alarm: rgb(152 0 0);
     --neon-green: #39FF14;
     --main-bg-color: var(--color-one);
     --font-chapter: "Bungee", sans-serif;
@@ -562,7 +563,7 @@ margin-top: 0;
 }
 
 .map-input > .result-input-wrapper > #coderesult > span{
-  font-size: ;
+
 }
 
 
@@ -593,7 +594,7 @@ margin-top: 0;
     footer.pano > #codewordWrapper {
       border: 2px solid white;
       color: black;
-      background-color: rgb(147, 70, 182);
+      background-color: var(--color-three);
       padding: 0.5rem;
       display: flex;
       flex-direction: column;
@@ -637,7 +638,8 @@ position: absolute;
 left:0;
 width: 100%;
 display: flex;
-justify-content: end;
+justify-content: center;
+text-align: center;
 }
 
 #port-container {
@@ -655,22 +657,40 @@ justify-content: end;
   position: absolute;
   object-fit: contain;
   background-size: cover;
-  bottom: 20%;
+  bottom: 30%;
 }
 
 .draggable-image{
   position: absolute;
-  left: 0;
+  /* left: 0; */
   width: 20%; /* Adjust size as needed */
   cursor: grab;
   z-index: 999999;
 }
 #chapter-one {
-  left: 0;
+  left: 2%;
+  top: 10%;
 }  
 
 #chapter-two{
-  left: 20%;
+  left: 22%;
+  top: 21%;
+
+}  
+
+#chapter-three{
+  left: 44%;
+  top: 13%;
+}  
+
+#chapter-four{
+  right: 20%;
+  top: 22%;
+}  
+
+#chapter-five{
+  right: 6%;
+  top: 12%;
 }  
 #chapter-one.win, #chapter-two.win, #chapter-three.win, #chapter-four.win, #chapter-five.win{
   border: solid red 10px;
@@ -706,8 +726,8 @@ header.timer{
   top:0;
   left:0;
   display: flex;
-  justify-content: end;
-  padding: 4rem;
+  justify-content: space-between;
+  /* padding: 4rem; */
   background-color: black;
   width: 100%;
 }
@@ -1244,3 +1264,19 @@ header.intro > .logo-wrapper{
 }
 
 /* UPLOAD */
+
+
+/* ALARM  */
+header.alarm{
+  background-color: var(--color-alarm);
+}
+
+body.alarm{
+  background: #ae141459;
+}
+
+/* MINES  */
+#inputMount.mine-input  > .code-input > input[type="text"]{
+  width: inherit;
+ font-size: inherit;
+}

@@ -148,7 +148,7 @@ inputElement.addEventListener('change', (event) => {
 
 setup.boatMultiDraggable = () => {
   let completed = [];
-  const completeList = ["chapOne", "chapTwo"];
+  const completeList = ["chapOne", "chapTwo", "chapThree", "chapFour", "chapFive"];
   console.log("boatMultiDraggable running");
 
   const messageContainer = document.getElementById("message");
@@ -281,6 +281,7 @@ setup.boatMultiDraggable = () => {
 :: StoryInit
 <<cacheaudio "timer" "../assets/sound/timer.mp3">>
 <<cacheaudio "ping" "../assets/sound/ping1.mp3">>
+<<cacheaudio "siren" "../assets/sound/siren.mp3">>
 <<set $currentChapter to 1>>
 
 :: findChapTitle [nobr]
@@ -3589,7 +3590,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 :: wordsLeft5 [nobr]
 <<set $prevpass to "chapterTitle5">>
 <<set $pass to "wordsLeft5">>
-<<set $nextpass to "ger12-1">>
+<<set $nextpass to "alarm">>
 <main class="main-words">
 
     <main>
@@ -3654,11 +3655,24 @@ We need to go a different route. Re-routing.", coords: "three" },
   <<goto $nextpass>>
   <</timed>>
 
+:: alarm [nobr]
+<<set $prevpass to "wordsLeft5">>
+<<set $pass to "alarm">>
+<<set $nextpass to "ger12-1">>
+<main>
+<h2>ALARM</h2>
+</main>
+<<include "footer">>
+
 :: ger12-1 [nobr]
 /* TODO CHANGE TO ALARM  */
-<<set $prevpass to "wordsLeft5">>
+<<set $prevpass to "alarm">>
 <<set $pass to "ger12-1">>
 <<set $nextpass to "minesChallenge">>
+<<timed 0.1s>>
+<<addclass "header" "alarm">>
+<<addclass "body" "alarm">>
+<</timed>>
 
 <<include "_templateGeraldine">>
 
@@ -3743,7 +3757,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</replace>>
 <</timed>>
 
-:: minesChallenge
+/* :: minesChallenge [nobr]
 <<set $prevpass to "ger12-1">>
 <<set $pass to "minesChallenge">>
 <<set $nextpass to "ger13-1">>
@@ -3755,8 +3769,204 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<include "pwMines">>
 </main>
 
+<<include "footer">> */
+
+:: headermines [nobr]
+<header class="intro">
+  <div class="logo-wrapper ">
+  <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+  <div class="octo-title-wrapper">
+    <h2 class="octo-title">OCTOPUS</h2>
+    /* <span>Rooter</span> */
+  </div>
+</header>
+
+:: minesChallenge [nobr]
+<<set $prevpass to "ger12-1">>
+<<set $pass to "minesChallenge">>
+<<set $nextpass to "ger13-1">>
+<<set $correctansmines to []>>
+<<include "headermines">>
+
+<main class="main-section codebreaking" id="mainMount">
+<div id="clueMount">
+    <h2 class="octo-title">Locations</h2>
+  </div>
+  <br/>
+
+<div class="wordcontainer">
+<<set $current to "">>
+/* Letter S  */
+<div class="letter-item l" id="letterItemL">
+  <<link "1">>
+   <<set $current to "l">>
+    <<if $current is "l">> 
+    <<replace "#clueMount">>
+        /* Make box gold, turn off any other gold boxes */
+         <<addclass "#letterItemL" "current">> 
+        <<removeclass "#letterItemA" "current">>   
+        <<removeclass "#letterItemC" "current">>   
+     
+      <h2 class="octo-title">Location 1</h2>
+       <p>Facing the Library - the Cannon on the left - the number on there.</p>
+
+    <</replace>>
+  
+    <<replace "#inputMount">>
+        <div id="coderesult"></div>
+    
+        <div class="code-input"><<textbox "$l" "">></div>
+        <<button "Enter">>
+       
+        /% PASSWORD CODE %/
+        <<set $l to $l.toUpperCase()>>
+        /% CODEWORD CORRECT %/
+        <<if $l isnot "" and $l is "24">>
+        <<timed 0.1s>>
+         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+        <</timed>>
+        <<timed 1s>>
+            <<run $correctansmines.push("L")>>
+            <<include "checkcorrectansmines">>
+            <<replace "#letterItemL">><div class="correct-letter">
+               
+              <img src="assets/img/tick.png" alt="tick"/></div>
+            <</replace>>
+            <<replace "#inputMount">><</replace>>
+             <<replace "#clueMount">><</replace>>
+        <</timed>>
+        <</if>>
+        /% CODEWORD INCORRECT %/
+        <<if $l isnot "" and $l isnot "24">>
+        <<timed 0.1s>>
+          <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
+         <</timed>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+        <</if>><</button>>
+    <</replace>>
+   <</if>>   
+
+  <</link>>
+</div>
+/* Letter A  */
+<div class="letter-item a" id="letterItemA">
+  <<link "2">>
+
+   <<set $current to "a">>
+    <<if $current is "a">> 
+    <<replace "#clueMount">>
+        /* Make box gold, turn off any other gold boxes */
+         <<removeclass "#letterItemL" "current">> 
+        <<addclass "#letterItemA" "current">>   
+        <<removeclass "#letterItemC" "current">>   
+
+   <h2 class="octo-title">Location 2</h2>
+       <p>Near the middle cannon - there’s a sign - the number is the range of the 18 pounder cannon in yards</p>
+    <</replace>>
+    <<replace "#inputMount">>
+        <div id="coderesult"></div>
+        <div class="code-input"><<textbox "$a" "">></div>
+        <<button "Enter">>
+       
+        /% PASSWORD CODE %/
+        <<set $a to $a.toUpperCase()>>
+        /% CODEWORD CORRECT %/
+        <<if $a isnot "" and $a is "3500">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+        <<run $correctansmines.push("A")>>
+            <<include "checkcorrectansmines">>
+        <<timed 1s>>
+            <<replace "#letterItemA">><div class="correct-letter">
+              <img src="assets/img/tick.png" alt="tick"/></div>
+            <</replace>>
+            <<replace "#inputMount">><</replace>>
+             <<replace "#clueMount">><</replace>>
+        <</timed>>
+        <</if>>
+        /% CODEWORD INCORRECT %/
+        <<if $a isnot "" and $a isnot "3500">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+        <</if>><</button>>
+    <</replace>>
+   <</if>>   
+   /* <<toggleclass "#sclue" "hide">> */
+  <</link>>
+</div>
+/* Letter L  */
+<div class="letter-item l" id="letterItemC">
+  <<link "3">>
+   /* <<textbox "$s" "">> */
+   /* <<toggleclass $current "current">> */
+   <<set $current to "l">>
+    <<if $current is "l">> 
+    <<replace "#clueMount">>
+        /* Make box gold, turn off any other gold boxes */
+         <<removeclass "#letterItemL" "current">> 
+        <<removeclass "#letterItemA" "current">>   
+        <<addclass "#letterItemC" "current">>   
+
+   <h2 class="octo-title">Location 3</h2>
+       <p>Code on the Lamp Post near the Soldier & Dog (you may need to look up) </p>
+    <</replace>>
+    <<replace "#inputMount">>
+        <div id="coderesult"></div>
+        <div class="code-input"><<textbox "$c" "">></div>
+        <<button "Enter">>
+       
+        /% PASSWORD CODE %/
+        <<set $c to $c.toUpperCase()>>
+        /% CODEWORD CORRECT %/
+        <<if $c isnot "" and $c is "GCC319">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct! </div><</replace>>
+        <<timed 1s>>
+            <<run $correctansmines.push("C")>>
+            <<include "checkcorrectansmines">>
+            <<replace "#letterItemC">><div class="correct-letter">
+              <img src="assets/img/tick.png" alt="tick"/></div>
+            <</replace>>
+            <<replace "#inputMount">><</replace>>
+             <<replace "#clueMount">><</replace>>
+        <</timed>>
+        <</if>>
+        /% CODEWORD INCORRECT %/
+        <<if $c isnot "" and $c isnot "GCC319">>
+        <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
+        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+        <</if>><</button>>
+    <</replace>>
+   <</if>>   
+   /* <<toggleclass "#sclue" "hide">> */
+  <</link>>
+</div>
+
+
+</div>
+<br>
+ 
+<br>
+<div id="inputMount" class="mine-input"></div>
+<br>
+<br>
+
+
+</main>
 <<include "footer">>
-:: pwMines [nobr]
+
+
+:: checkcorrectansmines[nobr]
+
+<<if $correctansmines.includesAll("L", "A", "C")>>
+
+<<timed 3s>>
+
+  <<goto $nextpass>>
+  <</timed>>
+<</if>>
+
+
+
 
 <div id="resultbutton">
   /% CODEWORD INPUT %/
@@ -4226,7 +4436,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: headerDrag [nobr]
 <header class="drag">
- <div id="message">DRAG THE ITEMS</div>
+ <div class="drag-msg-wrapper"><h2 class="octo-title" id="message">DRAG THE CHAPTERS BACK INTO THE BOOK</h2></div>
 </header>
 
 /* :: headerDrag [nobr]
@@ -4376,8 +4586,6 @@ We need to go a different route. Re-routing.", coords: "three" },
 </main>
 <<include "footerend">>
 
-:: alarm
 
-<<include "footer">>
 
 
