@@ -361,13 +361,11 @@ setup.boatMultiDraggable = () => {
 </footer>
 
 :: footerger[nobr]
-<footer>
-    <<link "Back">>
+<footer class="geraldine">
+    <<button "Back">>
         <<goto $prevpass>>
-    <</link>>
-    <<link "Next">>
-        <<goto $nextpass>>
-    <</link>>
+    <</button>>
+  
    
 </footer>
 
@@ -380,6 +378,8 @@ setup.boatMultiDraggable = () => {
     <</button>>
    
 </footer>
+
+
 
 
 :: footerend[nobr]
@@ -603,6 +603,7 @@ setup.boatMultiDraggable = () => {
 
 :: gerIntro-1-messages [nobr]
 <<timed 0.5s>>
+  <<audio ":all" "stop">>
         <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
@@ -937,7 +938,7 @@ setup.boatMultiDraggable = () => {
     <img id="monsterImage" src="/assets/img/monster1.png" alt="Monster Image 1"/>
   </div>
   <div class="img-desc" id="imgDesc">
-    <h3>Sighting 1</h3>
+    <h3 class="octo-title">Sighting 1</h3>
   </div>
 
 
@@ -954,7 +955,7 @@ setup.boatMultiDraggable = () => {
             /* <img id="monsterImage" src="/assets/img/monster2.png" alt="Monster Image"/> */
         <</replace>>
         <<replace "#imgDesc">>
-            <h3>Sighting $imageIndex</h3>
+            <h3 class="octo-title">Sighting $imageIndex</h3>
         <</replace>>
         <<else>>
           <<replace "#nextImageBtn">>
@@ -1174,7 +1175,7 @@ setup.boatMultiDraggable = () => {
 <<set $currentChapter to 1>>
 <<audio ":all" stop>>
 <<include "_chapterTitleTemplate">>
-<<include "footer">>
+<<include "footerger">>
 :: wordsLeft1 [nobr]
 <<set $prevpass to "chapterTitle1">>
 <<set $pass to "wordsLeft1">>
@@ -1933,7 +1934,7 @@ $correctans
 <<set $currentChapter to 2>>
 <<audio ":all" stop>>
 <<include "_chapterTitleTemplate">>
-<<include "footer">>
+<<include "footerger">>
 
 :: wordsLeft2 [nobr]
 <<set $prevpass to "chapterTitle2">>
@@ -2603,7 +2604,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $currentChapter to 3>>
 <<audio ":all" stop>>
 <<include "_chapterTitleTemplate">>
-<<include "footer">>
+<<include "footerger">>
 
 :: wordsLeft3 [nobr]
 <<set $prevpass to "chapterTitle3">>
@@ -3151,7 +3152,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $nextpass to "wordsAdded4a">>
 <<set $currentChapter to 4>>
 <<include "_chapterTitleTemplate">>
-<<include "footer">>
+<<include "footerger">>
 
 :: ger9-1 [nobr]
 /* SPARE IN CASE THIS IS SUPPOSED TO BE GERALDINE */
@@ -3746,7 +3747,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $nextpass to "wordsLeft5">>
 <<set $currentChapter to 5>>
 <<include "_chapterTitleTemplate">>
-<<include "footer">>
+<<include "footerger">>
 
 :: wordsLeft5 [nobr]
 <<set $prevpass to "chapterTitle5">>

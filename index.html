@@ -421,13 +421,11 @@ setup.boatMultiDraggable = () => {
     &lt;&lt;/button&gt;&gt;
     &lt;div id=&quot;nextButtonContainer&quot;&gt;
      &lt;/div&gt;
-&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="5" name="footerger" tags="nobr" position="600,100" size="100,100">&lt;footer&gt;
-    &lt;&lt;link &quot;Back&quot;&gt;&gt;
+&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="5" name="footerger" tags="nobr" position="600,100" size="100,100">&lt;footer class=&quot;geraldine&quot;&gt;
+    &lt;&lt;button &quot;Back&quot;&gt;&gt;
         &lt;&lt;goto $prevpass&gt;&gt;
-    &lt;&lt;/link&gt;&gt;
-    &lt;&lt;link &quot;Next&quot;&gt;&gt;
-        &lt;&lt;goto $nextpass&gt;&gt;
-    &lt;&lt;/link&gt;&gt;
+    &lt;&lt;/button&gt;&gt;
+  
    
 &lt;/footer&gt;</tw-passagedata><tw-passagedata pid="6" name="footernext" tags="nobr" position="725,100" size="100,100">&lt;footer&gt;
     &lt;div/&gt;
@@ -620,6 +618,7 @@ setup.boatMultiDraggable = () => {
 &lt;&lt;set $nextpass to &quot;gerIntro-2&quot;&gt;&gt;
 
 &lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="gerIntro-1-messages" tags="nobr" position="850,225" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+  &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
         &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
         &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -906,7 +905,7 @@ setup.boatMultiDraggable = () => {
     &lt;img id=&quot;monsterImage&quot; src=&quot;/assets/img/monster1.png&quot; alt=&quot;Monster Image 1&quot;/&gt;
   &lt;/div&gt;
   &lt;div class=&quot;img-desc&quot; id=&quot;imgDesc&quot;&gt;
-    &lt;h3&gt;Sighting 1&lt;/h3&gt;
+    &lt;h3 class=&quot;octo-title&quot;&gt;Sighting 1&lt;/h3&gt;
   &lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="footerimages" tags="nobr" position="1100,350" size="100,100">&lt;&lt;set $imageIndex to 1&gt;&gt;
 
 &lt;&lt;replace &quot;#nextImageBtn&quot;&gt;&gt;
@@ -918,7 +917,7 @@ setup.boatMultiDraggable = () => {
             /* &lt;img id=&quot;monsterImage&quot; src=&quot;/assets/img/monster2.png&quot; alt=&quot;Monster Image&quot;/&gt; */
         &lt;&lt;/replace&gt;&gt;
         &lt;&lt;replace &quot;#imgDesc&quot;&gt;&gt;
-            &lt;h3&gt;Sighting $imageIndex&lt;/h3&gt;
+            &lt;h3 class=&quot;octo-title&quot;&gt;Sighting $imageIndex&lt;/h3&gt;
         &lt;&lt;/replace&gt;&gt;
         &lt;&lt;else&gt;&gt;
           &lt;&lt;replace &quot;#nextImageBtn&quot;&gt;&gt;
@@ -1110,7 +1109,7 @@ setup.boatMultiDraggable = () => {
 &lt;&lt;set $currentChapter to 1&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="wordsLeft1" tags="nobr" position="975,475" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle1&quot;&gt;&gt;
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="wordsLeft1" tags="nobr" position="975,475" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger2-1&quot;&gt;&gt;
 &lt;&lt;audio &quot;wordeat&quot; play loop&gt;&gt;
@@ -1793,7 +1792,7 @@ $correctans
 &lt;&lt;set $currentChapter to 2&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="wordsLeft2" tags="nobr" position="1100,725" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle2&quot;&gt;&gt;
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="wordsLeft2" tags="nobr" position="1100,725" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger4-1&quot;&gt;&gt;
     &lt;&lt;audio &quot;wordeat&quot; &quot;play&quot; loop&gt;&gt;
@@ -2390,7 +2389,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;three&quot; },
 &lt;&lt;set $currentChapter to 3&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="wordsLeft3" tags="nobr" position="1225,975" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle3&quot;&gt;&gt;
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="wordsLeft3" tags="nobr" position="1225,975" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger6-1&quot;&gt;&gt;
 &lt;&lt;audio &quot;wordeat&quot; play loop&gt;&gt;
@@ -2882,7 +2881,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;three&quot; },
 &lt;&lt;set $nextpass to &quot;wordsAdded4a&quot;&gt;&gt;
 &lt;&lt;set $currentChapter to 4&gt;&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="ger9-1" tags="nobr" position="975,1225" size="100,100">/* SPARE IN CASE THIS IS SUPPOSED TO BE GERALDINE */
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="ger9-1" tags="nobr" position="975,1225" size="100,100">/* SPARE IN CASE THIS IS SUPPOSED TO BE GERALDINE */
 &lt;&lt;set $prevpass to &quot;chapterTitle4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger9-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger9-2&quot;&gt;&gt;
@@ -3418,7 +3417,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;three&quot; },
 &lt;&lt;set $nextpass to &quot;wordsLeft5&quot;&gt;&gt;
 &lt;&lt;set $currentChapter to 5&gt;&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="wordsLeft5" tags="nobr" position="725,1475" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle5&quot;&gt;&gt;
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="wordsLeft5" tags="nobr" position="725,1475" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle5&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft5&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger12-1&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;

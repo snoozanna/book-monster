@@ -1367,7 +1367,7 @@ header.gallery{
 }
 
 main.gallery > .img-desc > h3{
-  font-size: 1.4em;
+  font-size: 2em;
   text-align: center;
 }
 
@@ -1405,6 +1405,13 @@ main.chapter-title  > h2{
 main.chapter-title  > .chapter-title-wrapper >h3{
   font-family: var(--font-chapter);
   font-size: 2em;
+}
+
+footer.geraldine > button{
+  border: black 2px solid;
+  color:black;
+  font-weight: 700;
+  box-shadow:var(--box-shadow)
 }
 
 /* INTRO  */
