@@ -353,9 +353,9 @@ setup.boatMultiDraggable = () => {
     <<button "Back">>
         <<goto $prevpass>>
     <</button>>
-    <<button "Next">>
+    /* <<button "Next">>
         <<goto $nextpass>>
-    <</button>>
+    <</button>> */
     <div id="nextButtonContainer">
      </div>
 </footer>
