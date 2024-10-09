@@ -193,11 +193,13 @@ body.light > #story > #passages > .passage > footer > .button-wrapper > button{
   border: black 2px solid;
   color:black;
   font-weight: 700;
-  box-shadow:var(--box-shadow)
+  box-shadow:var(--box-shadow);
 }
 
-body.light > #story > #passages > .passage > footer > .button-wrapper > button{
+body.light > #story > #passages > .passage > footer > .button-wrapper > button, 
+body.light > #story > #passages > .passage > footer  > button{
   background-color: var(--color-four);
+  
 }
 
 
