@@ -120,6 +120,120 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 $('#ui-bar').remove();
 $(document.head).find('#style-ui-bar').remove();
 
+setup.eatWords = () => {
+  console.log("eating words")
+  const allSpans = document.querySelectorAll(".eating-container span");  // Select all span elements
+  let devourableWords = [];
+
+  // Filter out spans that have the 'keep' class
+  allSpans.forEach(span => {
+    if (!span.classList.contains('keep')) {
+      devourableWords.push(span);  // Only add devourable words to the array
+    }
+  });
+
+  // Function to devour a random word
+  function devourRandomWord() {
+    if (devourableWords.length > 0) {
+      // Choose a random index for the word to be devoured
+      const randomIndex = Math.floor(Math.random() * devourableWords.length);
+      const wordSpan = devourableWords[randomIndex];
+
+      // Add the 'eaten' class to hide the word
+      if (wordSpan) {
+        wordSpan.classList.add("eaten");
+        devourableWords.splice(randomIndex, 1);  // Remove the devoured word from the list
+
+        // Continue devouring until all devourable words are eaten
+        setTimeout(devourRandomWord, 500);
+      }
+    }
+  }
+
+  // Start devouring random words
+  devourRandomWord();
+}
+
+setup.quickEatWords = () => {
+  const allSpans = document.querySelectorAll(".eating-container span");  // Select all span elements
+  let devourableWords = [];
+
+  // Filter out spans that have the 'keep' class
+  allSpans.forEach(span => {
+    if (!span.classList.contains('keep')) {
+      devourableWords.push(span);  // Only add devourable words to the array
+    }
+  });
+
+  // Function to devour a random word
+  function devourRandomWord() {
+    if (devourableWords.length > 0) {
+      // Choose a random index for the word to be devoured
+      const randomIndex = Math.floor(Math.random() * devourableWords.length);
+      const wordSpan = devourableWords[randomIndex];
+
+      // Add the 'eaten' class to hide the word
+      if (wordSpan) {
+        wordSpan.classList.add("eaten");
+        devourableWords.splice(randomIndex, 1);  // Remove the devoured word from the list
+
+        // Continue devouring until all devourable words are eaten
+        setTimeout(devourRandomWord, 50);
+      }
+    } else {
+      // Once all devourable words are eaten, add "remaining" class to "keep" spans
+      const keepSpans = document.querySelectorAll(".keep");
+      keepSpans.forEach(span => {
+        span.classList.add("remaining");
+      });
+    }
+  }
+
+  // Start devouring random words
+  devourRandomWord();
+}
+
+setup.restoreWords = () => {
+  const allSpans = document.querySelectorAll(".eating-container span");
+
+  let restorableWords = [];
+
+  // Filter out spans that have the 'keep' class
+  allSpans.forEach(span => {
+    if (span.classList.contains('eaten')) {
+      restorableWords.push(span);  // Only add devourable words to the array
+    }
+  });
+
+  // Function to devour a random word
+  function restoreRandomWord() {
+    if (restorableWords.length > 0) {
+      // Choose a random index for the word to be devoured
+      const randomIndex = Math.floor(Math.random() * restorableWords.length);
+      const wordSpan = restorableWords[randomIndex];
+
+      // Add the 'eaten' class to hide the word
+      if (wordSpan) {
+        wordSpan.classList.remove("eaten");
+        restorableWords.splice(randomIndex, 1);  // Remove the devoured word from the list
+
+        // Continue devouring until all devourable words are eaten
+        setTimeout(restoreRandomWord, 50);
+      }
+    } else {
+      // Once all devourable words are eaten, add "remaining" class to "keep" spans
+      const keepSpans = document.querySelectorAll(".keep");
+      keepSpans.forEach(span => {
+        span.classList.remove("remaining");
+      });
+    }
+  }
+
+  // Start devouring random words
+  restoreRandomWord();
+
+}
+
 setup.moveWords = () => {
       console.log("running")
     const words = document.querySelectorAll('.wordDisappear');
@@ -416,9 +530,9 @@ setup.boatMultiDraggable = () => {
     &lt;&lt;button &quot;Back&quot;&gt;&gt;
         &lt;&lt;goto $prevpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    /* &lt;&lt;button &quot;Next&quot;&gt;&gt;
+    &lt;&lt;button &quot;Next&quot;&gt;&gt;
         &lt;&lt;goto $nextpass&gt;&gt;
-    &lt;&lt;/button&gt;&gt; */
+    &lt;&lt;/button&gt;&gt;
     &lt;div id=&quot;nextButtonContainer&quot;&gt;
      &lt;/div&gt;
 &lt;/footer&gt;</tw-passagedata><tw-passagedata pid="5" name="footerger" tags="nobr" position="600,100" size="100,100">&lt;footer class=&quot;geraldine&quot;&gt;
@@ -450,6 +564,7 @@ setup.boatMultiDraggable = () => {
 &lt;main class=&quot;logospin&quot;&gt;
 &lt;div class=&quot;logo-wrapper slowRotate&quot;&gt;
 &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
+
 &lt;/div&gt;
   &lt;&lt;button &quot;Start&quot;&gt;&gt;
         &lt;&lt;goto &quot;intro&quot;&gt;&gt;
@@ -1112,49 +1227,45 @@ setup.boatMultiDraggable = () => {
 &lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="wordsLeft1" tags="nobr" position="975,475" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger2-1&quot;&gt;&gt;
-&lt;&lt;audio &quot;wordeat&quot; play loop&gt;&gt;
-&lt;main class=&quot;main-words&quot;&gt;
-
-    &lt;main&gt;
-    &lt;div class=&quot;wordLeft-container&quot;&gt;
-      &lt;div class=&quot;wordLeft word&quot;&gt;Sandwich&lt;/div&gt;
-       &lt;div class=&quot;wordLeft word&quot;&gt;Woman&lt;/div&gt;
-       &lt;div class=&quot;wordLeft word&quot;&gt;Disguise&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;words&quot;&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;were&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;some&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;of&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;the&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;hidden&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;of&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;the&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;Navy&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;Some&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;would&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;mend&lt;/div&gt;
+/* &lt;&lt;audio &quot;wordeat&quot; play loop&gt;&gt; */
+&lt;main&gt;
     
-        &lt;div class=&quot;wordDisappear word&quot;&gt;some&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;would&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;make&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;ropes&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;Some&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;even&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;dressed&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;like&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;men&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;to&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;fight&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;in&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;the&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;war&lt;/div&gt;
-    &lt;/div&gt;
+  &lt;div class=&quot;eating-container&quot;&gt;
+    &lt;p&gt;
+      &lt;span class=&quot;keep&quot;&gt;Women&lt;/span&gt; &lt;span&gt;were&lt;/span&gt; &lt;span&gt;some&lt;/span&gt; &lt;span&gt;of&lt;/span&gt; &lt;span&gt;the&lt;/span&gt; &lt;span&gt;hidden&lt;/span&gt; &lt;span&gt;heroines&lt;/span&gt; &lt;span&gt;of&lt;/span&gt; &lt;span&gt;the&lt;/span&gt; &lt;span&gt;Navy&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;span&gt;Some&lt;/span&gt; &lt;span&gt;would&lt;/span&gt; &lt;span&gt;mend&lt;/span&gt; &lt;span&gt;ships,&lt;/span&gt; &lt;span&gt;some&lt;/span&gt; &lt;span&gt;would&lt;/span&gt; &lt;span&gt;make&lt;/span&gt; &lt;span&gt;ropes&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;span&gt;Some&lt;/span&gt; &lt;span&gt;even&lt;/span&gt; &lt;span&gt;dressed&lt;/span&gt; &lt;span&gt;like&lt;/span&gt; &lt;span&gt;men&lt;/span&gt; &lt;span&gt;to&lt;/span&gt; &lt;span&gt;fight&lt;/span&gt; &lt;span&gt;in&lt;/span&gt; &lt;span&gt;the&lt;/span&gt; &lt;span&gt;war&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+  &lt;span&gt;Mary&lt;/span&gt; &lt;span&gt;Lacy&lt;/span&gt; &lt;span&gt;travelled&lt;/span&gt; &lt;span&gt;to&lt;/span&gt; &lt;span&gt;Chatham&lt;/span&gt; &lt;span&gt;in&lt;/span&gt; &lt;span&gt;her&lt;/span&gt; &lt;span&gt;fathers’&lt;/span&gt; &lt;span&gt;clothes&lt;/span&gt; &lt;span&gt;and&lt;/span&gt; &lt;span&gt;she&lt;/span&gt; &lt;span&gt;became&lt;/span&gt; &lt;span&gt;William&lt;/span&gt; &lt;span&gt;Chandler&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span&gt;Not&lt;/span&gt; &lt;span&gt;long&lt;/span&gt; &lt;span&gt;after&lt;/span&gt; &lt;span&gt;that,&lt;/span&gt;&lt;span&gt;she&lt;/span&gt; &lt;span&gt;joined&lt;/span&gt; &lt;span&gt;the&lt;/span&gt; &lt;span&gt;HMS&lt;/span&gt; &lt;span class=&quot;keep&quot;&gt;Sandwich&lt;/span&gt; &lt;span&gt;and&lt;/span&gt; &lt;span&gt;set&lt;/span&gt; &lt;span&gt;sail&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span&gt;Although&lt;/span&gt; &lt;span&gt;they&lt;/span&gt; &lt;span&gt;didn&#39;t&lt;/span&gt; &lt;span&gt;know&lt;/span&gt; &lt;span&gt;she&lt;/span&gt; &lt;span&gt;was&lt;/span&gt; &lt;span&gt;a&lt;/span&gt; &lt;span&gt;‘she’&lt;/span&gt; &lt;span&gt;at&lt;/span&gt; &lt;span&gt;the&lt;/span&gt; &lt;span&gt;time&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span&gt;She&lt;/span&gt; &lt;span&gt;fought&lt;/span&gt; &lt;span&gt;in&lt;/span&gt; &lt;span&gt;wars&lt;/span&gt; &lt;span&gt;and&lt;/span&gt; &lt;span&gt;survived&lt;/span&gt; &lt;span&gt;hurricanes&lt;/span&gt;&lt;span&gt;!&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span&gt;She&lt;/span&gt; &lt;span&gt;stayed&lt;/span&gt; &lt;span&gt;in&lt;/span&gt; &lt;span class=&quot;keep&quot;&gt;disguise&lt;/span&gt; &lt;span&gt;for&lt;/span&gt; &lt;span&gt;many&lt;/span&gt; &lt;span&gt;years&lt;/span&gt; &lt;span&gt;until&lt;/span&gt; &lt;span&gt;her&lt;/span&gt; &lt;span&gt;identity&lt;/span&gt; &lt;span&gt;was&lt;/span&gt; &lt;span&gt;revealed&lt;/span&gt; &lt;span&gt;and&lt;/span&gt; &lt;span&gt;she&lt;/span&gt; &lt;span&gt;was&lt;/span&gt; &lt;span&gt;discharged&lt;/span&gt;&lt;span&gt;.&lt;/span&gt;
+&lt;/p&gt;
+
+  &lt;/div&gt;
+
+
 &lt;/main&gt;
 
 &lt;&lt;include &quot;footer&quot;&gt;&gt;
 
 &lt;&lt;done&gt;&gt;
-&lt;&lt;set $move to setup.moveWords()&gt;&gt;
+/* &lt;&lt;set $move to setup.moveWords()&gt;&gt; */
+&lt;&lt;set $move to setup.quickEatWords()&gt;&gt;
 &lt;&lt;/done&gt;&gt;
 
 &lt;&lt;timed 10s&gt;&gt;
@@ -1530,52 +1641,47 @@ $correctans
     &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="wordsAdded1" tags="nobr" position="725,600" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsAdded1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger3-2&quot;&gt;&gt;
-&lt;&lt;audio &quot;wordeat&quot; play loop&gt;&gt;
-&lt;main class=&quot;main-words added&quot;&gt;
-    &lt;div class=&quot;words&quot;&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;Women&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;were&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;some&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;of&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;the&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;hidden&lt;/div&gt;
-         &lt;div class=&quot;wordDisappear word&quot;&gt;heroes&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;of&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;the&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;Navy.&lt;/div&gt;
-        &lt;br/&gt;
-         &lt;br/&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;Some&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;would&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;mend&lt;/div&gt;
-         &lt;div class=&quot;wordDisappear word&quot;&gt;ships,&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;some&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;would&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;make&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;ropes.&lt;/div&gt;
-         &lt;br/&gt;
-         &lt;br/&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;Some&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;even&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;dressed&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;like&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;men&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;to&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;fight&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;in&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;the&lt;/div&gt;
-        &lt;div class=&quot;wordDisappear word&quot;&gt;war.&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/main&gt;
+/* &lt;&lt;audio &quot;wordeat&quot; play loop&gt;&gt; */
+&lt;main&gt;
+    
+  &lt;div class=&quot;eating-container&quot;&gt;
+    &lt;p&gt;
+      &lt;span class=&quot;keep remaining&quot;&gt;Women&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;were&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;some&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;hidden&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;heroines&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;Navy&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;span class=&quot;eaten&quot;&gt;Some&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;would&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;mend&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;ships,&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;some&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;would&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;ropes&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;span class=&quot;eaten&quot;&gt;Some&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;even&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;dressed&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;like&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;men&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;fight&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;war&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+  &lt;span class=&quot;eaten&quot;&gt;Mary&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;Lacy&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;travelled&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;Chatham&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;her&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;fathers’&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;clothes&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;she&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;became&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;William&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;Chandler&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span class=&quot;eaten&quot;&gt;Not&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;after&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;that,&lt;/span&gt;&lt;span class=&quot;eaten&quot;&gt;she&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;joined&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;HMS&lt;/span&gt; &lt;span class=&quot;keep remaining&quot;&gt;Sandwich&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;sail&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span class=&quot;eaten&quot;&gt;Although&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;they&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;didn&#39;t&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;know&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;she&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;was&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;‘she’&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;time&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span class=&quot;eaten&quot;&gt;She&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;fought&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;wars&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;survived&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;hurricanes&lt;/span&gt;&lt;span class=&quot;eaten&quot;&gt;!&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span class=&quot;eaten&quot;&gt;She&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;stayed&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;keep remaining&quot;&gt;disguise&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;many&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;years&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;until&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;her&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;identity&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;was&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;revealed&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;she&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;was&lt;/span&gt; &lt;span class=&quot;eaten&quot;&gt;discharged&lt;/span&gt;&lt;span class=&quot;eaten&quot;&gt;.&lt;/span&gt;
+&lt;/p&gt;
 
+  &lt;/div&gt;
+
+
+&lt;/main&gt;
 
 &lt;&lt;include &quot;footer&quot;&gt;&gt;
 
 &lt;&lt;done&gt;&gt;
-  &lt;&lt;set $still to setup.stillWords()&gt;&gt;
+  &lt;&lt;set $still to setup.restoreWords()&gt;&gt;
 &lt;&lt;/done&gt;&gt;
 &lt;&lt;timed 25s&gt;&gt;
-  &lt;&lt;goto $nextpass&gt;&gt;
+  /* &lt;&lt;goto $nextpass&gt;&gt; */
   &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="ger3-2" tags="nobr" position="850,600" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger3-2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger3-3&quot;&gt;&gt;

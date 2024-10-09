@@ -37,6 +37,120 @@ The Book Monster
 $('#ui-bar').remove();
 $(document.head).find('#style-ui-bar').remove();
 
+setup.eatWords = () => {
+  console.log("eating words")
+  const allSpans = document.querySelectorAll(".eating-container span");  // Select all span elements
+  let devourableWords = [];
+
+  // Filter out spans that have the 'keep' class
+  allSpans.forEach(span => {
+    if (!span.classList.contains('keep')) {
+      devourableWords.push(span);  // Only add devourable words to the array
+    }
+  });
+
+  // Function to devour a random word
+  function devourRandomWord() {
+    if (devourableWords.length > 0) {
+      // Choose a random index for the word to be devoured
+      const randomIndex = Math.floor(Math.random() * devourableWords.length);
+      const wordSpan = devourableWords[randomIndex];
+
+      // Add the 'eaten' class to hide the word
+      if (wordSpan) {
+        wordSpan.classList.add("eaten");
+        devourableWords.splice(randomIndex, 1);  // Remove the devoured word from the list
+
+        // Continue devouring until all devourable words are eaten
+        setTimeout(devourRandomWord, 500);
+      }
+    }
+  }
+
+  // Start devouring random words
+  devourRandomWord();
+}
+
+setup.quickEatWords = () => {
+  const allSpans = document.querySelectorAll(".eating-container span");  // Select all span elements
+  let devourableWords = [];
+
+  // Filter out spans that have the 'keep' class
+  allSpans.forEach(span => {
+    if (!span.classList.contains('keep')) {
+      devourableWords.push(span);  // Only add devourable words to the array
+    }
+  });
+
+  // Function to devour a random word
+  function devourRandomWord() {
+    if (devourableWords.length > 0) {
+      // Choose a random index for the word to be devoured
+      const randomIndex = Math.floor(Math.random() * devourableWords.length);
+      const wordSpan = devourableWords[randomIndex];
+
+      // Add the 'eaten' class to hide the word
+      if (wordSpan) {
+        wordSpan.classList.add("eaten");
+        devourableWords.splice(randomIndex, 1);  // Remove the devoured word from the list
+
+        // Continue devouring until all devourable words are eaten
+        setTimeout(devourRandomWord, 50);
+      }
+    } else {
+      // Once all devourable words are eaten, add "remaining" class to "keep" spans
+      const keepSpans = document.querySelectorAll(".keep");
+      keepSpans.forEach(span => {
+        span.classList.add("remaining");
+      });
+    }
+  }
+
+  // Start devouring random words
+  devourRandomWord();
+}
+
+setup.restoreWords = () => {
+  const allSpans = document.querySelectorAll(".eating-container span");
+
+  let restorableWords = [];
+
+  // Filter out spans that have the 'keep' class
+  allSpans.forEach(span => {
+    if (span.classList.contains('eaten')) {
+      restorableWords.push(span);  // Only add devourable words to the array
+    }
+  });
+
+  // Function to devour a random word
+  function restoreRandomWord() {
+    if (restorableWords.length > 0) {
+      // Choose a random index for the word to be devoured
+      const randomIndex = Math.floor(Math.random() * restorableWords.length);
+      const wordSpan = restorableWords[randomIndex];
+
+      // Add the 'eaten' class to hide the word
+      if (wordSpan) {
+        wordSpan.classList.remove("eaten");
+        restorableWords.splice(randomIndex, 1);  // Remove the devoured word from the list
+
+        // Continue devouring until all devourable words are eaten
+        setTimeout(restoreRandomWord, 50);
+      }
+    } else {
+      // Once all devourable words are eaten, add "remaining" class to "keep" spans
+      const keepSpans = document.querySelectorAll(".keep");
+      keepSpans.forEach(span => {
+        span.classList.remove("remaining");
+      });
+    }
+  }
+
+  // Start devouring random words
+  restoreRandomWord();
+
+}
+
 setup.moveWords = () => {
       console.log("running")
     const words = document.querySelectorAll('.wordDisappear');
@@ -353,9 +467,9 @@ setup.boatMultiDraggable = () => {
     <<button "Back">>
         <<goto $prevpass>>
     <</button>>
-    /* <<button "Next">>
+    <<button "Next">>
         <<goto $nextpass>>
-    <</button>> */
+    <</button>>
     <div id="nextButtonContainer">
      </div>
 </footer>
@@ -405,6 +519,7 @@ setup.boatMultiDraggable = () => {
 <main class="logospin">
 <div class="logo-wrapper slowRotate">
 <img src="/assets/img/logo.png" alt="logo"/>
+
 </div>
   <<button "Start">>
         <<goto "intro">>
@@ -1176,53 +1291,50 @@ setup.boatMultiDraggable = () => {
 <<audio ":all" stop>>
 <<include "_chapterTitleTemplate">>
 <<include "footerger">>
+
 :: wordsLeft1 [nobr]
 <<set $prevpass to "chapterTitle1">>
 <<set $pass to "wordsLeft1">>
 <<set $nextpass to "ger2-1">>
-<<audio "wordeat" play loop>>
-<main class="main-words">
-
-    <main>
-    <div class="wordLeft-container">
-      <div class="wordLeft word">Sandwich</div>
-       <div class="wordLeft word">Woman</div>
-       <div class="wordLeft word">Disguise</div>
-    </div>
-    <div class="words">
-        <div class="wordDisappear word">were</div>
-        <div class="wordDisappear word">some</div>
-        <div class="wordDisappear word">of</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">hidden</div>
-        <div class="wordDisappear word">of</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">Navy</div>
-        <div class="wordDisappear word">Some</div>
-        <div class="wordDisappear word">would</div>
-        <div class="wordDisappear word">mend</div>
+/* <<audio "wordeat" play loop>> */
+<main>
     
-        <div class="wordDisappear word">some</div>
-        <div class="wordDisappear word">would</div>
-        <div class="wordDisappear word">make</div>
-        <div class="wordDisappear word">ropes</div>
-        <div class="wordDisappear word">Some</div>
-        <div class="wordDisappear word">even</div>
-        <div class="wordDisappear word">dressed</div>
-        <div class="wordDisappear word">like</div>
-        <div class="wordDisappear word">men</div>
-        <div class="wordDisappear word">to</div>
-        <div class="wordDisappear word">fight</div>
-        <div class="wordDisappear word">in</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">war</div>
-    </div>
+  <div class="eating-container">
+    <p>
+      <span class="keep">Women</span> <span>were</span> <span>some</span> <span>of</span> <span>the</span> <span>hidden</span> <span>heroines</span> <span>of</span> <span>the</span> <span>Navy</span>
+    </p>
+    <p>
+      <span>Some</span> <span>would</span> <span>mend</span> <span>ships,</span> <span>some</span> <span>would</span> <span>make</span> <span>ropes</span>
+    </p>
+    <p>
+      <span>Some</span> <span>even</span> <span>dressed</span> <span>like</span> <span>men</span> <span>to</span> <span>fight</span> <span>in</span> <span>the</span> <span>war</span>
+    </p>
+    <p>
+  <span>Mary</span> <span>Lacy</span> <span>travelled</span> <span>to</span> <span>Chatham</span> <span>in</span> <span>her</span> <span>fathers’</span> <span>clothes</span> <span>and</span> <span>she</span> <span>became</span> <span>William</span> <span>Chandler</span>
+</p>
+<p>
+  <span>Not</span> <span>long</span> <span>after</span> <span>that,</span><span>she</span> <span>joined</span> <span>the</span> <span>HMS</span> <span class="keep">Sandwich</span> <span>and</span> <span>set</span> <span>sail</span>
+</p>
+<p>
+  <span>Although</span> <span>they</span> <span>didn't</span> <span>know</span> <span>she</span> <span>was</span> <span>a</span> <span>‘she’</span> <span>at</span> <span>the</span> <span>time</span>
+</p>
+<p>
+  <span>She</span> <span>fought</span> <span>in</span> <span>wars</span> <span>and</span> <span>survived</span> <span>hurricanes</span><span>!</span>
+</p>
+<p>
+  <span>She</span> <span>stayed</span> <span>in</span> <span class="keep">disguise</span> <span>for</span> <span>many</span> <span>years</span> <span>until</span> <span>her</span> <span>identity</span> <span>was</span> <span>revealed</span> <span>and</span> <span>she</span> <span>was</span> <span>discharged</span><span>.</span>
+</p>
+
+  </div>
+
+
 </main>
 
 <<include "footer">>
 
 <<done>>
-<<set $move to setup.moveWords()>>
+/* <<set $move to setup.moveWords()>> */
+<<set $move to setup.quickEatWords()>>
 <</done>>
 
 <<timed 10s>>
@@ -1630,52 +1742,47 @@ $correctans
 <<set $prevpass to "ger3-1">>
 <<set $pass to "wordsAdded1">>
 <<set $nextpass to "ger3-2">>
-<<audio "wordeat" play loop>>
-<main class="main-words added">
-    <div class="words">
-        <div class="wordDisappear word">Women</div>
-        <div class="wordDisappear word">were</div>
-        <div class="wordDisappear word">some</div>
-        <div class="wordDisappear word">of</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">hidden</div>
-         <div class="wordDisappear word">heroes</div>
-        <div class="wordDisappear word">of</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">Navy.</div>
-        <br/>
-         <br/>
-        <div class="wordDisappear word">Some</div>
-        <div class="wordDisappear word">would</div>
-        <div class="wordDisappear word">mend</div>
-         <div class="wordDisappear word">ships,</div>
-        <div class="wordDisappear word">some</div>
-        <div class="wordDisappear word">would</div>
-        <div class="wordDisappear word">make</div>
-        <div class="wordDisappear word">ropes.</div>
-         <br/>
-         <br/>
-        <div class="wordDisappear word">Some</div>
-        <div class="wordDisappear word">even</div>
-        <div class="wordDisappear word">dressed</div>
-        <div class="wordDisappear word">like</div>
-        <div class="wordDisappear word">men</div>
-        <div class="wordDisappear word">to</div>
-        <div class="wordDisappear word">fight</div>
-        <div class="wordDisappear word">in</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">war.</div>
-    </div>
-</main>
+/* <<audio "wordeat" play loop>> */
+<main>
+    
+  <div class="eating-container">
+    <p>
+      <span class="keep remaining">Women</span> <span class="eaten">were</span> <span class="eaten">some</span> <span class="eaten">of</span> <span class="eaten">the</span> <span class="eaten">hidden</span> <span class="eaten">heroines</span> <span class="eaten">of</span> <span class="eaten">the</span> <span class="eaten">Navy</span>
+    </p>
+    <p>
+      <span class="eaten">Some</span> <span class="eaten">would</span> <span class="eaten">mend</span> <span class="eaten">ships,</span> <span class="eaten">some</span> <span class="eaten">would</span> <span class="eaten">make</span> <span class="eaten">ropes</span>
+    </p>
+    <p>
+      <span class="eaten">Some</span> <span class="eaten">even</span> <span class="eaten">dressed</span> <span class="eaten">like</span> <span class="eaten">men</span> <span class="eaten">to</span> <span class="eaten">fight</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">war</span>
+    </p>
+    <p>
+  <span class="eaten">Mary</span> <span class="eaten">Lacy</span> <span class="eaten">travelled</span> <span class="eaten">to</span> <span class="eaten">Chatham</span> <span class="eaten">in</span> <span class="eaten">her</span> <span class="eaten">fathers’</span> <span class="eaten">clothes</span> <span class="eaten">and</span> <span class="eaten">she</span> <span class="eaten">became</span> <span class="eaten">William</span> <span class="eaten">Chandler</span>
+</p>
+<p>
+  <span class="eaten">Not</span> <span class="eaten">long</span> <span class="eaten">after</span> <span class="eaten">that,</span><span class="eaten">she</span> <span class="eaten">joined</span> <span class="eaten">the</span> <span class="eaten">HMS</span> <span class="keep remaining">Sandwich</span> <span class="eaten">and</span> <span class="eaten">set</span> <span class="eaten">sail</span>
+</p>
+<p>
+  <span class="eaten">Although</span> <span class="eaten">they</span> <span class="eaten">didn't</span> <span class="eaten">know</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">a</span> <span class="eaten">‘she’</span> <span class="eaten">at</span> <span class="eaten">the</span> <span class="eaten">time</span>
+</p>
+<p>
+  <span class="eaten">She</span> <span class="eaten">fought</span> <span class="eaten">in</span> <span class="eaten">wars</span> <span class="eaten">and</span> <span class="eaten">survived</span> <span class="eaten">hurricanes</span><span class="eaten">!</span>
+</p>
+<p>
+  <span class="eaten">She</span> <span class="eaten">stayed</span> <span class="eaten">in</span> <span class="keep remaining">disguise</span> <span class="eaten">for</span> <span class="eaten">many</span> <span class="eaten">years</span> <span class="eaten">until</span> <span class="eaten">her</span> <span class="eaten">identity</span> <span class="eaten">was</span> <span class="eaten">revealed</span> <span class="eaten">and</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">discharged</span><span class="eaten">.</span>
+</p>
 
+  </div>
+
+
+</main>
 
 <<include "footer">>
 
 <<done>>
-  <<set $still to setup.stillWords()>>
+  <<set $still to setup.restoreWords()>>
 <</done>>
 <<timed 25s>>
-  <<goto $nextpass>>
+  /* <<goto $nextpass>> */
   <</timed>>
 
 

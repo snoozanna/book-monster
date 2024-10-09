@@ -404,6 +404,34 @@ input[type="text"]:focus{
 }
 
 
+/* WORDS LEFT 2 */
+
+.eating-container {
+  text-align: left;
+}
+
+.eating-container > p {
+  font-size: 1em;
+  font-family: "Playwrite DE Grund";
+}
+
+.eating-container > p > .keep {
+  font-weight: bold;
+  color: #f39c12; /* Different style for words to keep */
+}
+
+.eating-container > p > .eaten {
+  color: rgba(0, 0, 0, 0);  /* Hide devoured words */
+  transition: color 0.5s ease-out;
+}
+
+.eating-container > p > .keep.remaining{
+  font-size: 4rem;
+    position: fixed;
+    transition: font-size 0.5s ease-out;
+}
+
+
 /* MAP INSTRUCTIONS */
 
 header.map{
