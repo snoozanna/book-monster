@@ -442,7 +442,7 @@ footer.map > .button-wrapper{
   padding: 1rem;
   border-radius: 1rem;
   /* border: solid white 2px; */
-  margin-block-end: 1rem;
+  margin-block-end: 10rem;
   color: black;
   font-weight: 600;
   p {

@@ -171,33 +171,33 @@ setup.boatMultiDraggable = () => {
   const targetAreas = {
     chapOne: { 
       x: 0,
-      y: deviceHeight * 0.7,
+      y: deviceHeight * 0.55,  // Start at 55% of the height
       width: deviceWidth,
-      height: deviceHeight * 0.3
+      height: deviceHeight * 0.45 // Cover 45% of the screen
     },
     chapTwo: { 
       x: 0,
-      y: deviceHeight * 0.7,
+      y: deviceHeight * 0.55,
       width: deviceWidth,
-      height: deviceHeight * 0.3
+      height: deviceHeight * 0.45
     },
     chapThree: { 
       x: 0,
-      y: deviceHeight * 0.7,
+      y: deviceHeight * 0.55,
       width: deviceWidth,
-      height: deviceHeight * 0.3
+      height: deviceHeight * 0.45
     },
     chapFour: { 
       x: 0,
-      y: deviceHeight * 0.7,
+      y: deviceHeight * 0.55,
       width: deviceWidth,
-      height: deviceHeight * 0.3
+      height: deviceHeight * 0.45
     },
     chapFive: { 
       x: 0,
-      y: deviceHeight * 0.7,
+      y: deviceHeight * 0.55,
       width: deviceWidth,
-      height: deviceHeight * 0.3
+      height: deviceHeight * 0.45
     }
   };
 
