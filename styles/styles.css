@@ -1373,6 +1373,13 @@ main.gallery > .img-desc > h3{
   text-align: center;
 }
 
+footer.gallery >#nextImageBtn > button {
+  background-color: var(--color-five);
+  color: black;
+  font-weight: 900;
+  border: solid 2px black;
+}
+
 /* BOOK ROOTING  */
 main.rooting {
   display: flex;
@@ -1394,7 +1401,7 @@ main.chapter-title{
 }
 
 .chapter-img-wrapper{
-  max-height: 50%;
+max-width: 50%;
   display: flex;
   justify-content: center;
 }

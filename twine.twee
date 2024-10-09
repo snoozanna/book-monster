@@ -921,7 +921,7 @@ setup.boatMultiDraggable = () => {
 <<include "galleryfooter">>
 
 :: galleryfooter[nobr]
-<footer> 
+<footer class="gallery"> 
 <div/>
 <div id="nextImageBtn"></div></footer>
 
