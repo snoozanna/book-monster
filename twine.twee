@@ -684,7 +684,7 @@ setup.boatMultiDraggable = () => {
 
 :: gerIntro-2-messages [nobr]
 <<timed 0.5s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
            <p>This is actually my first day. </p>
@@ -693,7 +693,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>My first Rooting in fact.</p>
@@ -702,7 +702,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
      <p>Never done it before</p>
@@ -711,7 +711,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 10s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
          <p>But we’ll be fine</p>
@@ -720,7 +720,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 12s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>Totally fine.</p>
@@ -745,7 +745,7 @@ setup.boatMultiDraggable = () => {
 
 :: gerIntro-3-messages [nobr]
 <<timed 0.5s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
            <p>Ok let me load up the book.</p>
@@ -754,7 +754,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Chatham Stories. </p>
@@ -763,7 +763,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
      <p>A book that was once full of stories of my local town Chatham</p>
@@ -772,7 +772,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 10s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
          <p>But now…it seems they have all been taken</p>
@@ -781,7 +781,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 12s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>Written by UNKNOWN.</p>
@@ -790,7 +790,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 14s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>Written by Unknown is odd - maybe together we can discover who the author was. </p>
@@ -799,7 +799,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 16s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>It must be because of the Book Monster. </p>
@@ -808,7 +808,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
        <<timed 18s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>Let’s load up the information from OCTOPUS to find out what they know.</p>
@@ -863,7 +863,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>There have only been a few sightings of the monster. </p>
@@ -872,7 +872,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
       <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>But those who have encountered it in the past have drawn images of what they saw. </p>
@@ -881,7 +881,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
    <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Let’s load that up and see what we are facing.   </p>
@@ -980,7 +980,7 @@ setup.boatMultiDraggable = () => {
 
 :: gerIntro-6-messages [nobr]
 <<timed 0.1s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
            <p>I know it wasn't what I was expecting either. </p>
@@ -989,7 +989,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Something that you can’t see but is always nearby books.  </p>
@@ -998,7 +998,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
      <p>That’s why it likes the library so much. </p>
@@ -1007,7 +1007,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
     <<timed 10s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
          <p>It has a taste for books that are being forgotten. </p>
@@ -1016,7 +1016,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 12s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>And it seems Chatham Stories are next.</p>
@@ -1043,7 +1043,7 @@ setup.boatMultiDraggable = () => {
 
 :: gerIntro-6b-messages [nobr]
  <<timed 0.5s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<replace "#msgMount">>
        <div class="message"> 
         <p>But there is hope</p>
@@ -1052,7 +1052,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 3s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>You are that hope. </p>
@@ -1061,7 +1061,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 6s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>The Monster is using the stories it is eating to set challenges. </p>
@@ -1070,7 +1070,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 9s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>You need to stop the Monster by completing the challenges </p>
@@ -1079,7 +1079,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 12s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>Fragments may come through in mysterious ways that we need to work out.  </p>
@@ -1088,7 +1088,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
       <<timed 15s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>But we need to be quick.  </p>
@@ -1116,7 +1116,7 @@ setup.boatMultiDraggable = () => {
 :: gerIntro-6c-messages [nobr]
 
  <<timed 0.5s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>I know this is a lot to take on, and we’ve only just met, but I need your help. </p>
@@ -1125,7 +1125,7 @@ setup.boatMultiDraggable = () => {
   <</timed>>
 
    <<timed 4s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>Would you be up for helping me? </p>
@@ -1134,7 +1134,7 @@ setup.boatMultiDraggable = () => {
   <</timed>>
 
   <<timed 4s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
         <p>If you are - hit the button below and we can begin rooting the stories.  </p>
@@ -1248,7 +1248,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Maybe we’re too late </p>
@@ -1257,7 +1257,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
    <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Wait. </p>
@@ -1267,7 +1267,7 @@ setup.boatMultiDraggable = () => {
 
 
      <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Disguised...</p>
@@ -1276,7 +1276,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>They were disguised...</p>
@@ -1285,7 +1285,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
       <<timed 12s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<replace "#msgMount">>
        <div class="message"> 
           <p>And the name is disguised. </p>
@@ -1295,7 +1295,7 @@ setup.boatMultiDraggable = () => {
 
 
     <<timed 15s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>It must be the Book Monster. </p>
@@ -1304,7 +1304,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 18s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>There are 4 letters.  </p>
@@ -1313,7 +1313,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
      <<timed 21s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Maybe they can be found where you are. </p>
@@ -1322,7 +1322,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
        <<timed 24s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Break the code they have set </p>
@@ -1331,7 +1331,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
        <<timed 27s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<replace "#msgMount">>
        <div class="message"> 
           <p>4 letters to find. </p>
@@ -1340,7 +1340,7 @@ setup.boatMultiDraggable = () => {
 
     <</timed>>
          <<timed 30s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Let’s load the first one up first. </p>
@@ -1605,7 +1605,7 @@ $correctans
 
 :: ger3-1-messages [nobr]
 <<timed 0.5s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>LACY</p>
@@ -1614,7 +1614,7 @@ $correctans
     <</timed>>
 
     <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
         <p>That’s it - Mary Lacy!</p>
@@ -1689,7 +1689,7 @@ $correctans
 
 :: ger3-2-messages [nobr]
 <<timed 0.1s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>Mary Lacy travelled to Chatham in her fathers’ clothes and she became William Chandler.</p>
@@ -1698,7 +1698,7 @@ $correctans
     <</timed>>
 
     <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
         <p>Not long after that, she joined the HMS Sandwich and set sail. </p>
@@ -1707,7 +1707,7 @@ $correctans
     <</timed>>
 
     <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
         <p>Although they didn't know she was a ‘she’ at the time. </p>
@@ -1735,7 +1735,7 @@ $correctans
 
 :: ger3-3-messages [nobr]
 <<timed 0.1s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>She fought in wars and survived hurricanes!</p>
@@ -1744,7 +1744,7 @@ $correctans
     <</timed>>
 
     <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
         <p>She stayed in disguise for many years until her identity was revealed and she was discharged. </p>
@@ -1770,7 +1770,7 @@ $correctans
 
 :: ger3-4-messages [nobr]
 <<timed 0.1s>>
-        /* <<audio "ping1" "play">> */
+        <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>It is said that Lacy had one of the most successful careers as a woman in disguise, even gaining a pension from Admiralty in her true name.</p>
@@ -1818,7 +1818,7 @@ $correctans
 
 :: ger3-5-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>I’m going to be honest I have been a bit nervous about starting this job.</p>
@@ -1827,7 +1827,7 @@ $correctans
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I was doubting myself.</p>
@@ -1836,7 +1836,7 @@ $correctans
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>But Mary’s story is so inspirational.</p>
@@ -1845,7 +1845,7 @@ $correctans
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Maybe it’ll be ok.</p>
@@ -1854,7 +1854,7 @@ $correctans
 <</timed>>
 
 <<timed 12s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>One chapter rooted.</p>
@@ -1883,7 +1883,7 @@ $correctans
 
 <</timed>>
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>But I think the Book Monster now knows what we are trying to do.</p>
@@ -1892,7 +1892,7 @@ $correctans
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Do we call it Book Monster or Googly Moogly!?</p>
@@ -1901,7 +1901,7 @@ $correctans
 <</timed>>
 
 <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>To start the next chapter, head to the refreshments area, have a hot chocolate if you’d like!</p>
@@ -1910,7 +1910,7 @@ $correctans
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>When there click below</p>
@@ -2015,7 +2015,7 @@ $correctans
 
 :: ger4-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Keep your eyes focused forward and follow the instructions.</p>
@@ -2024,7 +2024,7 @@ $correctans
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>You need to follow the map but keep looking forwards.</p>
@@ -2033,7 +2033,7 @@ $correctans
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>We are in the Monster’s Cage - the Library and we need to get out.</p>
@@ -2042,7 +2042,7 @@ $correctans
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Don’t turn your back on the monster.</p>
@@ -2373,7 +2373,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger5-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>You made it.</p>
@@ -2382,7 +2382,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>And unlocked the story in the chapter too.</p>
@@ -2391,7 +2391,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Oh.</p>
@@ -2400,7 +2400,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Well this is sad.</p>
@@ -2409,7 +2409,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 12s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I’m sorry to say that, although we made it out of the cage, the Lion Queen did not.</p>
@@ -2527,7 +2527,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger5-2-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Wow - that is a sad story.</p>
@@ -2536,7 +2536,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>A fearless woman.</p>
@@ -2545,7 +2545,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>But one we will remember now.</p>
@@ -2554,7 +2554,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Because we have rooted her story here.</p>
@@ -2563,7 +2563,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 12s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Well done.</p>
@@ -2572,7 +2572,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 15s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>And we have escaped the Monster’s Cage.</p>
@@ -2581,7 +2581,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 18s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Let’s keep going.</p>
@@ -2714,7 +2714,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger6-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>The next chapter seems to be linked to the River Medway. </p>
@@ -2723,7 +2723,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Let’s head there. </p>
@@ -2732,7 +2732,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Go to the Red Lifeguard Ring and let me know when you are there. </p>
@@ -2757,7 +2757,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger6-2-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Something has been bothering me - why don’t we know who the author is?</p>
@@ -2766,7 +2766,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Come on Geraldine, focus, this is no time to ponder.</p>
@@ -2775,7 +2775,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I love the River.</p>
@@ -2784,7 +2784,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>The river changes.</p>
@@ -2793,7 +2793,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 12s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Much like us.</p>
@@ -2802,7 +2802,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 15s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>It is said you can’t stand in the same river twice.</p>
@@ -2811,7 +2811,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 18s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Some say you can’t even stand in the same river once.</p>
@@ -2820,7 +2820,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 21s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Because it changes constantly.</p>
@@ -2845,7 +2845,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger6-3-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>The next ROOTING Challenge seems to be that you need to spot something.</p>
@@ -2854,7 +2854,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Something interesting that you can see.</p>
@@ -2863,7 +2863,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Something that catches your attention.</p>
@@ -2872,7 +2872,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Whatever you think is the most interesting sight on the river. </p>
@@ -2950,7 +2950,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 :: ger7-1-messages [nobr]
 
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message">
        <p>Yes - you seem to have unlocked the next chapter.</p>
@@ -3068,7 +3068,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger8-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Yes! Another chapter rooted! </p>
@@ -3077,7 +3077,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I want to stop the Book Monster and find out who the author is - all on my first day. </p>
@@ -3102,7 +3102,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger8-2-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Wait, this is strange.  </p>
@@ -3111,7 +3111,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>This chapter doesn’t seem to have been eaten in the same way. </p>
@@ -3120,7 +3120,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>You could find a bench to sit down if you’d like. </p>
@@ -3129,7 +3129,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I’ll open it to see what is going on. </p>
@@ -3164,7 +3164,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger9-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Deep below the ground, there are mysteries to be found. Big ones.</p>
@@ -3173,7 +3173,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>In 1913, a prehistoric elephant skeleton was found in Upnor.</p>
@@ -3182,7 +3182,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 6s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>It weighed 10 tonnes, which is the same as the weight of the Big Ben Bell.</p>
@@ -3191,7 +3191,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>It was HUGE.</p>
@@ -3200,7 +3200,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 12s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>And it used to roam here.</p>
@@ -3209,7 +3209,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 15s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>They think around 130,000 and 40,000 years ago.</p>
@@ -3218,7 +3218,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 18s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>The skeleton was discovered by Sydney Turner and he became famous because of the find.</p>
@@ -3227,7 +3227,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 21s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Here’s his picture.</p>
@@ -3236,7 +3236,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 23s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message-img-wrapper">
         <img id="book-image" src="assets/img/sydney.png" alt="Sydney Turner">
@@ -3374,7 +3374,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger9-2-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>It seems the story has been rooted by local residents. </p>
@@ -3520,7 +3520,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger10-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Ok I spoke too soon. </p>
@@ -3529,7 +3529,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>It has been partially rooted. </p>
@@ -3538,7 +3538,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>It is in Chatham as a mural. </p>
@@ -3547,7 +3547,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>But unless we find out where it is we might lose the Chapter. </p>
@@ -3572,7 +3572,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger10-2-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>I’m going to see if I can patch you into a CCTV camera near the mural by unlocking something here at OCTOPUS. </p>
@@ -3581,7 +3581,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>See if you can work out what the name is of the place the mural is in. </p>
@@ -3590,7 +3590,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Ok - I don’t want to rush you but it seems we only have 30 seconds to find out the information. </p>
@@ -3698,7 +3698,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger11-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>You did it. </p>
@@ -3707,7 +3707,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Ok we are so close this is the fifth and final chapter. </p>
@@ -3716,7 +3716,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>And maybe finding out who the author is! </p>
@@ -3725,7 +3725,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Let’s load up the final chapter. </p>
@@ -3851,7 +3851,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger12-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Wait - what is that? Did you set off an alarm here at OCTOPUS? </p>
@@ -3860,7 +3860,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Those words didn’t sound good either. Mines. Detonation. Explosion. 3 things I would like to avoid. </p>
@@ -3869,7 +3869,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>It’s saying here we need to stop mines from exploding. Exploding here at OCTOPUS HQ. </p>
@@ -3878,7 +3878,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Mines that have been placed by the Monster. </p>
@@ -3887,7 +3887,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>How can this be happening!? How is the Monster doing this?! </p>
@@ -3896,7 +3896,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 11s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>This can’t be good. </p>
@@ -3905,7 +3905,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 13s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I’m sending the locations to your screen. </p>
@@ -3914,7 +3914,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 15s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Head to the locations now and send me the codes. </p>
@@ -4190,7 +4190,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger13-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>You have unlocked the fifth and final chapter . </p>
@@ -4317,7 +4317,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger14-1-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Wow - what a boat. </p>
@@ -4326,7 +4326,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I never thought I’d say that sentence. </p>
@@ -4335,7 +4335,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>And after its lifesaving service, it took on a new life. </p>
@@ -4344,7 +4344,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>The life of the party. </p>
@@ -4353,7 +4353,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 9s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>The Lifesaving Boat became the Lifesaving Club. </p>
@@ -4362,7 +4362,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 11s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>A club for all to dance the night away. </p>
@@ -4388,7 +4388,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger14-2-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>TWIST. </p>
@@ -4397,7 +4397,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I love a good twist. </p>
@@ -4406,7 +4406,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>I wasn’t expecting that at all. </p>
@@ -4415,7 +4415,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Were you? </p>
@@ -4441,7 +4441,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger14-3-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>Ok we have all of the parts we need. </p>
@@ -4450,7 +4450,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>5 chapters. </p>
@@ -4459,7 +4459,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>We need to go to the Medway Map to complete the rooting.</p>
@@ -4468,7 +4468,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Doing this will root the book forever. </p>
@@ -4477,7 +4477,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 10s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Near the casemates you can find the map of Chatham.  </p>
@@ -4487,7 +4487,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 
 <<timed 13s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Stand around the map.  </p>
@@ -4516,7 +4516,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 :: ger14-4-messages [nobr]
 <<timed 0.1s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
           <p>We stand here at the Chatham map.  </p>
@@ -4525,7 +4525,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>A place where we can see some of the places of modern day Chatham </p>
@@ -4534,7 +4534,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>The present shaped by the past</p>
@@ -4543,7 +4543,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 7s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Some of the past that you have just discovered</p>
@@ -4552,7 +4552,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 10s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<replace "#msgMount">>
        <div class="message"> 
         <p>It’s time to fill the book again </p>
@@ -4562,7 +4562,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 
 <<timed 13s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>It’s time to root the book again.  </p>
@@ -4571,7 +4571,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 16s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Here in the present.  </p>
@@ -4580,7 +4580,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 19s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>We are halting the Book Monster with every act we have taken </p>
@@ -4589,7 +4589,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 <<timed 24s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
         <p>Drag the chapters into the book. And when I say, join me in saying BE GONE GOOGLY MOOGLY. </p>
@@ -4667,7 +4667,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</timed>>
 
      <<timed 3s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>You have proven you have connected to Chatham’s past </p>
@@ -4676,7 +4676,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</timed>>
 
    <<timed 5s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>And with that, rooted it in the present.</p>
@@ -4686,7 +4686,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 
      <<timed 8s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<replace "#msgMount">>
        <div class="message"> 
           <p>You have proven you can face the Book Monster. </p>
@@ -4695,7 +4695,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</timed>>
 
      <<timed 11s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>That you are not afraid to look at our past</p>
@@ -4704,7 +4704,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</timed>>
 
       <<timed 14s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>And how it has shaped our present.  </p>
@@ -4714,7 +4714,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 
     <<timed 17s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<replace "#msgMount">>
        <div class="message"> 
           <p>You have stopped Googly Moogly. </p>
@@ -4723,7 +4723,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</timed>>
 
      <<timed 20s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>And you have helped OCTOPUS </p>
@@ -4732,7 +4732,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</timed>>
 
      <<timed 21s>>
-    /* <<audio "ping1" "play">> */
+    <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
           <p>You are OCTOPUS. </p>
