@@ -1742,7 +1742,7 @@ $correctans
 <<set $prevpass to "ger3-1">>
 <<set $pass to "wordsAdded1">>
 <<set $nextpass to "ger3-2">>
-/* <<audio "wordeat" play loop>> */
+<<audio "wordeat" play loop>>
 <main>
     
   <div class="eating-container">
@@ -1781,8 +1781,8 @@ $correctans
 <<done>>
   <<set $still to setup.restoreWords()>>
 <</done>>
-<<timed 25s>>
-  /* <<goto $nextpass>> */
+<<timed 15s>>
+  <<goto $nextpass>>
   <</timed>>
 
 
