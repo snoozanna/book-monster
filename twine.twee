@@ -388,7 +388,10 @@ setup.boatMultiDraggable = () => {
         <<goto $prevpass>>
     <</link>>
     <<link "Start again">>
-        <<goto "landing">>
+      <<script>>
+        Engine.restart()
+        <</script>>
+        /* <<goto "landing">> */
     <</link>>
     
 </footer>
@@ -442,6 +445,7 @@ setup.boatMultiDraggable = () => {
 <<include "headerintro">>
 <main class="intro">
 <div id="mount"></div>
+
 <<timed 0.5s>>
     <<replace "#mount">>
   <p>Welcome to the OCTOPUS Rooter</p>
@@ -1798,7 +1802,7 @@ $correctans
 <</timed>>
 </main>
 
-  <<timed 6s>>
+  <<timed 4s>>
   
           <<goto $nextpass>>
     
@@ -2059,7 +2063,6 @@ $correctans
 <<set $pass to "mapInstructions">>
 <<set $nextpass to "ger5-1">>
 <<addclass "body" "light">>
-/* <<goto $nextpass>> */
 
 <<set $currentInstructionIndex = 0>>
 
@@ -2096,7 +2099,16 @@ We need to go a different route. Re-routing.", coords: "three" },
 <img src="assets/img/map.png"/>
 <div class="location hide pulse" id="location">
 <img src="/assets/img/arrow.png" src="arrow"/></div>
-<div class="guard hide pulse" id="guard"></div>
+
+
+
+
+
+
+/* <<include "swirlbookmonster6">>
+<<include "swirlbookmonster7">>
+<<include "swirlbookmonster8">> */
+
 </div>
 	</div>
    <div class="instruction" id="instruction">
@@ -2106,9 +2118,71 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<print $instructions[$currentInstructionIndex].text>></p>
     
     </div>
+
 	</main>
 	<<include "footermap">>
 
+
+:: swirlbookmonster1 [nobr]
+<div class="swirling-fog swirl-position-one">
+  <span class="swirl-word one" >MENAGERIE</span>
+  <span class="swirl-word two" >SANDWICH</span>
+  <span class="swirl-word three" >DETONATION</span>
+</div>
+
+:: swirlbookmonster2 [nobr]
+<div class="swirling-fog swirl-position-two">
+  <span class="swirl-word one" >WOMAN</span>
+  <span class="swirl-word two" >SANDWICH</span>
+  <span class="swirl-word three" >MENAGERIE</span>
+</div>
+
+:: swirlbookmonster3 [nobr]
+<div class="swirling-fog swirl-position-three">
+  <span class="swirl-word one" >DETONATION</span>
+  <span class="swirl-word two" >DISGUISE</span>
+  <span class="swirl-word three" >MINES</span>
+</div>
+
+:: swirlbookmonster4 [nobr]
+<div class="swirling-fog swirl-position-four">
+  <span class="swirl-word one" >MENAGERIE</span>
+  <span class="swirl-word two" >SANDWICH</span>
+  <span class="swirl-word three" >DETONATION</span>
+</div>
+
+:: swirlbookmonster5 [nobr]
+<div class="swirling-fog swirl-position-five">
+  <span class="swirl-word one" >MENAGERIE</span>
+  <span class="swirl-word two" >SANDWICH</span>
+  <span class="swirl-word three" >CAGE</span>
+</div>
+
+:: swirlbookmonster6 [nobr]
+<div class="swirling-fog swirl-position-six">
+  <span class="swirl-word one" >ELEPHANT</span>
+  <span class="swirl-word two" >SANDWICH</span>
+  <span class="swirl-word three" >DETONATION</span>
+</div>
+
+:: swirlbookmonster7 [nobr]
+<div class="swirling-fog swirl-position-seven">
+  <span class="swirl-word one" >CAGE</span>
+  <span class="swirl-word two" >SANDWICH</span>
+  <span class="swirl-word three" >ELEPHANT</span>
+</div>
+
+:: swirlbookmonster8 [nobr]
+<div class="swirling-fog swirl-position-eight">
+  <span class="swirl-word one" >MURAL</span>
+  <span class="swirl-word two" >BIG BEN BELL</span>
+  <span class="swirl-word three" >DETONATION</span>
+</div>
+<div class="swirling-fog swirl-position-nine">
+  <span class="swirl-word one" >MENAGERIE</span>
+  <span class="swirl-word two" >TIGER</span>
+  <span class="swirl-word three" >WOMAN</span>
+</div>
 
 
 :: footermap [nobr]
@@ -2148,6 +2222,9 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<elseif $currentInstructionIndex === 4 >>
 /* TODO ADD BOOK Monster */
     <<timed 0.1s>>
+      <<append "#mapContainer">>
+      <<include "swirlbookmonster1">>
+      <</append>>
       <<include "updateInstruction">>
     <</timed>>
     <<timed 4s>>
@@ -2157,12 +2234,22 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
+     <<timed 3.5s>>
+       <<append "#mapContainer">>
+      <<include "swirlbookmonster2">>
+      <</append>>
+    <</timed>>
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
 <<elseif $currentInstructionIndex === 6 >>
     <<timed 0.1s>>
       <<include "updateInstruction">>
+    <</timed>>
+     <<timed 3.5s>>
+       <<append "#mapContainer">>
+      <<include "swirlbookmonster3">>
+      <</append>>
     <</timed>>
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
@@ -2171,12 +2258,22 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
+     <<timed 3.5s>>
+       <<append "#mapContainer">>
+      <<include "swirlbookmonster4">>
+      <</append>>
+    <</timed>>
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
 <<elseif $currentInstructionIndex === 8 >>
     <<timed 0.1s>>
       <<include "updateInstruction">>
+    <</timed>>
+     <<timed 3.5s>>
+       <<append "#mapContainer">>
+      <<include "swirlbookmonster5">>
+      <</append>>
     <</timed>>
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
@@ -2185,12 +2282,24 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
+     <<timed 3.5s>>
+       <<append "#mapContainer">>
+      <<include "swirlbookmonster6">>
+   
+      <</append>>
+    <</timed>>
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
 <<elseif $currentInstructionIndex === 10 >>
     <<timed 0.1s>>
       <<include "updateInstruction">>
+    <</timed>>
+     <<timed 3.5s>>
+       <<append "#mapContainer">>
+      <<include "swirlbookmonster7">>
+      <<include "swirlbookmonster8">>
+      <</append>>
     <</timed>>
     <<timed 4s>>
     <<replace "#btnMount">>
@@ -2243,6 +2352,7 @@ We need to go a different route. Re-routing.", coords: "three" },
   <<timed 1s>>
   <<replace "#instruction">>
    <h3>Instruction</h3>
+
     <p><<print $instructions[$currentInstructionIndex].text>></p>
   <</replace>>
   <</timed>>
@@ -3641,7 +3751,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 :: wordsLeft5 [nobr]
 <<set $prevpass to "chapterTitle5">>
 <<set $pass to "wordsLeft5">>
-<<set $nextpass to "alarm">>
+<<set $nextpass to "ger12-1">>
 <<audio ":all" stop>>
 <<audio "wordeat" play>>
 <main class="main-words">
@@ -3705,23 +3815,29 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</done>>
 
 <<timed 10s>>
+  <<addclass "main" "flashing-effect">>
+  <<audio ":all" stop>>
+<<audio "siren" "play">>
+  <</timed>>
+
+<<timed 18s>>
   <<goto $nextpass>>
   <</timed>>
 
-:: alarm [nobr]
+/* :: alarm [nobr]
 <<set $prevpass to "wordsLeft5">>
 <<set $pass to "alarm">>
 <<set $nextpass to "ger12-1">>
 <<audio ":all" stop>>
 <<audio "siren" "play">>
-<main>
+<main class="flashing-effect">
 <h2>ALARM</h2>
 </main>
-<<include "footer">>
+<<include "footer">> */
 
 :: ger12-1 [nobr]
 /* TODO CHANGE TO ALARM  */
-<<set $prevpass to "alarm">>
+<<set $prevpass to "wordsLeft5">>
 <<set $pass to "ger12-1">>
 <<set $nextpass to "minesChallenge">>
 <<audio ":all" stop>>
