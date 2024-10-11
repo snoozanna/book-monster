@@ -246,7 +246,7 @@ setup.handleFileUpload = () => {
 
       const data = await response.json();
       console.log('Image uploaded successfully:', data);
-      errorMount.innerText = "Image uploaded successfully!";
+     
     } catch (error) {
       console.error('Error uploading image:', error.message);
       errorMount.innerText = "Image upload failed.";
@@ -438,7 +438,7 @@ setup.boatMultiDraggable = () => {
 <<cacheaudio "monster4" "../assets/sound/monster4.mp3">>
 <<cacheaudio "monster5" "../assets/sound/monster5.mp3">>
 <<cacheaudio "monsterannoyed" "../assets/sound/monsterannoyed.mp3">>
-<<cacheaudio "rooting" "../assets/sound/Rooting.mp3">>
+<<cacheaudio "rooting" "../assets/sound/signalprocess3.mp3">>
 <<cacheaudio "wordeat" "../assets/sound/WordEating.mp3">>
 <<cacheaudio "siren" "../assets/sound/siren.mp3">>
 <<set $currentChapter to 1>>
@@ -467,9 +467,9 @@ setup.boatMultiDraggable = () => {
     <<button "Back">>
         <<goto $prevpass>>
     <</button>>
-    /* <<button "Next">>
+    <<button "Next">>
         <<goto $nextpass>>
-    <</button>> */
+    <</button>>
     <div id="nextButtonContainer">
      </div>
 </footer>
@@ -655,12 +655,7 @@ setup.boatMultiDraggable = () => {
        <<type 80ms>><p class="octo-welcome-text"> You are connecting to...</p><</type>>
     <</replace>>
   <</timed>>
-  <<timed 16s>>
-    <<replace "#mount">>
-      <<type 80ms>><p class="octo-welcome-text"> You are connecting to...</p><</type>>
-    <</replace>>
-  <</timed>>
- <<timed 20s>>
+ <<timed 16s>>
       <<replace "#wrapper">><</replace>>
     <<replace "#mount">>
       <<audio ":all" stop>>
@@ -895,49 +890,14 @@ setup.boatMultiDraggable = () => {
         <</append>>
     <</timed>>
 
-     <<timed 12s>>
-        <<audio "ping1" "play">>
-         <<append "#msgMount">>
-       <div class="message"> 
-        <p>Written by UNKNOWN.</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-     <<timed 14s>>
-        <<audio "ping1" "play">>
-         <<append "#msgMount">>
-       <div class="message"> 
-        <p>Written by Unknown is odd - maybe together we can discover who the author was. </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-     <<timed 16s>>
-        <<audio "ping1" "play">>
-         <<append "#msgMount">>
-       <div class="message"> 
-        <p>It must be because of the Book Monster. </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-       <<timed 18s>>
-        <<audio "ping1" "play">>
-         <<append "#msgMount">>
-       <div class="message"> 
-        <p>Let’s load up the information from OCTOPUS to find out what they know.</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-     <<timed 20s>>
+ <<timed 14s>>
       <<replace "#nextButtonContainer">>
-      <<button "Load Info">>
-          <<goto $nextpass>>
+      <<button "Next">>
+          <<goto "loading">>
         <</button>>
           <</replace>>
     <</timed>>
+
 
 :: bookmonsterprofile [nobr]
 
@@ -957,17 +917,97 @@ setup.boatMultiDraggable = () => {
   </div>
   </div>
 
+:: gerIntro-3b [nobr]
+<<set $prevpass to "gerIntro-3">>
+<<set $pass to "gerIntro-4">>
+<<set $nextpass to "gerIntro-4">>
 
+<<include "_templateGeraldine">>
+
+:: gerIntro-3b-messages [nobr]
+
+     <<timed 0.3s>>
+        <<audio "ping1" "play">>
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Written by UNKNOWN.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 3s>>
+        <<audio "ping1" "play">>
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Written by Unknown is odd - maybe together we can discover who the author was. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 6s>>
+        <<audio "ping1" "play">>
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>It must be because of the Book Monster. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+       <<timed 9s>>
+        <<audio "ping1" "play">>
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Let’s load up the information from OCTOPUS to find out what they know.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 13s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Load Info">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: loading [nobr]
+
+<main class="loading">
+<div class="logo-wrapper" >
+<img src="/assets/img/logo.png" alt="logo" class="fastRotate"/>
+<br/>
+
+</div>
+<br/>
+<div id="mount"></div>
+
+</main>
+
+<<timed 0.5s>>
+<<replace "#mount">>
+  <<type 100ms>>
+    <h2 class="octo-title">Loading...</h2>
+    <</type>>
+<</replace>>
+  <</timed>>
+
+  <<timed 4s>>
+<<replace "#mount">>
+  <<type 100ms>>
+    <h2 class="octo-title">Loading...</h2>
+    <</type>>
+<</replace>>
+  <</timed>>
+
+<<timed 8s>>
+  <<goto $nextpass>>
+  <</timed>>
 :: gerIntro-4 [nobr]
 <<set $prevpass to "gerIntro-3">>
 <<set $pass to "gerIntro-4">>
 <<set $nextpass to "octopusgallery">>
 
 <<include "_templateGeraldine">>
-
-
-
-
 
 :: gerIntro-4-messages [nobr]
 
@@ -1007,7 +1047,7 @@ setup.boatMultiDraggable = () => {
   <<timed 12s>>
       <<replace "#nextButtonContainer">>
       <<button "Load Images">>
-          <<goto $nextpass>>
+          <<goto "loading">>
         <</button>>
           <</replace>>
     <</timed>>
@@ -1045,7 +1085,6 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
 
-   
    
 :: bookmonsterimages [nobr]
 
@@ -1296,7 +1335,7 @@ setup.boatMultiDraggable = () => {
 <<set $prevpass to "chapterTitle1">>
 <<set $pass to "wordsLeft1">>
 <<set $nextpass to "ger2-1">>
-/* <<audio "wordeat" play loop>> */
+<<audio "wordeat" play loop>>
 <main>
     
   <div class="eating-container">
@@ -1338,7 +1377,7 @@ setup.boatMultiDraggable = () => {
 <</done>>
 
 <<timed 10s>>
-  <<goto $nextpass>>
+  /* <<goto $nextpass>> */
   <</timed>>
 
 
@@ -1742,7 +1781,7 @@ $correctans
 <<set $prevpass to "ger3-1">>
 <<set $pass to "wordsAdded1">>
 <<set $nextpass to "ger3-2">>
-<<audio "wordeat" play loop>>
+
 <main>
     
   <div class="eating-container">
@@ -2171,7 +2210,7 @@ $correctans
 <<set $pass to "mapInstructions">>
 <<set $nextpass to "ger5-1">>
 <<addclass "body" "light">>
-
+<<audio "LQintensity1" play loop>>
 <<set $currentInstructionIndex = 0>>
 
 <<set $instructions = {
@@ -2180,7 +2219,7 @@ $correctans
   },
     1: { text: "Face the vending machines <br/>
 Don’t turn around – I need to work out where the Book Monster is.  <br/>
-We can’t see it – but trust me – we want to avoid it. )
+We can’t see it – but trust me – we want to avoid it.
 ", coords: "one"},
     2: { text: "Take 2 steps backwards and turn right (you should be facing the double doors). Don’t turn around. ", coords: "two" },
  3: { text: "Walk backwards down the central aisle.", coords: "three" }, 
@@ -2221,7 +2260,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 	</div>
    <div class="instruction" id="instruction">
  
-    <p>
+    <p >
     /* <<print $currentInstructionIndex>>. */
     <<print $instructions[$currentInstructionIndex].text>></p>
     
@@ -2433,8 +2472,9 @@ We need to go a different route. Re-routing.", coords: "three" },
       <<set $codeword to $codeword.toUpperCase()>>
       
       /% CODEWORD CORRECT %/
-      <<if $codeword != "" and $codeword == "ENTRANCE">>
+      <<if $codeword != "" and ($codeword is "ENTRANCE" or $codeword is "ENTRANCE ")>>
         <<replace "#coderesult">><span>CORRECT</span><</replace>>
+        <<audio ":all" stop>>
         <<audio "correct" play>>
 
         <<timed 3s>><<goto $nextpass>><</timed>>
@@ -2461,7 +2501,7 @@ We need to go a different route. Re-routing.", coords: "three" },
   <<replace "#instruction">>
    <h3>Instruction</h3>
 
-    <p><<print $instructions[$currentInstructionIndex].text>></p>
+    <p class="message"><<print $instructions[$currentInstructionIndex].text>></p>
   <</replace>>
   <</timed>>
  <<timed 3s>>
@@ -2475,7 +2515,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "mapInstructions">>
 <<set $pass to "ger5-1">>
 <<set $nextpass to "wordsAdded2">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger5-1-messages [nobr]
@@ -3502,7 +3542,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "ger9-2">>
 <<set $pass to "wordsAdded4b">>
 <<set $nextpass to "ger10-1">>
-<<audio "wordeat" play loop>>
+
 <main class="main-words added">
    <div class="wordLeft-container">
       <div class="wordLeft word">Elephant</div>
@@ -3648,7 +3688,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>It is in Chatham as a mural. </p>
+        <p>The story is in Chatham as a mural. </p>
        </div>
     <</append>>
 <</timed>>
@@ -3768,13 +3808,13 @@ We need to go a different route. Re-routing.", coords: "three" },
    /% STANDARDISE INPUT %/
        <<set _password to _password.toUpperCase()>>
      /% CODEWORD CORRECT %/
-       <<if _password isnot "" and (_password is "NEWNHAM STREET" or _password is "NEWNHAM")>>
+       <<if _password isnot "" and (_password is "NEWNHAM STREET" or _password is "NEWNHAM" or _password is "NEWNHAM " or _password is "NEWNHAM STREET ")>>
             <<audio "correct" play>>
        <<replace "#elecoderesult">><h2 class="">Correct!</h2><</replace>>
        <<timed 3s>><<goto $nextpass>><</timed>>
       <</if>>
         /% CODEWORD INCORRECT %/
-     <<if _password isnot "" and (_password isnot "NEWNHAM STREET" and _password isnot "NEWNHAM")>>
+     <<if _password isnot "" and (_password isnot "NEWNHAM STREET" and _password isnot "NEWNHAM" or _password isnot "NEWNHAM " or _password isnot "NEWNHAM STREET ")>>
         <<audio "error" play>>
         <<replace "#elecoderesult">><h2>That's not right.</h2><</replace>>
       <<timed 1.5s>><<replace "#elecoderesult">><</replace>><</timed>>
@@ -4856,13 +4896,25 @@ We need to go a different route. Re-routing.", coords: "three" },
           <</replace>>
     <</timed>>
 
+:: headerbegone [nobr]
+<header class="intro">
+  <div class="logo-wrapper black">
+  <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+  <div class="octo-title-wrapper">
+    <h2 class="octo-title">OCTOPUS</h2>
+    <span>Rooter</span>
+  </div>
+</header>
+
 :: begone [nobr]
 <<set $prevpass to "ger15-1">>
 <<set $pass to "begone">>
 <<set $nextpass to "begone">>
 <<addclass "body" "green">>
+<<include "headerbegone">>
 <main class="begone">
-  <div class="motto-container"><span class="octo-title">BE GONE GOOGLY MOOGLY</span></div>
+  <div class="motto-container"><span class="octo-title"> Head back to the library and ask for the OCTOPUS LEDGER</span></div>
   <br/>
   <div id="mount"></div>
 </main>
@@ -4870,7 +4922,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 <<timed 5s>>
   <<replace "#mount">>
-    <b>Head back to the library and ask for the OCTOPUS LEDGER</b>
+
     <</replace>>
   <</timed>>
 

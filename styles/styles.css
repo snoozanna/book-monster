@@ -225,6 +225,7 @@ footer{
 h1, h2, h3{
   font-family: var(--font-headings);
   font-weight: 600;
+  /* color:white; */
 }
 
 h1{
@@ -423,6 +424,7 @@ input[type="text"]:focus{
 .eating-container > p > .eaten {
   color: rgba(0, 0, 0, 0);  /* Hide devoured words */
   transition: color 0.5s ease-out;
+  font-size: 0.2em;
 }
 
 .eating-container > p > .keep.remaining{
@@ -936,13 +938,6 @@ justify-content: center;
   line-height: 10rem;
 }
 
-.motto-container {
-  text-align: center;
-}
-
-.motto-container > span{
-  font-size: 7rem;
-}
 
 
 /* TALKING  & MESSAGE */
@@ -1010,7 +1005,8 @@ main.talking{
   /* margin-block-end: 15rem; */
 }
 
-#msgMount > .message{
+#msgMount > .message, 
+.message{
   background-color: var(--color-two);
   color:black;
   width: fit-content;
@@ -1489,13 +1485,21 @@ header.intro > .logo-wrapper{
 #loadingLogo > img{
   margin-block-end: 2rem;
 }
-main.upload{
+main.upload, main.loading{
   width: 100%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    justify-content:center;
+    gap:2rem;
+}
+
+/* LOADING  */
+
+main.loading > .logo-wrapper{
+  max-width: 80%;
 }
 
 /* ALARM  */
@@ -1539,10 +1543,21 @@ body.alarm{
 }
 
 /* BE GONE  */
+.logo-wrapper.black > img{
+  filter: invert(1);
+}
 main.begone{
   display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.motto-container {
+  text-align: center;
+}
+
+.motto-container > span.octo-title{
+  font-size: 3rem;
 }
