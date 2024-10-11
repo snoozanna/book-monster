@@ -94,7 +94,7 @@ setup.quickEatWords = () => {
         devourableWords.splice(randomIndex, 1);  // Remove the devoured word from the list
 
         // Continue devouring until all devourable words are eaten
-        setTimeout(devourRandomWord, 50);
+        setTimeout(devourRandomWord, 100);
       }
     } else {
       // Once all devourable words are eaten, add "remaining" class to "keep" spans
@@ -224,11 +224,13 @@ setup.handleFileUpload = () => {
     const cloudinaryURL = 'https://api.cloudinary.com/v1_1/dzutg2kf2/image/upload';
     const errorMount = document.getElementById("error");
     const successMount = document.getElementById("success");
+     const instructions = document.getElementById("uploadInstructions");
     const logo = document.getElementById("loadingLogo"); // Get the logo element
 
     // Show the rotating logo when the upload starts
     logo.style.display = "block";
-    errorMount.innerText = "Image uploading...";
+   instructions.style.display = "none";
+    // errorMount.innerText = "Image uploading...";
 
     const formData = new FormData();
     formData.append('file', file);
@@ -251,7 +253,7 @@ setup.handleFileUpload = () => {
       errorMount.innerText = "Image upload failed.";
     } finally {
       // Hide the rotating logo after the upload finishes
-      logo.style.display = "none";
+      // logo.style.display = "none";
       successMount.style.display = "none";
       setTimeout(() => {
       Engine.play("ger7-1");
@@ -275,6 +277,7 @@ setup.boatMultiDraggable = () => {
   console.log("boatMultiDraggable running");
 
   const messageContainer = document.getElementById("message");
+  const audioMount = document.getElementById("audio");
 
   // Get device width and height
   const deviceWidth = window.innerWidth;
@@ -368,6 +371,7 @@ setup.boatMultiDraggable = () => {
       ) {
         elem.classList.add('win');
         updateCompletion(name, true);
+         playSound();
         console.log(`win ${name}!`, completed);
       } else {
         elem.classList.remove('win');
@@ -415,6 +419,11 @@ setup.boatMultiDraggable = () => {
     }
   };
 
+  const playSound = () => {
+     const audio = new Audio('assets/sound/Correct1.mp3');
+    audio.play(); 
+  }
+
   // Initialize draggable elements
   elements.forEach(({ id, targetArea, name }) => makeDraggable(id, name, targetArea));
 };
@@ -429,6 +438,7 @@ setup.boatMultiDraggable = () => {
 <<cacheaudio "correct2" "../assets/sound/correct2.mp3">>
 <<cacheaudio "error" "../assets/sound/error1.mp3">>
 <<cacheaudio "LQintensity1" "../assets/sound/LQintensity1.mp3">>
+<<cacheaudio "LQintensity3" "../assets/sound/LQintensity3.mp3">>
 <<cacheaudio "30s" "../assets/sound/30secEle.mp3">>
 <<cacheaudio "loading" "../assets/sound/loading.mp3">>
 <<cacheaudio "monster1" "../assets/sound/monster1.mp3">>
@@ -440,6 +450,7 @@ setup.boatMultiDraggable = () => {
 <<cacheaudio "rooting" "../assets/sound/signalprocess3.mp3">>
 <<cacheaudio "wordeat" "../assets/sound/WordEating.mp3">>
 <<cacheaudio "siren" "../assets/sound/siren.mp3">>
+<<cacheaudio "ritual" "../assets/sound/ritual.mp3">>
 <<set $currentChapter to 1>>
 
 :: findChapTitle [nobr]
@@ -466,9 +477,9 @@ setup.boatMultiDraggable = () => {
     <<button "Back">>
         <<goto $prevpass>>
     <</button>>
-    <<button "Next">>
+    /* <<button "Next">>
         <<goto $nextpass>>
-    <</button>>
+    <</button>> */
     <div id="nextButtonContainer">
      </div>
 </footer>
@@ -1322,18 +1333,30 @@ setup.boatMultiDraggable = () => {
           <</replace>>
     <</timed>>
 
+:: headerchap [nobr]
+<header class="intro">
+  <div class="logo-wrapper black ">
+  <img src="/assets/img/logo.png" alt="logo"/>
+  </div>
+  <div class="octo-title-wrapper">
+    <h2 class="octo-title">OCTOPUS</h2>
+    /* <span>Rooter</span> */
+  </div>
+</header>
+
 :: _chapterTitleTemplate [nobr]
 <<addclass "body" "grey">>
 <<include "findChapTitle">>
 <<timed 0.1s>>
-<main class="chapter-title">
-<h2>Chapter $currentChapter</h2>
-<div class="logo-wrapper chapter-img-wrapper">
+  <<include "headerchap">>
+<main class="chapter-title ">
+<div class="chapter-img-wrapper">
 <img id="chapterImage" sc-eval:src="'/assets/img/chapter' + [$currentChapter] + '.png'"  alt="Chapter Image"/>
 </div>
-<div class="chapter-title-wrapper">
+<h2 class="">Chapter $currentChapter</h2>
 
-<h3>$chapters[$currentChapter]</h3></div>
+<div class="chapter-title-wrapper">
+<h3 class="">$chapters[$currentChapter]</h3></div>
 </main>
 <</timed>>
 <<timed 5s>>
@@ -1958,7 +1981,7 @@ $correctans
 :: bookrooting [nobr]
 <<audio "rooting" play>>
 <main class="rooting">
-  <div class="book-wrapper">
+  <div class="book-wrapper wobble-animation">
   <img src="/assets/img/bookflat.png" alt="open book"/>
   </div>
   <div id="mount"></div>
@@ -1969,7 +1992,7 @@ $correctans
 <</timed>>
 </main>
 
-  <<timed 4s>>
+  <<timed 6s>>
   
           <<goto $nextpass>>
     
@@ -2134,7 +2157,7 @@ $correctans
   <</timed>>
 
 <<timed 11s>>
-  /* <<goto $nextpass>> */
+  <<goto $nextpass>>
   <</timed>>
 
 :: ger4-1 [nobr]
@@ -2706,9 +2729,9 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 
 
-/* <<timed 10s>>
+<<timed 10s>>
   <<goto $nextpass>>
-  <</timed>> */
+  <</timed>>
 
 
 :: ger6-1 [nobr]
@@ -2913,9 +2936,10 @@ We need to go a different route. Re-routing.", coords: "three" },
 <main class="main-section upload">
 
 <br>
-<h3>Find a spot out to the river</h3>
-<br>
-<h3>Upload an image of something interesting </h3>
+<div id="uploadInstructions">
+  <h3>Find a spot out to the river</h3>
+  <h3>Upload an image of something interesting </h3>
+</div>
 
 <br/>
 <div class="logo-wrapper" id="loadingLogo">
@@ -3012,7 +3036,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $nextpass to "ger8-1">>
 <<audio "rooting" play>>
 <main class="rooting">
-  <div class="book-wrapper">
+  <div class="book-wrapper wobble-animation">
   <img src="/assets/img/open-book.png" alt="open book"/>
   </div>
   <div id="mount"></div>
@@ -3023,7 +3047,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 </main>
 
-  <<timed 4s>>
+  <<timed 8s>>
   
           <<goto $nextpass>>
     
@@ -3551,7 +3575,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $pass to "wordsLeft5">>
 <<set $nextpass to "ger12-1">>
 <<audio ":all" stop>>
-<<audio "wordeat" play>>
+<<audio "wordeat" play loop>>
 <main class="main-words">
   <div class="eating-container">
    <p>
@@ -3588,13 +3612,13 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $move to setup.quickEatWords()>>
 <</done>>
 
-<<timed 10s>>
-  <<addclass "main" "flashing-effect">>
+<<timed 8s>>
+  <<addclass "body" "flashing-effect">>
   <<audio ":all" stop>>
-<<audio "siren" "play">>
+<<audio "siren" play loop>>
   <</timed>>
 
-<<timed 18s>>
+<<timed 16s>>
   <<goto $nextpass>>
   <</timed>>
 
@@ -3615,6 +3639,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $pass to "ger12-1">>
 <<set $nextpass to "minesChallenge">>
 <<audio ":all" stop>>
+<<audio "LQintensity3" play loop>>
 <<timed 0.1s>>
 <<addclass "header" "alarm">>
 <<addclass "body" "alarm">>
@@ -3958,7 +3983,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "minesChallenge">>
 <<set $pass to "ger13-1">>
 <<set $nextpass to "wordsAdded5">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger13-1-messages [nobr]
@@ -4151,7 +4176,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "ger14-2">>
 <<set $pass to "ger14-3">>
 <<set $nextpass to "ger14-4">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 
@@ -4226,7 +4251,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $prevpass to "ger14-3">>
 <<set $pass to "ger14-4">>
 <<set $nextpass to "dragIntoBook">>
-
+<<audio "ritual" play loop>>
 <<include "_templateGeraldine">>
 
 
@@ -4364,12 +4389,22 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $s to setup.boatMultiDraggable()>><</done>>
 
 
+:: footerdrag[nobr]
+<footer>
+    <<button "Back">>
+        <<goto $prevpass>>
+    <</button>>
+    
+    <div id="audio">
+     </div>
+</footer>
+
 :: ger15-1 [nobr]
 
 <<set $prevpass to "dragIntoBook">>
 <<set $pass to "ger15-1">>
 <<set $nextpass to "begone">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: ger15-1-messages [nobr]
