@@ -4042,7 +4042,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 </main>
 
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
   <<set $still to setup.restoreWords()>>
