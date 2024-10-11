@@ -16,8 +16,7 @@ The Book Monster
 :: Story Stylesheet [stylesheet]
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&family=Sora:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 @import url("styles/generics.css");
 @import url("styles/styles.css");
@@ -474,6 +473,25 @@ setup.boatMultiDraggable = () => {
      </div>
 </footer>
 
+:: footerwords[nobr]
+<footer class="words">
+    <<button "Back">>
+        <<goto $prevpass>>
+    <</button>>
+
+    <div id="nextButtonContainer">
+     </div>
+</footer>
+
+<<timed 4s>>
+  <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+  <</timed>>
+
+
 :: footerger[nobr]
 <footer class="geraldine">
     <<button "Back">>
@@ -632,7 +650,7 @@ setup.boatMultiDraggable = () => {
 <<include "headerintro">>
 <main class="connecting">
   <div class="book-wrapper" id="wrapper">
-  <img src="/assets/img/open-book.png" alt="open book"/>
+  <img src="/assets/img/bookflat.png" alt="open book"/>
   </div>
   <div id="mount"></div>
   <<timed 0.1s>>
@@ -1339,6 +1357,7 @@ setup.boatMultiDraggable = () => {
 <main>
     
   <div class="eating-container">
+
     <p>
       <span class="keep">Women</span> <span>were</span> <span>some</span> <span>of</span> <span>the</span> <span>hidden</span> <span>heroines</span> <span>of</span> <span>the</span> <span>Navy</span>
     </p>
@@ -1369,7 +1388,7 @@ setup.boatMultiDraggable = () => {
 
 </main>
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
 /* <<set $move to setup.moveWords()>> */
@@ -1377,7 +1396,7 @@ setup.boatMultiDraggable = () => {
 <</done>>
 
 <<timed 10s>>
-  /* <<goto $nextpass>> */
+  <<goto $nextpass>>
   <</timed>>
 
 
@@ -1808,20 +1827,21 @@ $correctans
 </p>
 <p>
   <span class="eaten">She</span> <span class="eaten">stayed</span> <span class="eaten">in</span> <span class="keep remaining">disguise</span> <span class="eaten">for</span> <span class="eaten">many</span> <span class="eaten">years</span> <span class="eaten">until</span> <span class="eaten">her</span> <span class="eaten">identity</span> <span class="eaten">was</span> <span class="eaten">revealed</span> <span class="eaten">and</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">discharged</span><span class="eaten">.</span>
+  <br/><br/>
 </p>
-
+<br/><br/>
   </div>
 
 
 </main>
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
   <<set $still to setup.restoreWords()>>
 <</done>>
 <<timed 15s>>
-  <<goto $nextpass>>
+  /* <<goto $nextpass>> */
   <</timed>>
 
 
@@ -1939,7 +1959,7 @@ $correctans
 <<audio "rooting" play>>
 <main class="rooting">
   <div class="book-wrapper">
-  <img src="/assets/img/open-book.png" alt="open book"/>
+  <img src="/assets/img/bookflat.png" alt="open book"/>
   </div>
   <div id="mount"></div>
   <<timed 0.3s>>
@@ -2087,60 +2107,25 @@ $correctans
 <<set $pass to "wordsLeft2">>
 <<set $nextpass to "ger4-1">>
     <<audio "wordeat" "play" loop>>
-<main class="main-words">
-
-    <main>
-    <div class="wordLeft-container">
-      <div class="wordLeft word">Wombwell's Travelling Menagerie</div>
-       <div class="wordLeft word">Tiger</div>
-       <div class="wordLeft word">Cage</div>
-    </div>
-   <div class="words">
-    <div class="wordDisappear word">In</div>
-    <div class="wordDisappear word">1850</div>
-    <div class="wordDisappear word">17-year-old</div>
-    <div class="wordDisappear word">Ellen</div>
-    <div class="wordDisappear word">Bright</div>
-    <div class="wordDisappear word">who</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">dubbed</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">Lion</div>
-    <div class="wordDisappear word">Queen</div>
-    <div class="wordDisappear word">died</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">Chatham</div>
-    <div class="wordDisappear word">during</div>
-    <div class="wordDisappear word">her</div>
-    <div class="wordDisappear word">act</div>
-    <div class="wordDisappear word">with</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">Lion</div>
-    <div class="wordDisappear word">.</div>
-    <div class="wordDisappear word">She</div>
-    <div class="wordDisappear word">tamed</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">Lion</div>
-    <div class="wordDisappear word">but</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">attacked</div>
-    <div class="wordDisappear word">by</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">Tiger</div>
-    <div class="wordDisappear word">who</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">also</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">cage</div>
+ <main>
+     <div class="eating-container">
+   <p>
+  <span>In</span> <span>1850,</span> <span>17-year-old</span> <span>Ellen</span> <span>Bright</span> <span>who</span> <span>was</span> <span>dubbed</span> <span>the</span> <span>Lion</span> <span>Queen</span> <span>died</span> <span>in</span> <span>Chatham</span> <span>during</span> <span>her</span> <span>act</span> <span>with</span> <span>a</span> <span>Lion.</span>
+</p>
+<p>
+  <span>She</span> <span>tamed</span> <span>the</span> <span>Lion</span> <span>but</span> <span>was</span> <span>attacked</span> <span>by</span> <span>a</span> <span class="keep">Tiger</span> <span>who</span> <span>was</span> <span>also</span> <span>in</span> <span>the</span> <span class="keep">cage</span>
+</p>
+<p>
+  <span>Her</span> <span>final</span> <span>performance</span> <span>was</span> <span>part</span> <span>of</span> <span class="keep">‘Wombwell’s</span> <span class="keep">Travelling</span> <span class="keep">Menagerie’</span> <span>which</span> <span>toured</span> <span>the</span> <span>country</span> <span>exhibiting</span> <span>elephants,</span> <span>giraffes,</span> <span>tigers,</span> <span>panthers,</span> <span>lions,</span> <span>a</span> <span>gorilla,</span> <span>and</span> <span>a</span> <span>kangaroo.</span>
+</p>
 </div>
 
 </main>
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
-<<set $move to setup.moveWords()>>
+<<set $move to setup.quickEatWords()>>
 <</done>>
 
 <<timed 7s>>
@@ -2149,7 +2134,7 @@ $correctans
   <</timed>>
 
 <<timed 11s>>
-  <<goto $nextpass>>
+  /* <<goto $nextpass>> */
   <</timed>>
 
 :: ger4-1 [nobr]
@@ -2580,89 +2565,26 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $nextpass to "ger5-2">>
 
 <main class="main-words added">
-  <div class="words">
-    <div class="wordDisappear word">In</div>
-    <div class="wordDisappear word">1850</div>
-    <div class="wordDisappear word">17-year-old</div>
-    <div class="wordDisappear word">Ellen</div>
-    <div class="wordDisappear word">Bright</div>
-    <div class="wordDisappear word">who</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">dubbed</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">Lion</div>
-    <div class="wordDisappear word">Queen</div>
-    <div class="wordDisappear word">died</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">Chatham</div>
-    <div class="wordDisappear word">during</div>
-    <div class="wordDisappear word">her</div>
-    <div class="wordDisappear word">act</div>
-    <div class="wordDisappear word">with</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">Lion</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">She</div>
-    <div class="wordDisappear word">tamed</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">Lion</div>
-    <div class="wordDisappear word">but</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">attacked</div>
-    <div class="wordDisappear word">by</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">Tiger</div>
-    <div class="wordDisappear word">who</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">also</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">cage</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">Her</div>
-    <div class="wordDisappear word">final</div>
-    <div class="wordDisappear word">performance</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">part</div>
-    <div class="wordDisappear word">of</div>
-    <div class="wordDisappear word">‘Wombwell’s</div>
-    <div class="wordDisappear word">Travelling</div>
-    <div class="wordDisappear word">Menagerie’</div>
-    <div class="wordDisappear word">which</div>
-    <div class="wordDisappear word">toured</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">country</div>
-    <div class="wordDisappear word">exhibiting</div>
-    <div class="wordDisappear word">elephants</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">giraffes</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">tigers</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">panthers</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">lions</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">gorilla</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">and</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">kangaroo</div>
-    <div class="wordDisappear word">.</div>
+ <div class="eating-container">
+   <p>
+  <span class="eaten">In</span> <span class="eaten">1850,</span> <span class="eaten">17-year-old</span> <span class="eaten">Ellen</span> <span class="eaten">Bright</span> <span class="eaten">who</span> <span class="eaten">was</span> <span class="eaten">dubbed</span> <span class="eaten">the</span> <span class="eaten">Lion</span> <span class="eaten">Queen</span> <span class="eaten">died</span> <span class="eaten">in</span> <span class="eaten">Chatham</span> <span class="eaten">during</span> <span class="eaten">her</span> <span class="eaten">act</span> <span class="eaten">with</span> <span class="eaten">a</span> <span class="eaten">Lion.</span>
+</p>
+<p>
+  <span class="eaten">She</span> <span class="eaten">tamed</span> <span class="eaten">the</span> <span class="eaten">Lion</span> <span class="eaten">but</span> <span class="eaten">was</span> <span class="eaten">attacked</span> <span class="eaten">by</span> <span class="eaten">a</span> <span class="keep remaining">Tiger</span> <span class="eaten">who</span> <span class="eaten">was</span> <span class="eaten">also</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="keep remaining">cage</span>
+</p>
+<p>
+  <span class="eaten">Her</span> <span class="eaten">final</span> <span class="eaten">performance</span> <span class="eaten">was</span> <span class="eaten">part</span> <span class="eaten">of</span> <span class="keep remaining">‘Wombwell’s</span> <span class="keep remaining">Travelling</span> <span class="keep remaining">Menagerie’</span> <span class="eaten">which</span> <span class="eaten">toured</span> <span class="eaten">the</span> <span class="eaten">country</span> <span class="eaten">exhibiting</span> <span class="eaten">elephants,</span> <span class="eaten">giraffes,</span> <span class="eaten">tigers,</span> <span class="eaten">panthers,</span> <span class="eaten">lions,</span> <span class="eaten">a</span> <span class="eaten">gorilla,</span> <span class="eaten">and</span> <span class="eaten">a</span> <span class="eaten">kangaroo.</span>
+</p>
 </div>
 
 </main>
 
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
-  <<set $still to setup.stillWords()>>
+  <<set $still to setup.restoreWords()>>
 <</done>>
-<<timed 45s>>
-  <<goto $nextpass>>
-  <</timed>>
 
 
 :: ger5-2 [nobr]
@@ -2758,98 +2680,35 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $pass to "wordsLeft3">>
 <<set $nextpass to "ger6-1">>
 <<audio "wordeat" play loop>>
-<main class="main-words">
 
 <main>
-    <div class="wordLeft-container">
-      <div class="wordLeft word">River Medway</div>
-       <div class="wordLeft word">Mysterious</div>
-       <div class="wordLeft word">Spotted</div>
-    </div>
-  <div class="words">
-    <div class="wordDisappear word">It</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">1949</div>
-    <div class="wordDisappear word">-</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">narwhal</div>
-    <div class="wordDisappear word">-</div>
-    <div class="wordDisappear word">considered</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">‘Sea</div>
-    <div class="wordDisappear word">Unicorn’</div>
-    <div class="wordDisappear word">because</div>
-    <div class="wordDisappear word">of</div>
-    <div class="wordDisappear word">its</div>
-    <div class="wordDisappear word">long</div>
-    <div class="wordDisappear word">tusk</div>
-    <div class="wordDisappear word">-</div>
-    <div class="wordDisappear word">washed</div>
-    <div class="wordDisappear word">up</div>
-    <div class="wordDisappear word">along</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">river.</div>
-    <div class="wordDisappear word">Many</div>
-    <div class="wordDisappear word">myths</div>
-    <div class="wordDisappear word">and</div>
-    <div class="wordDisappear word">legends</div>
-    <div class="wordDisappear word">are</div>
-    <div class="wordDisappear word">based</div>
-    <div class="wordDisappear word">on</div>
-    <div class="wordDisappear word">misunderstood</div>
-    <div class="wordDisappear word">sightings</div>
-    <div class="wordDisappear word">of</div>
-    <div class="wordDisappear word">real</div>
-    <div class="wordDisappear word">creatures.</div>
-    <div class="wordDisappear word">But</div>
-    <div class="wordDisappear word">they</div>
-    <div class="wordDisappear word">normally</div>
-    <div class="wordDisappear word">are</div>
-    <div class="wordDisappear word">found</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">arctic</div>
-    <div class="wordDisappear word">-</div>
-    <div class="wordDisappear word">so</div>
-    <div class="wordDisappear word">finding</div>
-    <div class="wordDisappear word">one</div>
-    <div class="wordDisappear word">here</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">incredibly</div>
-    <div class="wordDisappear word">rare.</div>
-    <div class="wordDisappear word">It</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">so</div>
-    <div class="wordDisappear word">rare</div>
-    <div class="wordDisappear word">that</div>
-    <div class="wordDisappear word">it</div>
-    <div class="wordDisappear word">is</div>
-    <div class="wordDisappear word">now</div>
-    <div class="wordDisappear word">documented</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">Natural</div>
-    <div class="wordDisappear word">History</div>
-    <div class="wordDisappear word">Museum</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">London.</div>
+<div class="eating-container">
+   <p>
+  <span>It</span> <span>was</span> <span>in</span> <span>1949</span> <span>-</span> <span>a</span> <span>narwhal</span> <span>-</span> <span>considered</span> <span>a</span> <span>‘Sea</span> <span>Unicorn’</span> <span>because</span> <span>of</span> <span>its</span> <span>long</span> <span>tusk</span> <span>-</span> <span>washed</span> <span>up</span> <span>along</span> <span>the</span> <span class="keep">River Medway</span>
+</p>
+<p>
+  <span>Many</span> <span>myths</span> <span>and</span> <span>legends</span> <span>are</span> <span>based</span> <span>on</span> <span>misunderstood</span> <span>sightings</span> <span>of</span> <span>real</span> <span class="keep">creatures</span>
+</p>
+<p>
+  <span>But</span> <span>they</span> <span>normally</span> <span>are</span> <span>found</span> <span>in</span> <span>the</span> <span class="keep">arctic</span> <span>-</span> <span>so</span> <span>finding</span> <span>one</span> <span>here</span> <span>was</span> <span>incredibly</span> <span>rare.</span>
+</p>
+<p>
+  <span>It</span> <span>was</span> <span>so</span> <span>rare</span> <span>that</span> <span>it</span> <span>is</span> <span>now</span> <span>documented</span> <span>in</span> <span>the</span> <span>Natural</span> <span>History</span> <span>Museum</span> <span>in</span> <span>London.</span>
+</p>
 </div>
-
-
 </main>
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
-<<set $move to setup.moveWords()>>
+<<set $move to setup.quickEatWords()>>
 <</done>>
 
 
 
-<<timed 10s>>
+/* <<timed 10s>>
   <<goto $nextpass>>
-  <</timed>>
+  <</timed>> */
 
 
 :: ger6-1 [nobr]
@@ -3117,81 +2976,22 @@ We need to go a different route. Re-routing.", coords: "three" },
 /* NARWAL  */
 <<set $prevpass to "ger7-1">>
 <<set $pass to "wordsAdded3a">>
-<<set $nextpass to "ger8-1">>
+<<set $nextpass to "bookrooting3">>
 
 <main class="main-words added">
-  <div class="words">
-    <div class="wordDisappear word">It</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">1949</div>
-    <div class="wordDisappear word">-</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">narwhal</div>
-    <div class="wordDisappear word">-</div>
-    <div class="wordDisappear word">considered</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">‘Sea</div>
-    <div class="wordDisappear word">Unicorn’</div>
-    <div class="wordDisappear word">because</div>
-    <div class="wordDisappear word">of</div>
-    <div class="wordDisappear word">its</div>
-    <div class="wordDisappear word">long</div>
-    <div class="wordDisappear word">tusk</div>
-    <div class="wordDisappear word">-</div>
-    <div class="wordDisappear word">washed</div>
-    <div class="wordDisappear word">up</div>
-    <div class="wordDisappear word">along</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">river</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">Many</div>
-    <div class="wordDisappear word">myths</div>
-    <div class="wordDisappear word">and</div>
-    <div class="wordDisappear word">legends</div>
-    <div class="wordDisappear word">are</div>
-    <div class="wordDisappear word">based</div>
-    <div class="wordDisappear word">on</div>
-    <div class="wordDisappear word">misunderstood</div>
-    <div class="wordDisappear word">sightings</div>
-    <div class="wordDisappear word">of</div>
-    <div class="wordDisappear word">real</div>
-    <div class="wordDisappear word">creatures</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">But</div>
-    <div class="wordDisappear word">they</div>
-    <div class="wordDisappear word">normally</div>
-    <div class="wordDisappear word">are</div>
-    <div class="wordDisappear word">found</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">arctic</div>
-    <div class="wordDisappear word">-</div>
-    <div class="wordDisappear word">so</div>
-    <div class="wordDisappear word">finding</div>
-    <div class="wordDisappear word">one</div>
-    <div class="wordDisappear word">here</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">incredibly</div>
-    <div class="wordDisappear word">rare</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">It</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">so</div>
-    <div class="wordDisappear word">rare</div>
-    <div class="wordDisappear word">that</div>
-    <div class="wordDisappear word">it</div>
-    <div class="wordDisappear word">is</div>
-    <div class="wordDisappear word">now</div>
-    <div class="wordDisappear word">documented</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">Natural</div>
-    <div class="wordDisappear word">History</div>
-    <div class="wordDisappear word">Museum</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">London</div>
-    <div class="wordDisappear word">.</div>
+ <div class="eating-container">
+   <p>
+  <span class="eaten">It</span> <span class="eaten">was</span> <span class="eaten">in</span> <span class="eaten">1949</span> <span class="eaten">-</span> <span class="eaten">a</span> <span class="eaten">narwhal</span> <span class="eaten">-</span> <span class="eaten">considered</span> <span class="eaten">a</span> <span class="eaten">‘Sea</span> <span class="eaten">Unicorn’</span> <span class="eaten">because</span> <span class="eaten">of</span> <span class="eaten">its</span> <span class="eaten">long</span> <span class="eaten">tusk</span> <span class="eaten">-</span> <span class="eaten">washed</span> <span class="eaten">up</span> <span class="eaten">along</span> <span class="eaten">the</span> <span class="keep remaining">River Medway</span>
+</p>
+<p>
+  <span class="eaten">Many</span> <span class="eaten">myths</span> <span class="eaten">and</span> <span class="eaten">legends</span> <span class="eaten">are</span> <span class="eaten">based</span> <span class="eaten">on</span> <span class="eaten">misunderstood</span> <span class="eaten">sightings</span> <span class="eaten">of</span> <span class="eaten">real</span> <span class="keep remaining">creatures</span>
+</p>
+<p>
+  <span class="eaten">But</span> <span class="eaten">they</span> <span class="eaten">normally</span> <span class="eaten">are</span> <span class="eaten">found</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="keep remaining">arctic</span> <span class="eaten">-</span> <span class="eaten">so</span> <span class="eaten">finding</span> <span class="eaten">one</span> <span class="eaten">here</span> <span class="eaten">was</span> <span class="eaten">incredibly</span> <span class="eaten">rare.</span>
+</p>
+<p>
+  <span class="eaten">It</span> <span class="eaten">was</span> <span class="eaten">so</span> <span class="eaten">rare</span> <span class="eaten">that</span> <span class="eaten">it</span> <span class="eaten">is</span> <span class="eaten">now</span> <span class="eaten">documented</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">Natural</span> <span class="eaten">History</span> <span class="eaten">Museum</span> <span class="eaten">in</span> <span class="eaten">London.</span>
+</p>
 </div>
 
 
@@ -3200,14 +3000,36 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<include "footer">>
 
 <<done>>
-  <<set $still to setup.stillWords()>>
+  <<set $still to setup.restoreWords()>>
 <</done>>
-<<timed 35s>>
+/* <<timed 35s>>
   <<goto "bookrooting">>
-  <</timed>>
+  <</timed>> */
 
+:: bookrooting3 [nobr]
+<<set $prevpass to "wordsAdded3a">>
+<<set $pass to "bookrooting3">>
+<<set $nextpass to "ger8-1">>
+<<audio "rooting" play>>
+<main class="rooting">
+  <div class="book-wrapper">
+  <img src="/assets/img/open-book.png" alt="open book"/>
+  </div>
+  <div id="mount"></div>
+  <<timed 0.3s>>
+  <<replace "#mount">>
+<h2 class="octo-title">Book Rooting...</h2>
+  <</replace>>
+<</timed>>
+</main>
+
+  <<timed 4s>>
+  
+          <<goto $nextpass>>
+    
+    <</timed>>
 :: ger8-1 [nobr]
-<<set $prevpass to "ger7-1">>
+<<set $prevpass to "bookrooting3">>
 <<set $pass to "ger8-1">>
 <<set $nextpass to "ger8-2">>
 
@@ -3301,103 +3123,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<include "_chapterTitleTemplate">>
 <<include "footerger">>
 
-:: ger9-1 [nobr]
-/* SPARE IN CASE THIS IS SUPPOSED TO BE GERALDINE */
-<<set $prevpass to "chapterTitle4">>
-<<set $pass to "ger9-1">>
-<<set $nextpass to "ger9-2">>
 
-<<include "_templateGeraldine">>
-
-:: ger9-1-messages [nobr]
-<<timed 0.1s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-          <p>Deep below the ground, there are mysteries to be found. Big ones.</p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 3s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>In 1913, a prehistoric elephant skeleton was found in Upnor.</p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 6s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>It weighed 10 tonnes, which is the same as the weight of the Big Ben Bell.</p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 9s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>It was HUGE.</p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 12s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>And it used to roam here.</p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 15s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>They think around 130,000 and 40,000 years ago.</p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 18s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>The skeleton was discovered by Sydney Turner and he became famous because of the find.</p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 21s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>Here’s his picture.</p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 23s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message-img-wrapper">
-        <img id="book-image" src="assets/img/sydney.png" alt="Sydney Turner">
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 25s>>
-    <<replace "#nextButtonContainer">>
-    <<button "Next">>
-        <<goto $nextpass>>
-    <</button>>
-    <</replace>>
-<</timed>>
 
 
 
@@ -3408,109 +3134,46 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $nextpass to "ger9-2">>
 
 <main class="main-words added">
-  <div class="words stationary">
-    <div class="word">Deep</div>
-    <div class=" word">below</div>
-    <div class=" word">the</div>
-    <div class=" word">ground</div>
-    <div class=" word">,</div>
-    <div class="word">there</div>
-    <div class="word">are</div>
-    <div class="word">mysteries</div>
-    <div class="word">to</div>
-    <div class="word">be</div>
-    <div class="word">found</div>
-    <div class="word">.</div><br/>
-    <div class="word">Big</div>
-    <div class="word">ones</div>
-    <div class="word">.</div><br/>
-    <div class="word">In</div>
-    <div class="word">1913</div>
-    <div class="word">,</div>
-    <div class="word">a</div>
-    <div class="word">prehistoric</div>
-    <div class="word">elephant</div>
-    <div class="word">skeleton</div>
-    <div class="word">was</div>
-    <div class="word">found</div>
-    <div class="word">in</div>
-    <div class="word">Upnor</div>
-    <div class="word">.</div><br/>
-    <div class="word">It</div>
-    <div class="word">weighed</div>
-    <div class="word">10</div>
-    <div class="word">tonnes</div>
-    <div class="word">,</div>
-    <div class="word">which</div>
-    <div class="word">is</div>
-    <div class="word">the</div>
-    <div class="word">same</div>
-    <div class="word">as</div>
-    <div class="word">the</div>
-    <div class="word">weight</div>
-    <div class="word">of</div>
-    <div class="word">the</div>
-    <div class="word">Big</div>
-    <div class="word">Ben</div>
-    <div class="word">Bell</div>
-    <div class="word">.</div><br/>
-    <div class="word">It</div>
-    <div class="word">was</div>
-    <div class="word">HUGE</div>
-    <div class="word">.</div><br/>
-    <div class="word">And</div>
-    <div class="word">it</div>
-    <div class="word">used</div>
-    <div class="word">to</div>
-    <div class="word">roam</div>
-    <div class="word">here</div>
-    <div class="word">.</div><br/>
-    <div class="word">They</div>
-    <div class="word">think</div>
-    <div class="word">around</div>
-    <div class="word">130,000</div>
-    <div class="word">and</div>
-    <div class="word">40,000</div>
-    <div class="word">years</div>
-    <div class="word">ago</div>
-    <div class="word">.</div><br/>
-    <div class="word">The</div>
-    <div class="word">skeleton</div>
-    <div class="word">was</div>
-    <div class="word">discovered</div>
-    <div class="word">by</div>
-    <div class="word">Sydney</div>
-    <div class="word">Turner</div>
-    <div class="word">and</div>
-    <div class="word">he</div>
-    <div class="word">became</div>
-    <div class="word">famous</div>
-    <div class="word">because</div>
-    <div class="word">of</div>
-    <div class="word">the</div>
-    <div class="word">find</div>
-    <div class="word">.</div><br/>
-    <div class="word">Here’s</div>
-    <div class="word">his</div>
-    <div class="word">picture</div>
-    <div class="word">.</div>
-     <div class="message-img-wrapper">
-        <img  src="assets/img/sydney.jpg" alt="Sydney Turner">
-       </div>
+  <div class="eating-container">
+  <p>
+  <span>Deep</span> <span>below</span> <span>the</span> <span>ground,</span> <span>there</span> <span>are</span> <span>mysteries</span> <span>to</span> <span>be</span> <span>found.</span> <span>Big</span> <span>ones.</span>
+</p>
+<p>
+  <span>In</span> <span>1913,</span> <span>a</span> <span>prehistoric</span> <span class="keep">elephant</span> <span>skeleton</span> <span>was</span> <span>found</span> <span>in</span> <span>Upnor.</span>
+</p>
+<p>
+  <span>It</span> <span>weighed</span> <span>10</span> <span>tonnes,</span> <span>which</span> <span>is</span> <span>the</span> <span>same</span> <span>as</span> <span>the</span> <span>weight</span> <span>of</span> <span>the</span> <span class="keep">Big</span> <span class="keep">Ben</span> <span class="keep">Bell.</span>
+</p>
+<p>
+  <span>It</span> <span>was</span> <span>HUGE</span>
+</p>
+<p>
+  <span>And</span> <span>it</span> <span>used</span> <span>to</span> <span>roam</span> <span>here</span>
+</p>
+<p>
+  <span>They</span> <span>think</span> <span>around</span> <span>130,000</span> <span>and</span> <span>40,000</span> <span>years</span> <span>ago.</span>
+</p>
+<p>
+  <span>The</span> <span class="keep">skeleton</span> <span>was</span> <span>discovered</span> <span>by</span> <span>Sydney</span>  <span>Turner</span> <span>and</span> <span>he</span> <span>became</span> <span>famous</span> <span>because</span> <span>of</span> <span>the</span> <span>find.</span>  
+</p>
+<p>
+<span>Here’s</span> <span>his</span> <span>picture.</span>
+</p> 
+<div class="message-img-wrapper">
+  <img  src="assets/img/sydney.jpg" alt="Sydney Turner"/>
 </div>
-
-
+</div>
 </main>
 
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
-  <<set $still to setup.stillWords()>>
+  <<set $still to setup.restoreWords()>>
 <</done>>
-<<timed 45s>>
+/* <<timed 45s>>
   <<goto $nextpass>>
-  <</timed>>
+  <</timed>> */
 
 :: ger9-2 [nobr]
 <<set $prevpass to "wordsAdded4a">>
@@ -3544,109 +3207,40 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $nextpass to "ger10-1">>
 
 <main class="main-words added">
-   <div class="wordLeft-container">
-      <div class="wordLeft word">Elephant</div>
-       <div class="wordLeft word">Big Ben Bell</div>
-       <div class="wordLeft word">Mural</div>
-    </div>
-  <div class="words">
-    <div class="wordDisappear word">Deep</div>
-    <div class="wordDisappear word">below</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">ground</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">there</div>
-    <div class="wordDisappear word">are</div>
-    <div class="wordDisappear word">mysteries</div>
-    <div class="wordDisappear word">to</div>
-    <div class="wordDisappear word">be</div>
-    <div class="wordDisappear word">found</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">Big</div>
-    <div class="wordDisappear word">ones</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">In</div>
-    <div class="wordDisappear word">1913</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">a</div>
-    <div class="wordDisappear word">prehistoric</div>
-    <div class="wordDisappear word">elephant</div>
-    <div class="wordDisappear word">skeleton</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">found</div>
-    <div class="wordDisappear word">in</div>
-    <div class="wordDisappear word">Upnor</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">It</div>
-    <div class="wordDisappear word">weighed</div>
-    <div class="wordDisappear word">10</div>
-    <div class="wordDisappear word">tonnes</div>
-    <div class="wordDisappear word">,</div>
-    <div class="wordDisappear word">which</div>
-    <div class="wordDisappear word">is</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">same</div>
-    <div class="wordDisappear word">as</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">weight</div>
-    <div class="wordDisappear word">of</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">Big</div>
-    <div class="wordDisappear word">Ben</div>
-    <div class="wordDisappear word">Bell</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">It</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">HUGE</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">And</div>
-    <div class="wordDisappear word">it</div>
-    <div class="wordDisappear word">used</div>
-    <div class="wordDisappear word">to</div>
-    <div class="wordDisappear word">roam</div>
-    <div class="wordDisappear word">here</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">They</div>
-    <div class="wordDisappear word">think</div>
-    <div class="wordDisappear word">around</div>
-    <div class="wordDisappear word">130,000</div>
-    <div class="wordDisappear word">and</div>
-    <div class="wordDisappear word">40,000</div>
-    <div class="wordDisappear word">years</div>
-    <div class="wordDisappear word">ago</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">The</div>
-    <div class="wordDisappear word">skeleton</div>
-    <div class="wordDisappear word">was</div>
-    <div class="wordDisappear word">discovered</div>
-    <div class="wordDisappear word">by</div>
-    <div class="wordDisappear word">Sydney</div>
-    <div class="wordDisappear word">Turner</div>
-    <div class="wordDisappear word">and</div>
-    <div class="wordDisappear word">he</div>
-    <div class="wordDisappear word">became</div>
-    <div class="wordDisappear word">famous</div>
-    <div class="wordDisappear word">because</div>
-    <div class="wordDisappear word">of</div>
-    <div class="wordDisappear word">the</div>
-    <div class="wordDisappear word">find</div>
-    <div class="wordDisappear word">.</div><br/>
-    <div class="wordDisappear word">Here’s</div>
-    <div class="wordDisappear word">his</div>
-    <div class="wordDisappear word">picture</div>
-    <div class="wordDisappear word">.</div>
+  <div class="eating-container">
+  <p>
+  <span>Deep</span> <span>below</span> <span>the</span> <span>ground,</span> <span>there</span> <span>are</span> <span>mysteries</span> <span>to</span> <span>be</span> <span>found.</span> <span>Big</span> <span>ones.</span>
+</p>
+<p>
+  <span>In</span> <span>1913,</span> <span>a</span> <span>prehistoric</span> <span class="keep">elephant</span> <span>skeleton</span> <span>was</span> <span>found</span> <span>in</span> <span>Upnor.</span>
+</p>
+<p>
+  <span>It</span> <span>weighed</span> <span>10</span> <span>tonnes,</span> <span>which</span> <span>is</span> <span>the</span> <span>same</span> <span>as</span> <span>the</span> <span>weight</span> <span>of</span> <span>the</span> <span class="keep">Big</span> <span class="keep">Ben</span> <span class="keep">Bell.</span>
+</p>
+<p>
+  <span>It</span> <span>was</span> <span>HUGE</span>
+</p>
+<p>
+  <span>And</span> <span>it</span> <span>used</span> <span>to</span> <span>roam</span> <span>here</span>
+</p>
+<p>
+  <span>They</span> <span>think</span> <span>around</span> <span>130,000</span> <span>and</span> <span>40,000</span> <span>years</span> <span>ago.</span>
+</p>
+<p>
+  <span>The</span> <span class="keep">skeleton</span> <span>was</span> <span>discovered</span> <span>by</span> <span>Sydney</span>  <span>Turner</span> <span>and</span> <span>he</span> <span>became</span> <span>famous</span> <span>because</span> <span>of</span> <span>the</span> <span>find.</span>  
+</p>
+<p>
+<span>Here’s</span> <span>his</span> <span>picture.</span>
+</p> 
+
 </div>
-
-
 </main>
 
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
-  <<timed 5s>>
-  <<set $move to setup.moveWords()>>
-  <</timed>>
+  <<set $still to setup.quickEatWords()>>
 <</done>>
 
 <<timed 10s>>
@@ -3654,9 +3248,6 @@ We need to go a different route. Re-routing.", coords: "three" },
    <<audio "monster4" "play">>
   <</timed>>
 
-<<timed 20s>>
-  <<goto $nextpass>>
-  <</timed>>
 
 :: ger10-1 [nobr]
 <<set $prevpass to "wordsAdded4b">>
@@ -3767,12 +3358,66 @@ We need to go a different route. Re-routing.", coords: "three" },
 			<<replace "#countdown">><span class="secs">$seconds</span> <span class="extra">seconds</span><</replace>>
 		<<else>>
 			<<replace "#countdown">><strong>Too Late</strong><</replace>>
-    
+      <<timed 1.5s>>
+        <<goto "notime">>
+        <</timed>>
   
 			<<stop>>
 		<</if>>
 	<</repeat>>
 <</silently>>
+
+:: notime [nobr]
+<<set $prevpass to "360image">>
+<<set $pass to "notime">>
+<<set $nextpass to "360image">>
+<<audio ":all" stop>>
+<<include "_templateGeraldine">>
+
+:: notime-messages [nobr]
+<<timed 0.3s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Oh no...</p>
+       </div>
+    <</append>>
+<</timed>>
+<<timed 3s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>You didn't find it in time.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Let's see if I can reboot the CCTV</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Good luck. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 10s>>
+    <<replace "#nextButtonContainer">>
+    <<button "I'm ready">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
 
 :: header360elephant[nobr]
 <header class="pano timer "><span>Find the name of the road</span>
@@ -3796,35 +3441,40 @@ We need to go a different route. Re-routing.", coords: "three" },
 :: pw360elephant [nobr]
 <div id="codewordWrapper" class="codeword-wrapper">
 
-    <label for="textbox--password" tabindex="0" ><span aria-label="Enter the word below" role="label">CODEWORD:</span></label>
+    <label for="textbox--password" tabindex="0"><span aria-label="Enter the word below">CODEWORD:</span></label>
 
-    /% CODEWORD INPUT %/
-      <div class="input-wrapper">
-     <div class="code-input pano">
-       <<textbox "_password" "" >>
-      </div>
-   <span class="button-wrapper" aria-label="Click Button to go Check your answer">
-     <<button "Enter">>  
-   /% STANDARDISE INPUT %/
-       <<set _password to _password.toUpperCase()>>
-     /% CODEWORD CORRECT %/
-       <<if _password isnot "" and (_password is "NEWNHAM STREET" or _password is "NEWNHAM" or _password is "NEWNHAM " or _password is "NEWNHAM STREET ")>>
-            <<audio "correct" play>>
-       <<replace "#elecoderesult">><h2 class="">Correct!</h2><</replace>>
-       <<timed 3s>><<goto $nextpass>><</timed>>
-      <</if>>
-        /% CODEWORD INCORRECT %/
-     <<if _password isnot "" and (_password isnot "NEWNHAM STREET" and _password isnot "NEWNHAM" or _password isnot "NEWNHAM " or _password isnot "NEWNHAM STREET ")>>
-        <<audio "error" play>>
-        <<replace "#elecoderesult">><h2>That's not right.</h2><</replace>>
-      <<timed 1.5s>><<replace "#elecoderesult">><</replace>><</timed>>
-        <</if>><</button>> 
-     </span>
+    <!-- CODEWORD INPUT -->
+    <div class="input-wrapper">
+        <div class="code-input pano">
+            <<textbox "_password" "" >>
+        </div>
+        <span class="button-wrapper" aria-label="Click Button to Check your answer">
+            <<button "Enter">>
 
-    /% CODEWORD FEEDBACK %/
+            <!-- STANDARDIZE INPUT -->
+            <<set _password to _password.toUpperCase().trim()>>
+
+            <!-- CODEWORD CORRECT -->
+            <<if _password isnot "" and (_password is "NEWNHAM STREET" or _password is "NEWNHAM")>>
+                <<audio "correct" play>>
+                <<replace "#elecoderesult">><h2>Correct!</h2><</replace>>
+                <<timed 3s>><<goto $nextpass>><</timed>>
+            <</if>>
+
+            <!-- CODEWORD INCORRECT -->
+            <<if _password isnot "" and (_password isnot "NEWNHAM STREET" and _password isnot "NEWNHAM")>>
+                <<audio "error" play>>
+                <<replace "#elecoderesult">><h2>That's not right.</h2><</replace>>
+                <<timed 1.5s>><<replace "#elecoderesult">><</replace>><</timed>>
+            <</if>>
+
+            <</button>>
+        </span>
     </div>
-        <div id="elecoderesult"></div>
+
+    <div id="elecoderesult"></div>
 </div>
+
 
 :: footer360elephant [nobr]
 
@@ -3903,55 +3553,31 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<audio ":all" stop>>
 <<audio "wordeat" play>>
 <main class="main-words">
-
-    <main>
-    <div class="wordLeft-container">
-      <div class="wordLeft word">Mines</div>
-       <div class="wordLeft word">Detonation</div>
-       <div class="wordLeft word">Explosion</div>
-    </div>
-    <div class="words">
-        <div class="wordDisappear word">The</div>
-        <div class="wordDisappear word">Medway</div>
-        <div class="wordDisappear word">Queen</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">A</div>
-        <div class="wordDisappear word">Paddle</div>
-        <div class="wordDisappear word">Steamer</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">With</div>
-        <div class="wordDisappear word">a</div>
-        <div class="wordDisappear word">twist</div>
-        <div class="wordDisappear word">The</div>
-        <div class="wordDisappear word">Medway</div>
-        <div class="wordDisappear word">Queen</div>
-        <div class="wordDisappear word">had</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">ability</div>
-        <div class="wordDisappear word">to</div>
-        <div class="wordDisappear word">sweep</div>
-        <div class="wordDisappear word">for</div>
-        <div class="wordDisappear word">mines</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">And</div>
-        <div class="wordDisappear word">save</div>
-        <div class="wordDisappear word">lives</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">She</div>
-        <div class="wordDisappear word">swept</div>
-        <div class="wordDisappear word">mines</div>
-        <div class="wordDisappear word">to</div>
-        <div class="wordDisappear word">protect</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">waters</div>
-        <div class="wordDisappear word">in</div>
-        <div class="wordDisappear word">WW2</div>
-        <div class="wordDisappear word">in</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">10th</div>
-        <div class="wordDisappear word">Minesweeping</div>
-        <div class="wordDisappear word">Flotilla</div>
-        <div class="wordDisappear word">.</div>
+  <div class="eating-container">
+   <p>
+  <span>The</span> <span>Medway</span> <span>Queen.</span>
+</p>
+<p>
+  <span>A</span> <span>Paddle</span> <span>Steamer.</span>
+</p>
+<p>
+  <span>With</span> <span>a</span> <span>twist</span>
+</p>
+<p>
+  <span>The</span> <span>Medway</span> <span>Queen</span> <span>had</span> <span>the</span> <span>ability</span> <span>to</span> <span>sweep</span> <span>for</span> <span class="keep">mines</span>
+</p>
+<p>
+  <span>And</span> <span>save</span> <span>lives.</span>
+</p>
+<p>
+  <span>She</span> <span>swept</span> <span>mines</span> <span>to</span> <span>protect</span> <span>the</span> <span>waters</span> <span>in</span> <span>WW2</span> <span>in</span> <span>the</span> <span>10th</span> <span>Minesweeping</span> <span>Flotilla.</span>
+</p>
+<p>
+  <span>Next,</span> <span>she</span> <span>was</span> <span>part</span> <span>of</span> <span class="keep">Operation</span> <span>Dynamo,</span> <span>where</span> <span>around</span> <span>850</span> <span>small</span> <span>ships</span> <span>braved</span> <span>the</span> <span>channel</span> <span>crossing</span> <span>to</span> <span>save</span> <span>Allied</span> <span>Troops</span> <span>from</span> <span>Dunkirk.</span>
+</p>
+<p>
+  <span>She</span> <span>saved</span> <span>around</span> <span>7000</span> <span>Allied</span> <span class="keep">soldiers</span> <span>and</span> <span>was</span> <span>dubbed</span> <span>the</span> <span >"Heroine</span> <span>of</span> <span>Dunkirk"</span>
+</p>
 </div>
 
 </main>
@@ -3959,7 +3585,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<include "footer">>
 
 <<done>>
-<<set $move to setup.moveWords()>>
+<<set $move to setup.quickEatWords()>>
 <</done>>
 
 <<timed 10s>>
@@ -4359,101 +3985,44 @@ We need to go a different route. Re-routing.", coords: "three" },
 <<set $nextpass to "ger14-1">>
 
 <main class="main-words added">
-    <div class="words">
-        <div class="wordDisappear word">The</div>
-        <div class="wordDisappear word">Medway</div>
-        <div class="wordDisappear word">Queen</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">A</div>
-        <div class="wordDisappear word">Paddle</div>
-        <div class="wordDisappear word">Steamer</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">With</div>
-        <div class="wordDisappear word">a</div>
-        <div class="wordDisappear word">twist</div>
-        <div class="wordDisappear word">The</div>
-        <div class="wordDisappear word">Medway</div>
-        <div class="wordDisappear word">Queen</div>
-        <div class="wordDisappear word">had</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">ability</div>
-        <div class="wordDisappear word">to</div>
-        <div class="wordDisappear word">sweep</div>
-        <div class="wordDisappear word">for</div>
-        <div class="wordDisappear word">mines</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">And</div>
-        <div class="wordDisappear word">save</div>
-        <div class="wordDisappear word">lives</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">She</div>
-        <div class="wordDisappear word">swept</div>
-        <div class="wordDisappear word">mines</div>
-        <div class="wordDisappear word">to</div>
-        <div class="wordDisappear word">protect</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">waters</div>
-        <div class="wordDisappear word">in</div>
-        <div class="wordDisappear word">WW2</div>
-        <div class="wordDisappear word">in</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">10th</div>
-        <div class="wordDisappear word">Minesweeping</div>
-        <div class="wordDisappear word">Flotilla</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">Next</div>
-        <div class="wordDisappear word">,</div>
-        <div class="wordDisappear word">she</div>
-        <div class="wordDisappear word">was</div>
-        <div class="wordDisappear word">part</div>
-        <div class="wordDisappear word">of</div>
-        <div class="wordDisappear word">Operation</div>
-        <div class="wordDisappear word">Dynamo</div>
-        <div class="wordDisappear word">,</div>
-        <div class="wordDisappear word">where</div>
-        <div class="wordDisappear word">around</div>
-        <div class="wordDisappear word">850</div>
-        <div class="wordDisappear word">small</div>
-        <div class="wordDisappear word">ships</div>
-        <div class="wordDisappear word">braved</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">channel</div>
-        <div class="wordDisappear word">crossing</div>
-        <div class="wordDisappear word">to</div>
-        <div class="wordDisappear word">save</div>
-        <div class="wordDisappear word">Allied</div>
-        <div class="wordDisappear word">Troops</div>
-        <div class="wordDisappear word">from</div>
-        <div class="wordDisappear word">Dunkirk</div>
-        <div class="wordDisappear word">.</div>
-        <div class="wordDisappear word">She</div>
-        <div class="wordDisappear word">saved</div>
-        <div class="wordDisappear word">around</div>
-        <div class="wordDisappear word">7000</div>
-        <div class="wordDisappear word">Allied</div>
-        <div class="wordDisappear word">soldiers</div>
-        <div class="wordDisappear word">,</div>
-        <div class="wordDisappear word">and</div>
-        <div class="wordDisappear word">was</div>
-        <div class="wordDisappear word">dubbed</div>
-        <div class="wordDisappear word">the</div>
-        <div class="wordDisappear word">"Heroine</div>
-        <div class="wordDisappear word">of</div>
-        <div class="wordDisappear word">Dunkirk"</div>
-        <div class="wordDisappear word">.</div>
+   <div class="eating-container">
+   <p>
+  <span class="eaten">The</span> <span class="eaten">Medway</span> <span class="eaten">Queen.</span>
+</p>
+<p>
+  <span class="eaten">A</span> <span class="eaten">Paddle</span> <span class="eaten">Steamer.</span>
+</p>
+<p>
+  <span class="eaten">With</span> <span class="eaten">a</span> <span class="eaten">twist</span>
+</p>
+<p>
+  <span class="eaten">The</span> <span class="eaten">Medway</span> <span class="eaten">Queen</span> <span class="eaten">had</span> <span class="eaten">the</span> <span class="eaten">ability</span> <span class="eaten">to</span> <span class="eaten">sweep</span> <span class="eaten">for</span> <span class="keep remaining">mines</span>
+</p>
+<p>
+  <span class="eaten">And</span> <span class="eaten">save</span> <span class="eaten">lives.</span>
+</p>
+<p>
+  <span class="eaten">She</span> <span class="eaten">swept</span> <span class="eaten">mines</span> <span class="eaten">to</span> <span class="eaten">protect</span> <span class="eaten">the</span> <span class="eaten">waters</span> <span class="eaten">in</span> <span class="eaten">WW2</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">10th</span> <span class="eaten">Minesweeping</span> <span class="eaten">Flotilla.</span>
+</p>
+<p>
+  <span class="eaten">Next,</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">part</span> <span class="eaten">of</span> <span class="keep remaining">Operation</span> <span class="eaten">Dynamo,</span> <span class="eaten">where</span> <span class="eaten">around</span> <span class="eaten">850</span> <span class="eaten">small</span> <span class="eaten">ships</span> <span class="eaten">braved</span> <span class="eaten">the</span> <span class="eaten">channel</span> <span class="eaten">crossing</span> <span class="eaten">to</span> <span class="eaten">save</span> <span class="eaten">Allied</span> <span class="eaten">Troops</span> <span class="eaten">from</span> <span class="eaten">Dunkirk.</span>
+</p>
+<p>
+  <span class="eaten">She</span> <span class="eaten">saved</span> <span class="eaten">around</span> <span class="eaten">7000</span> <span class="eaten">Allied</span> <span class="keep remaining">soldiers</span> <span class="eaten">and</span> <span class="eaten">was</span> <span class="eaten">dubbed</span> <span class="eaten">the</span> <span >"Heroine</span> <span class="eaten">of</span> <span class="eaten">Dunkirk"</span>
+</p>
 </div>
-
+<br/><br/><br/><br/>
 </main>
 
 
 <<include "footer">>
 
 <<done>>
-  <<set $still to setup.stillWords()>>
+  <<set $still to setup.restoreWords()>>
 <</done>>
-<<timed 25s>>
+/* <<timed 25s>>
   <<goto $nextpass>>
-  <</timed>>
+  <</timed>> */
 
 :: ger14-1 [nobr]
 <<set $prevpass to "wordsAdded5">>

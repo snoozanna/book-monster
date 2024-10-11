@@ -17,6 +17,7 @@
     --font-chapter: "Bungee", sans-serif;
     --font-headings: "SpecialElite", monospace;
     --font-body: "Sora", sans-serif;
+    --font-story: "Lora", serif;
     --padding: 2rem;
     --box-shadow:  0.5rem 0.5rem black;
   }
@@ -248,7 +249,7 @@ h2.octo-title, h3.octo-title, .octo-title{
 
 p.octo-welcome-text{
   font-family: var(--font-chapter);
-  font-size: 2em;
+  font-size: 1.4em;
   text-align: center
 }
 
@@ -335,8 +336,21 @@ input[type="text"]:focus{
 }
 
 /* WORD EATING */
+
+footer.words{
+  position: inherit;
+  height: initial;
+  margin-top: 2rem;
+}
+
+footer.words > button, 
+footer.words > #nextButtonContainer > button{
+  background-color: var(--color-one);
+}
+
 .main-words{
-  overflow: hidden;
+  /* overflow: hidden; */
+  height: initial;
 }
 
 .main-words.added > .words{
@@ -366,7 +380,7 @@ input[type="text"]:focus{
   font-size: 2em;
   color: #888585;
   transform-origin: center center;
-  font-family: "Playwrite DE Grund";
+  font-family: var(--font-story);
 }
 
 .wordDisappear{
@@ -411,14 +425,22 @@ input[type="text"]:focus{
   text-align: left;
 }
 
+.eating-container > p, 
+.eating-container > h2{
+  font-family: var(--font-story);
+}
+
 .eating-container > p {
-  font-size: 2rem;
-  font-family: "Playwrite DE Grund";
+  font-size: 1.9rem;
+
 }
 
 .eating-container > p > .keep {
   font-weight: bold;
   color: #f39c12; /* Different style for words to keep */
+  position: initial;
+  font-size: 1.9rem;
+  transition: font-size 0.5s ease-out;
 }
 
 .eating-container > p > .eaten {
@@ -429,7 +451,7 @@ input[type="text"]:focus{
 
 .eating-container > p > .keep.remaining{
   font-size: 4rem;
-    position: fixed;
+    /* position: fixed; */
     transition: font-size 0.5s ease-out;
 }
 
@@ -1356,7 +1378,7 @@ margin-block-end: 3rem;
 
 .logo-wrapper-cipher{
   width: 15%;
-  position: fixed;
+  position: absolute;
   right: 5%;
   bottom: 5%;
 }
