@@ -1419,7 +1419,7 @@ setup.boatMultiDraggable = () => {
 <<set $move to setup.quickEatWords()>>
 <</done>>
 
-<<timed 10s>>
+<<timed 12s>>
   <<goto $nextpass>>
   <</timed>>
 
