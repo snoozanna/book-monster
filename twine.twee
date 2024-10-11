@@ -2380,6 +2380,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<timed 0.1s>>
       <<append "#mapContainer">>
       <<include "swirlbookmonster1">>
+      <<audio "monster4" play>>
       <</append>>
       <<include "updateInstruction">>
     <</timed>>
@@ -3022,7 +3023,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 
 </main>
 
-<<include "footer">>
+<<include "footerwords">>
 
 <<done>>
   <<set $still to setup.restoreWords()>>
