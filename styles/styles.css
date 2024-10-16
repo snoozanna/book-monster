@@ -1374,7 +1374,7 @@ margin-block-end: 3rem;
   width: 15%;
   position: absolute;
   right: 5%;
-  bottom: 5%;
+  top: 5%;
 }
 .logo-wrapper-cipher > img{
   filter: invert(1);
@@ -1637,4 +1637,91 @@ main.begone{
 
 .motto-container > span.octo-title{
   font-size: 3rem;
+}
+
+
+main.roar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swirlroar{
+  background: radial-gradient(circle, rgb(37 33 110 / 10%), rgb(105 120 201 / 64%));
+  overflow: hidden;
+  animation: swirl 20s infinite linear, wobble 1s ease-in-out infinite;;
+}
+
+.swipe-wrapper img {
+  width: 100%; /* Adjust size as necessary */
+  opacity: 1;
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%); /* Start with only the left edge visible */
+  animation: swipeLeftToRight 0.75s ease-out forwards;
+}
+
+@keyframes swipeLeftToRight {
+  0% {
+      clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%); /* Only the left edge visible */
+  }
+  100% {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); /* Fully reveal the image from left to right */
+  }
+}
+
+
+.swipe-word.one{
+  top: 6%;
+  left: -20%;
+  animation: float 15s infinite ease-in-out;
+}
+
+.swipe-word.two{
+  top: 70%; 
+  left: 50%;
+  animation: float 7s infinite ease-in-out;
+}
+.swipe-word.three{
+  top: 50%; 
+  left: 1%;
+   animation: float 3s infinite ease-in-out;
+}
+
+.swipe-word.four{
+  top: 20%; 
+  left: 30%;
+  animation: float 1s infinite ease-in-out;
+}
+
+.swipe-word.five{
+  top: 10%;
+  left: -29%;
+  animation: float 20s infinite ease-in-out;
+}
+.swipe-word.six{
+  bottom: 10%;
+  left: 10%;
+   animation: float 4s infinite ease-in-out;
+}
+
+.swipe-word.seven{
+  top: 80%; 
+  left: 80%;
+  animation: float 12s infinite ease-in-out;
+}
+.swipe-word.eight{
+  top: 70%; 
+  left: 7%;
+   animation: float 7s infinite ease-in-out;
+}
+
+
+ 
+.swipe-word {
+  position: absolute;
+  font-size: 7.8rem;
+  opacity: 0.5;
+  transform-origin: center;
+  color: white;
+  font-weight: 800;
+  z-index: -999;
 }

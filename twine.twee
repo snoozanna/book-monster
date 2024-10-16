@@ -478,9 +478,9 @@ setup.boatMultiDraggable = () => {
     <<button "Back">>
         <<goto $prevpass>>
     <</button>>
-    /* <<button "Next">>
+    <<button "Next">>
         <<goto $nextpass>>
-    <</button>> */
+    <</button>>
     <div id="nextButtonContainer">
      </div>
 </footer>
@@ -546,6 +546,7 @@ setup.boatMultiDraggable = () => {
 <<set $prevpass to "landing">>
 <<set $pass to "landing">>
 <<set $nextpass to "intro">>
+<<audio ":all" stop>>
 <main class="logospin">
 <div class="logo-wrapper slowRotate">
 <img src="/assets/img/logo.png" alt="logo"/>
@@ -587,6 +588,7 @@ setup.boatMultiDraggable = () => {
 <<set $prevpass to "landing">>
 <<set $pass to "intro">>
 <<set $nextpass to "connecting">>
+<<audio ":all" stop>>
 <<include "headerintro">>
 <main class="intro">
 <div id="mount"></div>
@@ -616,7 +618,7 @@ setup.boatMultiDraggable = () => {
      <p>Enter the name of the book that needs rooting. </p>
     <</append>>
   <</timed>>
-    <<timed 15s>>
+    <<timed 1s>>
     <<append "#mount">>
      <<include "pwChathamStories">>
     <</append>>
@@ -634,20 +636,30 @@ setup.boatMultiDraggable = () => {
 <div class="css-input code-input codeword-input">
     <<textbox "$codeword" "">>
     <<button "Enter">>
-      <<set $codeword to $codeword.toUpperCase()>>
+      <<set $codeword to $codeword.toUpperCase().trim()>>
       
-      /% CODEWORD CORRECT %/
-      <<if $codeword != "" and $codeword == "CHATHAM STORIES">>
-        <<replace "#coderesult">>CORRECT<</replace>>
+      /% CODEWORD CORRECT FOR CHATHAM STORIES%/
+      <<if $codeword isnot "" and $codeword is "CHATHAM STORIES">>
+        <<replace "#coderesult">><h2>CORRECT</h2><</replace>>
         <<audio "correct" play>>
 
         <<timed 3s>><<goto $nextpass>><</timed>>
-      
-      /% CODEWORD INCORRECT %/
-      <<else>>
-        <<replace "#coderesult">><p>That's not right.</p><</replace>>
-        <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
       <</if>>
+
+       /% CODEWORD CORRECT FOR GERALDINE %/
+      <<if $codeword isnot "" and $codeword is "GERALDINE">>
+        <<replace "#coderesult">><h2>CORRECT</h2><</replace>>
+        <<audio "correct" play>>
+        <<timed 3s>><<goto "ger14-3">><</timed>>
+      <</if>>
+
+      /% CODEWORD INCORRECT %/
+        <<if $codeword isnot "" and ($codeword isnot "CHATHAM STORIES" and $codeword isnot "GERALDINE")>>
+           <<audio "error" play>>
+           <<replace "#coderesult">><h2>That's not right.</h2><</replace>>
+         <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+         <</if>>
+       
     <</button>>
 
     <div id="coderesult"></div>
@@ -658,7 +670,7 @@ setup.boatMultiDraggable = () => {
 <<set $prevpass to "intro">>
 <<set $pass to "connecting">>
 <<set $nextpass to "gerIntro-1">>
-    <<audio "loading" play loop>>
+    <<audio "loading" play>>
 <<include "headerintro">>
 <main class="connecting">
   <div class="book-wrapper" id="wrapper">
@@ -740,6 +752,7 @@ setup.boatMultiDraggable = () => {
 <<set $nextpass to "gerIntro-2">>
 
 <<include "_templateGeraldine">>
+
 
 :: gerIntro-1-messages [nobr]
 <<timed 0.5s>>
@@ -871,7 +884,7 @@ setup.boatMultiDraggable = () => {
      <<timed 15s>>
       <<replace "#nextButtonContainer">>
       <<button "Next">>
-          <<goto $nextpass>>
+          <<goto "roar">>
         <</button>>
           <</replace>>
     <</timed>>
@@ -1608,7 +1621,7 @@ $correctans
         <<button "Enter">>
        
         /% PASSWORD CODE %/
-        <<set $l to $l.toUpperCase()>>
+        <<set $l to $l.toUpperCase().trim()>>
         /% CODEWORD CORRECT %/
         <<if $l isnot "" and $l is "L">>
         <<timed 0.1s>>
@@ -1658,7 +1671,7 @@ $correctans
         <<button "Enter">>
        
         /% PASSWORD CODE %/
-        <<set $a to $a.toUpperCase()>>
+        <<set $a to $a.toUpperCase().trim()>>
         /% CODEWORD CORRECT %/
         <<if $a isnot "" and $a is "A">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
@@ -1705,7 +1718,7 @@ $correctans
         <<button "Enter">>
        
         /% PASSWORD CODE %/
-        <<set $c to $c.toUpperCase()>>
+        <<set $c to $c.toUpperCase().trim()>>
         /% CODEWORD CORRECT %/
         <<if $c isnot "" and $c is "C">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
@@ -1754,7 +1767,7 @@ $correctans
         <<button "Enter">>
        
         /% PASSWORD CODE %/
-        <<set $y to $y.toUpperCase()>>
+        <<set $y to $y.toUpperCase().trim()>>
         /% CODEWORD CORRECT %/
         <<if $y isnot "" and $y is "Y">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
@@ -2071,10 +2084,53 @@ $correctans
 <<timed 15s>>
     <<replace "#nextButtonContainer">>
     <<button "Next">>
-        <<goto $nextpass>>
+        <<goto "roar">>
     <</button>>
     <</replace>>
 <</timed>>
+
+:: roar [nobr]
+<<addclass "body" "light">>
+
+<main class="roar swirlroar ">
+   <div class="swipe-wrapper "> 
+    <img src="/assets/img/swipe.png" alt="logo" /></div>
+   <span class="swipe-word one" >MENAGERIE</span>
+  <span class="swipe-word two" >SANDWICH</span>
+  <span class="swipe-word three" >DETONATION</span>
+   <span class="swipe-word four" >DISGUISE</span>
+  <span class="swipe-word five" >MINES</span>
+   <span class="swipe-word six" >MENAGERIE</span>
+  <span class="swipe-word seven" >SANDWICH</span>
+  <span class="swipe-word eight" >CAGE</span>
+</main>
+
+
+
+<<if previous() is "ger3-5">>
+  <<audio "monster1" play>>
+  <<timed 4s>>
+      <<goto $nextpass>>
+    <</timed>>
+  <<elseif previous() is "wordsLeft2">>
+    <<audio "monster3" play>>
+    <<timed 6s>>
+      <<goto $nextpass>>
+    <</timed>>
+  <<elseif previous() is "ger8-1">>
+     <<audio "monster4" play>>
+     <<timed 5s>>
+      <<goto $nextpass>>
+    <</timed>>
+   <<elseif previous() is "ger14-3">>
+     <<audio "monster5" play>>
+     <<timed 6s>>
+      <<goto $nextpass>>
+    <</timed>>
+  <</if>>
+
+
+
 
 :: ger3-6 [nobr]
 <<set $prevpass to "ger3-5">>
@@ -2084,11 +2140,8 @@ $correctans
 <<include "_templateGeraldine">>
 
 :: ger3-6-messages [nobr]
-<<timed 0.1s>>
-    <<audio "monster1" "play">>
 
-<</timed>>
-<<timed 3s>>
+<<timed 0.5s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2097,7 +2150,7 @@ $correctans
     <</append>>
 <</timed>>
 
-<<timed 5s>>
+<<timed 3s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2106,7 +2159,7 @@ $correctans
     <</append>>
 <</timed>>
 
-<<timed 7s>>
+<<timed 6s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2168,13 +2221,9 @@ $correctans
 <<set $move to setup.quickEatWords()>>
 <</done>>
 
-<<timed 7s>>
-  /* REPLACE ROAR */
-   <<audio "monster2" "play">>
-  <</timed>>
 
-<<timed 11s>>
-  <<goto $nextpass>>
+<<timed 10s>>
+  <<goto "roar">>
   <</timed>>
 
 :: ger4-1 [nobr]
@@ -2387,7 +2436,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<timed 0.1s>>
       <<append "#mapContainer">>
       <<include "swirlbookmonster1">>
-      <<audio "monster4" play>>
+      <<audio "monster3" play>>
       <</append>>
       <<include "updateInstruction">>
     <</timed>>
@@ -2462,18 +2511,18 @@ We need to go a different route. Re-routing.", coords: "two" },
       <<textbox "$codeword" "">>
     </div>
     <<button "Enter">>
-      <<set $codeword to $codeword.toUpperCase()>>
+      <<set $codeword to $codeword.toUpperCase().trim()>>
       
       /% CODEWORD CORRECT %/
-      <<if $codeword != "" and ($codeword is "ENTRANCE" or $codeword is "ENTRANCE ")>>
+      <<if $codeword isnot "" and $codeword is "ENTRANCE">>
         <<replace "#coderesult">><span>CORRECT</span><</replace>>
         <<audio ":all" stop>>
         <<audio "correct" play>>
 
         <<timed 3s>><<goto $nextpass>><</timed>>
-      
+      <</if>>
       /% CODEWORD INCORRECT %/
-      <<else>>
+       <<if _password isnot "" and $codeword isnot "ENTRANCE">>
         <<replace "#coderesult">><span>That's not right.</span><</replace>>
         <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
       <</if>>
@@ -3865,7 +3914,7 @@ We need to go a different route. Re-routing.", coords: "two" },
         <<button "Enter">>
        
         /% PASSWORD CODE %/
-        <<set $l to $l.toUpperCase()>>
+        <<set $l to $l.toUpperCase().trim()>>
         /% CODEWORD CORRECT %/
         <<if $l isnot "" and $l is "24">>
         <<timed 0.1s>>
@@ -3915,7 +3964,7 @@ We need to go a different route. Re-routing.", coords: "two" },
         <<button "Enter">>
        
         /% PASSWORD CODE %/
-        <<set $a to $a.toUpperCase()>>
+        <<set $a to $a.toUpperCase().trim()>>
         /% CODEWORD CORRECT %/
         <<if $a isnot "" and $a is "3500">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
@@ -3961,7 +4010,7 @@ We need to go a different route. Re-routing.", coords: "two" },
         <<button "Enter">>
        
         /% PASSWORD CODE %/
-        <<set $c to $c.toUpperCase()>>
+        <<set $c to $c.toUpperCase().trim()>>
         /% CODEWORD CORRECT %/
         <<if $c isnot "" and $c is "319">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct! </div><</replace>>
@@ -4029,12 +4078,12 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<button "Enter">>
   </div>
   /% PASSWORD CODE %/
-  <<set $code1 to $code1.toUpperCase()>>
-  <<set $code2 to $code2.toUpperCase()>>
-  <<set $code3 to $code3.toUpperCase()>>
+  <<set $code1 to $code1.toUpperCase().trim()>>
+  <<set $code2 to $code2.toUpperCase().trim()>>
+  <<set $code3 to $code3.toUpperCase().trim()>>
   /% CODEWORD CORRECT %/
   <<if $code1 isnot "" and $code2 isnot "" and $code3 isnot "">>
-    <<if ($code1 + $code2 + $code3) is "243500GCC319">>
+    <<if ($code1 + $code2 + $code3) is "243500319">>
      <<replace "#coderesult">><p>CORRECT</p><</replace>>
       <<audio "correct" play>>
       <<timed 3s>><<goto $nextpass>><</timed>>
@@ -4042,7 +4091,7 @@ We need to go a different route. Re-routing.", coords: "two" },
   <</if>>
   /% CODEWORD INCORRECT %/
   <<if $code1 isnot "" and $code2 isnot "" and $code3 isnot "">>
-    <<if ($code1 + $code2 + $code3) isnot "243500GCC319">>
+    <<if ($code1 + $code2 + $code3) isnot "243500319">>
          <<replace "#coderesult">><p>That's not right.</p><</replace>>
       <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
     <</if>>
@@ -4322,7 +4371,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<timed 13s>>
     <<replace "#nextButtonContainer">>
     <<button "Next">>
-        <<goto $nextpass>>
+        <<goto "roar">>
     <</button>>
     <</replace>>
 <</timed>>
