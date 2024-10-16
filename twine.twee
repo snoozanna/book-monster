@@ -879,7 +879,7 @@ setup.boatMultiDraggable = () => {
 :: gerIntro-3 [nobr]
 <<set $prevpass to "gerIntro-2">>
 <<set $pass to "gerIntro-3">>
-<<set $nextpass to "gerIntro-4">>
+<<set $nextpass to "gerIntro-3a">>
 
 <<include "_templateGeraldine">>
 
@@ -915,14 +915,66 @@ setup.boatMultiDraggable = () => {
         <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
-         <p>But now…it seems they have all been taken</p>
+         <p>But now...it seems they have all been taken</p>
        </div>
         <</append>>
     <</timed>>
 
- <<timed 14s>>
+        <<timed 13s>>
+        <<audio "ping1" "play">>
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Written by UNKNOWN.</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 16s>>
+        <<audio "ping1" "play">>
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>Written by Unknown is odd - maybe together we can discover who the author was. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+ <<timed 19s>>
       <<replace "#nextButtonContainer">>
       <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: gerIntro-3a [nobr]
+<<set $prevpass to "gerIntro-3">>
+<<set $pass to "gerIntro-3a">>
+<<set $nextpass to "gerIntro-4">>
+
+<<include "_templateGeraldine">>
+
+:: gerIntro-3a-messages [nobr]
+<<timed 0.5s>>
+        <<audio "ping1" "play">>
+        <<append "#msgMount">>
+       <div class="message"> 
+           <p>It must be because of the Book Monster. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+    <<timed 3s>>
+    <<audio "ping1" "play">>
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>Let’s load up the information from OCTOPUS to find out what they know. </p>
+       </div>
+        <</append>>
+    <</timed>>
+
+ <<timed 6s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Load info">>
           <<goto "loading">>
         <</button>>
           <</replace>>
@@ -940,65 +992,13 @@ setup.boatMultiDraggable = () => {
     <span><b>Nickname:</b> Googly Moogly</span>
     <span><b>Likes:</b> Eating Books</span>
     <span><b>Dislikes:</b> Books, Stories & Characters! </span>
-    <span><b>Appearance:</b> uncertain- images on file from previous encounters</span>
+    <span><b>Appearance:</b>uncertain- normally invisible - images on file from previous reported encounters. </span>
   </div>
   <div class="logo-wrapper-cipher">
   <img src="/assets/img/logo.png" alt="logo"/>
   </div>
   </div>
 
-:: gerIntro-3b [nobr]
-<<set $prevpass to "gerIntro-3">>
-<<set $pass to "gerIntro-4">>
-<<set $nextpass to "gerIntro-4">>
-
-<<include "_templateGeraldine">>
-
-:: gerIntro-3b-messages [nobr]
-
-     <<timed 0.3s>>
-        <<audio "ping1" "play">>
-         <<append "#msgMount">>
-       <div class="message"> 
-        <p>Written by UNKNOWN.</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-     <<timed 3s>>
-        <<audio "ping1" "play">>
-         <<append "#msgMount">>
-       <div class="message"> 
-        <p>Written by Unknown is odd - maybe together we can discover who the author was. </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-     <<timed 6s>>
-        <<audio "ping1" "play">>
-         <<append "#msgMount">>
-       <div class="message"> 
-        <p>It must be because of the Book Monster. </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-       <<timed 9s>>
-        <<audio "ping1" "play">>
-         <<append "#msgMount">>
-       <div class="message"> 
-        <p>Let’s load up the information from OCTOPUS to find out what they know.</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-     <<timed 13s>>
-      <<replace "#nextButtonContainer">>
-      <<button "Load Info">>
-          <<goto $nextpass>>
-        <</button>>
-          <</replace>>
-    <</timed>>
 
 :: loading [nobr]
 
@@ -1033,7 +1033,7 @@ setup.boatMultiDraggable = () => {
   <<goto $nextpass>>
   <</timed>>
 :: gerIntro-4 [nobr]
-<<set $prevpass to "gerIntro-3">>
+<<set $prevpass to "gerIntro-3a">>
 <<set $pass to "gerIntro-4">>
 <<set $nextpass to "octopusgallery">>
 
@@ -1171,8 +1171,15 @@ setup.boatMultiDraggable = () => {
        </div>
         <</append>>
     <</timed>>
-
-    <<timed 3s>>
+ <<timed 3s>>
+    <<audio "ping1" "play">>
+        <<append "#msgMount">>
+       <div class="message"> 
+          <p>I hope we don’t come face-to-face with Googly Moogly, </p>
+       </div>
+        <</append>>
+    <</timed>>
+    <<timed 6s>>
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
@@ -1181,7 +1188,7 @@ setup.boatMultiDraggable = () => {
         <</append>>
     <</timed>>
 
-    <<timed 6s>>
+    <<timed 9s>>
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
@@ -1190,7 +1197,7 @@ setup.boatMultiDraggable = () => {
         <</append>>
     <</timed>>
 
-    <<timed 10s>>
+    <<timed 12s>>
         <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
@@ -1199,7 +1206,7 @@ setup.boatMultiDraggable = () => {
         <</append>>
     <</timed>>
 
-     <<timed 12s>>
+     <<timed 15s>>
         <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
@@ -1209,7 +1216,7 @@ setup.boatMultiDraggable = () => {
     <</timed>>
 
 
-     <<timed 15s>>
+     <<timed 17s>>
       <<replace "#nextButtonContainer">>
       <<button "Next">>
           <<goto $nextpass>>
@@ -1308,7 +1315,16 @@ setup.boatMultiDraggable = () => {
         <</append>>
   <</timed>>
 
-   <<timed 4s>>
+    <<timed 4s>>
+        <<audio "ping1" "play">>
+         <<append "#msgMount">>
+       <div class="message"> 
+        <p>We need to root this story and discover who wrote this book!</p>
+       </div>
+        <</append>>
+  <</timed>>
+
+   <<timed 7s>>
         <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
@@ -1317,7 +1333,7 @@ setup.boatMultiDraggable = () => {
         <</append>>
   <</timed>>
 
-  <<timed 4s>>
+  <<timed 10s>>
         <<audio "ping1" "play">>
          <<append "#msgMount">>
        <div class="message"> 
@@ -1326,7 +1342,7 @@ setup.boatMultiDraggable = () => {
         <</append>>
   <</timed>>
 
-     <<timed 8s>>
+     <<timed 13s>>
       <<replace "#nextButtonContainer">>
       <<button "Begin Rooting">>
           <<goto $nextpass>>
@@ -1581,7 +1597,7 @@ $correctans
         <<removeclass "#letterItemC" "current">>   
         <<removeclass "#letterItemY" "current">> 
       <h2 class="octo-title">Clue</h2>
-       <p>There is a clock near the exit - underneath a name of someone who open the Library - enter the 2nd letter of the Surname. </p>
+       <p>There is a clock near the library exit - underneath a name of someone who opened the Library - enter the 2nd letter of the Surname.</p>
 
     <</replace>>
   
@@ -1634,7 +1650,7 @@ $correctans
         <<removeclass "#letterItemC" "current">>   
         <<removeclass "#letterItemY" "current">>   
     <h2 class="octo-title">Clue</h2>
-       <p>Shakespeare’s quote is on the wall - find it up above a door - and enter the first letter of the quote</p>
+       <p>Shakespeare’s quote is on a wall - high up above a door - find it and enter the first letter of the quote.</p>
     <</replace>>
     <<replace "#inputMount">>
         <div id="coderesult"></div>
@@ -1681,7 +1697,7 @@ $correctans
         <<addclass "#letterItemC" "current">>   
         <<removeclass "#letterItemY" "current">>
     <h2 class="octo-title">Clue</h2>
-       <p>Far on the other side of the Library there is an area for Kids’ what is the name of this area? Enter the first letter of that word. </p>
+       <p>Far on the other side of the Library there is an area for Kids’ what is the name of this area - Kids ??????. Enter the first letter of that word. </p>
     <</replace>>
     <<replace "#inputMount">>
         <div id="coderesult"></div>
@@ -1730,7 +1746,7 @@ $correctans
         <<removeclass "#letterItemC" "current">>   
         <<addclass "#letterItemY" "current">>   
     <h2 class="octo-title">Clue</h2>
-       <p>Hidden near Local Fiction (where the Chatham’s Stories Book should be)  an Ark can be found - a Sound Ark - what is the last letter of the first word of this Sound Ark? </p>
+       <p>Between the Exit and the Shakespeare quote - an Ark can be found - a Sound Ark - what is the last letter of the first word of this Sound Ark? </p>
     <</replace>>
     <<replace "#inputMount">>
         <div id="coderesult"></div>
@@ -2182,7 +2198,7 @@ $correctans
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>You need to follow the map but keep looking forwards.</p>
+        <p>You need to follow the map and I’ll get you out. </p>
        </div>
     <</append>>
 <</timed>>
@@ -2191,7 +2207,7 @@ $correctans
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>We are in the Monster’s Cage - the Library and we need to get out.</p>
+        <p>We are in the Monster’s Cage - the Library and we need to get out. </p>
        </div>
     <</append>>
 <</timed>>
@@ -2200,7 +2216,7 @@ $correctans
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Don’t turn your back on the monster.</p>
+        <p>Don’t look Googly Moogly in the eyes if you see them. </p>
        </div>
     <</append>>
 <</timed>>
@@ -2220,7 +2236,7 @@ $correctans
 <<set $nextpass to "ger5-1">>
 <<addclass "body" "light">>
 <<audio "LQintensity1" play loop>>
-<<set $currentInstructionIndex = 0>>
+<<set $currentInstructionIndex = 1>>
 
 <<set $instructions = {
   0:{ text: "", 
@@ -2230,17 +2246,15 @@ $correctans
 Don’t turn around – I need to work out where the Book Monster is.  <br/>
 We can’t see it – but trust me – we want to avoid it.
 ", coords: "one"},
-    2: { text: "Take 2 steps backwards and turn right (you should be facing the double doors). Don’t turn around. ", coords: "two" },
- 3: { text: "Walk backwards down the central aisle.", coords: "three" }, 
-  4: { text: "HOLD IT.<br/>
+ 2: { text: "Walk backwards down the central aisle.<br/> Don't turn around.", coords: "two" }, 
+  3: { text: "HOLD IT.<br/>
 The Book Monster.<br/>
-We need to go a different route. Re-routing.", coords: "three" }, 
-  5: { text: "Slowly turn left and walk backwards towards the wall.", coords: "four" }, 
-   6: { text: "Walk along the wall towards reception - past the Jigsaws.", coords: "five" }, 
- 7: { text: "Stop before the reception - it’s too open there.", coords: "six" }, 
-  8: { text: "We’re going to make a dash for it. You are going to go to the Poetry Corner.<br/> Wait for the Book Monster to move... and then I will tell you when to go.", coords: "six"}, 
-  9: { text: "Go!", coords: "seven" }, 
-  10: { text: "Head out the door and out of the cage <br/>Enter the word on the wall on the left side to let me know you have made it out alive!", 
+We need to go a different route. Re-routing.", coords: "two" }, 
+  4: { text: "Make your way towards the wall.", coords: "four" }, 
+   5: { text: "Walk along the wall towards reception - past the Jigsaws.<br/>
+   Stop before the reception - it’s too open there.", coords: "five" }, 
+  6: { text: "We’re going to make a dash for it. You are going to go to the Poetry Corner.<br/> Get ready. 3.. 2.. 1.. Go!", coords: "seven"},  
+  7: { text: "Head out the door and out of the cage <br/>Walk along the wall as you exit the Library. Enter the word on the wall on the left side to let me know you have made it out alive!", 
   coords: "eight"}
 }>>
   <<set $position to $instructions[$currentInstructionIndex].coords >>
@@ -2253,7 +2267,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 	<div>
 <div class="map-container" id="mapContainer">
 <img src="assets/img/map.png"/>
-<div class="location hide pulse" id="location">
+<div class="location one pulse" id="location">
 <img src="/assets/img/arrow.png" src="arrow"/></div>
 
 
@@ -2269,7 +2283,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 	</div>
    <div class="instruction" id="instruction">
  
-    <p >
+    <p class="message">
     /* <<print $currentInstructionIndex>>. */
     <<print $instructions[$currentInstructionIndex].text>></p>
     
@@ -2369,13 +2383,6 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<removeclass "#btnMount" "hide">>
     <</timed>>
 <<elseif $currentInstructionIndex === 3 >>
-  <<timed 1s>>
-     <<include "updateInstruction">>
-  <</timed>>
-  <<timed 4s>>
-    <<removeclass "#btnMount" "hide">>
-    <</timed>>
-<<elseif $currentInstructionIndex === 4 >>
 /* TODO ADD BOOK Monster */
     <<timed 0.1s>>
       <<append "#mapContainer">>
@@ -2387,7 +2394,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
-<<elseif $currentInstructionIndex === 5 >>
+<<elseif $currentInstructionIndex === 4 >>
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
@@ -2399,7 +2406,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
-<<elseif $currentInstructionIndex === 6 >>
+<<elseif $currentInstructionIndex === 5 >>
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
@@ -2411,59 +2418,35 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
-<<elseif $currentInstructionIndex === 7 >>
+<<elseif $currentInstructionIndex === 6 >>
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
      <<timed 3.5s>>
        <<append "#mapContainer">>
       <<include "swirlbookmonster4">>
+        <<include "swirlbookmonster5">>
+          <<include "swirlbookmonster6">>
       <</append>>
     <</timed>>
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
-<<elseif $currentInstructionIndex === 8 >>
+<<elseif $currentInstructionIndex === 7 >>
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
      <<timed 3.5s>>
        <<append "#mapContainer">>
-      <<include "swirlbookmonster5">>
-      <</append>>
-    <</timed>>
-    <<timed 4s>>
-    <<removeclass "#btnMount" "hide">>
-    <</timed>>
-<<elseif $currentInstructionIndex === 9 >>
-    <<timed 0.1s>>
-      <<include "updateInstruction">>
-    <</timed>>
-     <<timed 3.5s>>
-       <<append "#mapContainer">>
-      <<include "swirlbookmonster6">>
-   
-      <</append>>
-    <</timed>>
-    <<timed 4s>>
-    <<removeclass "#btnMount" "hide">>
-    <</timed>>
-<<elseif $currentInstructionIndex === 10 >>
-    <<timed 0.1s>>
-      <<include "updateInstruction">>
-    <</timed>>
-     <<timed 3.5s>>
-       <<append "#mapContainer">>
-      <<include "swirlbookmonster7">>
+    
+          <<include "swirlbookmonster7">>
       <<include "swirlbookmonster8">>
       <</append>>
     <</timed>>
     <<timed 4s>>
-    <<replace "#btnMount">>
-      <<include "pwMap">>
-      <</replace>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
+
   
   <</if>>
 
@@ -2660,7 +2643,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Well done.</p>
+        <p>Ellen Bright - the Lion Queen. </p>
        </div>
     <</append>>
 <</timed>>
@@ -2669,7 +2652,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>And we have escaped the Monster’s Cage.</p>
+        <p>Well done.</p>
        </div>
     <</append>>
 <</timed>>
@@ -2678,12 +2661,31 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Let’s keep going.</p>
+        <p>And we have escaped the Googly Moogly’s Cage. </p>
        </div>
     <</append>>
 <</timed>>
 
 <<timed 21s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>We’ll be safe out here but we need to root the book soon. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 24s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Let’s keep going.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+
+<<timed 26s>>
     <<replace "#nextButtonContainer">>
     <<button "Next">>
         <<goto "bookrooting">>
@@ -2739,7 +2741,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 :: ger6-1 [nobr]
 <<set $prevpass to "wordsLeft3">>
 <<set $pass to "ger6-1">>
-<<set $nextpass to "ger6-2">>
+<<set $nextpass to "ger6-2a">>
 <<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
@@ -2779,15 +2781,15 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</replace>>
 <</timed>>
 
-:: ger6-2 [nobr]
+:: ger6-2a [nobr]
 <<set $prevpass to "ger6-1">>
-<<set $pass to "ger6-2">>
-<<set $nextpass to "ger6-3">>
+<<set $pass to "ger6-2a">>
+<<set $nextpass to "ger6-2b">>
 
 <<include "_templateGeraldine">>
 
-:: ger6-2-messages [nobr]
-<<timed 0.1s>>
+:: ger6-2a-messages [nobr]
+<<timed 0.5s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2796,7 +2798,25 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</append>>
 <</timed>>
 
-<<timed 3s>>
+
+<<timed 4s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger6-2b [nobr]
+<<set $prevpass to "ger6-2a">>
+<<set $pass to "ger6-2b">>
+<<set $nextpass to "ger6-2c">>
+
+<<include "_templateGeraldine">>
+
+:: ger6-2b-messages [nobr]
+
+<<timed 0.5s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2805,7 +2825,33 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</append>>
 <</timed>>
 
+<<timed 3s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>OCTOPUS need you to focus. </p>
+       </div>
+    <</append>>
+<</timed>>
+
 <<timed 6s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger6-2c [nobr]
+<<set $prevpass to "ger6-2b">>
+<<set $pass to "ger6-2c">>
+<<set $nextpass to "ger6-3">>
+
+<<include "_templateGeraldine">>
+
+:: ger6-2c-messages [nobr]
+
+<<timed 0.5s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2814,7 +2860,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</append>>
 <</timed>>
 
-<<timed 9s>>
+<<timed 3s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2823,7 +2869,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</append>>
 <</timed>>
 
-<<timed 12s>>
+<<timed 6s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2832,7 +2878,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</append>>
 <</timed>>
 
-<<timed 15s>>
+<<timed 8s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2841,7 +2887,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</append>>
 <</timed>>
 
-<<timed 18s>>
+<<timed 11s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2850,7 +2896,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</append>>
 <</timed>>
 
-<<timed 21s>>
+<<timed 14s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -2859,7 +2905,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</append>>
 <</timed>>
 
-<<timed 23s>>
+<<timed 17s>>
     <<replace "#nextButtonContainer">>
     <<button "Next">>
         <<goto $nextpass>>
@@ -2867,8 +2913,10 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</replace>>
 <</timed>>
 
+
+
 :: ger6-3 [nobr]
-<<set $prevpass to "ger6-2">>
+<<set $prevpass to "ger6-2b">>
 <<set $pass to "ger6-3">>
 <<set $nextpass to "picUpload">>
 
@@ -3088,8 +3136,44 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</replace>>
 <</timed>>
 
-:: ger8-2 [nobr]
+:: ger8-1b [nobr]
 <<set $prevpass to "ger8-1">>
+<<set $pass to "ger8-1b">>
+<<set $nextpass to "ger8-2">>
+
+<<include "_templateGeraldine">>
+
+:: ger8-1b-messages [nobr]
+<<timed 0.1s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+          <p>Ok - Googly Moogly doesn’t seem happy with what we are doing. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>But we need to keep going. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+
+<<timed 6s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+
+:: ger8-2 [nobr]
+<<set $prevpass to "ger8-1b">>
 <<set $pass to "ger8-2">>
 <<set $nextpass to "chapterTitle4">>
 
@@ -3730,19 +3814,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <</replace>>
 <</timed>>
 
-/* :: minesChallenge [nobr]
-<<set $prevpass to "ger12-1">>
-<<set $pass to "minesChallenge">>
-<<set $nextpass to "ger13-1">>
-<main>
-<p>1 - Facing the Library - the Cannon on the left - the number on there.</p>
-<p>2 - Near the middle cannon - there’s a sign - the number is the range of the 18 pounder cannon in yards</p>
-<p>3- Code on the Lamp Post near the Soldier & Dog (you may need to look up)</p>
 
-<<include "pwMines">>
-</main>
-
-<<include "footer">> */
 
 :: headermines [nobr]
 <header class="intro">
@@ -3881,7 +3953,7 @@ We need to go a different route. Re-routing.", coords: "three" },
         <<addclass "#letterItemC" "current">>   
 
    <h2 class="octo-title">Location 3</h2>
-       <p>Code on the Lamp Post near the Soldier & Dog (you may need to look up) </p>
+       <p>Numbers on the Lamp Post near the Soldier & Dog (you may need to look up)</p>
     <</replace>>
     <<replace "#inputMount">>
         <div id="coderesult"></div>
@@ -3891,7 +3963,7 @@ We need to go a different route. Re-routing.", coords: "three" },
         /% PASSWORD CODE %/
         <<set $c to $c.toUpperCase()>>
         /% CODEWORD CORRECT %/
-        <<if $c isnot "" and $c is "GCC319">>
+        <<if $c isnot "" and $c is "319">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct! </div><</replace>>
         <<timed 1s>>
             <<run $correctansmines.push("C")>>
@@ -3904,7 +3976,7 @@ We need to go a different route. Re-routing.", coords: "three" },
         <</timed>>
         <</if>>
         /% CODEWORD INCORRECT %/
-        <<if $c isnot "" and $c isnot "GCC319">>
+        <<if $c isnot "" and $c isnot "319">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">That's not right...</div><</replace>>
         <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
         <</if>><</button>>
@@ -4143,7 +4215,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>I love a good twist. </p>
+        <p>A boat that became a club! </p>
        </div>
     <</append>>
 <</timed>>
@@ -4152,7 +4224,7 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>I wasn’t expecting that at all. </p>
+        <p>I love a good twist. </p>
        </div>
     <</append>>
 <</timed>>
@@ -4161,12 +4233,31 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Were you? </p>
+        <p>I hope you do too. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 10s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>I wasn’t expecting that at all. </p>
        </div>
     <</append>>
 <</timed>>
 
 <<timed 13s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Were you ? </p>
+       </div>
+    <</append>>
+<</timed>>
+
+
+<<timed 15s>>
     <<replace "#nextButtonContainer">>
     <<button "No!">>
         <<goto $nextpass>>
@@ -4177,7 +4268,7 @@ We need to go a different route. Re-routing.", coords: "three" },
 :: ger14-3 [nobr]
 <<set $prevpass to "ger14-2">>
 <<set $pass to "ger14-3">>
-<<set $nextpass to "ger14-4">>
+<<set $nextpass to "ger14-3b">>
 <<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
@@ -4223,13 +4314,49 @@ We need to go a different route. Re-routing.", coords: "three" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Near the casemates you can find the map of Chatham.  </p>
+        <p>And stop Googly Moogly. </p>
        </div>
     <</append>>
 <</timed>>
 
-
 <<timed 13s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+
+:: ger14-3b [nobr]
+<<set $prevpass to "ger14-3">>
+<<set $pass to "ger14-3b">>
+<<set $nextpass to "ger14-4">>
+<<audio ":all" stop>>
+<<include "_templateGeraldine">>
+
+
+:: ger14-3b-messages [nobr]
+
+<<timed 0.5s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>And not a moment too soon it seems.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Near the casemates you can find the map of Chatham.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 6s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -4239,14 +4366,13 @@ We need to go a different route. Re-routing.", coords: "three" },
 <</timed>>
 
 
-<<timed 16s>>
+<<timed 9s>>
     <<replace "#nextButtonContainer">>
     <<button "We're there">>
         <<goto $nextpass>>
     <</button>>
     <</replace>>
 <</timed>>
-
 
 :: ger14-4 [nobr]
 /* ROOTING  */

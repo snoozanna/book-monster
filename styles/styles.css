@@ -530,17 +530,11 @@ footer.map > .button-wrapper{
 }
 
 .location.two {
-  left: 54%;
-  top: 15%;
-  transform: rotate(90deg);
-
-}
-
-.location.three {
-  left: 54%;
+  left: 52%;
   top: 23%;
-  transform: rotate(90deg);
 }
+
+
 
 .location.four {
   right: 10%;
