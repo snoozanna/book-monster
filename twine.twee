@@ -1441,7 +1441,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<set $prevpass to "gerIntro-4">>
 <<set $pass to "octopusgallery">>
 <<set $nextpass to "gerIntro-6">>
-<<include "galleryheader">>
+/* <<include "galleryheader">> */
 <main class="gallery">
 
 

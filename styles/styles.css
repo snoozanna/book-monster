@@ -1831,10 +1831,10 @@ main.intro.pre:before {
   top: 0;
   width: 100%;
   height: 76%;
-  opacity: 0.1;
+  opacity: 0.05;
   background-image: url(/assets/img/logo.png);
   background-repeat: no-repeat;
-  background-position: -25% 0;
+  background-position: -35% 0;
   background-size: cover;
   }
 
