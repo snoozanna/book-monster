@@ -258,7 +258,7 @@ setup.handleFileUpload = () => {
       successMount.style.display = "none";
       setTimeout(() => {
       Engine.play("ger7-1");
-      }, 5000); //
+      }, 2000); 
     }
   }
 
@@ -279,6 +279,7 @@ setup.boatMultiDraggable = () => {
 
   const messageContainer = document.getElementById("message");
   const audioMount = document.getElementById("audio");
+  const bookImage = document.getElementById("book-image")
 
   // Get device width and height
   const deviceWidth = window.innerWidth;
@@ -329,7 +330,7 @@ setup.boatMultiDraggable = () => {
   const portContainer = document.getElementById('port-container');
 
   // Predefined color sequence
-  const colorSequence = ['#37254d', '#8054b5', '#5464b5', '#54b1b5', '#7fd1b9']; // Array of 5 colors
+  const colorSequence = ['#5f3b8a', '#8054b5', '#5464b5', '#54b1b5', '#7fd1b9']; // Array of 5 colors
 
   // Function to handle the drag logic
   const makeDraggable = (element, name, targetArea) => {
@@ -371,9 +372,16 @@ setup.boatMultiDraggable = () => {
         elemY + elemRect.height <= targetArea.y + targetArea.height
       ) {
         elem.classList.add('win');
+         bookImage.classList.remove("wobble-once");
+        bookImage.classList.add("wobble-once");
         updateCompletion(name, true);
          playSound();
         console.log(`win ${name}!`, completed);
+          // Trigger wobble animation by removing and re-adding the class
+        bookImage.classList.remove('wobble-once');
+        // Force reflow to re-trigger the animation
+        void bookImage.offsetWidth;
+        bookImage.classList.add('wobble-once');
       } else {
         elem.classList.remove('win');
         updateCompletion(name, false);
@@ -410,9 +418,9 @@ setup.boatMultiDraggable = () => {
     if (completeList.every(item => completed.includes(item))) {
       messageContainer.textContent = "WINNER!!";
       console.log("WINN!!");
-
+      document.body.style.backgroundColor = ""
       // Transition to the next passage in SugarCube
-      Engine.play("ger15-1");  
+      Engine.play("begone");  
 
     } else {
       messageContainer.textContent = "Keep going...";
@@ -446,12 +454,14 @@ setup.boatMultiDraggable = () => {
 <<cacheaudio "monster2" "../assets/sound/monster2.mp3">>
 <<cacheaudio "monster3" "../assets/sound/monster3.mp3">>
 <<cacheaudio "monster4" "../assets/sound/monster4.mp3">>
-<<cacheaudio "monster5" "../assets/sound/monster5.mp3">>
-<<cacheaudio "monsterannoyed" "../assets/sound/monsterannoyed.mp3">>
+<<cacheaudio "monsterdet" "../assets/sound/MonsterDeteriating.mp3">>
 <<cacheaudio "rooting" "../assets/sound/signalprocess3.mp3">>
 <<cacheaudio "wordeat" "../assets/sound/WordEating.mp3">>
 <<cacheaudio "siren" "../assets/sound/siren.mp3">>
 <<cacheaudio "ritual" "../assets/sound/ritual.mp3">>
+<<cacheaudio "mine1" "../assets/sound/MinesDeactivating.mp3">>
+<<cacheaudio "mine2" "../assets/sound/MinesDeactivating2.mp3">>
+<<cacheaudio "mine3" "../assets/sound/MinesDeactivating3.mp3">>
 <<set $currentChapter to 1>>
 
 :: findChapTitle [nobr]
@@ -527,10 +537,9 @@ setup.boatMultiDraggable = () => {
 
 
 :: footerend[nobr]
-<footer>
-    <<link "Back">>
-        <<goto $prevpass>>
-    <</link>>
+<footer class="intro end">
+    <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
+     <div class="footer-icon">[img[/assets/img/icon1.png][$pass]]</div>
     <<link "Start again">>
       <<script>>
         Engine.restart()
@@ -540,38 +549,339 @@ setup.boatMultiDraggable = () => {
     
 </footer>
 
+:: footerintro[nobr]
+<footer class="intro">
+     <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
+      <div class="footer-icon">[img[/assets/img/for.png][$nextpass]]</div>
+</footer>
 
 
 :: landing [nobr] 
 <<set $prevpass to "landing">>
 <<set $pass to "landing">>
-<<set $nextpass to "intro">>
+<<set $nextpass to "preintro">>
 <<audio ":all" stop>>
+<div class="desktop-message">
+  <p>Please view this on a phone.</p>
+</div>
 <main class="logospin">
 <div class="logo-wrapper slowRotate">
 <img src="/assets/img/logo.png" alt="logo"/>
 
 </div>
-  <<button "Start">>
-        <<goto "intro">>
+  <<button "Enter">>
+        <<goto $nextpass>>
     <</button>>
 </main>
 
 
 
+:: headerpreintro [nobr]
+<header class="intro pre">
 
-:: toc [toc]
-<main>
+  <div class="octo-title-wrapper">
+    <h2 class="octo-title">OCTOPUS</h2>
+
+  </div>
+</header>
+
+:: preintro [nobr]
+<<set $prevpass to "landing">>
+<<set $pass to "preintro">>
+<<set $nextpass to "preintro2">>
+<<include "headerpreintro">>
+<main class="pre intro">
+<div id="mount"></div>
+
+<<timed 0.5s>>
+    <<replace "#mount">>
+  <p>Thank you for joining us at OCTOPUS</p>
+    <</replace>>
+  <</timed>>
+<<timed 4s>>
+    <<append "#mount">>
+      <p>OCTOPUS stands for Official Chatham Taskforce Protecting Unrooted Stories </p>
+    <</append>>
+  <</timed>>
+  <<timed 8s>>
+    <<append "#mount">>
+     <p>You must have found a book that is being eaten by the book monster. </p>
+    <</append>>
+  <</timed>>
+  <<timed 12s>>
+    <<append "#mount">>
+      <p>Don’t worry this is normal for us here in OCTOPUS. </p>
+    <</append>>
+  <</timed>>
+  <<timed 13s>>
+    <<append "#mount">>
+    <<button "Next">>
+      <<goto $nextpass>>
+      <</button>>
+    <</append>>
+  <</timed>>
+ </main>
+<<include "footerintro">>
 
 
-[[wordsLeft]]
-[[wordsAdded]]
-[[code4]]
-[[mapInstructions]]
-[[picUpload]]
-[[360image]]
-[[dragIntoBook]]
-[[landing]]
+:: preintro2 [nobr]
+<<set $prevpass to "preintro">>
+<<set $pass to "preintro2">>
+<<set $nextpass to "preintro3">>
+<<include "headerpreintro">>
+<main class="pre intro">
+<div id="mount"></div>
+
+<<timed 0.5s>>
+    <<replace "#mount">>
+  <p>To connect with us you will need your volume up. </p>
+    <</replace>>
+  <</timed>>
+<<timed 4s>>
+    <<append "#mount">>
+      <p>There is an option to press back to go to a previous page</p>
+    <</append>>
+  <</timed>>
+  <<timed 8s>>
+    <<append "#mount">>
+     <p>It is best not to refresh your page</p>
+    <</append>>
+  <</timed>>
+  <<timed 12s>>
+    <<append "#mount">>
+      <p>If you have any problems then you speak to the library team here. </p>
+    <</append>>
+  <</timed>>
+  <<timed 13s>>
+    <<append "#mount">>
+    <<button "Next">>
+      <<goto $nextpass>>
+      <</button>>
+    <</append>>
+  <</timed>>
+</main>
+<<include "footerintro">>
+
+:: preintro3 [nobr]
+<<set $prevpass to "preintro2">>
+<<set $pass to "preintro3">>
+<<set $nextpass to "preintro4">>
+<<include "headerpreintro">>
+<main class="pre intro">
+<div id="mount"></div>
+
+<<timed 0.5s>>
+    <<replace "#mount">>
+  <p>Send in the book title and we can connect you to the right department. </p>
+    <</replace>>
+  <</timed>>
+<<timed 4s>>
+   <<append "#mount">>
+     <<include "pwChathamStories">>
+    <</append>>
+  <</timed>>
+</main>
+<<include "footerintro">>
+:: preintro4 [nobr]
+<<set $prevpass to "preintro3">>
+<<set $pass to "preintro4">>
+<<set $nextpass to "phonecall">>
+<<include "headerpreintro">>
+<main class="pre intro">
+<div id="mount"></div>
+
+<<timed 0.5s>>
+    <<replace "#mount">>
+  <p>Oh no - the Chatham Stories book! </p>
+    <</replace>>
+  <</timed>>
+<<timed 4s>>
+    <<append "#mount">>
+      <p>I didn’t think this would be eaten. </p>
+    <</append>>
+  <</timed>>
+  <<timed 8s>>
+    <<append "#mount">>
+     <p>Let’s connect you to OCTOPUS HQ</p>
+    <</append>>
+  <</timed>>
+  <<timed 12s>>
+    <<append "#mount">>
+      <p>We are based in the basement of the Docking Station, near the Dockyards.  </p>
+    <</append>>
+  <</timed>>
+
+    <<timed 15s>>
+    <<append "#mount">>
+      <p>Find a place where we can call you - you may want to find a quiet corner.  </p>
+    <</append>>
+  <</timed>>
+
+    <<timed 18s>>
+    <<append "#mount">>
+      <p>And when you’re ready, click the button so we can call through.  </p>
+    <</append>>
+  <</timed>>
+  <<timed 21s>>
+    <<append "#mount">>
+    <<button "Ready">>
+      <<goto $nextpass>>
+      <</button>>
+    <</append>>
+  <</timed>>
+
+</main>
+<<include "footerintro">>
+
+
+
+:: phonecall [nobr]
+<<set $prevpass to "preintro4">>
+<<set $pass to "phonecall">>
+<<set $nextpass to "preintro5">>
+<<timed 2s>>
+<<include "clock">>
+/* <<audio "bgm_space" play goto "">> */
+<</timed>>
+<<timed 3s>>
+  <<removeclass ".opacitytwo" "opacitytwo">>
+    <<timed 62s>>
+      <<goto $nextpass>>
+      <</timed>>
+<</timed>>
+<div id="audio"> <audio src="assets/audio/OpeningScene-Rezel.mp3" autoplay>Audio is not supported on your device</audio></div>
+<main class="phonecall">
+<div class="phonecall-name">
+<h2>Octopus Helpline</h2>
+<span id="phonecall-time" class="phonecall-time">Connecting...</span></div>
+<div class="phonecall-avatar opacitytwo"> <img src="/assets/img/logo.png" alt="logo"/></div>
+<div class="phonecall-btn-wrapper">
+<div class="phonecall-btn-container opacitytwo">
+  <div class="phonecall-btn">[img[/assets/img/icon3.png][$prevpass]]</div>
+    <div class="phonecall-btn">[img[/assets/img/icon2.png][phonecalltext]]</div>
+  <div class="phonecall-btn">[img[/assets/img/icon1.png][phonecall]]</div>
+
+
+  </div>
+
+<div class="phonecall-btn opacitytwo hangup">[img[/assets/img/phone-down.png][$nextpass]]</div>
+
+</div>
+</main>
+
+:: clock [nobr]
+<<silently>>
+	<<set $seconds to 0>>
+	<<set $minutes to 0>>
+
+	<<repeat 1s>>
+		<<set $seconds to $seconds + 1>>
+
+		<<if $seconds >= 60>>
+			<<set $minutes to $minutes + 1>>
+			<<set $seconds to 0>>
+		<</if>>
+
+		<<replace "#phonecall-time">>
+			$minutes : <<if $seconds lt 10>>0<</if>>$seconds
+		<</replace>>
+	<</repeat>>
+<</silently>>
+
+:: phonecalltext [nobr]
+<main class="phonetext">
+<h2>Octopus Helpline:</h2>
+<br/>
+
+<p>Hello! Octopus Helpline here</p>
+<p>I’m so glad you picked up. </p>
+<p>I haven’t got much time - it’s all systems go here - we have our tentacles in many pies - with lots of books to root…</p>
+<p>At OCTOPUS, we root books by making sure they are being read.</p>
+<p>That way they are never forgotten</p>
+<p>But now we need help from brave and brilliant people </p>
+<p>You must be these people.</p>
+<p>Let me break it down for you. </p>
+<p>There is a Book Monster. </p>
+<p>Who is eating books! </p>
+<p>The Book Monster eats books that aren’t being connected to</p>
+<p>That aren’t being remembered. </p>
+<p>That’s why you’re here - you can save them.</p>
+<p>We need you to root the book here - in the present. </p>
+<p>The Book Monster will try to stop us though. </p>
+<p>They will put up challenges. </p>
+<p>Challenges that will stop you from completing your mission. </p>
+
+<p>By completing the challenges, you will root the stories forever</p>
+
+<p>I will send you to the OCTOPUS Rooter. </p>
+
+<p>Good luck</p>
+<<button "Next">><<goto "">><</button>>
+<<button "Back">><<goto "phonecall">><</button>>
+
+</main>
+<br/>
+<br/>
+
+:: preintro5 [nobr]
+<<set $prevpass to "phonecall">>
+<<set $pass to "preintro5">>
+<<set $nextpass to "rooterlanding">>
+<<include "headerpreintro">>
+<main class="pre intro">
+<div id="mount"></div>
+
+<<timed 0.5s>>
+    <<replace "#mount">>
+  <p>You need to root the book. </p>
+    <</replace>>
+  <</timed>>
+<<timed 4s>>
+    <<append "#mount">>
+      <p>We will link you with an OCTOPUS Rooter Agent to help you. </p>
+    <</append>>
+  <</timed>>
+  <<timed 8s>>
+    <<append "#mount">>
+     <p>Her name is Geraldine. </p>
+    <</append>>
+  <</timed>>
+  <<timed 11s>>
+    <<append "#mount">>
+      <p>It is her first day - but don’t worry she will instruct you how to face the Book Monster. </p>
+    <</append>>
+  <</timed>>
+
+    <<timed 14s>>
+    <<append "#mount">>
+      <p>Don’t worry you have everything you need</p>
+    <</append>>
+  <</timed>>
+  <<timed 16s>>
+    <<append "#mount">>
+    <<button "Ready">>
+      <<goto $nextpass>>
+      <</button>>
+    <</append>>
+  <</timed>>
+</main>
+<<include "footerintro">>
+
+:: rooterlanding [nobr] 
+<<set $prevpass to "preintro5">>
+<<set $pass to "rooterlanding">>
+<<set $nextpass to "intro">>
+<<audio ":all" stop>>
+
+<main class="logospin">
+<div class="logo-wrapper slowRotate">
+<img src="/assets/img/logo.png" alt="logo"/>
+
+</div>
+<p class="octo-welcome-text"> Loading Rooter...</p>
+<<timed 4s>>
+  <<goto $nextpass>>
+  <</timed>>
 </main>
 
 :: headerintro [nobr]
@@ -584,8 +894,10 @@ setup.boatMultiDraggable = () => {
     <span>Rooter</span>
   </div>
 </header>
+
+
 :: intro [nobr] 
-<<set $prevpass to "landing">>
+<<set $prevpass to "preintro5">>
 <<set $pass to "intro">>
 <<set $nextpass to "connecting">>
 <<audio ":all" stop>>
@@ -613,24 +925,15 @@ setup.boatMultiDraggable = () => {
       <p>And stop the Book Monster</p>
     <</append>>
   <</timed>>
-  <<timed 12s>>
-    <<append "#mount">>
-     <p>Enter the name of the book that needs rooting. </p>
-    <</append>>
+  
+    <<timed 14s>>
+  <<button "Connect me">>
+        <<goto $nextpass>>
+        <</button>>
   <</timed>>
-    <<timed 1s>>
-    <<append "#mount">>
-     <<include "pwChathamStories">>
-    <</append>>
-  <</timed>>
-
-
-
-
-
-
 
 </main>
+<<include "footerintro">>
 
 :: pwChathamStories [nobr]
 <div class="css-input code-input codeword-input">
@@ -640,7 +943,7 @@ setup.boatMultiDraggable = () => {
       
       /% CODEWORD CORRECT FOR CHATHAM STORIES%/
       <<if $codeword isnot "" and $codeword is "CHATHAM STORIES">>
-        <<replace "#coderesult">><h2>CORRECT</h2><</replace>>
+        <<replace "#coderesult">><h2>Accepted.</h2><</replace>>
         <<audio "correct" play>>
 
         <<timed 3s>><<goto $nextpass>><</timed>>
@@ -648,23 +951,27 @@ setup.boatMultiDraggable = () => {
 
        /% CODEWORD CORRECT FOR GERALDINE %/
       <<if $codeword isnot "" and $codeword is "GERALDINE">>
-        <<replace "#coderesult">><h2>CORRECT</h2><</replace>>
+        <<replace "#coderesult">><h2>Accepted.</h2><</replace>>
         <<audio "correct" play>>
-        <<timed 3s>><<goto "ger14-3">><</timed>>
+        <<timed 3s>><<goto "phonecallger">><</timed>>
       <</if>>
 
       /% CODEWORD INCORRECT %/
         <<if $codeword isnot "" and ($codeword isnot "CHATHAM STORIES" and $codeword isnot "GERALDINE")>>
            <<audio "error" play>>
-           <<replace "#coderesult">><h2>That's not right.</h2><</replace>>
+           <<replace "#coderesult">><h2>Not recognised.</h2><</replace>>
          <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
          <</if>>
        
     <</button>>
-
+  <br/> <br/>
     <div id="coderesult"></div>
     <br/>
 </div>
+
+
+
+
 
 :: connecting [nobr]
 <<set $prevpass to "intro">>
@@ -826,6 +1133,7 @@ setup.boatMultiDraggable = () => {
         <</button>>
           <</replace>>
     <</timed>>
+
 
 :: gerIntro-2 [nobr]
 <<set $prevpass to "gerIntro-1">>
@@ -1853,7 +2161,7 @@ $correctans
 <<set $prevpass to "ger3-1">>
 <<set $pass to "wordsAdded1">>
 <<set $nextpass to "ger3-2">>
-
+<div id="audio"></div>
 <main>
     
   <div class="eating-container">
@@ -1893,11 +2201,12 @@ $correctans
 <<done>>
   <<set $still to setup.restoreWords()>>
 <</done>>
-<<timed 15s>>
-  /* <<goto $nextpass>> */
-  <</timed>>
 
-
+<<timed 0.5s>>
+  <<replace "#audio">>
+    <audio src="assets/audio/WomaninDisguise.mp3" autoplay>Audio is not supported on your device</audio>
+    <</replace>>
+<</timed>>
 :: ger3-2 [nobr]
 <<set $prevpass to "wordsAdded1">>
 <<set $pass to "ger3-2">>
@@ -1943,6 +2252,7 @@ $correctans
         <</button>>
           <</replace>>
     <</timed>>
+
 
 :: ger3-3 [nobr]
 <<set $prevpass to "ger3-2">>
@@ -2109,22 +2419,22 @@ $correctans
 
 <<if previous() is "ger3-5">>
   <<audio "monster1" play>>
-  <<timed 4s>>
+  <<timed 7s>>
       <<goto $nextpass>>
     <</timed>>
   <<elseif previous() is "wordsLeft2">>
-    <<audio "monster3" play>>
-    <<timed 6s>>
+    <<audio "monster2" play>>
+    <<timed 9s>>
       <<goto $nextpass>>
     <</timed>>
   <<elseif previous() is "ger8-1">>
-     <<audio "monster4" play>>
-     <<timed 5s>>
+     <<audio "monster3" play>>
+     <<timed 7s>>
       <<goto $nextpass>>
     <</timed>>
    <<elseif previous() is "ger14-3">>
-     <<audio "monster5" play>>
-     <<timed 6s>>
+     <<audio "monster4" play>>
+     <<timed 3s>>
       <<goto $nextpass>>
     <</timed>>
   <</if>>
@@ -2407,7 +2717,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 :: footermap [nobr]
 
 <footer class="map">
-<<button "Back">><<goto "landing">><</button>>
+<<button "Back">><<goto $prevpass>><</button>>
 
 <span class="button-wrapper" id="btnMount" aria-label="Click a button or link to move on">
 
@@ -2620,7 +2930,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $prevpass to "ger5-1">>
 <<set $pass to "wordsAdded2">>
 <<set $nextpass to "ger5-2">>
-
+<div id="audio"></div>
 <main class="main-words added">
  <div class="eating-container">
    <p>
@@ -2635,14 +2945,16 @@ We need to go a different route. Re-routing.", coords: "two" },
 </div>
 
 </main>
-
-
 <<include "footerwords">>
 
 <<done>>
   <<set $still to setup.restoreWords()>>
 <</done>>
-
+<<timed 0.5s>>
+  <<replace "#audio">>
+    <audio src="assets/audio/LionQueen.mp3" autoplay>Audio is not supported on your device</audio>
+    <</replace>>
+<</timed>>
 
 :: ger5-2 [nobr]
 <<set $prevpass to "wordsAdded2">>
@@ -3034,13 +3346,11 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<include "headerUpload">>
 <main class="main-section upload">
 
-<br>
 <div id="uploadInstructions">
   <h3>Find a spot out to the river</h3>
   <h3>Upload an image of something interesting </h3>
 </div>
 
-<br/>
 <div class="logo-wrapper" id="loadingLogo">
 <img src="/assets/img/logo.png" alt="logo" class="fastRotate"/>
 <br/>
@@ -3049,7 +3359,6 @@ We need to go a different route. Re-routing.", coords: "two" },
 <br>
 <input type="file" accept="image/*" capture="camera" id="inputImg" class="hide">
 <br>
-  <br>
 <div id="success">
 <<button "Upload Image">>
   <<set $e to setup.handleFileUpload()>><</button>>
@@ -3066,7 +3375,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 </footer>
 <<timed 12s>>
     <<append "#footerField">>
-  <<button "I've uploaded my image">> <<goto $nextpass>><</button>>
+  <<button "Move on">> <<goto $nextpass>><</button>>
     <</append>><</timed>>
 
 :: ger7-1 [nobr]
@@ -3078,16 +3387,26 @@ We need to go a different route. Re-routing.", coords: "two" },
 
 :: ger7-1-messages [nobr]
 
-<<timed 0.1s>>
+<<timed 0.5s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message">
-       <p>Yes - you seem to have unlocked the next chapter.</p>
+       <p>Upload complete!</p>
        </div>
     <</append>>
 <</timed>>
 
+
 <<timed 3s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message">
+       <p>You seem to have unlocked the next chapter.</p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 5s>>
     <<replace "#nextButtonContainer">>
     <<button "Next">>
         <<goto $nextpass>>
@@ -3095,12 +3414,13 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</replace>>
 <</timed>>
 
+
 :: wordsAdded3a [nobr]
 /* NARWAL  */
 <<set $prevpass to "ger7-1">>
 <<set $pass to "wordsAdded3a">>
 <<set $nextpass to "bookrooting3">>
-
+<div id="audio"></div>
 <main class="main-words added">
  <div class="eating-container">
    <p>
@@ -3125,9 +3445,11 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<done>>
   <<set $still to setup.restoreWords()>>
 <</done>>
-/* <<timed 35s>>
-  <<goto "bookrooting">>
-  <</timed>> */
+<<timed 0.5s>>
+  <<replace "#audio">>
+    <audio src="assets/audio/TheNarwhal.mp3" autoplay>Audio is not supported on your device</audio>
+    <</replace>>
+<</timed>>
 
 :: bookrooting3 [nobr]
 <<set $prevpass to "wordsAdded3a">>
@@ -3291,7 +3613,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $prevpass to "chapterTitle4">>
 <<set $pass to "wordsAdded4a">>
 <<set $nextpass to "ger9-2">>
-
+<div id="audio"></div>
 <main class="main-words added">
   <div class="eating-container">
   <p>
@@ -3330,9 +3652,11 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<done>>
   <<set $still to setup.restoreWords()>>
 <</done>>
-/* <<timed 45s>>
-  <<goto $nextpass>>
-  <</timed>> */
+<<timed 0.5s>>
+  <<replace "#audio">>
+    <audio src="assets/audio/PaintedElephant.mp3" autoplay>Audio is not supported on your device</audio>
+    <</replace>>
+<</timed>>
 
 :: ger9-2 [nobr]
 <<set $prevpass to "wordsAdded4a">>
@@ -3919,6 +4243,7 @@ We need to go a different route. Re-routing.", coords: "two" },
         <<if $l isnot "" and $l is "24">>
         <<timed 0.1s>>
          <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+        
         <</timed>>
         <<timed 1s>>
             <<run $correctansmines.push("L")>>
@@ -3929,6 +4254,7 @@ We need to go a different route. Re-routing.", coords: "two" },
             <</replace>>
             <<replace "#inputMount">><</replace>>
              <<replace "#clueMount">><</replace>>
+             <<audio "mine1" play>>
         <</timed>>
         <</if>>
         /% CODEWORD INCORRECT %/
@@ -3968,6 +4294,7 @@ We need to go a different route. Re-routing.", coords: "two" },
         /% CODEWORD CORRECT %/
         <<if $a isnot "" and $a is "3500">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct!</div><</replace>>
+         
         <<run $correctansmines.push("A")>>
             <<include "checkcorrectansmines">>
         <<timed 1s>>
@@ -3976,6 +4303,7 @@ We need to go a different route. Re-routing.", coords: "two" },
             <</replace>>
             <<replace "#inputMount">><</replace>>
              <<replace "#clueMount">><</replace>>
+              <<audio "mine2" play>>
         <</timed>>
         <</if>>
         /% CODEWORD INCORRECT %/
@@ -4014,6 +4342,7 @@ We need to go a different route. Re-routing.", coords: "two" },
         /% CODEWORD CORRECT %/
         <<if $c isnot "" and $c is "319">>
         <<replace "#coderesult">><div class="confirmation" id="confirmation">Correct! </div><</replace>>
+         
         <<timed 1s>>
             <<run $correctansmines.push("C")>>
             <<include "checkcorrectansmines">>
@@ -4022,6 +4351,7 @@ We need to go a different route. Re-routing.", coords: "two" },
             <</replace>>
             <<replace "#inputMount">><</replace>>
              <<replace "#clueMount">><</replace>>
+               <<audio "mine3" play>>
         <</timed>>
         <</if>>
         /% CODEWORD INCORRECT %/
@@ -4052,7 +4382,9 @@ We need to go a different route. Re-routing.", coords: "two" },
 :: checkcorrectansmines[nobr]
 
 <<if $correctansmines.includesAll("L", "A", "C")>>
-
+  <<timed 1s>>
+<<audio "correct" play>>
+<</timed>>
 <<timed 3s>>
 
   <<goto $nextpass>>
@@ -4131,7 +4463,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $prevpass to "ger13-1">>
 <<set $pass to "wordsAdded5">>
 <<set $nextpass to "ger14-1">>
-
+<div id="audio"></div>
 <main class="main-words added">
    <div class="eating-container">
    <p>
@@ -4168,9 +4500,12 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<done>>
   <<set $still to setup.restoreWords()>>
 <</done>>
-/* <<timed 25s>>
-  <<goto $nextpass>>
-  <</timed>> */
+<<timed 0.5s>>
+  <<replace "#audio">>
+    <audio src="assets/audio/TheLifeSavingClub.mp3" autoplay>Audio is not supported on your device</audio>
+    <</replace>>
+<</timed>>
+
 
 :: ger14-1 [nobr]
 <<set $prevpass to "wordsAdded5">>
@@ -4427,7 +4762,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 /* ROOTING  */
 <<set $prevpass to "ger14-3">>
 <<set $pass to "ger14-4">>
-<<set $nextpass to "dragIntoBook">>
+<<set $nextpass to "ger14-4b">>
 <<audio "ritual" play loop>>
 <<include "_templateGeraldine">>
 
@@ -4469,7 +4804,27 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</append>>
 <</timed>>
 
+
+
 <<timed 10s>>
+    <<replace "#nextButtonContainer">>
+    <<button "Next">>
+        <<goto $nextpass>>
+    <</button>>
+    <</replace>>
+<</timed>>
+
+:: ger14-4b [nobr]
+/* ROOTING  */
+<<set $prevpass to "ger14-4">>
+<<set $pass to "ger14-4b">>
+<<set $nextpass to "dragIntoBook">>
+
+<<include "_templateGeraldine">>
+
+
+:: ger14-4b-messages [nobr]
+<<timed 0.5s>>
     <<audio "ping1" "play">>
     <<replace "#msgMount">>
        <div class="message"> 
@@ -4479,7 +4834,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <</timed>>
 
 
-<<timed 13s>>
+<<timed 3s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -4488,7 +4843,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</append>>
 <</timed>>
 
-<<timed 16s>>
+<<timed 6s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -4497,7 +4852,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</append>>
 <</timed>>
 
-<<timed 19s>>
+<<timed 9s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -4506,17 +4861,35 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</append>>
 <</timed>>
 
-<<timed 24s>>
+<<timed 13s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Drag the chapters into the book. And when I say, join me in saying BE GONE GOOGLY MOOGLY. </p>
+        <p>We need to do two things to finish this.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 17s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>Drag the chapters into the Chatham Stories book.   </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 20s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
+        <p>And when I say, we need to vanquish Googly Moogly for good by saying BE GONE GOOGLY MOOGLY. </p>
        </div>
     <</append>>
 <</timed>>
 
 
-<<timed 16s>>
+<<timed 23s>>
     <<replace "#nextButtonContainer">>
     <<button "We're ready">>
         <<goto $nextpass>>
@@ -4547,18 +4920,19 @@ We need to go a different route. Re-routing.", coords: "two" },
 :: dragIntoBook[nobr]
 <<set $prevpass to "ger14-4">>
 <<set $pass to "dragIntoBook">>
-<<set $nextpass to "ger15-1">>
+<<set $nextpass to "begone">>
+<<removeclass "body" "green">>
 <<include "headerDrag">>
 <div id="port-container">
-  <img id="book-image" src="assets/img/open-book.png" alt="Port">
+  <img id="book-image" class="" src="assets/img/open-book.png" alt="Port">
   <div id="target-area1"></div>
    <div id="target-area2"></div>
    
-  <img id="chapter-one" class="draggable-image" src="/assets/img/chapter1.png" alt="Chapter 1" draggable="true">
-  <img id="chapter-two" class="draggable-image" src="/assets/img/chapter2.png" alt="Chapter 2" draggable="true">
-  <img id="chapter-three" class="draggable-image" src="/assets/img/chapter3.png" alt="Chapter 3" draggable="true">
- <img id="chapter-four" class="draggable-image" src="/assets/img/chapter4.png" alt="Chapter 4" draggable="true">
-  <img id="chapter-five" class="draggable-image" src="/assets/img/chapter5.png" alt="Chapter 5" draggable="true">
+  <img id="chapter-one" class="draggable-image" src="/assets/img/chapter1-white.png" alt="Chapter 1" draggable="true">
+  <img id="chapter-two" class="draggable-image" src="/assets/img/chapter2-white.png" alt="Chapter 2" draggable="true">
+  <img id="chapter-three" class="draggable-image" src="/assets/img/chapter3-white.png" alt="Chapter 3" draggable="true">
+ <img id="chapter-four" class="draggable-image" src="/assets/img/chapter4-white.png" alt="Chapter 4" draggable="true">
+  <img id="chapter-five" class="draggable-image" src="/assets/img/chapter5-white.png" alt="Chapter 5" draggable="true">
 </div>
 <<include "footer">>
 
@@ -4576,106 +4950,6 @@ We need to go a different route. Re-routing.", coords: "two" },
      </div>
 </footer>
 
-:: ger15-1 [nobr]
-
-<<set $prevpass to "dragIntoBook">>
-<<set $pass to "ger15-1">>
-<<set $nextpass to "begone">>
-<<audio ":all" stop>>
-<<include "_templateGeraldine">>
-
-:: ger15-1-messages [nobr]
-
-<<timed 0.1s>>
-      <<append "#msgMount">>
-       <div class="message"> 
-          <p>We are now ready to vanquish the Book Monster</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-     <<timed 3s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>You have proven you have connected to Chatham’s past </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-   <<timed 5s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>And with that, rooted it in the present.</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-
-     <<timed 8s>>
-    <<audio "ping1" "play">>
-        <<replace "#msgMount">>
-       <div class="message"> 
-          <p>You have proven you can face the Book Monster. </p>
-       </div>
-        <</replace>>
-    <</timed>>
-
-     <<timed 11s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>That you are not afraid to look at our past</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-      <<timed 14s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>And how it has shaped our present.  </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-
-    <<timed 17s>>
-    <<audio "ping1" "play">>
-        <<replace "#msgMount">>
-       <div class="message"> 
-          <p>You have stopped Googly Moogly. </p>
-       </div>
-        <</replace>>
-    <</timed>>
-
-     <<timed 20s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>And you have helped OCTOPUS </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-     <<timed 21s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>You are OCTOPUS. </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-
-  <<timed 24s>>
-      <<replace "#nextButtonContainer">>
-      <<button "We're ready">>
-          <<goto $nextpass>>
-        <</button>>
-          <</replace>>
-    <</timed>>
 
 :: headerbegone [nobr]
 <header class="intro">
@@ -4688,25 +4962,165 @@ We need to go a different route. Re-routing.", coords: "two" },
   </div>
 </header>
 
+
+
 :: begone [nobr]
-<<set $prevpass to "ger15-1">>
+<<set $prevpass to "dragIntoBook">>
 <<set $pass to "begone">>
 <<set $nextpass to "begone">>
 <<addclass "body" "green">>
-<<include "headerbegone">>
+
 <main class="begone">
-  <div class="motto-container"><span class="octo-title"> Head back to the library and ask for the OCTOPUS LEDGER</span></div>
+
+  <div class="motto-container" id="countdown"> <span class="octo-title number">3</span></div>
   <br/>
   <div id="mount"></div>
 </main>
 <<include "footerend">>
 
-<<timed 5s>>
+<<timed 10s>>
   <<replace "#mount">>
-
+    <b>Head back to the library and ask for the OCTOPUS LEDGER</b>
     <</replace>>
+  <</timed>>
+<<include "begonetimer">>
+
+<<timed 30s>>
+  <<goto "landing2">>
   <</timed>>
 
 
+:: begonetimer [nobr]
+  <<audio "30s" "play">>
+<<set $seconds to 3>>
+
+<<silently>>
+	<<repeat 1s>>
+		<<set $seconds to $seconds - 1>>
+		<<if $seconds gt 0>>
+			<<replace "#countdown">>
+         <span class="octo-title number">$seconds</span>
+      <</replace>>
+		<<else>>
+			<<replace "#countdown">>
+        <span class="octo-title">BE GONE GOOGLY MOOGLY</span>
+         <<audio ":all" stop>>
+        <<audio "monsterdet" play>>
+      <</replace>>
+    
+  
+			<<stop>>
+		<</if>>
+	<</repeat>>
+<</silently>>
+
+
+:: landing2 [nobr] 
+<<set $prevpass to "landing2">>
+<<set $pass to "landing2">>
+<<set $nextpass to "preintro">>
+<<audio ":all" stop>>
+
+<main class="logospin">
+<div class="logo-wrapper slowRotate">
+<img src="/assets/img/logo.png" alt="logo"/>
+
+</div>
+<<include "pwChathamStories">>
+</main>
+
+
+:: phonecallger [nobr]
+<<set $prevpass to "landing2">>
+<<set $pass to "phonecallger">>
+<<set $nextpass to "handbackbook">>
+<<timed 2s>>
+<<include "clock">>
+/* <<audio "bgm_space" play goto "">> */
+<</timed>>
+<<timed 3s>>
+  <<removeclass ".opacitytwo" "opacitytwo">>
+  <<replace "#audio">>
+    <audio src="assets/audio/Ending.mp3" autoplay>Audio is not supported on your device</audio>
+    <</replace>>
+    <<timed 51s>>
+      <<goto $nextpass>>
+      <</timed>>
+<</timed>>
+<div id="audio"></div>
+<main class="phonecall">
+<div class="phonecall-name">
+<h2>Geraldine</h2>
+<span id="phonecall-time" class="phonecall-time">Connecting...</span></div>
+<div class="phonecall-avatar opacitytwo"> <img src="/assets/img/logo.png" alt="logo"/></div>
+<div class="phonecall-btn-wrapper">
+<div class="phonecall-btn-container opacitytwo">
+  <div class="phonecall-btn">[img[/assets/img/icon3.png][$prevpass]]</div>
+    <div class="phonecall-btn">[img[/assets/img/icon2.png][phonecallgertext]]</div>
+  <div class="phonecall-btn">[img[/assets/img/icon1.png][phonecallger]]</div>
+
+
+  </div>
+
+<div class="phonecall-btn opacitytwo hangup">[img[/assets/img/phone-down.png][$nextpass]]</div>
+
+</div>
+</main>
+
+
+
+:: phonecallgertext [nobr]
+<main class="phonetext">
+<h2>Geraldine:</h2>
+<br/>
+
+<p>I told you I like Twists. </p>
+<p>Yes, that's right. </p>
+<p>I am the author of the book. </p>
+<p>This is the OCTOPUS Agent Test. </p>
+<p>We run this when we are looking for new Agents to join us. </p>
+<p>And I am the Chief Rooter. </p>
+<p>Call me Geraldine - That’s my name</p>
+<p>And the Book Monster? It’s a real threat to our books - YES. </p>
+<p>So what you did today is important </p>
+<p>Because we wanted to see if you had what it takes to learn and care about Chatham Stories. </p>
+<p>The past that has sculpted our present that you are in now. </p>
+<p>With all of this completed, I am sure you would make excellent OCTOPUS Agents</p>
+<p>And I want you to keep an eye out for future missions that might appear </p>
+<p>If you ever come to the Docking Station look out for us. </p>
+<p>We’ll be hiding in plain sight. </p>
+<p>Protecting stories that need our help. </p>
+<p>And we couldn’t do it without you. </p>
+<p>Hand back the book and you’ll receive a gift from us. </p>
+<p>Thank you my friends.</p>
+<br/>
+<<button "Next">><<goto "handbackbook">><</button>>
+<<button "Back">><<goto "phonecallger">><</button>>
+</main>
+<br/>
+<br/>
+
+
+:: handbackbook [nobr]
+<<set $prevpass to "phonecallger">>
+<<set $pass to "handbackbook">>
+<<set $nextpass to "landing">>
+<<include "headerintro">>
+<main class="begone upload ">
+
+  <div class="motto-container" id="countdown"> 
+  <p class="octo-welcome-text">Hand back the book and you’ll receive a gift from us. </p>
+  </div>
+  <br/>
+  <div id="mount"></div>
+</main>
+
+
+<<timed 5s>>
+ <<replace "#mount">>
+   <<button "Back to Start">>
+    <<goto "landing">><</button>>
+    <</replace>>
+  <</timed>>
 
 

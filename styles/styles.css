@@ -867,6 +867,11 @@ text-align: center;
   bottom: 30%;
 }
 
+.wobble-once {
+  display: inline-block;
+  animation: wobble 1s ease-in-out forwards;
+}
+
 .draggable-image{
   position: absolute;
   /* left: 0; */
@@ -1573,6 +1578,10 @@ main.upload, main.loading{
     gap:2rem;
 }
 
+main.upload{
+  height: 80%;
+}
+
 /* LOADING  */
 
 main.loading > .logo-wrapper{
@@ -1620,23 +1629,29 @@ body.alarm{
 }
 
 /* BE GONE  */
-.logo-wrapper.black > img{
+
+.logo-wrapper.black > img, 
+footer.intro.end > .footer-icon > a > img{
   filter: invert(1);
 }
 main.begone{
   display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .motto-container {
   text-align: center;
 }
 
-.motto-container > span.octo-title{
-  font-size: 3rem;
+.motto-container > span{
+  font-size: 7rem;
+}
+
+.motto-container > .octo-title.number{
+  font-size: 16rem;
 }
 
 
@@ -1725,3 +1740,110 @@ main.roar{
   font-weight: 800;
   z-index: -999;
 }
+
+/* INTRO  */
+
+header.intro.pre{
+justify-content: center;
+}
+
+footer.intro > .footer-icon{
+  width: 10%;
+  max-width: 60px;
+}
+
+main.intro.pre{
+    position: relative;
+  }
+  
+main.intro.pre:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 76%;
+  opacity: 0.1;
+  background-image: url(/assets/img/logo.png);
+  background-repeat: no-repeat;
+  background-position: -25% 0;
+  background-size: cover;
+  }
+
+  main.intro.pre > #mount{
+    position: relative;
+  }
+
+ main.intro > #mount > p {
+  font-size: 1.8rem;
+    font-weight: 600;
+    margin-block-end: 2rem;
+ }
+
+/* PHONE CALL  */
+
+.opacitytwo{
+  opacity: 0.2
+}
+
+main.phonecall {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 4rem;
+}
+
+main.phonecall > .phonecall-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+main.phonecall > .phonecall-avatar{
+  max-width: 50%;
+}
+
+main.phonecall > .phonecall-btn-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+    align-items: center;
+    gap:4rem
+}
+
+main.phonecall > .phonecall-btn-wrapper > .phonecall-btn-container{
+  display: flex;
+justify-content: space-around;
+}
+
+main.phonecall > .phonecall-btn-wrapper > .phonecall-btn-container > .phonecall-btn{
+  max-width: 17%;
+}
+
+main.phonecall > .phonecall-btn-wrapper > .phonecall-btn.hangup{
+  max-width: 25%;
+}
+
+/* ONLY DISPLAY ON PHONE  */
+
+.desktop-message{
+  display: none;
+}
+
+@media screen and (min-width: 500px) {
+ main, main.logospin{
+  display: none
+}
+.desktop-message {
+    display: initial;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+
+
