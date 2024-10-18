@@ -499,11 +499,15 @@ setup.boatMultiDraggable = () => {
   // Check if all tasks are completed
   const checkCompleted = () => {
     if (completeList.every(item => completed.includes(item))) {
-      messageContainer.textContent = "WINNER!!";
-      console.log("WINN!!");
-      document.body.style.backgroundColor = ""
+      messageContainer.textContent = "You did it!";
+      const audio = new Audio('assets/audio/MonsterGrowl.mp3');
+      audio.play();
+      setTimeout(()=> {
+  document.body.style.backgroundColor = ""
       // Transition to the next passage in SugarCube
       Engine.play("begone");  
+      }, 2000)
+    
 
     } else {
       messageContainer.textContent = "Keep going...";
@@ -518,7 +522,22 @@ setup.boatMultiDraggable = () => {
 
   // Initialize draggable elements
   elements.forEach(({ id, targetArea, name }) => makeDraggable(id, name, targetArea));
-};</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;cacheaudio &quot;timer&quot; &quot;../assets/sound/timer.mp3&quot;&gt;&gt;
+};
+
+
+$(document).on('click', '.thumbnail-image', function() {
+    // Get the full-size image path from the clicked thumbnail's data attribute
+    var fullImageSrc = $(this).data('full');
+    
+    // Update the main gallery image to the clicked thumbnail's full-size image
+    $('#imageGallery .gallery-main').attr('src', fullImageSrc);
+    
+    // Remove the 'active' class from all thumbnails
+    $('.thumbnail-image').removeClass('active');
+    
+    // Add the 'active' class to the clicked thumbnail
+    $(this).addClass('active');
+});</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;cacheaudio &quot;timer&quot; &quot;../assets/sound/timer.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;ping1&quot; &quot;../assets/sound/ping1.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;alarm&quot; &quot;../assets/sound/alarm.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;correct&quot; &quot;../assets/sound/Correct1.mp3&quot;&gt;&gt;
@@ -762,11 +781,11 @@ setup.boatMultiDraggable = () => {
 &lt;&lt;/timed&gt;&gt;
 &lt;&lt;timed 3s&gt;&gt;
   &lt;&lt;removeclass &quot;.opacitytwo&quot; &quot;opacitytwo&quot;&gt;&gt;
-    &lt;&lt;timed 62s&gt;&gt;
+    &lt;&lt;timed 70s&gt;&gt;
       &lt;&lt;goto $nextpass&gt;&gt;
       &lt;&lt;/timed&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
-&lt;div id=&quot;audio&quot;&gt; &lt;audio src=&quot;assets/audio/OpeningScene-Rezel.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;&lt;/div&gt;
+&lt;div id=&quot;audio&quot;&gt; &lt;audio src=&quot;assets/audio/OpeningScene-Toby.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;&lt;/div&gt;
 &lt;main class=&quot;phonecall&quot;&gt;
 &lt;div class=&quot;phonecall-name&quot;&gt;
 &lt;h2&gt;Octopus Helpline&lt;/h2&gt;
@@ -1338,60 +1357,51 @@ setup.boatMultiDraggable = () => {
           &lt;&lt;goto &quot;loading&quot;&gt;&gt;
         &lt;&lt;/button&gt;&gt;
           &lt;&lt;/replace&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="galleryheader" tags="nobr" position="1100,475" size="100,100">&lt;header class=&quot;intro&quot;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="galleryheader" tags="nobr" position="1100,475" size="100,100">&lt;header class=&quot;intro gallery&quot;&gt;
   &lt;div class=&quot;logo-wrapper &quot;&gt;
   &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
   &lt;/div&gt;
   &lt;div class=&quot;octo-title-wrapper&quot;&gt;
     &lt;h2 class=&quot;octo-title&quot;&gt;OCTOPUS&lt;/h2&gt;
     &lt;span&gt;Gallery&lt;/span&gt;
+    &lt;span class=&quot;octo-name&quot; &gt; The Book Monster &lt;/span&gt;
   &lt;/div&gt;
 &lt;/header&gt;</tw-passagedata><tw-passagedata pid="40" name="octopusgallery" tags="nobr" position="1225,475" size="100,100">&lt;&lt;set $prevpass to &quot;gerIntro-4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;octopusgallery&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;gerIntro-6&quot;&gt;&gt;
 &lt;&lt;include &quot;galleryheader&quot;&gt;&gt;
 &lt;main class=&quot;gallery&quot;&gt;
-      &lt;&lt;include &quot;bookmonsterimages&quot;&gt;&gt;
+
+
+&lt;div id=&quot;imageGallery&quot;&gt;
+    &lt;img src=&quot;/assets/img/monster1.png&quot; class=&quot;gallery-main&quot;&gt;
+&lt;/div&gt;
+
+&lt;!-- Thumbnails container --&gt;
+
 &lt;/main&gt;
-&lt;&lt;include &quot;galleryfooter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="galleryfooter" tags="nobr" position="100,600" size="100,100">&lt;footer class=&quot;gallery&quot;&gt; 
-&lt;div/&gt;
-&lt;div id=&quot;nextImageBtn&quot;&gt;&lt;/div&gt;&lt;/footer&gt;
-
-&lt;&lt;timed 2s&gt;&gt;
-      &lt;&lt;include &quot;footerimages&quot;&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="bookmonsterimages" tags="nobr" position="225,600" size="100,100">&lt;div class=&quot;bm-wrapper&quot; id=&quot;imgMount&quot;&gt;
-    &lt;img id=&quot;monsterImage&quot; src=&quot;/assets/img/monster1.png&quot; alt=&quot;Monster Image 1&quot;/&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;img-desc&quot; id=&quot;imgDesc&quot;&gt;
-    &lt;h3 class=&quot;octo-title&quot;&gt;Sighting 1&lt;/h3&gt;
-  &lt;/div&gt;</tw-passagedata><tw-passagedata pid="43" name="footerimages" tags="nobr" position="350,600" size="100,100">&lt;&lt;set $imageIndex to 1&gt;&gt;
-
-&lt;&lt;replace &quot;#nextImageBtn&quot;&gt;&gt;
-      &lt;&lt;button &quot;Load Next Image&quot;&gt;&gt;
-         &lt;&lt;if $imageIndex &lt; 4&gt;&gt;
-        &lt;&lt;set $imageIndex to $imageIndex + 1&gt;&gt;
-        &lt;&lt;replace &quot;#imgMount&quot;&gt;&gt;
-          &lt;img id=&quot;monsterImage&quot; sc-eval:src=&quot;&#39;/assets/img/monster&#39; + [$imageIndex] + &#39;.png&#39;&quot;  alt=&quot;Monster Image&quot;/&gt;
-            /* &lt;img id=&quot;monsterImage&quot; src=&quot;/assets/img/monster2.png&quot; alt=&quot;Monster Image&quot;/&gt; */
-        &lt;&lt;/replace&gt;&gt;
-        &lt;&lt;replace &quot;#imgDesc&quot;&gt;&gt;
-            &lt;h3 class=&quot;octo-title&quot;&gt;Sighting $imageIndex&lt;/h3&gt;
-        &lt;&lt;/replace&gt;&gt;
-        &lt;&lt;else&gt;&gt;
-          &lt;&lt;replace &quot;#nextImageBtn&quot;&gt;&gt;
-      &lt;&lt;button &quot;Next&quot;&gt;&gt;
-        &lt;&lt;goto $nextpass&gt;&gt;
-      &lt;&lt;/button&gt;&gt;
-      &lt;&lt;/replace&gt;&gt;
-        &lt;&lt;/if&gt;&gt;
-      &lt;&lt;/button&gt;&gt;
-    
-
-&lt;&lt;/replace&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="gerIntro-6" tags="nobr" position="475,600" size="100,100">&lt;&lt;set $prevpass to &quot;octopusgallery&quot;&gt;&gt;
+&lt;footer class=&quot;gallery&quot;&gt;
+&lt;div class=&quot;footer-icon&quot;&gt;[img[/assets/img/icon3.png][$prevpass]]&lt;/div&gt;
+&lt;div id=&quot;thumbnails&quot;&gt;
+&lt;div class=&quot;thumbnail-wrapper&quot;&gt;
+    &lt;img src=&quot;/assets/img/monster1.png&quot; class=&quot;thumbnail-image active&quot; data-full=&quot;/assets/img/monster1.png&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;thumbnail-wrapper&quot;&gt;
+    &lt;img src=&quot;/assets/img/monster2.png&quot; class=&quot;thumbnail-image&quot; data-full=&quot;/assets/img/monster2.png&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;thumbnail-wrapper&quot;&gt;
+    &lt;img src=&quot;/assets/img/monster3.png&quot; class=&quot;thumbnail-image&quot; data-full=&quot;/assets/img/monster3.png&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;thumbnail-wrapper&quot;&gt;
+    &lt;img src=&quot;/assets/img/monster4.png&quot; class=&quot;thumbnail-image&quot; data-full=&quot;/assets/img/monster4.png&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+   &lt;div class=&quot;footer-icon&quot;&gt;[img[/assets/img/for.png][$nextpass]]&lt;/div&gt;
+&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="41" name="gerIntro-6" tags="nobr" position="100,600" size="100,100">&lt;&lt;set $prevpass to &quot;octopusgallery&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;gerIntro-6&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;gerIntro-6b&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="gerIntro-6-messages" tags="nobr" position="600,600" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="gerIntro-6-messages" tags="nobr" position="225,600" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
         &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
         &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -1452,11 +1462,11 @@ setup.boatMultiDraggable = () => {
           &lt;&lt;/replace&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
 
-&lt;&lt;set $imageIndex to 1&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="gerIntro-6b" tags="nobr" position="725,600" size="100,100">&lt;&lt;set $prevpass to &quot;gerIntro-6&quot;&gt;&gt;
+&lt;&lt;set $imageIndex to 1&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="gerIntro-6b" tags="nobr" position="350,600" size="100,100">&lt;&lt;set $prevpass to &quot;gerIntro-6&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;gerIntro-6b&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;gerIntro-6c&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="gerIntro-6b-messages" tags="nobr" position="850,600" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="gerIntro-6b-messages" tags="nobr" position="475,600" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
         &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
          &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -1516,11 +1526,11 @@ setup.boatMultiDraggable = () => {
           &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
           &lt;&lt;/replace&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="gerIntro-6c" tags="nobr" position="975,600" size="100,100">&lt;&lt;set $prevpass to &quot;gerIntro-6b&quot;&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="gerIntro-6c" tags="nobr" position="600,600" size="100,100">&lt;&lt;set $prevpass to &quot;gerIntro-6b&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;gerIntro-6c&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;chapterTitle1&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="gerIntro-6c-messages" tags="nobr" position="1100,600" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="gerIntro-6c-messages" tags="nobr" position="725,600" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
         &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
          &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -1562,7 +1572,7 @@ setup.boatMultiDraggable = () => {
           &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
           &lt;&lt;/replace&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="headerchap" tags="nobr" position="1225,600" size="100,100">&lt;header class=&quot;intro&quot;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="headerchap" tags="nobr" position="850,600" size="100,100">&lt;header class=&quot;intro&quot;&gt;
   &lt;div class=&quot;logo-wrapper black &quot;&gt;
   &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
   &lt;/div&gt;
@@ -1570,7 +1580,7 @@ setup.boatMultiDraggable = () => {
     &lt;h2 class=&quot;octo-title&quot;&gt;OCTOPUS&lt;/h2&gt;
     /* &lt;span&gt;Rooter&lt;/span&gt; */
   &lt;/div&gt;
-&lt;/header&gt;</tw-passagedata><tw-passagedata pid="51" name="_chapterTitleTemplate" tags="nobr" position="100,725" size="100,100">&lt;&lt;addclass &quot;body&quot; &quot;grey&quot;&gt;&gt;
+&lt;/header&gt;</tw-passagedata><tw-passagedata pid="48" name="_chapterTitleTemplate" tags="nobr" position="975,600" size="100,100">&lt;&lt;addclass &quot;body&quot; &quot;grey&quot;&gt;&gt;
 &lt;&lt;include &quot;findChapTitle&quot;&gt;&gt;
 &lt;&lt;timed 0.1s&gt;&gt;
   &lt;&lt;include &quot;headerchap&quot;&gt;&gt;
@@ -1586,13 +1596,14 @@ setup.boatMultiDraggable = () => {
 &lt;&lt;/timed&gt;&gt;
 &lt;&lt;timed 5s&gt;&gt;
   &lt;&lt;goto $nextpass&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="chapterTitle1" tags="nobr" position="225,725" size="100,100">&lt;&lt;set $prevpass to &quot;gerIntro-6c&quot;&gt;&gt;
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="chapterTitle1" tags="nobr" position="1100,600" size="100,100">&lt;&lt;set $prevpass to &quot;gerIntro-6c&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;chapterTitle1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsLeft1&quot;&gt;&gt;
 &lt;&lt;set $currentChapter to 1&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
+&lt;div id=&quot;audio&quot;&gt; &lt;audio src=&quot;assets/audio/NewChapterSound.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;&lt;/div&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="wordsLeft1" tags="nobr" position="350,725" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle1&quot;&gt;&gt;
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="wordsLeft1" tags="nobr" position="1225,600" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger2-1&quot;&gt;&gt;
 &lt;&lt;audio &quot;wordeat&quot; play loop&gt;&gt;
@@ -1639,11 +1650,11 @@ setup.boatMultiDraggable = () => {
 
 &lt;&lt;timed 12s&gt;&gt;
   &lt;&lt;goto $nextpass&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="ger2-1" tags="nobr" position="475,725" size="100,100">&lt;&lt;set $prevpass to &quot;wordsLeft1&quot;&gt;&gt;
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="ger2-1" tags="nobr" position="100,725" size="100,100">&lt;&lt;set $prevpass to &quot;wordsLeft1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger2-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;code4&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="ger2-1-messages" tags="nobr" position="600,725" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="ger2-1-messages" tags="nobr" position="225,725" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
       &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
           &lt;p&gt;What does that mean?  &lt;/p&gt;
@@ -1758,9 +1769,9 @@ setup.boatMultiDraggable = () => {
           &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
           &lt;&lt;/replace&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="codeheader" tags="nobr" position="725,725" size="100,100">&lt;header id=&quot;header&quot; class=&quot;code&quot;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="codeheader" tags="nobr" position="350,725" size="100,100">&lt;header id=&quot;header&quot; class=&quot;code&quot;&gt;
  
-&lt;/header&gt;</tw-passagedata><tw-passagedata pid="57" name="code4" tags="nobr" position="850,725" size="100,100">&lt;&lt;set $prevpass to &quot;ger2-1&quot;&gt;&gt;
+&lt;/header&gt;</tw-passagedata><tw-passagedata pid="54" name="code4" tags="nobr" position="475,725" size="100,100">&lt;&lt;set $prevpass to &quot;ger2-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;code4&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger3-1&quot;&gt;&gt;
 &lt;&lt;set $correctans to []&gt;&gt;
@@ -1978,16 +1989,16 @@ $correctans
 
 
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="checkcorrectans" tags="" position="975,725" size="100,100">&lt;&lt;if $correctans.includesAll(&quot;L&quot;, &quot;A&quot;, &quot;C&quot;, &quot;Y&quot;)&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="checkcorrectans" tags="" position="600,725" size="100,100">&lt;&lt;if $correctans.includesAll(&quot;L&quot;, &quot;A&quot;, &quot;C&quot;, &quot;Y&quot;)&gt;&gt;
 
 &lt;&lt;timed 3s&gt;&gt;
   &lt;&lt;goto $nextpass&gt;&gt;
   &lt;&lt;/timed&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="ger3-1" tags="nobr" position="1100,725" size="100,100">&lt;&lt;set $prevpass to &quot;code4&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="ger3-1" tags="nobr" position="725,725" size="100,100">&lt;&lt;set $prevpass to &quot;code4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger3-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsAdded1&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="ger3-1-messages" tags="nobr" position="1225,725" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="ger3-1-messages" tags="nobr" position="850,725" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
         &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
         &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2007,7 +2018,7 @@ $correctans
 
    &lt;&lt;timed 7s&gt;&gt;
     &lt;&lt;goto $nextpass&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="wordsAdded1" tags="nobr" position="100,850" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-1&quot;&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="wordsAdded1" tags="nobr" position="975,725" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsAdded1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger3-2&quot;&gt;&gt;
 &lt;div id=&quot;audio&quot;&gt;&lt;/div&gt;
@@ -2055,11 +2066,11 @@ $correctans
   &lt;&lt;replace &quot;#audio&quot;&gt;&gt;
     &lt;audio src=&quot;assets/audio/WomaninDisguise.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="ger3-2" tags="nobr" position="225,850" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="ger3-2" tags="nobr" position="1100,725" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger3-2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger3-3&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="ger3-2-messages" tags="nobr" position="350,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="ger3-2-messages" tags="nobr" position="1225,725" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
         &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
         &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2094,11 +2105,11 @@ $correctans
           &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
           &lt;&lt;/replace&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="ger3-3" tags="nobr" position="475,850" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-2&quot;&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="ger3-3" tags="nobr" position="100,850" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger3-3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger3-4&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="ger3-3-messages" tags="nobr" position="600,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="ger3-3-messages" tags="nobr" position="225,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
         &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
         &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2122,11 +2133,11 @@ $correctans
           &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
           &lt;&lt;/replace&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="ger3-4" tags="nobr" position="725,850" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-3&quot;&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="ger3-4" tags="nobr" position="350,850" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger3-4&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger3-5&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="ger3-4-messages" tags="nobr" position="850,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="ger3-4-messages" tags="nobr" position="475,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
         &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
         &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2143,7 +2154,7 @@ $correctans
           &lt;&lt;goto &quot;bookrooting&quot;&gt;&gt;
         &lt;&lt;/button&gt;&gt;
           &lt;&lt;/replace&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="bookrooting" tags="nobr" position="975,850" size="100,100">&lt;&lt;audio &quot;rooting&quot; play&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="bookrooting" tags="nobr" position="600,850" size="100,100">&lt;&lt;audio &quot;rooting&quot; play&gt;&gt;
 &lt;main class=&quot;rooting&quot;&gt;
   &lt;div class=&quot;book-wrapper wobble-animation&quot;&gt;
   &lt;img src=&quot;/assets/img/bookflat.png&quot; alt=&quot;open book&quot;/&gt;
@@ -2160,11 +2171,11 @@ $correctans
   
           &lt;&lt;goto $nextpass&gt;&gt;
     
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="ger3-5" tags="nobr" position="1100,850" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-4&quot;&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="ger3-5" tags="nobr" position="725,850" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger3-5&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger3-6&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="ger3-5-messages" tags="nobr" position="1225,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="ger3-5-messages" tags="nobr" position="850,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2215,7 +2226,7 @@ $correctans
         &lt;&lt;goto &quot;roar&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="roar" tags="nobr" position="100,975" size="100,100">&lt;&lt;addclass &quot;body&quot; &quot;light&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="roar" tags="nobr" position="975,850" size="100,100">&lt;&lt;addclass &quot;body&quot; &quot;light&quot;&gt;&gt;
 
 &lt;main class=&quot;roar swirlroar &quot;&gt;
    &lt;div class=&quot;swipe-wrapper &quot;&gt; 
@@ -2252,11 +2263,11 @@ $correctans
      &lt;&lt;timed 3s&gt;&gt;
       &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
-  &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="ger3-6" tags="nobr" position="225,975" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-5&quot;&gt;&gt;
+  &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="ger3-6" tags="nobr" position="1100,850" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-5&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger3-6&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;chapterTitle2&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="ger3-6-messages" tags="nobr" position="350,975" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="ger3-6-messages" tags="nobr" position="1225,850" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2298,13 +2309,14 @@ $correctans
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="chapterTitle2" tags="nobr" position="475,975" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-6&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="chapterTitle2" tags="nobr" position="100,975" size="100,100">&lt;&lt;set $prevpass to &quot;ger3-6&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;chapterTitle2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsLeft2&quot;&gt;&gt;
 &lt;&lt;set $currentChapter to 2&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
+&lt;div id=&quot;audio&quot;&gt; &lt;audio src=&quot;assets/audio/NewChapterSound2.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;&lt;/div&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="wordsLeft2" tags="nobr" position="600,975" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle2&quot;&gt;&gt;
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="wordsLeft2" tags="nobr" position="225,975" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger4-1&quot;&gt;&gt;
     &lt;&lt;audio &quot;wordeat&quot; &quot;play&quot; loop&gt;&gt;
@@ -2332,11 +2344,11 @@ $correctans
 
 &lt;&lt;timed 10s&gt;&gt;
   &lt;&lt;goto &quot;roar&quot;&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="ger4-1" tags="nobr" position="725,975" size="100,100">&lt;&lt;set $prevpass to &quot;wordsLeft2&quot;&gt;&gt;
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="ger4-1" tags="nobr" position="350,975" size="100,100">&lt;&lt;set $prevpass to &quot;wordsLeft2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger4-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;mapInstructions&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="ger4-1-messages" tags="nobr" position="850,975" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="ger4-1-messages" tags="nobr" position="475,975" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2378,7 +2390,7 @@ $correctans
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="mapInstructions" tags="nobr" position="975,975" size="100,100">&lt;&lt;set $prevpass to &quot;ger4-1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="mapInstructions" tags="nobr" position="600,975" size="100,100">&lt;&lt;set $prevpass to &quot;ger4-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;mapInstructions&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger5-1&quot;&gt;&gt;
 &lt;&lt;addclass &quot;body&quot; &quot;light&quot;&gt;&gt;
@@ -2437,35 +2449,35 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
     &lt;/div&gt;
 
 	&lt;/main&gt;
-	&lt;&lt;include &quot;footermap&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="swirlbookmonster1" tags="nobr" position="1100,975" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-one&quot;&gt;
+	&lt;&lt;include &quot;footermap&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="swirlbookmonster1" tags="nobr" position="725,975" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-one&quot;&gt;
   &lt;span class=&quot;swirl-word one&quot; &gt;MENAGERIE&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;SANDWICH&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;DETONATION&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="80" name="swirlbookmonster2" tags="nobr" position="1225,975" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-two&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="77" name="swirlbookmonster2" tags="nobr" position="850,975" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-two&quot;&gt;
   &lt;span class=&quot;swirl-word one&quot; &gt;WOMAN&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;SANDWICH&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;MENAGERIE&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="81" name="swirlbookmonster3" tags="nobr" position="100,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-three&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="78" name="swirlbookmonster3" tags="nobr" position="975,975" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-three&quot;&gt;
   &lt;span class=&quot;swirl-word one&quot; &gt;DETONATION&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;DISGUISE&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;MINES&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="82" name="swirlbookmonster4" tags="nobr" position="225,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-four&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="79" name="swirlbookmonster4" tags="nobr" position="1100,975" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-four&quot;&gt;
   &lt;span class=&quot;swirl-word one&quot; &gt;MENAGERIE&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;SANDWICH&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;DETONATION&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="83" name="swirlbookmonster5" tags="nobr" position="350,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-five&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="80" name="swirlbookmonster5" tags="nobr" position="1225,975" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-five&quot;&gt;
   &lt;span class=&quot;swirl-word one&quot; &gt;MENAGERIE&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;SANDWICH&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;CAGE&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="84" name="swirlbookmonster6" tags="nobr" position="475,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-six&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="81" name="swirlbookmonster6" tags="nobr" position="100,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-six&quot;&gt;
   &lt;span class=&quot;swirl-word one&quot; &gt;ELEPHANT&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;SANDWICH&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;DETONATION&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="85" name="swirlbookmonster7" tags="nobr" position="600,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-seven&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="82" name="swirlbookmonster7" tags="nobr" position="225,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-seven&quot;&gt;
   &lt;span class=&quot;swirl-word one&quot; &gt;CAGE&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;SANDWICH&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;ELEPHANT&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="86" name="swirlbookmonster8" tags="nobr" position="725,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-eight&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="83" name="swirlbookmonster8" tags="nobr" position="350,1100" size="100,100">&lt;div class=&quot;swirling-fog swirl-position-eight&quot;&gt;
   &lt;span class=&quot;swirl-word one&quot; &gt;MURAL&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;BIG BEN BELL&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;DETONATION&lt;/span&gt;
@@ -2474,7 +2486,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   &lt;span class=&quot;swirl-word one&quot; &gt;MENAGERIE&lt;/span&gt;
   &lt;span class=&quot;swirl-word two&quot; &gt;TIGER&lt;/span&gt;
   &lt;span class=&quot;swirl-word three&quot; &gt;WOMAN&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="87" name="footermap" tags="nobr" position="850,1100" size="100,100">&lt;footer class=&quot;map&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="84" name="footermap" tags="nobr" position="475,1100" size="100,100">&lt;footer class=&quot;map&quot;&gt;
 &lt;&lt;button &quot;Back&quot;&gt;&gt;&lt;&lt;goto $prevpass&gt;&gt;&lt;&lt;/button&gt;&gt;
 
 &lt;span class=&quot;button-wrapper&quot; id=&quot;btnMount&quot; aria-label=&quot;Click a button or link to move on&quot;&gt;
@@ -2561,15 +2573,17 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
       &lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
     &lt;&lt;timed 4s&gt;&gt;
+        &lt;&lt;replace &quot;#btnMount&quot;&gt;&gt;
+      &lt;&lt;include &quot;pwMap&quot;&gt;&gt;
+      &lt;&lt;/replace&gt;&gt;
     &lt;&lt;removeclass &quot;#btnMount&quot; &quot;hide&quot;&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
-
   
   &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="88" name="pwMap" tags="nobr" position="975,1100" size="100,100">&lt;div class=&quot;css-input map-input&quot;&gt;
+&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="85" name="pwMap" tags="nobr" position="600,1100" size="100,100">&lt;div class=&quot;css-input map-input&quot;&gt;
     &lt;div class=&quot;result-input-wrapper&quot;&gt;
       &lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;
       &lt;&lt;textbox &quot;$codeword&quot; &quot;&quot;&gt;&gt;
@@ -2594,7 +2608,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 
     
     &lt;br/&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="89" name="updateInstruction" tags="nobr" position="1100,1100" size="100,100">&lt;&lt;addclass &quot;#btnMount&quot; &quot;hide&quot;&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="86" name="updateInstruction" tags="nobr" position="725,1100" size="100,100">&lt;&lt;addclass &quot;#btnMount&quot; &quot;hide&quot;&gt;&gt;
   &lt;&lt;timed 0.1s&gt;&gt;
      &lt;&lt;replace &quot;#instruction&quot;&gt;&gt;
       &lt;&lt;/replace&gt;&gt;
@@ -2610,11 +2624,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   &lt;&lt;removeclass &quot;#location&quot; $position&gt;&gt;
   &lt;&lt;set $position to $instructions[$currentInstructionIndex].coords &gt;&gt;
   &lt;&lt;addclass &quot;#location&quot; $position &gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="90" name="ger5-1" tags="nobr" position="1225,1100" size="100,100">&lt;&lt;set $prevpass to &quot;mapInstructions&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="ger5-1" tags="nobr" position="850,1100" size="100,100">&lt;&lt;set $prevpass to &quot;mapInstructions&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger5-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsAdded2&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="91" name="ger5-1-messages" tags="nobr" position="100,1225" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="ger5-1-messages" tags="nobr" position="975,1100" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2665,7 +2679,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="wordsAdded2" tags="nobr" position="225,1225" size="100,100">&lt;&lt;set $prevpass to &quot;ger5-1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="wordsAdded2" tags="nobr" position="1100,1100" size="100,100">&lt;&lt;set $prevpass to &quot;ger5-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsAdded2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger5-2&quot;&gt;&gt;
 &lt;div id=&quot;audio&quot;&gt;&lt;/div&gt;
@@ -2692,11 +2706,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   &lt;&lt;replace &quot;#audio&quot;&gt;&gt;
     &lt;audio src=&quot;assets/audio/LionQueen.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="ger5-2" tags="nobr" position="350,1225" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded2&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="90" name="ger5-2" tags="nobr" position="1225,1100" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger5-2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;chapterTitle3&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="ger5-2-messages" tags="nobr" position="475,1225" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="91" name="ger5-2-messages" tags="nobr" position="100,1225" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2784,13 +2798,14 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto &quot;bookrooting&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="chapterTitle3" tags="nobr" position="600,1225" size="100,100">&lt;&lt;set $prevpass to &quot;ger5-2&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="chapterTitle3" tags="nobr" position="225,1225" size="100,100">&lt;&lt;set $prevpass to &quot;ger5-2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;chapterTitle3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsLeft3&quot;&gt;&gt;
 &lt;&lt;set $currentChapter to 3&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
+&lt;div id=&quot;audio&quot;&gt; &lt;audio src=&quot;assets/audio/NewChapterSound3.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;&lt;/div&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="wordsLeft3" tags="nobr" position="725,1225" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle3&quot;&gt;&gt;
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="wordsLeft3" tags="nobr" position="350,1225" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger6-1&quot;&gt;&gt;
 &lt;&lt;audio &quot;wordeat&quot; play loop&gt;&gt;
@@ -2822,11 +2837,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 
 &lt;&lt;timed 10s&gt;&gt;
   &lt;&lt;goto $nextpass&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="ger6-1" tags="nobr" position="850,1225" size="100,100">&lt;&lt;set $prevpass to &quot;wordsLeft3&quot;&gt;&gt;
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="ger6-1" tags="nobr" position="475,1225" size="100,100">&lt;&lt;set $prevpass to &quot;wordsLeft3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger6-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger6-2a&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="ger6-1-messages" tags="nobr" position="975,1225" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="ger6-1-messages" tags="nobr" position="600,1225" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2859,11 +2874,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="ger6-2a" tags="nobr" position="1100,1225" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="ger6-2a" tags="nobr" position="725,1225" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger6-2a&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger6-2b&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="ger6-2a-messages" tags="nobr" position="1225,1225" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="ger6-2a-messages" tags="nobr" position="850,1225" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2879,11 +2894,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="ger6-2b" tags="nobr" position="100,1350" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-2a&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="ger6-2b" tags="nobr" position="975,1225" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-2a&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger6-2b&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger6-2c&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="ger6-2b-messages" tags="nobr" position="225,1350" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="ger6-2b-messages" tags="nobr" position="1100,1225" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2907,11 +2922,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="ger6-2c" tags="nobr" position="350,1350" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-2b&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="ger6-2c" tags="nobr" position="1225,1225" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-2b&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger6-2c&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger6-3&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="ger6-2c-messages" tags="nobr" position="475,1350" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="ger6-2c-messages" tags="nobr" position="100,1350" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -2971,11 +2986,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="ger6-3" tags="nobr" position="600,1350" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-2b&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="ger6-3" tags="nobr" position="225,1350" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-2b&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger6-3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;picUpload&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="ger6-3-messages" tags="nobr" position="725,1350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="ger6-3-messages" tags="nobr" position="350,1350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3017,7 +3032,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="headerUpload" tags="nobr" position="850,1350" size="100,100">&lt;header class=&quot;intro&quot;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="headerUpload" tags="nobr" position="475,1350" size="100,100">&lt;header class=&quot;intro&quot;&gt;
   &lt;div class=&quot;logo-wrapper &quot;&gt;
   &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
   &lt;/div&gt;
@@ -3025,7 +3040,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
     &lt;h2 class=&quot;octo-title&quot;&gt;OCTOPUS&lt;/h2&gt;
     &lt;span&gt;Upload&lt;/span&gt;
   &lt;/div&gt;
-&lt;/header&gt;</tw-passagedata><tw-passagedata pid="108" name="picUpload" tags="nobr" position="975,1350" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-3&quot;&gt;&gt;
+&lt;/header&gt;</tw-passagedata><tw-passagedata pid="105" name="picUpload" tags="nobr" position="600,1350" size="100,100">&lt;&lt;set $prevpass to &quot;ger6-3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;picUpload&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger7-1&quot;&gt;&gt;
 &lt;&lt;include &quot;headerUpload&quot;&gt;&gt;
@@ -3053,16 +3068,16 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   &lt;div id=&quot;error&quot;&gt;&lt;/div&gt;
 
 &lt;/main&gt; 
-&lt;&lt;include &quot;footerupload&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="footerupload" tags="nobr" position="1100,1350" size="100,100">&lt;footer id=&quot;footerField&quot;&gt;&lt;&lt;button &quot;Back&quot;&gt;&gt;&lt;&lt;goto &quot;landing&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;&lt;include &quot;footerupload&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="footerupload" tags="nobr" position="725,1350" size="100,100">&lt;footer id=&quot;footerField&quot;&gt;&lt;&lt;button &quot;Back&quot;&gt;&gt;&lt;&lt;goto &quot;landing&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/footer&gt;
 &lt;&lt;timed 12s&gt;&gt;
     &lt;&lt;append &quot;#footerField&quot;&gt;&gt;
   &lt;&lt;button &quot;Move on&quot;&gt;&gt; &lt;&lt;goto $nextpass&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;/append&gt;&gt;&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="110" name="ger7-1" tags="nobr" position="1225,1350" size="100,100">&lt;&lt;set $prevpass to &quot;picUpload&quot;&gt;&gt;
+    &lt;&lt;/append&gt;&gt;&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="ger7-1" tags="nobr" position="850,1350" size="100,100">&lt;&lt;set $prevpass to &quot;picUpload&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger7-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsAdded3a&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="ger7-1-messages" tags="nobr" position="100,1475" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="ger7-1-messages" tags="nobr" position="975,1350" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt;
@@ -3087,7 +3102,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="wordsAdded3a" tags="nobr" position="225,1475" size="100,100">/* NARWAL  */
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="wordsAdded3a" tags="nobr" position="1100,1350" size="100,100">/* NARWAL  */
 &lt;&lt;set $prevpass to &quot;ger7-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsAdded3a&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;bookrooting3&quot;&gt;&gt;
@@ -3120,7 +3135,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   &lt;&lt;replace &quot;#audio&quot;&gt;&gt;
     &lt;audio src=&quot;assets/audio/TheNarwhal.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="bookrooting3" tags="nobr" position="350,1475" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded3a&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="110" name="bookrooting3" tags="nobr" position="1225,1350" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded3a&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;bookrooting3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger8-1&quot;&gt;&gt;
 &lt;&lt;audio &quot;rooting&quot; play&gt;&gt;
@@ -3140,11 +3155,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   
           &lt;&lt;goto $nextpass&gt;&gt;
     
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="114" name="ger8-1" tags="nobr" position="475,1475" size="100,100">&lt;&lt;set $prevpass to &quot;bookrooting3&quot;&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="ger8-1" tags="nobr" position="100,1475" size="100,100">&lt;&lt;set $prevpass to &quot;bookrooting3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger8-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger8-2&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="115" name="ger8-1-messages" tags="nobr" position="600,1475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="ger8-1-messages" tags="nobr" position="225,1475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3168,11 +3183,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="ger8-1b" tags="nobr" position="725,1475" size="100,100">&lt;&lt;set $prevpass to &quot;ger8-1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="ger8-1b" tags="nobr" position="350,1475" size="100,100">&lt;&lt;set $prevpass to &quot;ger8-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger8-1b&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger8-2&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="ger8-1b-messages" tags="nobr" position="850,1475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="114" name="ger8-1b-messages" tags="nobr" position="475,1475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3197,11 +3212,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="ger8-2" tags="nobr" position="975,1475" size="100,100">&lt;&lt;set $prevpass to &quot;ger8-1b&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="115" name="ger8-2" tags="nobr" position="600,1475" size="100,100">&lt;&lt;set $prevpass to &quot;ger8-1b&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger8-2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;chapterTitle4&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="ger8-2-messages" tags="nobr" position="1100,1475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="ger8-2-messages" tags="nobr" position="725,1475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3244,12 +3259,13 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="120" name="chapterTitle4" tags="nobr" position="1225,1475" size="100,100">&lt;&lt;set $prevpass to &quot;ger8-2&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="chapterTitle4" tags="nobr" position="850,1475" size="100,100">&lt;&lt;set $prevpass to &quot;ger8-2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;chapterTitle4&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsAdded4a&quot;&gt;&gt;
 &lt;&lt;set $currentChapter to 4&gt;&gt;
+&lt;div id=&quot;audio&quot;&gt; &lt;audio src=&quot;assets/audio/NewChapterSound.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;&lt;/div&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="wordsAdded4a" tags="nobr" position="100,1600" size="100,100">/* THIS ONE THE WORDS ARE THERE  */
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="wordsAdded4a" tags="nobr" position="975,1475" size="100,100">/* THIS ONE THE WORDS ARE THERE  */
 &lt;&lt;set $prevpass to &quot;chapterTitle4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsAdded4a&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger9-2&quot;&gt;&gt;
@@ -3296,11 +3312,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   &lt;&lt;replace &quot;#audio&quot;&gt;&gt;
     &lt;audio src=&quot;assets/audio/PaintedElephant.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="ger9-2" tags="nobr" position="225,1600" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded4a&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="ger9-2" tags="nobr" position="1100,1475" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded4a&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger9-2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsAdded4b&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="ger9-2-messages" tags="nobr" position="350,1600" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="120" name="ger9-2-messages" tags="nobr" position="1225,1475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3315,7 +3331,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="wordsAdded4b" tags="nobr" position="475,1600" size="100,100">/* THIS ONE THE WORDS ARE THERE AND GET TAKEN AWAY  */
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="wordsAdded4b" tags="nobr" position="100,1600" size="100,100">/* THIS ONE THE WORDS ARE THERE AND GET TAKEN AWAY  */
 &lt;&lt;set $prevpass to &quot;ger9-2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsAdded4b&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger10-1&quot;&gt;&gt;
@@ -3360,11 +3376,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 &lt;&lt;timed 10s&gt;&gt;
 
    &lt;&lt;audio &quot;monster4&quot; &quot;play&quot;&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="ger10-1" tags="nobr" position="600,1600" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded4b&quot;&gt;&gt;
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="ger10-1" tags="nobr" position="225,1600" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded4b&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger10-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger10-2&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="ger10-1-messages" tags="nobr" position="725,1600" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="ger10-1-messages" tags="nobr" position="350,1600" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3406,11 +3422,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="ger10-2" tags="nobr" position="850,1600" size="100,100">&lt;&lt;set $prevpass to &quot;ger10-1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="ger10-2" tags="nobr" position="475,1600" size="100,100">&lt;&lt;set $prevpass to &quot;ger10-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger10-2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;360image&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="128" name="ger10-2-messages" tags="nobr" position="975,1600" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="ger10-2-messages" tags="nobr" position="600,1600" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3443,7 +3459,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="timer" tags="nobr" position="1100,1600" size="100,100">&lt;&lt;audio &quot;30s&quot; &quot;play&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="timer" tags="nobr" position="725,1600" size="100,100">&lt;&lt;audio &quot;30s&quot; &quot;play&quot;&gt;&gt;
 &lt;&lt;set $seconds to 30&gt;&gt;
 &lt;span id=&quot;countdown&quot;&gt;&lt;span class=&quot;secs&quot;&gt;$seconds&lt;/span&gt; &lt;span class=&quot;extra&quot;&gt;seconds&lt;/span&gt;&lt;/span&gt;
 
@@ -3462,11 +3478,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 			&lt;&lt;stop&gt;&gt;
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/repeat&gt;&gt;
-&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="notime" tags="nobr" position="1225,1600" size="100,100">&lt;&lt;set $prevpass to &quot;360image&quot;&gt;&gt;
+&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="notime" tags="nobr" position="850,1600" size="100,100">&lt;&lt;set $prevpass to &quot;360image&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;notime&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;360image&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="131" name="notime-messages" tags="nobr" position="100,1725" size="100,100">&lt;&lt;timed 0.3s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="128" name="notime-messages" tags="nobr" position="975,1600" size="100,100">&lt;&lt;timed 0.3s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3507,8 +3523,8 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="132" name="header360elephant" tags="nobr" position="225,1725" size="100,100">&lt;header class=&quot;pano timer &quot;&gt;&lt;span&gt;Find the name of the road&lt;/span&gt;
-  &lt;&lt;include &quot;timer&quot;&gt;&gt;&lt;/header&gt;</tw-passagedata><tw-passagedata pid="133" name="360image" tags="nobr" position="350,1725" size="100,100">&lt;&lt;set $prevpass to &quot;ger10-2&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="header360elephant" tags="nobr" position="1100,1600" size="100,100">&lt;header class=&quot;pano timer &quot;&gt;&lt;span&gt;Find the name of the road&lt;/span&gt;
+  &lt;&lt;include &quot;timer&quot;&gt;&gt;&lt;/header&gt;</tw-passagedata><tw-passagedata pid="130" name="360image" tags="nobr" position="1225,1600" size="100,100">&lt;&lt;set $prevpass to &quot;ger10-2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;360image&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger11-1&quot;&gt;&gt;
 &lt;&lt;include &quot;header360elephant&quot;&gt;&gt;
@@ -3519,7 +3535,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 
 
 	&lt;/main&gt;
-	&lt;&lt;include &quot;footer360elephant&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="134" name="pw360elephant" tags="nobr" position="475,1725" size="100,100">&lt;div id=&quot;codewordWrapper&quot; class=&quot;codeword-wrapper&quot;&gt;
+	&lt;&lt;include &quot;footer360elephant&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="131" name="pw360elephant" tags="nobr" position="100,1725" size="100,100">&lt;div id=&quot;codewordWrapper&quot; class=&quot;codeword-wrapper&quot;&gt;
 
     &lt;label for=&quot;textbox--password&quot; tabindex=&quot;0&quot;&gt;&lt;span aria-label=&quot;Enter the word below&quot;&gt;CODEWORD:&lt;/span&gt;&lt;/label&gt;
 
@@ -3553,17 +3569,17 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
     &lt;/div&gt;
 
     &lt;div id=&quot;elecoderesult&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="135" name="footer360elephant" tags="nobr" position="600,1725" size="100,100">&lt;footer class=&quot;pano&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="132" name="footer360elephant" tags="nobr" position="225,1725" size="100,100">&lt;footer class=&quot;pano&quot;&gt;
 &lt;nav class=&quot;&quot;&gt;&lt;div id=&quot;back&quot; class=&quot;button-wrapper&quot;&gt;
  &lt;&lt;button &quot;Back&quot;&gt;&gt;
         &lt;&lt;goto &quot;landing&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
 &lt;/div&gt;&lt;/nav&gt;
-  &lt;&lt;include &quot;pw360elephant&quot;&gt;&gt;&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="136" name="ger11-1" tags="nobr" position="725,1725" size="100,100">&lt;&lt;set $prevpass to &quot;360image&quot;&gt;&gt;
+  &lt;&lt;include &quot;pw360elephant&quot;&gt;&gt;&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="133" name="ger11-1" tags="nobr" position="350,1725" size="100,100">&lt;&lt;set $prevpass to &quot;360image&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger11-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;chapterTitle5&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="137" name="ger11-1-messages" tags="nobr" position="850,1725" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="134" name="ger11-1-messages" tags="nobr" position="475,1725" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3605,12 +3621,13 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="138" name="chapterTitle5" tags="nobr" position="975,1725" size="100,100">&lt;&lt;set $prevpass to &quot;ger11-1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="135" name="chapterTitle5" tags="nobr" position="600,1725" size="100,100">&lt;&lt;set $prevpass to &quot;ger11-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;chapterTitle5&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsLeft5&quot;&gt;&gt;
 &lt;&lt;set $currentChapter to 5&gt;&gt;
+&lt;div id=&quot;audio&quot;&gt; &lt;audio src=&quot;assets/audio/NewChapterSound2.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;&lt;/div&gt;
 &lt;&lt;include &quot;_chapterTitleTemplate&quot;&gt;&gt;
-&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="139" name="wordsLeft5" tags="nobr" position="1100,1725" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle5&quot;&gt;&gt;
+&lt;&lt;include &quot;footerger&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="136" name="wordsLeft5" tags="nobr" position="725,1725" size="100,100">&lt;&lt;set $prevpass to &quot;chapterTitle5&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsLeft5&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger12-1&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
@@ -3670,7 +3687,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 &lt;main class=&quot;flashing-effect&quot;&gt;
 &lt;h2&gt;ALARM&lt;/h2&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt; */</tw-passagedata><tw-passagedata pid="140" name="ger12-1" tags="nobr" position="1225,1725" size="100,100">/* TODO CHANGE TO ALARM  */
+&lt;&lt;include &quot;footer&quot;&gt;&gt; */</tw-passagedata><tw-passagedata pid="137" name="ger12-1" tags="nobr" position="850,1725" size="100,100">/* TODO CHANGE TO ALARM  */
 &lt;&lt;set $prevpass to &quot;wordsLeft5&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger12-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;minesChallenge&quot;&gt;&gt;
@@ -3681,7 +3698,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 &lt;&lt;addclass &quot;body&quot; &quot;alarm&quot;&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="141" name="ger12-1-messages" tags="nobr" position="100,1850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="138" name="ger12-1-messages" tags="nobr" position="975,1725" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -3759,7 +3776,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="142" name="headermines" tags="nobr" position="225,1850" size="100,100">&lt;header class=&quot;intro&quot;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="139" name="headermines" tags="nobr" position="1100,1725" size="100,100">&lt;header class=&quot;intro&quot;&gt;
   &lt;div class=&quot;logo-wrapper &quot;&gt;
   &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
   &lt;/div&gt;
@@ -3767,7 +3784,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
     &lt;h2 class=&quot;octo-title&quot;&gt;OCTOPUS&lt;/h2&gt;
     /* &lt;span&gt;Rooter&lt;/span&gt; */
   &lt;/div&gt;
-&lt;/header&gt;</tw-passagedata><tw-passagedata pid="143" name="minesChallenge" tags="nobr" position="350,1850" size="100,100">&lt;&lt;set $prevpass to &quot;ger12-1&quot;&gt;&gt;
+&lt;/header&gt;</tw-passagedata><tw-passagedata pid="140" name="minesChallenge" tags="nobr" position="1225,1725" size="100,100">&lt;&lt;set $prevpass to &quot;ger12-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;minesChallenge&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger13-1&quot;&gt;&gt;
 &lt;&lt;set $correctansmines to []&gt;&gt;
@@ -3942,7 +3959,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 
 
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="144" name="checkcorrectansmines" tags="nobr" position="475,1850" size="100,100">&lt;&lt;if $correctansmines.includesAll(&quot;L&quot;, &quot;A&quot;, &quot;C&quot;)&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="141" name="checkcorrectansmines" tags="nobr" position="100,1850" size="100,100">&lt;&lt;if $correctansmines.includesAll(&quot;L&quot;, &quot;A&quot;, &quot;C&quot;)&gt;&gt;
   &lt;&lt;timed 1s&gt;&gt;
 &lt;&lt;audio &quot;correct&quot; play&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
@@ -3993,11 +4010,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 
 &lt;/span&gt;
 &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="145" name="ger13-1" tags="nobr" position="600,1850" size="100,100">&lt;&lt;set $prevpass to &quot;minesChallenge&quot;&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="142" name="ger13-1" tags="nobr" position="225,1850" size="100,100">&lt;&lt;set $prevpass to &quot;minesChallenge&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger13-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;wordsAdded5&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="ger13-1-messages" tags="nobr" position="725,1850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="143" name="ger13-1-messages" tags="nobr" position="350,1850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -4012,7 +4029,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
           &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
           &lt;&lt;/replace&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="147" name="wordsAdded5" tags="nobr" position="850,1850" size="100,100">&lt;&lt;set $prevpass to &quot;ger13-1&quot;&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="144" name="wordsAdded5" tags="nobr" position="475,1850" size="100,100">&lt;&lt;set $prevpass to &quot;ger13-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;wordsAdded5&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger14-1&quot;&gt;&gt;
 &lt;div id=&quot;audio&quot;&gt;&lt;/div&gt;
@@ -4056,11 +4073,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   &lt;&lt;replace &quot;#audio&quot;&gt;&gt;
     &lt;audio src=&quot;assets/audio/TheLifeSavingClub.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="148" name="ger14-1" tags="nobr" position="975,1850" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded5&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="145" name="ger14-1" tags="nobr" position="600,1850" size="100,100">&lt;&lt;set $prevpass to &quot;wordsAdded5&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger14-1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger14-2&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="149" name="ger14-1-messages" tags="nobr" position="1100,1850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="ger14-1-messages" tags="nobr" position="725,1850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -4120,11 +4137,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto &quot;bookrooting&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="150" name="ger14-2" tags="nobr" position="1225,1850" size="100,100">&lt;&lt;set $prevpass to &quot;ger14-1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="147" name="ger14-2" tags="nobr" position="850,1850" size="100,100">&lt;&lt;set $prevpass to &quot;ger14-1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger14-2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger14-3&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="151" name="ger14-2-messages" tags="nobr" position="100,1975" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="148" name="ger14-2-messages" tags="nobr" position="975,1850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -4185,11 +4202,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="152" name="ger14-3" tags="nobr" position="225,1975" size="100,100">&lt;&lt;set $prevpass to &quot;ger14-2&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="149" name="ger14-3" tags="nobr" position="1100,1850" size="100,100">&lt;&lt;set $prevpass to &quot;ger14-2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger14-3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger14-3b&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="153" name="ger14-3-messages" tags="nobr" position="350,1975" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="150" name="ger14-3-messages" tags="nobr" position="1225,1850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -4240,11 +4257,11 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto &quot;roar&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="154" name="ger14-3b" tags="nobr" position="475,1975" size="100,100">&lt;&lt;set $prevpass to &quot;ger14-3&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="151" name="ger14-3b" tags="nobr" position="100,1975" size="100,100">&lt;&lt;set $prevpass to &quot;ger14-3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger14-3b&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger14-4&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="155" name="ger14-3b-messages" tags="nobr" position="600,1975" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="152" name="ger14-3b-messages" tags="nobr" position="225,1975" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -4278,12 +4295,12 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="156" name="ger14-4" tags="nobr" position="725,1975" size="100,100">/* ROOTING  */
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="153" name="ger14-4" tags="nobr" position="350,1975" size="100,100">/* ROOTING  */
 &lt;&lt;set $prevpass to &quot;ger14-3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger14-4&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;ger14-4b&quot;&gt;&gt;
 &lt;&lt;audio &quot;ritual&quot; play loop&gt;&gt;
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="157" name="ger14-4-messages" tags="nobr" position="850,1975" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="154" name="ger14-4-messages" tags="nobr" position="475,1975" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -4327,12 +4344,12 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="158" name="ger14-4b" tags="nobr" position="975,1975" size="100,100">/* ROOTING  */
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="155" name="ger14-4b" tags="nobr" position="600,1975" size="100,100">/* ROOTING  */
 &lt;&lt;set $prevpass to &quot;ger14-4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;ger14-4b&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;dragIntoBook&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="159" name="ger14-4b-messages" tags="nobr" position="1100,1975" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
+&lt;&lt;include &quot;_templateGeraldine&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="156" name="ger14-4b-messages" tags="nobr" position="725,1975" size="100,100">&lt;&lt;timed 0.5s&gt;&gt;
     &lt;&lt;audio &quot;ping1&quot; &quot;play&quot;&gt;&gt;
     &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
        &lt;div class=&quot;message&quot;&gt; 
@@ -4403,7 +4420,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
         &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="160" name="headerDrag" tags="nobr" position="1225,1975" size="100,100">&lt;header class=&quot;drag&quot;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="157" name="headerDrag" tags="nobr" position="850,1975" size="100,100">&lt;header class=&quot;drag&quot;&gt;
  &lt;div class=&quot;drag-msg-wrapper&quot;&gt;&lt;h2 class=&quot;octo-title&quot; id=&quot;message&quot;&gt;DRAG THE CHAPTERS BACK INTO THE BOOK&lt;/h2&gt;&lt;/div&gt;
 &lt;/header&gt;
 
@@ -4418,7 +4435,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
     &lt;span&gt;Rooting&lt;/span&gt;
   &lt;/div&gt;
 
-&lt;/header&gt; */</tw-passagedata><tw-passagedata pid="161" name="dragIntoBook" tags="nobr" position="100,2100" size="100,100">&lt;&lt;set $prevpass to &quot;ger14-4&quot;&gt;&gt;
+&lt;/header&gt; */</tw-passagedata><tw-passagedata pid="158" name="dragIntoBook" tags="nobr" position="975,1975" size="100,100">&lt;&lt;set $prevpass to &quot;ger14-4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;dragIntoBook&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;begone&quot;&gt;&gt;
 &lt;&lt;removeclass &quot;body&quot; &quot;green&quot;&gt;&gt;
@@ -4437,14 +4454,14 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 &lt;&lt;include &quot;footer&quot;&gt;&gt;
 
 &lt;&lt;done&gt;&gt;
-&lt;&lt;set $s to setup.boatMultiDraggable()&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="162" name="footerdrag" tags="nobr" position="225,2100" size="100,100">&lt;footer&gt;
+&lt;&lt;set $s to setup.boatMultiDraggable()&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="159" name="footerdrag" tags="nobr" position="1100,1975" size="100,100">&lt;footer&gt;
     &lt;&lt;button &quot;Back&quot;&gt;&gt;
         &lt;&lt;goto $prevpass&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     
     &lt;div id=&quot;audio&quot;&gt;
      &lt;/div&gt;
-&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="163" name="headerbegone" tags="nobr" position="350,2100" size="100,100">&lt;header class=&quot;intro&quot;&gt;
+&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="160" name="headerbegone" tags="nobr" position="1225,1975" size="100,100">&lt;header class=&quot;intro&quot;&gt;
   &lt;div class=&quot;logo-wrapper black&quot;&gt;
   &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
   &lt;/div&gt;
@@ -4452,7 +4469,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
     &lt;h2 class=&quot;octo-title&quot;&gt;OCTOPUS&lt;/h2&gt;
     &lt;span&gt;Rooter&lt;/span&gt;
   &lt;/div&gt;
-&lt;/header&gt;</tw-passagedata><tw-passagedata pid="164" name="begone" tags="nobr" position="475,2100" size="100,100">&lt;&lt;set $prevpass to &quot;dragIntoBook&quot;&gt;&gt;
+&lt;/header&gt;</tw-passagedata><tw-passagedata pid="161" name="begone" tags="nobr" position="100,2100" size="100,100">&lt;&lt;set $prevpass to &quot;dragIntoBook&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;begone&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;begone&quot;&gt;&gt;
 &lt;&lt;addclass &quot;body&quot; &quot;green&quot;&gt;&gt;
@@ -4474,7 +4491,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 
 &lt;&lt;timed 30s&gt;&gt;
   &lt;&lt;goto &quot;landing2&quot;&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="165" name="begonetimer" tags="nobr" position="600,2100" size="100,100">&lt;&lt;audio &quot;30s&quot; &quot;play&quot;&gt;&gt;
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="162" name="begonetimer" tags="nobr" position="225,2100" size="100,100">&lt;&lt;audio &quot;30s&quot; &quot;play&quot;&gt;&gt;
 &lt;&lt;set $seconds to 3&gt;&gt;
 
 &lt;&lt;silently&gt;&gt;
@@ -4495,7 +4512,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 			&lt;&lt;stop&gt;&gt;
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/repeat&gt;&gt;
-&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="166" name="landing2" tags="nobr" position="725,2100" size="100,100">&lt;&lt;set $prevpass to &quot;landing2&quot;&gt;&gt;
+&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="163" name="landing2" tags="nobr" position="350,2100" size="100,100">&lt;&lt;set $prevpass to &quot;landing2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;landing2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;preintro&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
@@ -4506,7 +4523,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 
 &lt;/div&gt;
 &lt;&lt;include &quot;pwChathamStories&quot;&gt;&gt;
-&lt;/main&gt;</tw-passagedata><tw-passagedata pid="167" name="phonecallger" tags="nobr" position="850,2100" size="100,100">&lt;&lt;set $prevpass to &quot;landing2&quot;&gt;&gt;
+&lt;/main&gt;</tw-passagedata><tw-passagedata pid="164" name="phonecallger" tags="nobr" position="475,2100" size="100,100">&lt;&lt;set $prevpass to &quot;landing2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;phonecallger&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;handbackbook&quot;&gt;&gt;
 &lt;&lt;timed 2s&gt;&gt;
@@ -4540,7 +4557,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 &lt;div class=&quot;phonecall-btn opacitytwo hangup&quot;&gt;[img[/assets/img/phone-down.png][$nextpass]]&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/main&gt;</tw-passagedata><tw-passagedata pid="168" name="phonecallgertext" tags="nobr" position="975,2100" size="100,100">&lt;main class=&quot;phonetext&quot;&gt;
+&lt;/main&gt;</tw-passagedata><tw-passagedata pid="165" name="phonecallgertext" tags="nobr" position="600,2100" size="100,100">&lt;main class=&quot;phonetext&quot;&gt;
 &lt;h2&gt;Geraldine:&lt;/h2&gt;
 &lt;br/&gt;
 
@@ -4568,7 +4585,7 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 &lt;&lt;button &quot;Back&quot;&gt;&gt;&lt;&lt;goto &quot;phonecallger&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
 &lt;br/&gt;
-&lt;br/&gt;</tw-passagedata><tw-passagedata pid="169" name="handbackbook" tags="nobr" position="1100,2100" size="100,100">&lt;&lt;set $prevpass to &quot;phonecallger&quot;&gt;&gt;
+&lt;br/&gt;</tw-passagedata><tw-passagedata pid="166" name="handbackbook" tags="nobr" position="725,2100" size="100,100">&lt;&lt;set $prevpass to &quot;phonecallger&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;handbackbook&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;landing&quot;&gt;&gt;
 &lt;&lt;include &quot;headerintro&quot;&gt;&gt;

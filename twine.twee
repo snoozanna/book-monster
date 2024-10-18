@@ -416,11 +416,15 @@ setup.boatMultiDraggable = () => {
   // Check if all tasks are completed
   const checkCompleted = () => {
     if (completeList.every(item => completed.includes(item))) {
-      messageContainer.textContent = "WINNER!!";
-      console.log("WINN!!");
-      document.body.style.backgroundColor = ""
+      messageContainer.textContent = "You did it!";
+      const audio = new Audio('assets/audio/MonsterGrowl.mp3');
+      audio.play();
+      setTimeout(()=> {
+  document.body.style.backgroundColor = ""
       // Transition to the next passage in SugarCube
       Engine.play("begone");  
+      }, 2000)
+    
 
     } else {
       messageContainer.textContent = "Keep going...";
@@ -437,6 +441,20 @@ setup.boatMultiDraggable = () => {
   elements.forEach(({ id, targetArea, name }) => makeDraggable(id, name, targetArea));
 };
 
+
+$(document).on('click', '.thumbnail-image', function() {
+    // Get the full-size image path from the clicked thumbnail's data attribute
+    var fullImageSrc = $(this).data('full');
+    
+    // Update the main gallery image to the clicked thumbnail's full-size image
+    $('#imageGallery .gallery-main').attr('src', fullImageSrc);
+    
+    // Remove the 'active' class from all thumbnails
+    $('.thumbnail-image').removeClass('active');
+    
+    // Add the 'active' class to the clicked thumbnail
+    $(this).addClass('active');
+});
 
 
 :: StoryInit
@@ -745,11 +763,11 @@ setup.boatMultiDraggable = () => {
 <</timed>>
 <<timed 3s>>
   <<removeclass ".opacitytwo" "opacitytwo">>
-    <<timed 62s>>
+    <<timed 70s>>
       <<goto $nextpass>>
       <</timed>>
 <</timed>>
-<div id="audio"> <audio src="assets/audio/OpeningScene-Rezel.mp3" autoplay>Audio is not supported on your device</audio></div>
+<div id="audio"> <audio src="assets/audio/OpeningScene-Toby.mp3" autoplay>Audio is not supported on your device</audio></div>
 <main class="phonecall">
 <div class="phonecall-name">
 <h2>Octopus Helpline</h2>
@@ -1405,15 +1423,18 @@ setup.boatMultiDraggable = () => {
 
 
 :: galleryheader[nobr]
-<header class="intro">
+<header class="intro gallery">
   <div class="logo-wrapper ">
   <img src="/assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
     <h2 class="octo-title">OCTOPUS</h2>
     <span>Gallery</span>
+    <span class="octo-name" > The Book Monster </span>
   </div>
 </header>
+
+
 
 
 :: octopusgallery [nobr]
@@ -1422,57 +1443,35 @@ setup.boatMultiDraggable = () => {
 <<set $nextpass to "gerIntro-6">>
 <<include "galleryheader">>
 <main class="gallery">
-      <<include "bookmonsterimages">>
+
+
+<div id="imageGallery">
+    <img src="/assets/img/monster1.png" class="gallery-main">
+</div>
+
+<!-- Thumbnails container -->
+
 </main>
-<<include "galleryfooter">>
-
-:: galleryfooter[nobr]
-<footer class="gallery"> 
-<div/>
-<div id="nextImageBtn"></div></footer>
-
-<<timed 2s>>
-      <<include "footerimages">>
-    <</timed>>
-
-
-   
-:: bookmonsterimages [nobr]
-
-  <div class="bm-wrapper" id="imgMount">
-    <img id="monsterImage" src="/assets/img/monster1.png" alt="Monster Image 1"/>
-  </div>
-  <div class="img-desc" id="imgDesc">
-    <h3 class="octo-title">Sighting 1</h3>
-  </div>
+<footer class="gallery">
+<div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
+<div id="thumbnails">
+<div class="thumbnail-wrapper">
+    <img src="/assets/img/monster1.png" class="thumbnail-image active" data-full="/assets/img/monster1.png">
+</div>
+<div class="thumbnail-wrapper">
+    <img src="/assets/img/monster2.png" class="thumbnail-image" data-full="/assets/img/monster2.png">
+</div>
+<div class="thumbnail-wrapper">
+    <img src="/assets/img/monster3.png" class="thumbnail-image" data-full="/assets/img/monster3.png">
+</div>
+<div class="thumbnail-wrapper">
+    <img src="/assets/img/monster4.png" class="thumbnail-image" data-full="/assets/img/monster4.png">
+</div>
+</div>
+   <div class="footer-icon">[img[/assets/img/for.png][$nextpass]]</div>
+</footer>
 
 
-
-:: footerimages [nobr]
-<<set $imageIndex to 1>>
-
-<<replace "#nextImageBtn">>
-      <<button "Load Next Image">>
-         <<if $imageIndex < 4>>
-        <<set $imageIndex to $imageIndex + 1>>
-        <<replace "#imgMount">>
-          <img id="monsterImage" sc-eval:src="'/assets/img/monster' + [$imageIndex] + '.png'"  alt="Monster Image"/>
-            /* <img id="monsterImage" src="/assets/img/monster2.png" alt="Monster Image"/> */
-        <</replace>>
-        <<replace "#imgDesc">>
-            <h3 class="octo-title">Sighting $imageIndex</h3>
-        <</replace>>
-        <<else>>
-          <<replace "#nextImageBtn">>
-      <<button "Next">>
-        <<goto $nextpass>>
-      <</button>>
-      <</replace>>
-        <</if>>
-      <</button>>
-    
-
-<</replace>>
 
 
 :: gerIntro-6 [nobr]
@@ -1707,6 +1706,7 @@ setup.boatMultiDraggable = () => {
 <<set $nextpass to "wordsLeft1">>
 <<set $currentChapter to 1>>
 <<audio ":all" stop>>
+<div id="audio"> <audio src="assets/audio/NewChapterSound.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerger">>
 
@@ -2502,6 +2502,7 @@ $correctans
 <<set $nextpass to "wordsLeft2">>
 <<set $currentChapter to 2>>
 <<audio ":all" stop>>
+<div id="audio"> <audio src="assets/audio/NewChapterSound2.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerger">>
 
@@ -2803,9 +2804,11 @@ We need to go a different route. Re-routing.", coords: "two" },
       <</append>>
     <</timed>>
     <<timed 4s>>
+        <<replace "#btnMount">>
+      <<include "pwMap">>
+      <</replace>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
-
   
   <</if>>
 
@@ -3060,6 +3063,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $nextpass to "wordsLeft3">>
 <<set $currentChapter to 3>>
 <<audio ":all" stop>>
+<div id="audio"> <audio src="assets/audio/NewChapterSound3.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerger">>
 
@@ -3148,6 +3152,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $nextpass to "ger6-2b">>
 
 <<include "_templateGeraldine">>
+
 
 :: ger6-2a-messages [nobr]
 <<timed 0.5s>>
@@ -3601,6 +3606,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $pass to "chapterTitle4">>
 <<set $nextpass to "wordsAdded4a">>
 <<set $currentChapter to 4>>
+<div id="audio"> <audio src="assets/audio/NewChapterSound.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerger">>
 
@@ -4026,6 +4032,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $pass to "chapterTitle5">>
 <<set $nextpass to "wordsLeft5">>
 <<set $currentChapter to 5>>
+<div id="audio"> <audio src="assets/audio/NewChapterSound2.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerger">>
 
