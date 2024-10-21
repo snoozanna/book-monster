@@ -2490,6 +2490,10 @@ $correctans
      <<timed 3s>>
       <<goto $nextpass>>
     <</timed>>
+    <<else>>
+       <<timed 5s>>
+      <<goto $nextpass>>
+    <</timed>>
   <</if>>
 
 
