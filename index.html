@@ -1585,7 +1585,7 @@ $(document).on('click', '.thumbnail-image', function() {
 &lt;/header&gt;</tw-passagedata><tw-passagedata pid="48" name="_chapterTitleTemplate" tags="nobr" position="975,600" size="100,100">&lt;&lt;addclass &quot;body&quot; &quot;grey&quot;&gt;&gt;
 &lt;&lt;include &quot;findChapTitle&quot;&gt;&gt;
 &lt;&lt;timed 0.1s&gt;&gt;
-  &lt;&lt;include &quot;headerchap&quot;&gt;&gt;
+ 
 &lt;main class=&quot;chapter-title &quot;&gt;
 &lt;div class=&quot;chapter-img-wrapper&quot;&gt;
 &lt;img id=&quot;chapterImage&quot; sc-eval:src=&quot;&#39;/assets/img/chapter&#39; + [$currentChapter] + &#39;.png&#39;&quot;  alt=&quot;Chapter Image&quot;/&gt;
@@ -2164,7 +2164,9 @@ $correctans
   &lt;div id=&quot;mount&quot;&gt;&lt;/div&gt;
   &lt;&lt;timed 0.3s&gt;&gt;
   &lt;&lt;replace &quot;#mount&quot;&gt;&gt;
+      &lt;&lt;type 80ms&gt;&gt;
 &lt;h2 class=&quot;octo-title&quot;&gt;Book Rooting...&lt;/h2&gt;
+&lt;&lt;/type&gt;&gt;
   &lt;&lt;/replace&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
 &lt;/main&gt;
@@ -3148,7 +3150,9 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
   &lt;div id=&quot;mount&quot;&gt;&lt;/div&gt;
   &lt;&lt;timed 0.3s&gt;&gt;
   &lt;&lt;replace &quot;#mount&quot;&gt;&gt;
+      &lt;&lt;type 80ms&gt;&gt;
 &lt;h2 class=&quot;octo-title&quot;&gt;Book Rooting...&lt;/h2&gt;
+&lt;&lt;/type&gt;&gt;
   &lt;&lt;/replace&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
 &lt;/main&gt;

@@ -1687,7 +1687,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<addclass "body" "grey">>
 <<include "findChapTitle">>
 <<timed 0.1s>>
-  <<include "headerchap">>
+ 
 <main class="chapter-title ">
 <div class="chapter-img-wrapper">
 <img id="chapterImage" sc-eval:src="'/assets/img/chapter' + [$currentChapter] + '.png'"  alt="Chapter Image"/>
@@ -1701,6 +1701,8 @@ $(document).on('click', '.thumbnail-image', function() {
 <<timed 5s>>
   <<goto $nextpass>>
   <</timed>>
+
+
 
 :: chapterTitle1 [nobr]
 <<set $prevpass to "gerIntro-6c">>
@@ -2329,7 +2331,9 @@ $correctans
   <div id="mount"></div>
   <<timed 0.3s>>
   <<replace "#mount">>
+      <<type 80ms>>
 <h2 class="octo-title">Book Rooting...</h2>
+<</type>>
   <</replace>>
 <</timed>>
 </main>
@@ -3470,7 +3474,9 @@ We need to go a different route. Re-routing.", coords: "two" },
   <div id="mount"></div>
   <<timed 0.3s>>
   <<replace "#mount">>
+      <<type 80ms>>
 <h2 class="octo-title">Book Rooting...</h2>
+<</type>>
   <</replace>>
 <</timed>>
 </main>
