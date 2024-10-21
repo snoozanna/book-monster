@@ -3382,7 +3382,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<include "footerupload">>
 
 :: footerupload [nobr]
-<footer id="footerField"><<button "Back">><<goto "landing">><</button>>
+<footer id="footerField"><<button "Back">><<goto $prevpass>><</button>>
 </footer>
 <<timed 12s>>
     <<append "#footerField">>
