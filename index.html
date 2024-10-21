@@ -133,7 +133,8 @@ setup.JSLoaded = false;
          gtag('config', 'G-C6NP1M5W57');
          LoadScreen.unlock(lockID);  // Unlock loading screen
      }).catch(function(error) {
-         alert("Error: Could not load 'gtag.js'.");
+         console.log("Error: Could not load 'gtag.js'.");
+     LoadScreen.unlock(lockID);  // Unlock loading screen
      }
  );
 
