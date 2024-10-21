@@ -43,15 +43,17 @@ setup.JSLoaded = false;
  var lockID = LoadScreen.lock();  // Lock loading screen
  importScripts("https://www.googletagmanager.com/gtag/js?id=G-C6NP1M5W57")
      .then(function() {
+
          setup.JSLoaded = true;
          window.dataLayer = window.dataLayer || [];
          window.gtag = function (){ dataLayer.push(arguments); };
          gtag('js', new Date());
          gtag('config', 'G-C6NP1M5W57');
+           console.log("Sending to GA");
          LoadScreen.unlock(lockID);  // Unlock loading screen
      }).catch(function(error) {
          console.log("Error: Could not load 'gtag.js'.");
-     LoadScreen.unlock(lockID);  // Unlock loading screen
+      LoadScreen.unlock(lockID);  // Unlock loading screen
      }
  );
 
@@ -59,12 +61,14 @@ setup.JSLoaded = false;
  $(document).on('click', 'a', function (ev) {
  // Get the destination of the clicked link var passage 
  var passage = $(this).attr('data-passage');
- // Send the message to google analytics
- gtag('event', 'Navigation', {
-     event_label    : passage,
-     event_category : 'GuestClick'
- });
-
+ // Send the click event to Google Analytics
+    if (setup.JSLoaded && passage) {
+      console.log("sending", passage, "to GA")
+        gtag('event', 'Navigation', {
+            event_label: passage,
+            event_category: 'GuestClick'
+        });
+    }
  });
 
 setup.eatWords = () => {
