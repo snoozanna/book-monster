@@ -1689,7 +1689,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<timed 0.1s>>
  
 <main class="chapter-title ">
-<div class="chapter-img-wrapper">
+<div class="chapter-img-wrapper fadeInTitle">
 <img id="chapterImage" sc-eval:src="'/assets/img/chapter' + [$currentChapter] + '.png'"  alt="Chapter Image"/>
 </div>
 <h2 class="">Chapter $currentChapter</h2>
@@ -1712,7 +1712,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<audio ":all" stop>>
 <div id="audio"> <audio src="assets/audio/NewChapterSound.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
-<<include "footerger">>
+<<include "footerintro">>
 
 :: wordsLeft1 [nobr]
 <<set $prevpass to "chapterTitle1">>
@@ -2510,7 +2510,7 @@ $correctans
 <<audio ":all" stop>>
 <div id="audio"> <audio src="assets/audio/NewChapterSound2.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
-<<include "footerger">>
+<<include "footerintro">>
 
 :: wordsLeft2 [nobr]
 <<set $prevpass to "chapterTitle2">>
@@ -3071,7 +3071,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<audio ":all" stop>>
 <div id="audio"> <audio src="assets/audio/NewChapterSound3.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
-<<include "footerger">>
+<<include "footerintro">>
 
 :: wordsLeft3 [nobr]
 <<set $prevpass to "chapterTitle3">>
@@ -3616,7 +3616,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $currentChapter to 4>>
 <div id="audio"> <audio src="assets/audio/NewChapterSound.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
-<<include "footerger">>
+<<include "footerintro">>
 
 
 
@@ -4042,7 +4042,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $currentChapter to 5>>
 <div id="audio"> <audio src="assets/audio/NewChapterSound2.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
-<<include "footerger">>
+<<include "footerintro">>
 
 :: wordsLeft5 [nobr]
 <<set $prevpass to "chapterTitle5">>

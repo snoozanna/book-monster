@@ -1655,6 +1655,11 @@ main.upload{
   height: 80%;
 }
 
+main.upload > .octo-title {
+  width: 100%;
+text-align: center;
+}
+
 /* LOADING  */
 
 main.loading > .logo-wrapper{
