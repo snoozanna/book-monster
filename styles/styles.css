@@ -1655,7 +1655,7 @@ main.upload{
   height: 80%;
 }
 
-main.upload > .octo-title {
+main.upload > .logo-wrapper > .octo-title {
   width: 100%;
 text-align: center;
 }
