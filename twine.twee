@@ -3362,7 +3362,7 @@ We need to go a different route. Re-routing.", coords: "two" },
   <h3>Upload an image of something interesting </h3>
 </div>
 
-<div class="logo-wrapper" id="loadingLogo">
+<div class="logo-wrapper loading" id="loadingLogo">
 <img src="/assets/img/logo.png" alt="logo" class="fastRotate"/>
 <br/>
 <h2 class="octo-title">Uploading...</h2>

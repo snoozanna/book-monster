@@ -1633,7 +1633,8 @@ header.intro > .logo-wrapper{
 /* UPLOAD */
 #loadingLogo{
   display: none;
-  max-width: 80%;
+  max-width: 30%;
+
 }
 
 #loadingLogo > img{
