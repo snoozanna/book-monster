@@ -1210,6 +1210,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<include "_templateGeraldine">>
 
 
+
 :: gerIntro-2-messages [nobr]
 <<timed 0.5s>>
         <<audio "ping1" "play">>
@@ -2470,22 +2471,22 @@ $correctans
 
 
 
-<<if previous() is "ger3-5">>
+<<if $pass is "ger3-5">>
   <<audio "monster1" play>>
   <<timed 7s>>
       <<goto $nextpass>>
     <</timed>>
-  <<elseif previous() is "wordsLeft2">>
+  <<elseif $pass is "wordsLeft2">>
     <<audio "monster2" play>>
     <<timed 9s>>
       <<goto $nextpass>>
     <</timed>>
-  <<elseif previous() is "ger8-1">>
+  <<elseif $pass is "ger8-1">>
      <<audio "monster3" play>>
      <<timed 7s>>
       <<goto $nextpass>>
     <</timed>>
-   <<elseif previous() is "ger14-3">>
+   <<elseif $pass is "ger14-3">>
      <<audio "monster4" play>>
      <<timed 3s>>
       <<goto $nextpass>>
