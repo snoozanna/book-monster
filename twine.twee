@@ -764,7 +764,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<timed 3s>>
   <<removeclass ".opacitytwo" "opacitytwo">>
     <<timed 70s>>
-      <<goto $nextpass>>
+      /* <<goto $nextpass>> */
       <</timed>>
 <</timed>>
 <div id="audio"> <audio src="assets/audio/OpeningScene-Toby.mp3" autoplay>Audio is not supported on your device</audio></div>
@@ -834,8 +834,10 @@ $(document).on('click', '.thumbnail-image', function() {
 <p>I will send you to the OCTOPUS Rooter. </p>
 
 <p>Good luck</p>
-<<button "Next">><<goto "">><</button>>
+
 <<button "Back">><<goto "phonecall">><</button>>
+<<button "Next">><<goto $nextpass>><</button>>
+
 
 </main>
 <br/>
@@ -892,7 +894,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<audio ":all" stop>>
 
 <main class="logospin">
-<div class="logo-wrapper slowRotate">
+<div class="logo-wrapper fastRotate">
 <img src="/assets/img/logo.png" alt="logo"/>
 
 </div>
@@ -1331,7 +1333,7 @@ $(document).on('click', '.thumbnail-image', function() {
     <span><b>Nickname:</b> Googly Moogly</span>
     <span><b>Likes:</b> Eating Books</span>
     <span><b>Dislikes:</b> Books, Stories & Characters! </span>
-    <span><b>Appearance:</b>uncertain- normally invisible - images on file from previous reported encounters. </span>
+    <span><b>Appearance:</b> uncertain- normally invisible - images on file from previous reported encounters. </span>
   </div>
   <div class="logo-wrapper-cipher">
   <img src="/assets/img/logo.png" alt="logo"/>
@@ -1428,9 +1430,8 @@ $(document).on('click', '.thumbnail-image', function() {
   <img src="/assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
-    <h2 class="octo-title">OCTOPUS</h2>
-    <span>Gallery</span>
-    <span class="octo-name" > The Book Monster </span>
+    <h2 class="octo-title">Gallery</h2>
+    <span>The Book Monster</span>
   </div>
 </header>
 
@@ -1441,7 +1442,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<set $prevpass to "gerIntro-4">>
 <<set $pass to "octopusgallery">>
 <<set $nextpass to "gerIntro-6">>
-/* <<include "galleryheader">> */
+<<include "galleryheader">>
 <main class="gallery">
 
 
@@ -1452,7 +1453,8 @@ $(document).on('click', '.thumbnail-image', function() {
 <!-- Thumbnails container -->
 
 </main>
-<footer class="gallery">
+
+<footer class="gallery fadeInTitle">
 <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
 <div id="thumbnails">
 <div class="thumbnail-wrapper">
@@ -5101,8 +5103,9 @@ We need to go a different route. Re-routing.", coords: "two" },
 <p>Hand back the book and you’ll receive a gift from us. </p>
 <p>Thank you my friends.</p>
 <br/>
-<<button "Next">><<goto "handbackbook">><</button>>
+
 <<button "Back">><<goto "phonecallger">><</button>>
+<<button "Next">><<goto "handbackbook">><</button>>
 </main>
 <br/>
 <br/>

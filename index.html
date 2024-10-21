@@ -782,7 +782,7 @@ $(document).on('click', '.thumbnail-image', function() {
 &lt;&lt;timed 3s&gt;&gt;
   &lt;&lt;removeclass &quot;.opacitytwo&quot; &quot;opacitytwo&quot;&gt;&gt;
     &lt;&lt;timed 70s&gt;&gt;
-      &lt;&lt;goto $nextpass&gt;&gt;
+      /* &lt;&lt;goto $nextpass&gt;&gt; */
       &lt;&lt;/timed&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
 &lt;div id=&quot;audio&quot;&gt; &lt;audio src=&quot;assets/audio/OpeningScene-Toby.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;&lt;/div&gt;
@@ -846,8 +846,10 @@ $(document).on('click', '.thumbnail-image', function() {
 &lt;p&gt;I will send you to the OCTOPUS Rooter. &lt;/p&gt;
 
 &lt;p&gt;Good luck&lt;/p&gt;
-&lt;&lt;button &quot;Next&quot;&gt;&gt;&lt;&lt;goto &quot;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+
 &lt;&lt;button &quot;Back&quot;&gt;&gt;&lt;&lt;goto &quot;phonecall&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;&lt;button &quot;Next&quot;&gt;&gt;&lt;&lt;goto $nextpass&gt;&gt;&lt;&lt;/button&gt;&gt;
+
 
 &lt;/main&gt;
 &lt;br/&gt;
@@ -898,7 +900,7 @@ $(document).on('click', '.thumbnail-image', function() {
 &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
 
 &lt;main class=&quot;logospin&quot;&gt;
-&lt;div class=&quot;logo-wrapper slowRotate&quot;&gt;
+&lt;div class=&quot;logo-wrapper fastRotate&quot;&gt;
 &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
 
 &lt;/div&gt;
@@ -1280,7 +1282,7 @@ $(document).on('click', '.thumbnail-image', function() {
     &lt;span&gt;&lt;b&gt;Nickname:&lt;/b&gt; Googly Moogly&lt;/span&gt;
     &lt;span&gt;&lt;b&gt;Likes:&lt;/b&gt; Eating Books&lt;/span&gt;
     &lt;span&gt;&lt;b&gt;Dislikes:&lt;/b&gt; Books, Stories &amp; Characters! &lt;/span&gt;
-    &lt;span&gt;&lt;b&gt;Appearance:&lt;/b&gt;uncertain- normally invisible - images on file from previous reported encounters. &lt;/span&gt;
+    &lt;span&gt;&lt;b&gt;Appearance:&lt;/b&gt; uncertain- normally invisible - images on file from previous reported encounters. &lt;/span&gt;
   &lt;/div&gt;
   &lt;div class=&quot;logo-wrapper-cipher&quot;&gt;
   &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
@@ -1362,14 +1364,13 @@ $(document).on('click', '.thumbnail-image', function() {
   &lt;img src=&quot;/assets/img/logo.png&quot; alt=&quot;logo&quot;/&gt;
   &lt;/div&gt;
   &lt;div class=&quot;octo-title-wrapper&quot;&gt;
-    &lt;h2 class=&quot;octo-title&quot;&gt;OCTOPUS&lt;/h2&gt;
-    &lt;span&gt;Gallery&lt;/span&gt;
-    &lt;span class=&quot;octo-name&quot; &gt; The Book Monster &lt;/span&gt;
+    &lt;h2 class=&quot;octo-title&quot;&gt;Gallery&lt;/h2&gt;
+    &lt;span&gt;The Book Monster&lt;/span&gt;
   &lt;/div&gt;
 &lt;/header&gt;</tw-passagedata><tw-passagedata pid="40" name="octopusgallery" tags="nobr" position="1225,475" size="100,100">&lt;&lt;set $prevpass to &quot;gerIntro-4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;octopusgallery&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;gerIntro-6&quot;&gt;&gt;
-/* &lt;&lt;include &quot;galleryheader&quot;&gt;&gt; */
+&lt;&lt;include &quot;galleryheader&quot;&gt;&gt;
 &lt;main class=&quot;gallery&quot;&gt;
 
 
@@ -1380,7 +1381,8 @@ $(document).on('click', '.thumbnail-image', function() {
 &lt;!-- Thumbnails container --&gt;
 
 &lt;/main&gt;
-&lt;footer class=&quot;gallery&quot;&gt;
+
+&lt;footer class=&quot;gallery fadeInTitle&quot;&gt;
 &lt;div class=&quot;footer-icon&quot;&gt;[img[/assets/img/icon3.png][$prevpass]]&lt;/div&gt;
 &lt;div id=&quot;thumbnails&quot;&gt;
 &lt;div class=&quot;thumbnail-wrapper&quot;&gt;
@@ -4581,8 +4583,9 @@ We need to go a different route. Re-routing.&quot;, coords: &quot;two&quot; },
 &lt;p&gt;Hand back the book and you’ll receive a gift from us. &lt;/p&gt;
 &lt;p&gt;Thank you my friends.&lt;/p&gt;
 &lt;br/&gt;
-&lt;&lt;button &quot;Next&quot;&gt;&gt;&lt;&lt;goto &quot;handbackbook&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+
 &lt;&lt;button &quot;Back&quot;&gt;&gt;&lt;&lt;goto &quot;phonecallger&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;&lt;button &quot;Next&quot;&gt;&gt;&lt;&lt;goto &quot;handbackbook&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
 &lt;br/&gt;
 &lt;br/&gt;</tw-passagedata><tw-passagedata pid="166" name="handbackbook" tags="nobr" position="725,2100" size="100,100">&lt;&lt;set $prevpass to &quot;phonecallger&quot;&gt;&gt;
