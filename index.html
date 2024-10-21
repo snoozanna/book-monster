@@ -120,6 +120,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 $('#ui-bar').remove();
 $(document.head).find('#style-ui-bar').remove();
 
+
 /* Google Tag */
 setup.JSLoaded = false;
  var lockID = LoadScreen.lock();  // Lock loading screen
@@ -136,32 +137,17 @@ setup.JSLoaded = false;
      }
  );
 
-/* Track Passage Views using SugarCube's passage display events */
-$(document).on(':passagedisplay', function(ev) {
-    var passageName = ev.passage.title;
 
-    // Send passage view event to Google Analytics
-    if (setup.JSLoaded) {
-        gtag('event', 'Passage View', {
-            event_label: passageName,
-            event_category: 'Passage',
-        });
-    }
-});
+ $(document).on('click', 'a', function (ev) {
+ // Get the destination of the clicked link var passage 
+ var passage = $(this).attr('data-passage');
+ // Send the message to google analytics
+ gtag('event', 'Navigation', {
+     event_label    : passage,
+     event_category : 'GuestClick'
+ });
 
-/* Track Link Clicks for Navigation */
-$(document).on('click', 'a', function (ev) {
-    var passage = $(this).attr('data-passage');  // Get the passage name from the link
-
-    // Send the click event to Google Analytics
-    if (setup.JSLoaded && passage) {
-        gtag('event', 'Navigation', {
-            event_label: passage,
-            event_category: 'GuestClick'
-        });
-    }
-});
-
+ });
 
 setup.eatWords = () => {
   console.log("eating words")
