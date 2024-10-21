@@ -37,6 +37,62 @@ The Book Monster
 $('#ui-bar').remove();
 $(document.head).find('#style-ui-bar').remove();
 
+// GOOGLE ANALYTICS 
+/* Setup for Google Tag Manager (GA4) in SugarCube */
+setup.JSLoaded = false;
+
+// Lock the loading screen while the external script is being loaded
+var lockID = LoadScreen.lock();  
+
+// Asynchronously load the Google Analytics script
+(function() {
+    var script = document.createElement('script');
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-C6NP1M5W57";
+    script.async = true;
+    script.onload = function() {
+        setup.JSLoaded = true;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){ dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', 'G-C6NP1M5W57');
+
+        // Unlock the loading screen once GA is fully loaded
+        LoadScreen.unlock(lockID);
+    };
+    script.onerror = function() {
+        alert("Error: Could not load 'gtag.js'.");
+        LoadScreen.unlock(lockID);  // Unlock even if loading fails
+    };
+    document.head.appendChild(script);
+})();
+
+/* Track Passage Views using SugarCube's passage display events */
+$(document).on(':passagedisplay', function(ev) {
+    var passageName = ev.passage.title;
+
+    // Send passage view event to Google Analytics
+    if (setup.JSLoaded) {
+        gtag('event', 'Passage View', {
+            event_label: passageName,
+            event_category: 'Passage',
+        });
+    }
+});
+
+/* Track Link Clicks for Navigation */
+$(document).on('click', 'a', function (ev) {
+    var passage = $(this).attr('data-passage');  // Get the passage name from the link
+
+    // Send the click event to Google Analytics
+    if (setup.JSLoaded && passage) {
+        gtag('event', 'Navigation', {
+            event_label: passage,
+            event_category: 'GuestClick'
+        });
+    }
+});
+
+
 setup.eatWords = () => {
   console.log("eating words")
   const allSpans = document.querySelectorAll(".eating-container span");  // Select all span elements
