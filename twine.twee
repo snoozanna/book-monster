@@ -57,13 +57,26 @@ setup.JSLoaded = false;
      }
  );
 
+/* Track Passage Views using SugarCube's passage display events */
+$(document).on(':passagedisplay', function(ev) {
+    var passageName = ev.passage.title;
+    console.log("sending", passageName, "to GA")
+    // Send passage view event to Google Analytics
+    if (setup.JSLoaded) {
+        gtag('event', 'Passage View', {
+            event_label: passageName,
+            event_category: 'Passage',
+        });
+    }
+});
+
 
  $(document).on('click', 'a', function (ev) {
  // Get the destination of the clicked link var passage 
  var passage = $(this).attr('data-passage');
  // Send the click event to Google Analytics
     if (setup.JSLoaded && passage) {
-      console.log("sending", passage, "to GA")
+      console.log("sending", passage, "click to GA")
         gtag('event', 'Navigation', {
             event_label: passage,
             event_category: 'GuestClick'
@@ -540,9 +553,9 @@ $(document).on('click', '.thumbnail-image', function() {
     <<button "Back">>
         <<goto $prevpass>>
     <</button>>
-    <<button "Next">>
+    /* <<button "Next">>
         <<goto $nextpass>>
-    <</button>>
+    <</button>> */
     <div id="nextButtonContainer">
      </div>
 </footer>
