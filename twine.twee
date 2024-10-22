@@ -49,7 +49,7 @@ setup.JSLoaded = false;
          window.gtag = function (){ dataLayer.push(arguments); };
          gtag('js', new Date());
          gtag('config', 'G-C6NP1M5W57');
-           console.log("Sending to GA");
+          //  console.log("Sending to GA");
          LoadScreen.unlock(lockID);  // Unlock loading screen
      }).catch(function(error) {
          console.log("Error: Could not load 'gtag.js'.");
@@ -60,7 +60,7 @@ setup.JSLoaded = false;
 /* Track Passage Views using SugarCube's passage display events */
 $(document).on(':passagedisplay', function(ev) {
     var passageName = ev.passage.title;
-    console.log("sending", passageName, "to GA")
+    // console.log("sending", passageName, "to GA")
     // Send passage view event to Google Analytics
     if (setup.JSLoaded) {
         gtag('event', 'Passage View', {
@@ -76,7 +76,7 @@ $(document).on(':passagedisplay', function(ev) {
  var passage = $(this).attr('data-passage');
  // Send the click event to Google Analytics
     if (setup.JSLoaded && passage) {
-      console.log("sending", passage, "click to GA")
+      // console.log("sending", passage, "click to GA")
         gtag('event', 'Navigation', {
             event_label: passage,
             event_category: 'GuestClick'
@@ -527,6 +527,8 @@ $(document).on('click', '.thumbnail-image', function() {
 <<cacheaudio "mine1" "../assets/sound/MinesDeactivating.mp3">>
 <<cacheaudio "mine2" "../assets/sound/MinesDeactivating2.mp3">>
 <<cacheaudio "mine3" "../assets/sound/MinesDeactivating3.mp3">>
+<<cacheaudio "ticker" "../assets/sound/tickeredited.mp3">>
+
 <<set $currentChapter to 1>>
 
 :: findChapTitle [nobr]
@@ -629,15 +631,19 @@ $(document).on('click', '.thumbnail-image', function() {
 <div class="desktop-message">
   <p>Please view this on a phone.</p>
 </div>
+<<include "headerpreintro">>
 <main class="logospin">
 <div class="logo-wrapper slowRotate">
 <img src="/assets/img/logo.png" alt="logo"/>
 
 </div>
-  <<button "Enter">>
+  <<button "Start">>
         <<goto $nextpass>>
     <</button>>
 </main>
+
+<footer>
+<<include "pwGeraldine">></footer>
 
 
 
@@ -915,7 +921,7 @@ $(document).on('click', '.thumbnail-image', function() {
   <</timed>>
   <<timed 11s>>
     <<append "#mount">>
-      <p>It is her first day - but don’t worry she will instruct you how to face the Book Monster. </p>
+      <p>It's her first day - but don’t worry she will instruct you how to face the Book Monster. </p>
     <</append>>
   <</timed>>
 
@@ -1036,7 +1042,32 @@ $(document).on('click', '.thumbnail-image', function() {
     <br/>
 </div>
 
+:: pwGeraldine [nobr]
+<div class="css-input code-input codeword-input">
+    <<textbox "$codeword" "">>
+    <<button "Enter">>
+      <<set $codeword to $codeword.toUpperCase().trim()>>
+      
+ 
+       /% CODEWORD CORRECT FOR GERALDINE %/
+      <<if $codeword isnot "" and $codeword is "GERALDINE">>
+        <<replace "#coderesult">>Accepted.<</replace>>
+        <<audio "correct" play>>
+        <<timed 3s>><<goto "loadingger">><</timed>>
+      <</if>>
 
+      /% CODEWORD INCORRECT %/
+        <<if $codeword isnot "" and $codeword isnot "GERALDINE">>
+           <<audio "error" play>>
+           <<replace "#coderesult">>Not recognised.<</replace>>
+         <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+         <</if>>
+       
+    <</button>>
+
+    <div id="coderesult"></div>
+
+</div>
 
 
 
@@ -1260,7 +1291,7 @@ $(document).on('click', '.thumbnail-image', function() {
      <<timed 15s>>
       <<replace "#nextButtonContainer">>
       <<button "Next">>
-          <<goto "roar">>
+          <<goto $nextpass>>
         <</button>>
           <</replace>>
     <</timed>>
@@ -1425,7 +1456,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<set $prevpass to "gerIntro-3a">>
 <<set $pass to "gerIntro-4">>
 <<set $nextpass to "octopusgallery">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 :: gerIntro-4-messages [nobr]
@@ -1491,6 +1522,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<set $pass to "octopusgallery">>
 <<set $nextpass to "gerIntro-6">>
 <<include "galleryheader">>
+<<audio "ticker" play loop>>
 <main class="gallery">
 
 
@@ -1528,7 +1560,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<set $prevpass to "octopusgallery">>
 <<set $pass to "gerIntro-6">>
 <<set $nextpass to "gerIntro-6b">>
-
+<<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
 
@@ -1758,7 +1790,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<set $nextpass to "wordsLeft1">>
 <<set $currentChapter to 1>>
 <<audio ":all" stop>>
-<div id="audio"> <audio src="assets/audio/NewChapterSound.mp3" autoplay>Audio is not supported on your device</audio></div>
+<div id="audio"> <audio src="assets/audio/drag.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerintro">>
 
@@ -2212,7 +2244,7 @@ $correctans
 :: wordsAdded1 [nobr]
 <<set $prevpass to "ger3-1">>
 <<set $pass to "wordsAdded1">>
-<<set $nextpass to "ger3-2">>
+<<set $nextpass to "bookrooting1">>
 <div id="audio"></div>
 <main>
     
@@ -2224,13 +2256,13 @@ $correctans
       <span class="eaten">Some</span> <span class="eaten">would</span> <span class="eaten">mend</span> <span class="eaten">ships,</span> <span class="eaten">some</span> <span class="eaten">would</span> <span class="eaten">make</span> <span class="eaten">ropes</span>
     </p>
     <p>
-      <span class="eaten">Some</span> <span class="eaten">even</span> <span class="eaten">dressed</span> <span class="eaten">like</span> <span class="eaten">men</span> <span class="eaten">to</span> <span class="eaten">fight</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">war</span>
+      <span class="eaten">Some</span> <span class="eaten">even</span> <span class="eaten">dressed</span> <span class="eaten">as</span> <span class="eaten">men</span> <span class="eaten">to</span> <span class="eaten">fight</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">war</span>
     </p>
     <p>
   <span class="eaten">Mary</span> <span class="eaten">Lacy</span> <span class="eaten">travelled</span> <span class="eaten">to</span> <span class="eaten">Chatham</span> <span class="eaten">in</span> <span class="eaten">her</span> <span class="eaten">fathers’</span> <span class="eaten">clothes</span> <span class="eaten">and</span> <span class="eaten">she</span> <span class="eaten">became</span> <span class="eaten">William</span> <span class="eaten">Chandler</span>
 </p>
 <p>
-  <span class="eaten">Not</span> <span class="eaten">long</span> <span class="eaten">after</span> <span class="eaten">that,</span><span class="eaten">she</span> <span class="eaten">joined</span> <span class="eaten">the</span> <span class="eaten">HMS</span> <span class="keep remaining">Sandwich</span> <span class="eaten">and</span> <span class="eaten">set</span> <span class="eaten">sail</span>
+  <span class="eaten">Not</span> <span class="eaten">long</span> <span class="eaten">after</span> <span class="eaten">that,</span><span class="eaten"> she</span> <span class="eaten">joined</span> <span class="eaten">the</span> <span class="eaten">HMS</span> <span class="keep remaining">Sandwich</span> <span class="eaten">and</span> <span class="eaten">set</span> <span class="eaten">sail</span>
 </p>
 <p>
   <span class="eaten">Although</span> <span class="eaten">they</span> <span class="eaten">didn't</span> <span class="eaten">know</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">a</span> <span class="eaten">‘she’</span> <span class="eaten">at</span> <span class="eaten">the</span> <span class="eaten">time</span>
@@ -2242,14 +2274,17 @@ $correctans
   <span class="eaten">She</span> <span class="eaten">stayed</span> <span class="eaten">in</span> <span class="keep remaining">disguise</span> <span class="eaten">for</span> <span class="eaten">many</span> <span class="eaten">years</span> <span class="eaten">until</span> <span class="eaten">her</span> <span class="eaten">identity</span> <span class="eaten">was</span> <span class="eaten">revealed</span> <span class="eaten">and</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">discharged</span><span class="eaten">.</span>
   <br/><br/>
 </p>
-<br/><br/>
+<p>
+  <span class="eaten">It</span> <span class="eaten">is</span> <span class="eaten">said</span> <span class="eaten">that</span> <span class="eaten">Lacy</span> <span class="eaten">had</span> <span class="eaten">one</span> <span class="eaten">of</span> <span class="eaten">the</span> <span class="eaten">most</span> <span class="eaten">successful</span> <span class="eaten">careers</span> <span class="eaten">as</span> <span class="eaten">a</span> <span class="eaten">woman</span> <span class="eaten">in</span> <span class="eaten">disguise,</span> <span class="eaten">even</span> <span class="eaten">gaining</span> <span class="eaten">a</span> <span class="eaten">pension</span> <span class="eaten">from</span> <span class="eaten">Admiralty</span> <span class="eaten">in</span> <span class="eaten">her</span> <span class="eaten">true</span> <span class="eaten">name</span><span class="eaten">.</span>
+</p>
+
   </div>
 
-
+<br/><br/><br/><br/><br/><br/><br/><br/>
 </main>
-
+<<timed 8s>>
 <<include "footerwords">>
-
+<</timed>>
 <<done>>
   <<set $still to setup.restoreWords()>>
 <</done>>
@@ -2259,116 +2294,28 @@ $correctans
     <audio src="assets/audio/WomaninDisguise.mp3" autoplay>Audio is not supported on your device</audio>
     <</replace>>
 <</timed>>
-:: ger3-2 [nobr]
-<<set $prevpass to "wordsAdded1">>
-<<set $pass to "ger3-2">>
-<<set $nextpass to "ger3-3">>
-<<audio ":all" stop>>
-<<include "_templateGeraldine">>
 
+:: bookrooting1 [nobr]
+<<audio "rooting" play>>
+<main class="rooting">
+  <div class="book-wrapper wobble-animation">
+  <img src="/assets/img/bookflat.png" alt="open book"/>
+  </div>
+  <div id="mount"></div>
+  <<timed 0.3s>>
+  <<replace "#mount">>
+      <<type 80ms>>
+<h2 class="octo-title">Book Rooting...</h2>
+<</type>>
+  <</replace>>
+<</timed>>
+</main>
 
-:: ger3-2-messages [nobr]
-<<timed 0.1s>>
-        <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>Mary Lacy travelled to Chatham in her fathers’ clothes and she became William Chandler.</p>
-       </div>
-        <</append>>
+  <<timed 6s>>
+  
+          <<goto "ger3-5">>
+    
     <</timed>>
-
-    <<timed 3s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-        <p>Not long after that, she joined the HMS Sandwich and set sail. </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-    <<timed 5s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-        <p>Although they didn't know she was a ‘she’ at the time. </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-
-
-   <<timed 7s>>
-      <<replace "#nextButtonContainer">>
-      <<button "Next">>
-          <<goto $nextpass>>
-        <</button>>
-          <</replace>>
-    <</timed>>
-
-
-:: ger3-3 [nobr]
-<<set $prevpass to "ger3-2">>
-<<set $pass to "ger3-3">>
-<<set $nextpass to "ger3-4">>
-
-<<include "_templateGeraldine">>
-
-
-:: ger3-3-messages [nobr]
-<<timed 0.1s>>
-        <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>She fought in wars and survived hurricanes!</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-    <<timed 3s>>
-    <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-        <p>She stayed in disguise for many years until her identity was revealed and she was discharged. </p>
-       </div>
-        <</append>>
-    <</timed>>
-
-   <<timed 5s>>
-      <<replace "#nextButtonContainer">>
-      <<button "Next">>
-          <<goto $nextpass>>
-        <</button>>
-          <</replace>>
-    <</timed>>
-
-:: ger3-4 [nobr]
-<<set $prevpass to "ger3-3">>
-<<set $pass to "ger3-4">>
-<<set $nextpass to "ger3-5">>
-
-<<include "_templateGeraldine">>
-
-
-:: ger3-4-messages [nobr]
-<<timed 0.1s>>
-        <<audio "ping1" "play">>
-        <<append "#msgMount">>
-       <div class="message"> 
-          <p>It is said that Lacy had one of the most successful careers as a woman in disguise, even gaining a pension from Admiralty in her true name.</p>
-       </div>
-        <</append>>
-    <</timed>>
-
-   
-
-   <<timed 3s>>
-      <<replace "#nextButtonContainer">>
-      <<button "Next">>
-          <<goto "bookrooting">>
-        <</button>>
-          <</replace>>
-    <</timed>>
-
 
 :: bookrooting [nobr]
 <<audio "rooting" play>>
@@ -2393,7 +2340,7 @@ $correctans
     <</timed>>
 
 :: ger3-5 [nobr]
-<<set $prevpass to "ger3-4">>
+<<set $prevpass to "wordsAdded1">>
 <<set $pass to "ger3-5">>
 <<set $nextpass to "ger3-6">>
 
@@ -2477,18 +2424,18 @@ $correctans
       <<goto $nextpass>>
     <</timed>>
   <<elseif $pass is "wordsLeft2">>
-    <<audio "monster2" play>>
+    <<audio "monster2" play volume 0.6>>
     <<timed 9s>>
       <<goto $nextpass>>
     <</timed>>
   <<elseif $pass is "ger8-1">>
-     <<audio "monster3" play>>
+     <<audio "monster1" play>>
      <<timed 7s>>
       <<goto $nextpass>>
     <</timed>>
    <<elseif $pass is "ger14-3">>
-     <<audio "monster4" play>>
-     <<timed 3s>>
+     <<audio "monster2" play volume 0.6>>
+     <<timed 9s>>
       <<goto $nextpass>>
     <</timed>>
     <<else>>
@@ -2560,7 +2507,7 @@ $correctans
 <<set $nextpass to "wordsLeft2">>
 <<set $currentChapter to 2>>
 <<audio ":all" stop>>
-<div id="audio"> <audio src="assets/audio/NewChapterSound2.mp3" autoplay>Audio is not supported on your device</audio></div>
+<div id="audio"> <audio src="assets/audio/drag.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerintro">>
 
@@ -2805,7 +2752,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<timed 0.1s>>
       <<append "#mapContainer">>
       <<include "swirlbookmonster1">>
-      <<audio "monster3" play>>
+      <<audio "monster1" play>>
       <</append>>
       <<include "updateInstruction">>
     <</timed>>
@@ -2995,16 +2942,20 @@ We need to go a different route. Re-routing.", coords: "two" },
 <main class="main-words added">
  <div class="eating-container">
    <p>
-  <span class="eaten">In</span> <span class="eaten">1850,</span> <span class="eaten">17-year-old</span> <span class="eaten">Ellen</span> <span class="eaten">Bright</span> <span class="eaten">who</span> <span class="eaten">was</span> <span class="eaten">dubbed</span> <span class="eaten">the</span> <span class="eaten">Lion</span> <span class="eaten">Queen</span> <span class="eaten">died</span> <span class="eaten">in</span> <span class="eaten">Chatham</span> <span class="eaten">during</span> <span class="eaten">her</span> <span class="eaten">act</span> <span class="eaten">with</span> <span class="eaten">a</span> <span class="eaten">Lion.</span>
+  <span class="eaten">In</span> <span class="eaten">1850,</span> <span class="eaten">17-year-old</span> <span class="eaten">Ellen</span> <span class="eaten">Bright,</span> <span class="eaten">who</span> <span class="eaten">was</span> <span class="eaten">dubbed</span> <span class="eaten">the</span> <span class="eaten">Lion</span> <span class="eaten">Queen,</span> <span class="eaten">died</span> <span class="eaten">in</span> <span class="eaten">Chatham</span> <span class="eaten">during</span> <span class="eaten">her</span> <span class="eaten">act</span> <span class="eaten">with</span> <span class="eaten">a</span> <span class="eaten">Lion</span> <span class="eaten">&</span> <span class="eaten">a</span> <span class="eaten">Tiger.</span>
 </p>
 <p>
-  <span class="eaten">She</span> <span class="eaten">tamed</span> <span class="eaten">the</span> <span class="eaten">Lion</span> <span class="eaten">but</span> <span class="eaten">was</span> <span class="eaten">attacked</span> <span class="eaten">by</span> <span class="eaten">a</span> <span class="keep remaining">Tiger</span> <span class="eaten">who</span> <span class="eaten">was</span> <span class="eaten">also</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="keep remaining">cage</span>
+  <span class="eaten">Inside</span> <span class="eaten">the</span> <span class="keep remaining">cage</span><span class="eaten">, she</span> <span class="eaten">tamed</span> <span class="eaten">the</span> <span class="eaten">Lion,</span> <span class="eaten">but</span> <span class="eaten">was</span> <span class="eaten">attacked</span> <span class="eaten">by</span> <span class="eaten">the</span> <span class="keep remaining">Tiger</span><span class="eaten">, who</span> <span class="eaten">she’d</span> <span class="eaten">turned</span> <span class="eaten">her</span> <span class="eaten">back</span> <span class="eaten">on.</span>
 </p>
 <p>
   <span class="eaten">Her</span> <span class="eaten">final</span> <span class="eaten">performance</span> <span class="eaten">was</span> <span class="eaten">part</span> <span class="eaten">of</span> <span class="keep remaining">‘Wombwell’s</span> <span class="keep remaining">Travelling</span> <span class="keep remaining">Menagerie’</span> <span class="eaten">which</span> <span class="eaten">toured</span> <span class="eaten">the</span> <span class="eaten">country</span> <span class="eaten">exhibiting</span> <span class="eaten">elephants,</span> <span class="eaten">giraffes,</span> <span class="eaten">tigers,</span> <span class="eaten">panthers,</span> <span class="eaten">lions,</span> <span class="eaten">a</span> <span class="eaten">gorilla,</span> <span class="eaten">and</span> <span class="eaten">a</span> <span class="eaten">kangaroo.</span>
 </p>
+<p>
+  <span class="eaten">Ellen</span> <span class="eaten">Bright</span> <span class="eaten">will</span> <span class="eaten">always</span> <span class="eaten">be</span> <span class="eaten">known</span> <span class="eaten">as</span> <span class="eaten">the</span> <span class="eaten">Lion</span> <span class="eaten">Queen</span> <span class="eaten">of</span> <span class="eaten">Chatham.</span>
+</p>
 </div>
 
+<br/><br/><br/><br/>
 </main>
 <<include "footerwords">>
 
@@ -3121,7 +3072,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $nextpass to "wordsLeft3">>
 <<set $currentChapter to 3>>
 <<audio ":all" stop>>
-<div id="audio"> <audio src="assets/audio/NewChapterSound3.mp3" autoplay>Audio is not supported on your device</audio></div>
+<div id="audio"> <audio src="assets/audio/drag.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerintro">>
 
@@ -3134,13 +3085,16 @@ We need to go a different route. Re-routing.", coords: "two" },
 <main>
 <div class="eating-container">
    <p>
-  <span>It</span> <span>was</span> <span>in</span> <span>1949</span> <span>-</span> <span>a</span> <span>narwhal</span> <span>-</span> <span>considered</span> <span>a</span> <span>‘Sea</span> <span>Unicorn’</span> <span>because</span> <span>of</span> <span>its</span> <span>long</span> <span>tusk</span> <span>-</span> <span>washed</span> <span>up</span> <span>along</span> <span>the</span> <span class="keep">River Medway</span>
+  <span>In</span> <span>1949,</span> <span>there</span> <span>was</span> <span>a</span> <span>strange</span> <span>sight</span> <span>on</span><span>the</span>  <span class="keep"> River Medway.</span>
 </p>
 <p>
-  <span>Many</span> <span>myths</span> <span>and</span> <span>legends</span> <span>are</span> <span>based</span> <span>on</span> <span>misunderstood</span> <span>sightings</span> <span>of</span> <span>real</span> <span class="keep">creatures</span>
+  <span>A</span> <span>Narwhal</span> <span>-</span> <span>considered</span> <span>a</span> <span>‘Sea</span> <span>Unicorn’</span> <span>because</span> <span>of</span> <span>its</span> <span>long</span> <span class="keep">tusk</span> <span>-</span> <span>washed</span> <span>up</span> <span>along</span> <span>the River Medway.</span>
 </p>
 <p>
-  <span>But</span> <span>they</span> <span>normally</span> <span>are</span> <span>found</span> <span>in</span> <span>the</span> <span class="keep">arctic</span> <span>-</span> <span>so</span> <span>finding</span> <span>one</span> <span>here</span> <span>was</span> <span>incredibly</span> <span>rare.</span>
+  <span>Narwhals</span> <span>can</span> <span>dive</span> <span>about</span> <span>a</span> <span>mile</span> <span>deep</span> <span>in</span> <span>the</span> <span class="keep">ocean</span> <span>and</span> <span>normally</span> <span>spend</span> <span>their</span> <span>time</span> <span>in</span> <span><span>the</span>  <span>arctic</span> <span>waters</span> <span>of</span> <span>Canada</span><span>, Greenland</span><span>, Norway</span> <span>and</span><span> Russia</span> </span> <span>-</span> <span>so</span> <span>finding</span> <span>one</span> <span>on</span> <span>the</span> <span>River Medway</span> <span>was</span> <span>very</span> <span>rare.</span>
+</p>
+<p>
+  <span>Many</span> <span>myths</span> <span>and</span> <span>legends</span> <span>are</span> <span>based</span> <span>on</span> <span>misunderstood</span> <span>sightings</span> <span>of</span> <span>real</span> <span>creatures.</span>
 </p>
 <p>
   <span>It</span> <span>was</span> <span>so</span> <span>rare</span> <span>that</span> <span>it</span> <span>is</span> <span>now</span> <span>documented</span> <span>in</span> <span>the</span> <span>Natural</span> <span>History</span> <span>Museum</span> <span>in</span> <span>London.</span>
@@ -3156,7 +3110,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 
 
 
-<<timed 10s>>
+<<timed 13s>>
   <<goto $nextpass>>
   <</timed>>
 
@@ -3191,7 +3145,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Go to the Red Lifeguard Ring and let me know when you are there. </p>
+        <p>Go to the RED LIFEGUARD RING and let me know when you are there. </p>
        </div>
     <</append>>
 <</timed>>
@@ -3203,6 +3157,8 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</button>>
     <</replace>>
 <</timed>>
+
+
 
 :: ger6-2a [nobr]
 <<set $prevpass to "ger6-1">>
@@ -3485,21 +3441,25 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $nextpass to "bookrooting3">>
 <div id="audio"></div>
 <main class="main-words added">
- <div class="eating-container">
+<div class="eating-container">
    <p>
-  <span class="eaten">It</span> <span class="eaten">was</span> <span class="eaten">in</span> <span class="eaten">1949</span> <span class="eaten">-</span> <span class="eaten">a</span> <span class="eaten">narwhal</span> <span class="eaten">-</span> <span class="eaten">considered</span> <span class="eaten">a</span> <span class="eaten">‘Sea</span> <span class="eaten">Unicorn’</span> <span class="eaten">because</span> <span class="eaten">of</span> <span class="eaten">its</span> <span class="eaten">long</span> <span class="eaten">tusk</span> <span class="eaten">-</span> <span class="eaten">washed</span> <span class="eaten">up</span> <span class="eaten">along</span> <span class="eaten">the</span> <span class="keep remaining">River Medway</span>
+  <span class="eaten">In</span> <span class="eaten">1949,</span> <span class="eaten">there</span> <span class="eaten">was</span> <span class="eaten">a</span> <span class="eaten">strange</span> <span class="eaten">sight</span> <span class="eaten">on</span><span class="eaten">the</span>  <span class="keep remaining"> River Medway.</span>
 </p>
 <p>
-  <span class="eaten">Many</span> <span class="eaten">myths</span> <span class="eaten">and</span> <span class="eaten">legends</span> <span class="eaten">are</span> <span class="eaten">based</span> <span class="eaten">on</span> <span class="eaten">misunderstood</span> <span class="eaten">sightings</span> <span class="eaten">of</span> <span class="eaten">real</span> <span class="keep remaining">creatures</span>
+  <span class="eaten">A</span> <span class="eaten">Narwhal</span> <span class="eaten">-</span> <span class="eaten">considered</span> <span class="eaten">a</span> <span class="eaten">‘Sea</span> <span class="eaten">Unicorn’</span> <span class="eaten">because</span> <span class="eaten">of</span> <span class="eaten">its</span> <span class="eaten">long</span> <span class="keep remaining">tusk</span> <span class="eaten">-</span> <span class="eaten">washed</span> <span class="eaten">up</span> <span class="eaten">along</span> <span class="eaten">the River Medway.</span>
 </p>
 <p>
-  <span class="eaten">But</span> <span class="eaten">they</span> <span class="eaten">normally</span> <span class="eaten">are</span> <span class="eaten">found</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="keep remaining">arctic</span> <span class="eaten">-</span> <span class="eaten">so</span> <span class="eaten">finding</span> <span class="eaten">one</span> <span class="eaten">here</span> <span class="eaten">was</span> <span class="eaten">incredibly</span> <span class="eaten">rare.</span>
+  <span class="eaten">Narwhals</span> <span class="eaten">can</span> <span class="eaten">dive</span> <span class="eaten">about</span> <span class="eaten">a</span> <span class="eaten">mile</span> <span class="eaten">deep</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="keep remaining">ocean</span> <span class="eaten">and</span> <span class="eaten">normally</span> <span class="eaten">spend</span> <span class="eaten">their</span> <span class="eaten">time</span> <span class="eaten">in</span> <span class="eaten"><span class="eaten">the</span>  <span class="eaten">arctic</span> <span class="eaten">waters</span> <span class="eaten">of</span> <span class="eaten">Canada</span><span class="eaten">, Greenland</span><span class="eaten">, Norway</span> <span class="eaten">and</span><span class="eaten"> Russia</span> </span> <span class="eaten">-</span> <span class="eaten">so</span> <span class="eaten">finding</span> <span class="eaten">one</span> <span class="eaten">on</span> <span class="eaten">the</span> <span class="eaten">River Medway</span> <span class="eaten">was</span> <span class="eaten">very</span> <span class="eaten">rare.</span>
+</p>
+<p>
+  <span class="eaten">Many</span> <span class="eaten">myths</span> <span class="eaten">and</span> <span class="eaten">legends</span> <span class="eaten">are</span> <span class="eaten">based</span> <span class="eaten">on</span> <span class="eaten">misunderstood</span> <span class="eaten">sightings</span> <span class="eaten">of</span> <span class="eaten">real</span> <span class="eaten">creatures.</span>
 </p>
 <p>
   <span class="eaten">It</span> <span class="eaten">was</span> <span class="eaten">so</span> <span class="eaten">rare</span> <span class="eaten">that</span> <span class="eaten">it</span> <span class="eaten">is</span> <span class="eaten">now</span> <span class="eaten">documented</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">Natural</span> <span class="eaten">History</span> <span class="eaten">Museum</span> <span class="eaten">in</span> <span class="eaten">London.</span>
 </p>
 </div>
 
+<br/><br/><br/><br/>
 
 </main>
 
@@ -3666,7 +3626,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $pass to "chapterTitle4">>
 <<set $nextpass to "wordsAdded4a">>
 <<set $currentChapter to 4>>
-<div id="audio"> <audio src="assets/audio/NewChapterSound.mp3" autoplay>Audio is not supported on your device</audio></div>
+<div id="audio"> <audio src="assets/audio/drag.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerintro">>
 
@@ -3683,33 +3643,35 @@ We need to go a different route. Re-routing.", coords: "two" },
 <main class="main-words added">
   <div class="eating-container">
   <p>
-  <span>Deep</span> <span>below</span> <span>the</span> <span>ground,</span> <span>there</span> <span>are</span> <span>mysteries</span> <span>to</span> <span>be</span> <span>found.</span> <span>Big</span> <span>ones.</span>
-</p>
-<p>
-  <span>In</span> <span>1913,</span> <span>a</span> <span>prehistoric</span> <span class="keep">elephant</span> <span>skeleton</span> <span>was</span> <span>found</span> <span>in</span> <span>Upnor.</span>
-</p>
-<p>
-  <span>It</span> <span>weighed</span> <span>10</span> <span>tonnes,</span> <span>which</span> <span>is</span> <span>the</span> <span>same</span> <span>as</span> <span>the</span> <span>weight</span> <span>of</span> <span>the</span> <span class="keep">Big</span> <span class="keep">Ben</span> <span class="keep">Bell.</span>
-</p>
-<p>
-  <span>It</span> <span>was</span> <span>HUGE</span>
-</p>
-<p>
-  <span>And</span> <span>it</span> <span>used</span> <span>to</span> <span>roam</span> <span>here</span>
-</p>
-<p>
-  <span>They</span> <span>think</span> <span>around</span> <span>130,000</span> <span>and</span> <span>40,000</span> <span>years</span> <span>ago.</span>
-</p>
-<p>
-  <span>The</span> <span class="keep">skeleton</span> <span>was</span> <span>discovered</span> <span>by</span> <span>Sydney</span>  <span>Turner</span> <span>and</span> <span>he</span> <span>became</span> <span>famous</span> <span>because</span> <span>of</span> <span>the</span> <span>find.</span>  
-</p>
-<p>
-<span>Here’s</span> <span>his</span> <span>picture.</span>
-</p> 
+    <span>Deep</span> <span>below</span> <span >the</span> <span>ground,</span> <span >there</span> <span>are</span> <span >mysteries</span> <span>to</span> <span>be</span> <span>found.</span> <span>Big</span> <span >ones.</span>
+  </p>
+  <p>
+    <span>In</span> <span>1913,</span> <span >a</span> <span>prehistoric</span> <span class="keep">elephant</span> <span>skeleton</span> <span>was</span> <span >found</span> <span>in</span> <span>Upnor.</span>
+  </p>
+  <p>
+    <span>It</span> <span>weighed</span> <span >10</span> <span >tonnes,</span> <span>which</span> <span >is</span> <span >the</span> <span>same</span> <span>as</span> <span>the</span> <span class="keep">Big</span> <span class="keep">Ben</span> <span class="keep">Bell.</span>
+  </p>
+  <p>
+    <span>It</span> <span>was</span> <span >HUGE</span>
+  </p>
+  <p>
+    <span>And</span> <span >it</span> <span >used</span> <span >to</span> <span >roam</span> <span >here</span>
+  </p>
+  <p>
+    <span>They</span> <span>think</span> <span >around</span> <span >130,000</span> <span>and</span> <span >40,000</span> <span >years</span> <span>ago.</span>
+  </p>
+  <p>
+    <span>The</span> <span class="keep">skeleton</span> <span>was</span> <span >discovered</span> <span >by</span> <span >Sydney</span> <span >Turner</span> <span >and</span> <span>he</span> <span>became</span> <span>famous</span> <span>because</span> <span >of</span> <span >the</span> <span>find.</span>
+  </p>
+  <p>
+    <span>Here’s</span> <span>his</span> <span >picture.</span>
+  </p>
+
 <div class="message-img-wrapper">
   <img  src="assets/img/sydney.jpg" alt="Sydney Turner"/>
 </div>
 </div>
+<br/><br/><br/><br/>
 </main>
 
 
@@ -3758,29 +3720,29 @@ We need to go a different route. Re-routing.", coords: "two" },
 <main class="main-words added">
   <div class="eating-container">
   <p>
-  <span>Deep</span> <span>below</span> <span>the</span> <span>ground,</span> <span>there</span> <span>are</span> <span>mysteries</span> <span>to</span> <span>be</span> <span>found.</span> <span>Big</span> <span>ones.</span>
-</p>
-<p>
-  <span>In</span> <span>1913,</span> <span>a</span> <span>prehistoric</span> <span class="keep">elephant</span> <span>skeleton</span> <span>was</span> <span>found</span> <span>in</span> <span>Upnor.</span>
-</p>
-<p>
-  <span>It</span> <span>weighed</span> <span>10</span> <span>tonnes,</span> <span>which</span> <span>is</span> <span>the</span> <span>same</span> <span>as</span> <span>the</span> <span>weight</span> <span>of</span> <span>the</span> <span class="keep">Big</span> <span class="keep">Ben</span> <span class="keep">Bell.</span>
-</p>
-<p>
-  <span>It</span> <span>was</span> <span>HUGE</span>
-</p>
-<p>
-  <span>And</span> <span>it</span> <span>used</span> <span>to</span> <span>roam</span> <span>here</span>
-</p>
-<p>
-  <span>They</span> <span>think</span> <span>around</span> <span>130,000</span> <span>and</span> <span>40,000</span> <span>years</span> <span>ago.</span>
-</p>
-<p>
-  <span>The</span> <span class="keep">skeleton</span> <span>was</span> <span>discovered</span> <span>by</span> <span>Sydney</span>  <span>Turner</span> <span>and</span> <span>he</span> <span>became</span> <span>famous</span> <span>because</span> <span>of</span> <span>the</span> <span>find.</span>  
-</p>
-<p>
-<span>Here’s</span> <span>his</span> <span>picture.</span>
-</p> 
+    <span>Deep</span> <span>below</span> <span >the</span> <span>ground,</span> <span >there</span> <span>are</span> <span >mysteries</span> <span>to</span> <span>be</span> <span>found.</span> <span>Big</span> <span >ones.</span>
+  </p>
+  <p>
+    <span>In</span> <span>1913,</span> <span >a</span> <span>prehistoric</span> <span class="keep">elephant</span> <span>skeleton</span> <span>was</span> <span >found</span> <span>in</span> <span>Upnor.</span>
+  </p>
+  <p>
+    <span>It</span> <span>weighed</span> <span >10</span> <span >tonnes,</span> <span>which</span> <span >is</span> <span >the</span> <span>same</span> <span>as</span> <span>the</span> <span class="keep">Big Ben Bell</span>.
+  </p>
+  <p>
+    <span>It</span> <span>was</span> <span >HUGE</span>
+  </p>
+  <p>
+    <span>And</span> <span >it</span> <span >used</span> <span >to</span> <span >roam</span> <span >here</span>
+  </p>
+  <p>
+    <span>They</span> <span>think</span> <span >around</span> <span >130,000</span> <span>and</span> <span >40,000</span> <span >years</span> <span>ago.</span>
+  </p>
+  <p>
+    <span>The</span> <span class="keep">skeleton</span> <span>was</span> <span >discovered</span> <span >by</span> <span >Sydney</span> <span >Turner</span> <span >and</span> <span>he</span> <span>became</span> <span>famous</span> <span>because</span> <span >of</span> <span >the</span> <span>find.</span>
+  </p>
+  <p>
+    <span>Here’s</span> <span>his</span> <span >picture.</span>
+  </p>
 
 </div>
 </main>
@@ -3792,10 +3754,6 @@ We need to go a different route. Re-routing.", coords: "two" },
   <<set $still to setup.quickEatWords()>>
 <</done>>
 
-<<timed 10s>>
-
-   <<audio "monster4" "play">>
-  <</timed>>
 
 
 :: ger10-1 [nobr]
@@ -4092,7 +4050,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $pass to "chapterTitle5">>
 <<set $nextpass to "wordsLeft5">>
 <<set $currentChapter to 5>>
-<div id="audio"> <audio src="assets/audio/NewChapterSound2.mp3" autoplay>Audio is not supported on your device</audio></div>
+<div id="audio"> <audio src="assets/audio/drag.mp3" autoplay>Audio is not supported on your device</audio></div>
 <<include "_chapterTitleTemplate">>
 <<include "footerintro">>
 
@@ -4103,7 +4061,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<audio ":all" stop>>
 <<audio "wordeat" play loop>>
 <main class="main-words">
-  <div class="eating-container">
+ <div class="eating-container">
    <p>
   <span>The</span> <span>Medway</span> <span>Queen.</span>
 </p>
@@ -4111,10 +4069,10 @@ We need to go a different route. Re-routing.", coords: "two" },
   <span>A</span> <span>Paddle</span> <span>Steamer.</span>
 </p>
 <p>
-  <span>With</span> <span>a</span> <span>twist</span>
+  <span>With</span> <span>a</span> <span>twist.</span>
 </p>
 <p>
-  <span>The</span> <span>Medway</span> <span>Queen</span> <span>had</span> <span>the</span> <span>ability</span> <span>to</span> <span>sweep</span> <span>for</span> <span class="keep">mines</span>
+  <span>The</span> <span>Medway</span> <span>Queen</span> <span>had</span> <span>the</span> <span>ability</span> <span>to</span> <span>sweep</span> <span>for</span> <span class="keep">mines</span>.
 </p>
 <p>
   <span>And</span> <span>save</span> <span>lives.</span>
@@ -4123,10 +4081,22 @@ We need to go a different route. Re-routing.", coords: "two" },
   <span>She</span> <span>swept</span> <span>mines</span> <span>to</span> <span>protect</span> <span>the</span> <span>waters</span> <span>in</span> <span>WW2</span> <span>in</span> <span>the</span> <span>10th</span> <span>Minesweeping</span> <span>Flotilla.</span>
 </p>
 <p>
-  <span>Next,</span> <span>she</span> <span>was</span> <span>part</span> <span>of</span> <span class="keep">Operation</span> <span>Dynamo,</span> <span>where</span> <span>around</span> <span>850</span> <span>small</span> <span>ships</span> <span>braved</span> <span>the</span> <span>channel</span> <span>crossing</span> <span>to</span> <span>save</span> <span>Allied</span> <span>Troops</span> <span>from</span> <span>Dunkirk.</span>
+  <span>Next,</span> <span>she</span> <span>was</span> <span>part</span> <span>of</span> <span class="keep">Operation</span> <span>Dynamo</span>, <span>where</span> <span>around</span> <span>850</span> <span>small</span> <span>ships</span> <span>braved</span> <span>the</span> <span>channel</span> <span>crossing</span> <span>to</span> <span>save</span> <span>Allied</span> <span>Troops</span> <span>from</span> <span>Dunkirk.</span>
 </p>
 <p>
-  <span>She</span> <span>saved</span> <span>around</span> <span>7000</span> <span>Allied</span> <span class="keep">soldiers</span> <span>and</span> <span>was</span> <span>dubbed</span> <span>the</span> <span >"Heroine</span> <span>of</span> <span>Dunkirk"</span>
+  <span>She</span> <span>saved</span> <span>around</span> <span>7000</span> <span>Allied</span> <span class="keep">soldiers</span> <span>and</span> <span>was</span> <span>dubbed</span> <span>the</span> <span>"Heroine</span> <span>of</span> <span>Dunkirk."</span>
+</p>
+<p>
+  <span>And</span> <span>after</span> <span>its</span> <span>lifesaving</span> <span>service,</span> <span>it</span> <span>took</span> <span>on</span> <span>a</span> <span>new</span> <span>life,</span>
+</p>
+<p>
+  <span>The</span> <span>life</span> <span>of</span> <span>the</span> <span>party.</span>
+</p>
+<p>
+  <span>The</span> <span>Lifesaving</span> <span>Boat</span> <span>became</span> <span>the</span> <span>Lifesaving</span> <span>Club.</span>
+</p>
+<p>
+  <span>A</span> <span>club</span> <span>for</span> <span>all</span> <span>to</span> <span>dance</span> <span>the</span> <span>night</span> <span>away!</span>
 </p>
 </div>
 
@@ -4529,10 +4499,10 @@ We need to go a different route. Re-routing.", coords: "two" },
 :: wordsAdded5 [nobr]
 <<set $prevpass to "ger13-1">>
 <<set $pass to "wordsAdded5">>
-<<set $nextpass to "ger14-1">>
+<<set $nextpass to "bookrooting5">>
 <div id="audio"></div>
 <main class="main-words added">
-   <div class="eating-container">
+  <div class="eating-container">
    <p>
   <span class="eaten">The</span> <span class="eaten">Medway</span> <span class="eaten">Queen.</span>
 </p>
@@ -4540,10 +4510,10 @@ We need to go a different route. Re-routing.", coords: "two" },
   <span class="eaten">A</span> <span class="eaten">Paddle</span> <span class="eaten">Steamer.</span>
 </p>
 <p>
-  <span class="eaten">With</span> <span class="eaten">a</span> <span class="eaten">twist</span>
+  <span class="eaten">With</span> <span class="eaten">a</span> <span class="eaten">twist.</span>
 </p>
 <p>
-  <span class="eaten">The</span> <span class="eaten">Medway</span> <span class="eaten">Queen</span> <span class="eaten">had</span> <span class="eaten">the</span> <span class="eaten">ability</span> <span class="eaten">to</span> <span class="eaten">sweep</span> <span class="eaten">for</span> <span class="keep remaining">mines</span>
+  <span class="eaten">The</span> <span class="eaten">Medway</span> <span class="eaten">Queen</span> <span class="eaten">had</span> <span class="eaten">the</span> <span class="eaten">ability</span> <span class="eaten">to</span> <span class="eaten">sweep</span> <span class="eaten">for</span> <span class="keep remaining">mines</span>.
 </p>
 <p>
   <span class="eaten">And</span> <span class="eaten">save</span> <span class="eaten">lives.</span>
@@ -4552,12 +4522,25 @@ We need to go a different route. Re-routing.", coords: "two" },
   <span class="eaten">She</span> <span class="eaten">swept</span> <span class="eaten">mines</span> <span class="eaten">to</span> <span class="eaten">protect</span> <span class="eaten">the</span> <span class="eaten">waters</span> <span class="eaten">in</span> <span class="eaten">WW2</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">10th</span> <span class="eaten">Minesweeping</span> <span class="eaten">Flotilla.</span>
 </p>
 <p>
-  <span class="eaten">Next,</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">part</span> <span class="eaten">of</span> <span class="keep remaining">Operation</span> <span class="eaten">Dynamo,</span> <span class="eaten">where</span> <span class="eaten">around</span> <span class="eaten">850</span> <span class="eaten">small</span> <span class="eaten">ships</span> <span class="eaten">braved</span> <span class="eaten">the</span> <span class="eaten">channel</span> <span class="eaten">crossing</span> <span class="eaten">to</span> <span class="eaten">save</span> <span class="eaten">Allied</span> <span class="eaten">Troops</span> <span class="eaten">from</span> <span class="eaten">Dunkirk.</span>
+  <span class="eaten">Next,</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">part</span> <span class="eaten">of</span> <span class="keep remaining">Operation</span> <span class="eaten">Dynamo</span>, <span class="eaten">where</span> <span class="eaten">around</span> <span class="eaten">850</span> <span class="eaten">small</span> <span class="eaten">ships</span> <span class="eaten">braved</span> <span class="eaten">the</span> <span class="eaten">channel</span> <span class="eaten">crossing</span> <span class="eaten">to</span> <span class="eaten">save</span> <span class="eaten">Allied</span> <span class="eaten">Troops</span> <span class="eaten">from</span> <span class="eaten">Dunkirk.</span>
 </p>
 <p>
-  <span class="eaten">She</span> <span class="eaten">saved</span> <span class="eaten">around</span> <span class="eaten">7000</span> <span class="eaten">Allied</span> <span class="keep remaining">soldiers</span> <span class="eaten">and</span> <span class="eaten">was</span> <span class="eaten">dubbed</span> <span class="eaten">the</span> <span >"Heroine</span> <span class="eaten">of</span> <span class="eaten">Dunkirk"</span>
+  <span class="eaten">She</span> <span class="eaten">saved</span> <span class="eaten">around</span> <span class="eaten">7000</span> <span class="eaten">Allied</span> <span class="keep remaining">soldiers</span> <span class="eaten">and</span> <span class="eaten">was</span> <span class="eaten">dubbed</span> <span class="eaten">the</span> <span class="eaten">"Heroine</span> <span class="eaten">of</span> <span class="eaten">Dunkirk."</span>
+</p>
+<p>
+  <span class="eaten">And</span> <span class="eaten">after</span> <span class="eaten">its</span> <span class="eaten">lifesaving</span> <span class="eaten">service,</span> <span class="eaten">it</span> <span class="eaten">took</span> <span class="eaten">on</span> <span class="eaten">a</span> <span class="eaten">new</span> <span class="eaten">life,</span>
+</p>
+<p>
+  <span class="eaten">The</span> <span class="eaten">life</span> <span class="eaten">of</span> <span class="eaten">the</span> <span class="eaten">party.</span>
+</p>
+<p>
+  <span class="eaten">The</span> <span class="eaten">Lifesaving</span> <span class="eaten">Boat</span> <span class="eaten">became</span> <span class="eaten">the</span> <span class="eaten">Lifesaving</span> <span class="eaten">Club.</span>
+</p>
+<p>
+  <span class="eaten">A</span> <span class="eaten">club</span> <span class="eaten">for</span> <span class="eaten">all</span> <span class="eaten">to</span> <span class="eaten">dance</span> <span class="eaten">the</span> <span class="eaten">night</span> <span class="eaten">away!</span>
 </p>
 </div>
+
 <br/><br/><br/><br/>
 </main>
 
@@ -4573,84 +4556,39 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</replace>>
 <</timed>>
 
-
-:: ger14-1 [nobr]
+:: bookrooting5 [nobr]
 <<set $prevpass to "wordsAdded5">>
-<<set $pass to "ger14-1">>
+<<set $pass to "bookrooting5">>
 <<set $nextpass to "ger14-2">>
-
-<<include "_templateGeraldine">>
-
-:: ger14-1-messages [nobr]
-<<timed 0.1s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-          <p>Wow - what a boat. </p>
-       </div>
-    <</append>>
+<<audio "rooting" play>>
+<main class="rooting">
+  <div class="book-wrapper wobble-animation">
+  <img src="/assets/img/open-book.png" alt="open book"/>
+  </div>
+  <div id="mount"></div>
+  <<timed 0.3s>>
+  <<replace "#mount">>
+      <<type 80ms>>
+<h2 class="octo-title">Book Rooting...</h2>
+<</type>>
+  <</replace>>
 <</timed>>
+</main>
 
-<<timed 3s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>I never thought I’d say that sentence. </p>
-       </div>
-    <</append>>
-<</timed>>
+  <<timed 8s>>
+  
+          <<goto $nextpass>>
+    
+    <</timed>>
 
-<<timed 5s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>And after its lifesaving service, it took on a new life. </p>
-       </div>
-    <</append>>
-<</timed>>
 
-<<timed 7s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>The life of the party. </p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 9s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>The Lifesaving Boat became the Lifesaving Club. </p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 11s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>A club for all to dance the night away. </p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 13s>>
-    <<replace "#nextButtonContainer">>
-    <<button "Next">>
-        <<goto "bookrooting">>
-    <</button>>
-    <</replace>>
-<</timed>>
 
 :: ger14-2 [nobr]
-<<set $prevpass to "ger14-1">>
+<<set $prevpass to "wordsAdded5">>
 <<set $pass to "ger14-2">>
 <<set $nextpass to "ger14-3">>
 
 <<include "_templateGeraldine">>
-
 
 :: ger14-2-messages [nobr]
 <<timed 0.1s>>
@@ -5053,7 +4991,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<include "begonetimer">>
 
 <<timed 30s>>
-  <<goto "landing2">>
+  <<goto "landing">>
   <</timed>>
 
 
@@ -5081,26 +5019,34 @@ We need to go a different route. Re-routing.", coords: "two" },
 	<</repeat>>
 <</silently>>
 
-
-:: landing2 [nobr] 
-<<set $prevpass to "landing2">>
-<<set $pass to "landing2">>
-<<set $nextpass to "preintro">>
+:: loadingger [nobr] 
+<<set $prevpass to "landing">>
+<<set $pass to "loadingger">>
+<<set $nextpass to "phonecallger">>
 <<audio ":all" stop>>
+    <<audio "correct2" play loop>>
+<<addclass "body" "green">>
 
 <main class="logospin">
-<div class="logo-wrapper slowRotate">
+<div class="logo-wrapper black fastRotate">
 <img src="/assets/img/logo.png" alt="logo"/>
 
-</div>
-<<include "pwChathamStories">>
+</div><<type 100ms>>
+<p class="octo-welcome-text"> Loading...</p>
+   <</type>>
+<<timed 4s>>
+  <<goto $nextpass>>
+  <</timed>>
 </main>
 
 
 :: phonecallger [nobr]
-<<set $prevpass to "landing2">>
+<<set $prevpass to "landing">>
 <<set $pass to "phonecallger">>
 <<set $nextpass to "handbackbook">>
+<<audio ":all" stop>>
+<<addclass "body" "gold">>
+<<audio "correct" play>>
 <<timed 2s>>
 <<include "clock">>
 /* <<audio "bgm_space" play goto "">> */
@@ -5111,7 +5057,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <audio src="assets/audio/Ending.mp3" autoplay>Audio is not supported on your device</audio>
     <</replace>>
     <<timed 51s>>
-      <<goto $nextpass>>
+      /* <<goto $nextpass>> */
       <</timed>>
 <</timed>>
 <div id="audio"></div>
@@ -5178,6 +5124,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 
   <div class="motto-container" id="countdown"> 
   <p class="octo-welcome-text">Hand back the book and you’ll receive a gift from us. </p>
+  <p>We'd love to hear your feedback. Please fill out this <a href=" https://universityofkent.qualtrics.com/jfe/form/SV_2hufiMHZsoL8Sea" target="_blank" rel="noreferrer"><button>survey</button></a>.</p>
   </div>
   <br/>
   <div id="mount"></div>
