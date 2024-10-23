@@ -606,7 +606,7 @@ $(document).on('click', '.thumbnail-image', function() {
 :: footerend[nobr]
 <footer class="intro end">
     <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
-     <div class="footer-icon">[img[/assets/img/icon1.png][$pass]]</div>
+
     <<link "Start again">>
       <<script>>
         Engine.restart()
@@ -621,6 +621,13 @@ $(document).on('click', '.thumbnail-image', function() {
      <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
       <div class="footer-icon">[img[/assets/img/for.png][$nextpass]]</div>
 </footer>
+
+:: footerbegone[nobr]
+<footer class="intro end">
+     <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
+  <div class="footer-icon">[img[/assets/img/icon1.png][$pass]]</div>      <div class="footer-icon">[img[/assets/img/for.png][$nextpass]]</div>
+</footer>
+
 
 
 :: landing [nobr] 
@@ -681,7 +688,7 @@ $(document).on('click', '.thumbnail-image', function() {
   <</timed>>
   <<timed 12s>>
     <<append "#mount">>
-      <p>Don’t worry this is normal for us here in OCTOPUS. </p>
+      <p>Don’t worry this is normal for us here at OCTOPUS. </p>
     <</append>>
   <</timed>>
   <<timed 13s>>
@@ -757,7 +764,7 @@ $(document).on('click', '.thumbnail-image', function() {
 :: preintro4 [nobr]
 <<set $prevpass to "preintro3">>
 <<set $pass to "preintro4">>
-<<set $nextpass to "preintro5">>
+<<set $nextpass to "preintro4a">>
 <<include "headerpreintro">>
 <main class="pre intro">
 <div id="mount"></div>
@@ -786,8 +793,9 @@ $(document).on('click', '.thumbnail-image', function() {
    <<timed 15s>>
     <<append "#mount">>
    <div class="message-img-wrapper">
-  <img  src="assets/img/sydney.jpg" alt="Sydney Turner"/>
+  <img  src="assets/img/buildingwhite.png" alt="OCTOPUS HQ - Basement near Docking Station"/>
 </div>
+<br/>
     <</append>>
   <</timed>>
 
@@ -798,13 +806,13 @@ $(document).on('click', '.thumbnail-image', function() {
       <</button>>
     <</append>>
   <</timed>>
-
+<br/><br/>
 </main>
 <<include "footerintro">>
 
-:: preintro5 [nobr]
+:: preintro4a [nobr]
 <<set $prevpass to "preintro4">>
-<<set $pass to "preintro5">>
+<<set $pass to "preintro4a">>
 <<set $nextpass to "phonecall">>
 <<include "headerpreintro">>
 <main class="pre intro">
@@ -835,7 +843,7 @@ $(document).on('click', '.thumbnail-image', function() {
 
 
 :: phonecall [nobr]
-<<set $prevpass to "preintro4">>
+<<set $prevpass to "preintro4a">>
 <<set $pass to "phonecall">>
 <<set $nextpass to "preintro5">>
 <<timed 2s>>
@@ -1103,7 +1111,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<set $prevpass to "intro">>
 <<set $pass to "connecting">>
 <<set $nextpass to "gerIntro-1">>
-    <<audio "loading" play>>
+    <<audio "loading" play volume 0.75>>
 <<include "headerintro">>
 <main class="connecting">
   <div class="book-wrapper" id="wrapper">
@@ -1260,7 +1268,7 @@ $(document).on('click', '.thumbnail-image', function() {
           <</replace>>
     <</timed>>
 
-
+<<goto "begone">>
 :: gerIntro-2 [nobr]
 <<set $prevpass to "gerIntro-1">>
 <<set $pass to "gerIntro-2">>
@@ -2567,7 +2575,7 @@ $correctans
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>To start the next chapter, head to the refreshments area, have a hot chocolate if you’d like!</p>
+        <p>To root the next chapter, head to the refreshments area, have a hot chocolate if you’d like!</p>
        </div>
     <</append>>
 <</timed>>
@@ -3317,7 +3325,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>OCTOPUS need you to focus. </p>
+        <p>OCTOPUS needs you to focus. </p>
        </div>
     <</append>>
 <</timed>>
@@ -3964,7 +3972,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Ok - I don’t want to rush you but it seems we only have 30 seconds to find out the information. </p>
+        <p>Ok, I don't want to rush you but we only have 30 seconds before the camera is locked again.</p>
        </div>
     <</append>>
 <</timed>>
@@ -5107,11 +5115,12 @@ We need to go a different route. Re-routing.", coords: "two" },
   <br/>
   <div id="mount"></div>
 </main>
-<<include "footerend">>
+<<include "footerbegone">>
 
 <<timed 12s>>
  <<append "#mount">>
  <div class="black-btn"> <<button "We've done it!">><<goto $nextpass>><</button>></div>
+ <br/><br/><br/>
   <</append>>
   <</timed>>
 <<include "begonetimer">>
