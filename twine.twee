@@ -642,7 +642,7 @@ $(document).on('click', '.thumbnail-image', function() {
     <</button>>
 </main>
 
-<footer>
+<footer class="landing">
 <<include "pwGeraldine">></footer>
 
 
@@ -710,19 +710,20 @@ $(document).on('click', '.thumbnail-image', function() {
   <</timed>>
 <<timed 4s>>
     <<append "#mount">>
-      <p>There is an option to press back to go to a previous page</p>
+      <p>There is an option to press back to go to a previous page if needed.</p>
     <</append>>
   <</timed>>
   <<timed 8s>>
     <<append "#mount">>
-     <p>It is best not to refresh your page</p>
+     <p>It’s best not to refresh your page.</p>
     <</append>>
   <</timed>>
   <<timed 12s>>
     <<append "#mount">>
-      <p>If you have any problems then you speak to the library team here. </p>
+      <p>If you have any problems then please speak to the library team here.  </p>
     <</append>>
   <</timed>>
+
   <<timed 13s>>
     <<append "#mount">>
     <<button "Next">>
@@ -756,7 +757,7 @@ $(document).on('click', '.thumbnail-image', function() {
 :: preintro4 [nobr]
 <<set $prevpass to "preintro3">>
 <<set $pass to "preintro4">>
-<<set $nextpass to "phonecall">>
+<<set $nextpass to "preintro5">>
 <<include "headerpreintro">>
 <main class="pre intro">
 <div id="mount"></div>
@@ -782,9 +783,37 @@ $(document).on('click', '.thumbnail-image', function() {
     <</append>>
   <</timed>>
 
+   <<timed 15s>>
+    <<append "#mount">>
+   <div class="message-img-wrapper">
+  <img  src="assets/img/sydney.jpg" alt="Sydney Turner"/>
+</div>
+    <</append>>
+  <</timed>>
+
+  <<timed 17s>>
+    <<append "#mount">>
+    <<button "Next">>
+      <<goto $nextpass>>
+      <</button>>
+    <</append>>
+  <</timed>>
+
+</main>
+<<include "footerintro">>
+
+:: preintro5 [nobr]
+<<set $prevpass to "preintro4">>
+<<set $pass to "preintro5">>
+<<set $nextpass to "phonecall">>
+<<include "headerpreintro">>
+<main class="pre intro">
+<div id="mount"></div>
+
+
     <<timed 15s>>
     <<append "#mount">>
-      <p>Find a place where we can call you - you may want to find a quiet corner.  </p>
+      <p>Find a place where we can call you - you may want to find a quiet corner. </p>
     <</append>>
   <</timed>>
 
@@ -803,7 +832,6 @@ $(document).on('click', '.thumbnail-image', function() {
 
 </main>
 <<include "footerintro">>
-
 
 
 :: phonecall [nobr]
@@ -1043,7 +1071,7 @@ $(document).on('click', '.thumbnail-image', function() {
 </div>
 
 :: pwGeraldine [nobr]
-<div class="css-input code-input codeword-input">
+<div class="css-input code-input codeword-input geraldine">
     <<textbox "$codeword" "">>
     <<button "Enter">>
       <<set $codeword to $codeword.toUpperCase().trim()>>
@@ -1577,7 +1605,7 @@ $(document).on('click', '.thumbnail-image', function() {
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
-          <p>I hope we don’t come face-to-face with Googly Moogly, </p>
+          <p>I hope we don’t come face-to-face with Googy Moogly. </p>
        </div>
         <</append>>
     <</timed>>
@@ -1801,8 +1829,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<audio "wordeat" play loop>>
 <main>
     
-  <div class="eating-container">
-
+<div class="eating-container">
     <p>
       <span class="keep">Women</span> <span>were</span> <span>some</span> <span>of</span> <span>the</span> <span>hidden</span> <span>heroines</span> <span>of</span> <span>the</span> <span>Navy</span>
     </p>
@@ -1810,13 +1837,13 @@ $(document).on('click', '.thumbnail-image', function() {
       <span>Some</span> <span>would</span> <span>mend</span> <span>ships,</span> <span>some</span> <span>would</span> <span>make</span> <span>ropes</span>
     </p>
     <p>
-      <span>Some</span> <span>even</span> <span>dressed</span> <span>like</span> <span>men</span> <span>to</span> <span>fight</span> <span>in</span> <span>the</span> <span>war</span>
+      <span>Some</span> <span>even</span> <span>dressed</span> <span>as</span> <span>men</span> <span>to</span> <span>fight</span> <span>in</span> <span>the</span> <span>war</span>
     </p>
     <p>
   <span>Mary</span> <span>Lacy</span> <span>travelled</span> <span>to</span> <span>Chatham</span> <span>in</span> <span>her</span> <span>fathers’</span> <span>clothes</span> <span>and</span> <span>she</span> <span>became</span> <span>William</span> <span>Chandler</span>
 </p>
 <p>
-  <span>Not</span> <span>long</span> <span>after</span> <span>that,</span><span>she</span> <span>joined</span> <span>the</span> <span>HMS</span> <span class="keep">Sandwich</span> <span>and</span> <span>set</span> <span>sail</span>
+  <span>Not</span> <span>long</span> <span>after</span> <span>that,</span><span> she</span> <span>joined</span> <span>the</span> <span>HMS</span> <span class="keep">Sandwich</span> <span>and</span> <span>set</span> <span>sail</span>
 </p>
 <p>
   <span>Although</span> <span>they</span> <span>didn't</span> <span>know</span> <span>she</span> <span>was</span> <span>a</span> <span>‘she’</span> <span>at</span> <span>the</span> <span>time</span>
@@ -1826,6 +1853,13 @@ $(document).on('click', '.thumbnail-image', function() {
 </p>
 <p>
   <span>She</span> <span>stayed</span> <span>in</span> <span class="keep">disguise</span> <span>for</span> <span>many</span> <span>years</span> <span>until</span> <span>her</span> <span>identity</span> <span>was</span> <span>revealed</span> <span>and</span> <span>she</span> <span>was</span> <span>discharged</span><span>.</span>
+  <br/><br/>
+</p>
+<p>
+  <span>It</span> <span>is</span> <span>said</span> <span>that</span> <span>Lacy</span> <span>had</span> <span>one</span> <span>of</span> <span>the</span> <span>most</span> <span>successful</span> <span>careers</span> <span>as</span> <span>a</span> <span>woman</span> <span>in</span> <span>disguise,</span> <span>even</span> <span>gaining</span> <span>a</span> <span>pension</span> <span>from</span> <span>Admiralty</span> <span>in</span> <span>her</span> <span>true</span> <span>name</span><span>.</span>
+</p>
+<p>
+<span>Mary</span> <span>Lacy.</span> <span>Woman</span> <span>in</span> <span>disguise.</span>
 </p>
 
   </div>
@@ -1840,7 +1874,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<set $move to setup.quickEatWords()>>
 <</done>>
 
-<<timed 12s>>
+<<timed 14s>>
   <<goto $nextpass>>
   <</timed>>
 
@@ -1848,7 +1882,7 @@ $(document).on('click', '.thumbnail-image', function() {
 :: ger2-1 [nobr]
 <<set $prevpass to "wordsLeft1">>
 <<set $pass to "ger2-1">>
-<<set $nextpass to "code4">>
+<<set $nextpass to "ger2-1b">>
 <<audio ":all" stop>>
 <<include "_templateGeraldine">>
 
@@ -1857,7 +1891,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<timed 0.1s>>
       <<append "#msgMount">>
        <div class="message"> 
-          <p>What does that mean?  </p>
+          <p>What just happened? </p>
        </div>
         <</append>>
     <</timed>>
@@ -1866,7 +1900,7 @@ $(document).on('click', '.thumbnail-image', function() {
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
-          <p>Maybe we’re too late </p>
+          <p>Maybe we’re too late. </p>
        </div>
         <</append>>
     <</timed>>
@@ -1885,6 +1919,15 @@ $(document).on('click', '.thumbnail-image', function() {
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
+          <p>One of the words that was left...</p>
+       </div>
+        <</append>>
+    <</timed>>
+
+     <<timed 8s>>
+    <<audio "ping1" "play">>
+        <<append "#msgMount">>
+       <div class="message"> 
           <p>Disguised...</p>
        </div>
         <</append>>
@@ -1899,17 +1942,25 @@ $(document).on('click', '.thumbnail-image', function() {
         <</append>>
     <</timed>>
 
-      <<timed 12s>>
-    <<audio "ping1" "play">>
-        <<replace "#msgMount">>
-       <div class="message"> 
-          <p>And the name is disguised. </p>
-       </div>
-        <</replace>>
+
+  <<timed 11s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
     <</timed>>
 
 
-    <<timed 15s>>
+:: ger2-1b [nobr]
+<<set $prevpass to "ger2-1">>
+<<set $pass to "ger2-1b">>
+<<set $nextpass to "ger2-1c">>
+<<audio ":all" stop>>
+<<include "_templateGeraldine">>
+
+:: ger2-1b-messages [nobr]
+    <<timed 0.5s>>
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
@@ -1918,7 +1969,7 @@ $(document).on('click', '.thumbnail-image', function() {
         <</append>>
     <</timed>>
 
-     <<timed 18s>>
+     <<timed 3s>>
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
@@ -1927,7 +1978,7 @@ $(document).on('click', '.thumbnail-image', function() {
         <</append>>
     <</timed>>
 
-     <<timed 21s>>
+     <<timed 6s>>
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
@@ -1936,7 +1987,7 @@ $(document).on('click', '.thumbnail-image', function() {
         <</append>>
     <</timed>>
 
-       <<timed 24s>>
+       <<timed 9s>>
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
@@ -1945,7 +1996,24 @@ $(document).on('click', '.thumbnail-image', function() {
         <</append>>
     <</timed>>
 
-       <<timed 27s>>
+ <<timed 12s>>
+      <<replace "#nextButtonContainer">>
+      <<button "Next">>
+          <<goto $nextpass>>
+        <</button>>
+          <</replace>>
+    <</timed>>
+
+:: ger2-1c [nobr]
+<<set $prevpass to "ger2-1b">>
+<<set $pass to "ger2-1c">>
+<<set $nextpass to "code4">>
+<<audio ":all" stop>>
+<<include "_templateGeraldine">>
+
+:: ger2-1c-messages [nobr]
+
+       <<timed 0.5s>>
     <<audio "ping1" "play">>
         <<replace "#msgMount">>
        <div class="message"> 
@@ -1954,7 +2022,7 @@ $(document).on('click', '.thumbnail-image', function() {
         <</replace>>
 
     <</timed>>
-         <<timed 30s>>
+         <<timed 3s>>
     <<audio "ping1" "play">>
         <<append "#msgMount">>
        <div class="message"> 
@@ -1963,14 +2031,13 @@ $(document).on('click', '.thumbnail-image', function() {
         <</append>>
     <</timed>>
 
-  <<timed 31s>>
+  <<timed 6s>>
       <<replace "#nextButtonContainer">>
       <<button "Next">>
           <<goto $nextpass>>
         <</button>>
           <</replace>>
     <</timed>>
-
 :: codeheader [nobr]
 <header id="header" class="code">
  
@@ -2272,12 +2339,11 @@ $correctans
 </p>
 <p>
   <span class="eaten">She</span> <span class="eaten">stayed</span> <span class="eaten">in</span> <span class="keep remaining">disguise</span> <span class="eaten">for</span> <span class="eaten">many</span> <span class="eaten">years</span> <span class="eaten">until</span> <span class="eaten">her</span> <span class="eaten">identity</span> <span class="eaten">was</span> <span class="eaten">revealed</span> <span class="eaten">and</span> <span class="eaten">she</span> <span class="eaten">was</span> <span class="eaten">discharged</span><span class="eaten">.</span>
-  <br/><br/>
 </p>
 <p>
   <span class="eaten">It</span> <span class="eaten">is</span> <span class="eaten">said</span> <span class="eaten">that</span> <span class="eaten">Lacy</span> <span class="eaten">had</span> <span class="eaten">one</span> <span class="eaten">of</span> <span class="eaten">the</span> <span class="eaten">most</span> <span class="eaten">successful</span> <span class="eaten">careers</span> <span class="eaten">as</span> <span class="eaten">a</span> <span class="eaten">woman</span> <span class="eaten">in</span> <span class="eaten">disguise,</span> <span class="eaten">even</span> <span class="eaten">gaining</span> <span class="eaten">a</span> <span class="eaten">pension</span> <span class="eaten">from</span> <span class="eaten">Admiralty</span> <span class="eaten">in</span> <span class="eaten">her</span> <span class="eaten">true</span> <span class="eaten">name</span><span class="eaten">.</span>
 </p>
-
+<p><span class="eaten">Mary</span> <span class="eaten">Lacy.</span> <span class="eaten">Woman</span> <span class="eaten">in</span> <span class="eaten">disguise.</span></p>
   </div>
 
 <br/><br/><br/><br/><br/><br/><br/><br/>
@@ -2403,8 +2469,29 @@ $correctans
 :: roar [nobr]
 <<addclass "body" "light">>
 
-<main class="roar swirlroar ">
-   <div class="swipe-wrapper "> 
+<main class="roar swirlroar" id="mount">
+
+</main>
+
+<<if $pass is "ger14-3">>
+  <<timed 0.1s>>
+<<replace "#mount">>
+     <div class="swipe-wrapper "> 
+    <img src="/assets/img/swipe.png" alt="logo" /></div>
+   <span class="swipe-word one" >GERALDINE</span>
+  <span class="swipe-word two" >CHATHAM</span>
+  <span class="swipe-word three" >STORIES</span>
+   <span class="swipe-word four" >TWIST</span>
+  <span class="swipe-word five" >GERALDINE</span>
+   <span class="swipe-word six" >CHATHAM</span>
+  <span class="swipe-word seven" >STORIES</span>
+  <span class="swipe-word eight" >TWIST</span>
+  <</replace>>
+  <</timed>>
+  <<else>>
+  <<timed 0.1s>>
+<<replace "#mount">>
+     <div class="swipe-wrapper "> 
     <img src="/assets/img/swipe.png" alt="logo" /></div>
    <span class="swipe-word one" >MENAGERIE</span>
   <span class="swipe-word two" >SANDWICH</span>
@@ -2414,7 +2501,9 @@ $correctans
    <span class="swipe-word six" >MENAGERIE</span>
   <span class="swipe-word seven" >SANDWICH</span>
   <span class="swipe-word eight" >CAGE</span>
-</main>
+  <</replace>>  
+  <</timed>>
+<</if>>
 
 
 
@@ -2517,15 +2606,18 @@ $correctans
 <<set $nextpass to "ger4-1">>
     <<audio "wordeat" "play" loop>>
  <main>
-     <div class="eating-container">
+   <div class="eating-container">
    <p>
-  <span>In</span> <span>1850,</span> <span>17-year-old</span> <span>Ellen</span> <span>Bright</span> <span>who</span> <span>was</span> <span>dubbed</span> <span>the</span> <span>Lion</span> <span>Queen</span> <span>died</span> <span>in</span> <span>Chatham</span> <span>during</span> <span>her</span> <span>act</span> <span>with</span> <span>a</span> <span>Lion.</span>
+  <span>In</span> <span>1850,</span> <span>17-year-old</span> <span>Ellen</span> <span>Bright,</span> <span>who</span> <span>was</span> <span>dubbed</span> <span>the</span> <span>Lion</span> <span>Queen,</span> <span>died</span> <span>in</span> <span>Chatham</span> <span>during</span> <span>her</span> <span>act</span> <span>with</span> <span>a</span> <span>Lion</span> <span>&</span> <span>a</span> <span>Tiger.</span>
 </p>
 <p>
-  <span>She</span> <span>tamed</span> <span>the</span> <span>Lion</span> <span>but</span> <span>was</span> <span>attacked</span> <span>by</span> <span>a</span> <span class="keep">Tiger</span> <span>who</span> <span>was</span> <span>also</span> <span>in</span> <span>the</span> <span class="keep">cage</span>
+  <span>Inside</span> <span>the</span> <span class="keep">cage</span><span>, she</span> <span>tamed</span> <span>the</span> <span>Lion,</span> <span>but</span> <span>was</span> <span>attacked</span> <span>by</span> <span>the</span> <span class="keep">Tiger</span><span>, who</span> <span>she’d</span> <span>turned</span> <span>her</span> <span>back</span> <span>on.</span>
 </p>
 <p>
   <span>Her</span> <span>final</span> <span>performance</span> <span>was</span> <span>part</span> <span>of</span> <span class="keep">‘Wombwell’s</span> <span class="keep">Travelling</span> <span class="keep">Menagerie’</span> <span>which</span> <span>toured</span> <span>the</span> <span>country</span> <span>exhibiting</span> <span>elephants,</span> <span>giraffes,</span> <span>tigers,</span> <span>panthers,</span> <span>lions,</span> <span>a</span> <span>gorilla,</span> <span>and</span> <span>a</span> <span>kangaroo.</span>
+</p>
+<p>
+  <span>Ellen</span> <span>Bright</span> <span>will</span> <span>always</span> <span>be</span> <span>known</span> <span>as</span> <span>the</span> <span>Lion</span> <span>Queen</span> <span>of</span> <span>Chatham.</span>
 </p>
 </div>
 
@@ -2611,15 +2703,16 @@ $correctans
 Don’t turn around – I need to work out where the Book Monster is.  <br/>
 We can’t see it – but trust me – we want to avoid it.
 ", coords: "one"},
- 2: { text: "Walk backwards down the central aisle.<br/> Don't turn around.", coords: "two" }, 
+ 2: { text: "Walk backwards to the top of the middle aisle.<br/> Don't turn around.", coords: "two" }, 
   3: { text: "HOLD IT.<br/>
 The Book Monster.<br/>
 We need to go a different route. Re-routing.", coords: "two" }, 
   4: { text: "Make your way towards the wall.", coords: "four" }, 
-   5: { text: "Walk along the wall towards reception - past the Jigsaws.<br/>
+   5: { text: "Walk along the wall towards reception - past the jigsaws.<br/>
    Stop before the reception - it’s too open there.", coords: "five" }, 
-  6: { text: "We’re going to make a dash for it. You are going to go to the Poetry Corner.<br/> Get ready. 3.. 2.. 1.. Go!", coords: "seven"},  
-  7: { text: "Head out the door and out of the cage <br/>Walk along the wall as you exit the Library. Enter the word on the wall on the left side to let me know you have made it out alive!", 
+  6: { text: "We’re going to make a dash for it. You are going to go to the Poetry Corner.", coords: "five"},  
+   7: { text: "Get ready. 3.. 2.. 1.. Go!", coords: "seven"},  
+  8: { text: "Head out the door and out of the cage <br/>Walk along the wall as you exit the Library. Enter the word on the wall on the left side to let me know you have made it out alive!", 
   coords: "eight"}
 }>>
   <<set $position to $instructions[$currentInstructionIndex].coords >>
@@ -2791,13 +2884,24 @@ We need to go a different route. Re-routing.", coords: "two" },
        <<append "#mapContainer">>
       <<include "swirlbookmonster4">>
         <<include "swirlbookmonster5">>
-          <<include "swirlbookmonster6">>
       <</append>>
     <</timed>>
     <<timed 4s>>
     <<removeclass "#btnMount" "hide">>
     <</timed>>
 <<elseif $currentInstructionIndex === 7 >>
+    <<timed 0.1s>>
+      <<include "updateInstruction">>
+    <</timed>>
+     <<timed 3.5s>>
+       <<append "#mapContainer">>
+          <<include "swirlbookmonster6">>
+      <</append>>
+    <</timed>>
+    <<timed 4s>>
+    <<removeclass "#btnMount" "hide">>
+    <</timed>>
+<<elseif $currentInstructionIndex === 8 >>
     <<timed 0.1s>>
       <<include "updateInstruction">>
     <</timed>>
@@ -2953,7 +3057,11 @@ We need to go a different route. Re-routing.", coords: "two" },
 <p>
   <span class="eaten">Ellen</span> <span class="eaten">Bright</span> <span class="eaten">will</span> <span class="eaten">always</span> <span class="eaten">be</span> <span class="eaten">known</span> <span class="eaten">as</span> <span class="eaten">the</span> <span class="eaten">Lion</span> <span class="eaten">Queen</span> <span class="eaten">of</span> <span class="eaten">Chatham.</span>
 </p>
+<p>
+<span class="eaten">Mary</span> <span class="eaten">Lacy.</span> <span class="eaten">Woman</span> <span class="eaten">in</span> <span class="eaten">disguise.</span>
+</p>
 </div>
+
 
 <br/><br/><br/><br/>
 </main>
@@ -3085,10 +3193,10 @@ We need to go a different route. Re-routing.", coords: "two" },
 <main>
 <div class="eating-container">
    <p>
-  <span>In</span> <span>1949,</span> <span>there</span> <span>was</span> <span>a</span> <span>strange</span> <span>sight</span> <span>on</span><span>the</span>  <span class="keep"> River Medway.</span>
+  <span>In</span> <span>1949,</span> <span>there</span> <span>was</span> <span>a</span> <span>strange</span> <span>sight</span> <span>on</span> <span>the</span>  <span class="keep"> River Medway.</span>
 </p>
 <p>
-  <span>A</span> <span>Narwhal</span> <span>-</span> <span>considered</span> <span>a</span> <span>‘Sea</span> <span>Unicorn’</span> <span>because</span> <span>of</span> <span>its</span> <span>long</span> <span class="keep">tusk</span> <span>-</span> <span>washed</span> <span>up</span> <span>along</span> <span>the River Medway.</span>
+  <span>A</span> <span>Narwhal</span> <span>-</span> <span>considered</span> <span>a</span> <span>‘Sea</span> <span>Unicorn’</span> <span>because</span> <span>of</span> <span>its</span> <span>long</span> <span class="keep">tusk</span> <span>-</span> <span>washed</span> <span>up</span> <span>along</span> <span>the River.</span>
 </p>
 <p>
   <span>Narwhals</span> <span>can</span> <span>dive</span> <span>about</span> <span>a</span> <span>mile</span> <span>deep</span> <span>in</span> <span>the</span> <span class="keep">ocean</span> <span>and</span> <span>normally</span> <span>spend</span> <span>their</span> <span>time</span> <span>in</span> <span><span>the</span>  <span>arctic</span> <span>waters</span> <span>of</span> <span>Canada</span><span>, Greenland</span><span>, Norway</span> <span>and</span><span> Russia</span> </span> <span>-</span> <span>so</span> <span>finding</span> <span>one</span> <span>on</span> <span>the</span> <span>River Medway</span> <span>was</span> <span>very</span> <span>rare.</span>
@@ -3097,7 +3205,7 @@ We need to go a different route. Re-routing.", coords: "two" },
   <span>Many</span> <span>myths</span> <span>and</span> <span>legends</span> <span>are</span> <span>based</span> <span>on</span> <span>misunderstood</span> <span>sightings</span> <span>of</span> <span>real</span> <span>creatures.</span>
 </p>
 <p>
-  <span>It</span> <span>was</span> <span>so</span> <span>rare</span> <span>that</span> <span>it</span> <span>is</span> <span>now</span> <span>documented</span> <span>in</span> <span>the</span> <span>Natural</span> <span>History</span> <span>Museum</span> <span>in</span> <span>London.</span>
+  <span>It</span> <span>is</span> <span>so</span> <span>rare</span> <span>that</span> <span>it</span> <span>is</span> <span>now</span> <span>documented</span> <span>in</span> <span>the</span> <span>Natural</span> <span>History</span> <span>Museum</span> <span>in</span> <span>London.</span>
 </p>
 </div>
 </main>
@@ -3307,7 +3415,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-          <p>The next ROOTING Challenge seems to be that you need to spot something.</p>
+          <p>The next rooting challenge seems to be that you need to spot something.</p>
        </div>
     <</append>>
 <</timed>>
@@ -3420,12 +3528,30 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message">
-       <p>You seem to have unlocked the next chapter.</p>
+       <p>I do love the river - always full of such interesting things. </p>
        </div>
     <</append>>
 <</timed>>
 
-<<timed 5s>>
+<<timed 6s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message">
+       <p>You seem to have unlocked the next chapter.  </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 9s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message">
+       <p>Let’s see what’s in it. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 11s>>
     <<replace "#nextButtonContainer">>
     <<button "Next">>
         <<goto $nextpass>>
@@ -3443,10 +3569,10 @@ We need to go a different route. Re-routing.", coords: "two" },
 <main class="main-words added">
 <div class="eating-container">
    <p>
-  <span class="eaten">In</span> <span class="eaten">1949,</span> <span class="eaten">there</span> <span class="eaten">was</span> <span class="eaten">a</span> <span class="eaten">strange</span> <span class="eaten">sight</span> <span class="eaten">on</span><span class="eaten">the</span>  <span class="keep remaining"> River Medway.</span>
+  <span class="eaten">In</span> <span class="eaten">1949,</span> <span class="eaten">there</span> <span class="eaten">was</span> <span class="eaten">a</span> <span class="eaten">strange</span> <span class="eaten">sight</span> <span class="eaten">on</span> <span class="eaten">the</span>  <span class="keep remaining"> River Medway.</span>
 </p>
 <p>
-  <span class="eaten">A</span> <span class="eaten">Narwhal</span> <span class="eaten">-</span> <span class="eaten">considered</span> <span class="eaten">a</span> <span class="eaten">‘Sea</span> <span class="eaten">Unicorn’</span> <span class="eaten">because</span> <span class="eaten">of</span> <span class="eaten">its</span> <span class="eaten">long</span> <span class="keep remaining">tusk</span> <span class="eaten">-</span> <span class="eaten">washed</span> <span class="eaten">up</span> <span class="eaten">along</span> <span class="eaten">the River Medway.</span>
+  <span class="eaten">A</span> <span class="eaten">Narwhal</span> <span class="eaten">-</span> <span class="eaten">considered</span> <span class="eaten">a</span> <span class="eaten">‘Sea</span> <span class="eaten">Unicorn’</span> <span class="eaten">because</span> <span class="eaten">of</span> <span class="eaten">its</span> <span class="eaten">long</span> <span class="keep remaining">tusk</span> <span class="eaten">-</span> <span class="eaten">washed</span> <span class="eaten">up</span> <span class="eaten">along</span> <span class="eaten">the River.</span>
 </p>
 <p>
   <span class="eaten">Narwhals</span> <span class="eaten">can</span> <span class="eaten">dive</span> <span class="eaten">about</span> <span class="eaten">a</span> <span class="eaten">mile</span> <span class="eaten">deep</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="keep remaining">ocean</span> <span class="eaten">and</span> <span class="eaten">normally</span> <span class="eaten">spend</span> <span class="eaten">their</span> <span class="eaten">time</span> <span class="eaten">in</span> <span class="eaten"><span class="eaten">the</span>  <span class="eaten">arctic</span> <span class="eaten">waters</span> <span class="eaten">of</span> <span class="eaten">Canada</span><span class="eaten">, Greenland</span><span class="eaten">, Norway</span> <span class="eaten">and</span><span class="eaten"> Russia</span> </span> <span class="eaten">-</span> <span class="eaten">so</span> <span class="eaten">finding</span> <span class="eaten">one</span> <span class="eaten">on</span> <span class="eaten">the</span> <span class="eaten">River Medway</span> <span class="eaten">was</span> <span class="eaten">very</span> <span class="eaten">rare.</span>
@@ -3455,7 +3581,7 @@ We need to go a different route. Re-routing.", coords: "two" },
   <span class="eaten">Many</span> <span class="eaten">myths</span> <span class="eaten">and</span> <span class="eaten">legends</span> <span class="eaten">are</span> <span class="eaten">based</span> <span class="eaten">on</span> <span class="eaten">misunderstood</span> <span class="eaten">sightings</span> <span class="eaten">of</span> <span class="eaten">real</span> <span class="eaten">creatures.</span>
 </p>
 <p>
-  <span class="eaten">It</span> <span class="eaten">was</span> <span class="eaten">so</span> <span class="eaten">rare</span> <span class="eaten">that</span> <span class="eaten">it</span> <span class="eaten">is</span> <span class="eaten">now</span> <span class="eaten">documented</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">Natural</span> <span class="eaten">History</span> <span class="eaten">Museum</span> <span class="eaten">in</span> <span class="eaten">London.</span>
+  <span class="eaten">It</span> <span class="eaten">is</span> <span class="eaten">so</span> <span class="eaten">rare</span> <span class="eaten">that</span> <span class="eaten">it</span> <span class="eaten">is</span> <span class="eaten">now</span> <span class="eaten">documented</span> <span class="eaten">in</span> <span class="eaten">the</span> <span class="eaten">Natural</span> <span class="eaten">History</span> <span class="eaten">Museum</span> <span class="eaten">in</span> <span class="eaten">London.</span>
 </p>
 </div>
 
@@ -3589,7 +3715,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>This chapter doesn’t seem to have been eaten in the same way. </p>
+        <p>The next chapter doesn’t seem to have been eaten in the same way. </p>
        </div>
     <</append>>
 <</timed>>
@@ -3716,7 +3842,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $prevpass to "ger9-2">>
 <<set $pass to "wordsAdded4b">>
 <<set $nextpass to "ger10-1">>
-
+<<audio "wordeat" play>>
 <main class="main-words added">
   <div class="eating-container">
   <p>
@@ -4166,16 +4292,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>It’s saying here we need to stop mines from exploding. Exploding here at OCTOPUS HQ. </p>
-       </div>
-    <</append>>
-<</timed>>
-
-<<timed 7s>>
-    <<audio "ping1" "play">>
-    <<append "#msgMount">>
-       <div class="message"> 
-        <p>Mines that have been placed by the Monster. </p>
+        <p>It’s saying here we need to stop mines from exploding. Exploding here at Octopus HQ - the Docking Station could be lost. </p>
        </div>
     <</append>>
 <</timed>>
@@ -4184,12 +4301,21 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
+        <p>Mines that have been placed by the Monster. </p>
+       </div>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    <<audio "ping1" "play">>
+    <<append "#msgMount">>
+       <div class="message"> 
         <p>How can this be happening!? How is the Monster doing this?! </p>
        </div>
     <</append>>
 <</timed>>
 
-<<timed 11s>>
+<<timed 14s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -4198,7 +4324,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</append>>
 <</timed>>
 
-<<timed 13s>>
+<<timed 16s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -4207,7 +4333,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</append>>
 <</timed>>
 
-<<timed 15s>>
+<<timed 18s>>
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
@@ -4216,7 +4342,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <</append>>
 <</timed>>
 
-<<timed 17s>>
+<<timed 20s>>
     <<replace "#nextButtonContainer">>
     <<button "Okay!">>
         <<goto $nextpass>>
@@ -4749,7 +4875,7 @@ We need to go a different route. Re-routing.", coords: "two" },
     <<audio "ping1" "play">>
     <<append "#msgMount">>
        <div class="message"> 
-        <p>Stand around the map.  </p>
+        <p>Stand around the map and click below when you are ready to start the Rooting Ritual.  </p>
        </div>
     <</append>>
 <</timed>>
@@ -4972,7 +5098,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 :: begone [nobr]
 <<set $prevpass to "dragIntoBook">>
 <<set $pass to "begone">>
-<<set $nextpass to "begone">>
+<<set $nextpass to "begone2">>
 <<addclass "body" "green">>
 
 <main class="begone">
@@ -4983,17 +5109,38 @@ We need to go a different route. Re-routing.", coords: "two" },
 </main>
 <<include "footerend">>
 
-<<timed 10s>>
+<<timed 12s>>
+ <<append "#mount">>
+ <div class="black-btn"> <<button "We've done it!">><<goto $nextpass>><</button>></div>
+  <</append>>
+  <</timed>>
+<<include "begonetimer">>
+
+
+
+:: begone2 [nobr]
+<<set $prevpass to "begone">>
+<<set $pass to "begone2">>
+<<set $nextpass to "begone">>
+<<addclass "body" "green">>
+
+<main class="begone">
+
+
+  <div id="mount"></div>
+</main>
+<<include "footerend">>
+
+<<timed 0.2s>>
   <<replace "#mount">>
     <b>Head back to the library and ask for the OCTOPUS LEDGER</b>
     <</replace>>
   <</timed>>
-<<include "begonetimer">>
 
-<<timed 30s>>
+
+<<timed 60s>>
   <<goto "landing">>
   <</timed>>
-
 
 :: begonetimer [nobr]
   <<audio "30s" "play">>
@@ -5124,7 +5271,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 
   <div class="motto-container" id="countdown"> 
   <p class="octo-welcome-text">Hand back the book and you’ll receive a gift from us. </p>
-  <p>We'd love to hear your feedback. Please fill out this <a href=" https://universityofkent.qualtrics.com/jfe/form/SV_2hufiMHZsoL8Sea" target="_blank" rel="noreferrer"><button>survey</button></a>.</p>
+  <p>Thank you for being with OCTOPUS today. We’d love to hear your feedback. If you can please fill out this <a href=" https://universityofkent.qualtrics.com/jfe/form/SV_2hufiMHZsoL8Sea" target="_blank" rel="noreferrer"><button>survey</button></a>. It should take 2 minutes to complete. .</p>
   </div>
   <br/>
   <div id="mount"></div>

@@ -1934,3 +1934,18 @@ main.phonetext{
 
 
 
+/* LANDING  */
+
+.css-input.code-input.geraldine > input, 
+.css-input.code-input.geraldine > button{
+  font-size: 1.2rem;
+}
+
+footer.landing{
+  justify-content: center;
+}
+
+.black-btn > button{
+color: black;
+border: solid black 2px;
+}
