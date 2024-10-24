@@ -505,29 +505,29 @@ $(document).on('click', '.thumbnail-image', function() {
 
 
 :: StoryInit
-<<cacheaudio "timer" "../assets/sound/timer.mp3">>
-<<cacheaudio "ping1" "../assets/sound/ping1.mp3">>
-<<cacheaudio "alarm" "../assets/sound/alarm.mp3">>
-<<cacheaudio "correct" "../assets/sound/Correct1.mp3">>
-<<cacheaudio "correct2" "../assets/sound/correct2.mp3">>
-<<cacheaudio "error" "../assets/sound/error1.mp3">>
-<<cacheaudio "LQintensity1" "../assets/sound/LQintensity1.mp3">>
-<<cacheaudio "LQintensity3" "../assets/sound/LQintensity3.mp3">>
-<<cacheaudio "30s" "../assets/sound/30secEle.mp3">>
-<<cacheaudio "loading" "../assets/sound/loading.mp3">>
-<<cacheaudio "monster1" "../assets/sound/monster1.mp3">>
-<<cacheaudio "monster2" "../assets/sound/monster2.mp3">>
-<<cacheaudio "monster3" "../assets/sound/monster3.mp3">>
-<<cacheaudio "monster4" "../assets/sound/monster4.mp3">>
-<<cacheaudio "monsterdet" "../assets/sound/MonsterDeteriating.mp3">>
-<<cacheaudio "rooting" "../assets/sound/signalprocess3.mp3">>
-<<cacheaudio "wordeat" "../assets/sound/WordEating.mp3">>
-<<cacheaudio "siren" "../assets/sound/siren.mp3">>
-<<cacheaudio "ritual" "../assets/sound/ritual.mp3">>
-<<cacheaudio "mine1" "../assets/sound/MinesDeactivating.mp3">>
-<<cacheaudio "mine2" "../assets/sound/MinesDeactivating2.mp3">>
-<<cacheaudio "mine3" "../assets/sound/MinesDeactivating3.mp3">>
-<<cacheaudio "ticker" "../assets/sound/tickeredited.mp3">>
+<<cacheaudio "timer" "assets/sound/timer.mp3">>
+<<cacheaudio "ping1" "assets/sound/ping1.mp3">>
+<<cacheaudio "alarm" "assets/sound/alarm.mp3">>
+<<cacheaudio "correct" "assets/sound/Correct1.mp3">>
+<<cacheaudio "correct2" "assets/sound/correct2.mp3">>
+<<cacheaudio "error" "assets/sound/error1.mp3">>
+<<cacheaudio "LQintensity1" "assets/sound/LQintensity1.mp3">>
+<<cacheaudio "LQintensity3" "assets/sound/LQIntensity3.mp3">>
+<<cacheaudio "30s" "assets/sound/30secEle.mp3">>
+<<cacheaudio "loading" "assets/sound/loading.mp3">>
+<<cacheaudio "monster1" "assets/sound/monster1.mp3">>
+<<cacheaudio "monster2" "assets/sound/monster2.mp3">>
+<<cacheaudio "monster3" "assets/sound/monster3.mp3">>
+<<cacheaudio "monster4" "assets/sound/monster4.mp3">>
+<<cacheaudio "monsterdet" "assets/sound/MonsterDeteriating.mp3">>
+<<cacheaudio "rooting" "assets/sound/signalprocess3.mp3">>
+<<cacheaudio "wordeat" "assets/sound/WordEating.mp3">>
+<<cacheaudio "siren" "assets/sound/siren.mp3">>
+<<cacheaudio "ritual" "assets/sound/ritual.mp3">>
+<<cacheaudio "mine1" "assets/sound/MinesDeactivating.mp3">>
+<<cacheaudio "mine2" "assets/sound/MinesDeactivating2.mp3">>
+<<cacheaudio "mine3" "assets/sound/MinesDeactivating3.mp3">>
+<<cacheaudio "ticker" "assets/sound/tickeredited.mp3">>
 
 <<set $currentChapter to 1>>
 
@@ -605,7 +605,7 @@ $(document).on('click', '.thumbnail-image', function() {
 
 :: footerend[nobr]
 <footer class="intro end">
-    <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
+    <div class="footer-icon">[img[assets/img/icon3.png][$prevpass]]</div>
 
     <<link "Start again">>
       <<script>>
@@ -618,14 +618,14 @@ $(document).on('click', '.thumbnail-image', function() {
 
 :: footerintro[nobr]
 <footer class="intro">
-     <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
-      <div class="footer-icon">[img[/assets/img/for.png][$nextpass]]</div>
+     <div class="footer-icon">[img[assets/img/icon3.png][$prevpass]]</div>
+      <div class="footer-icon">[img[assets/img/for.png][$nextpass]]</div>
 </footer>
 
 :: footerbegone[nobr]
 <footer class="intro end">
-     <div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
-  <div class="footer-icon">[img[/assets/img/icon1.png][$pass]]</div>      <div class="footer-icon">[img[/assets/img/for.png][$nextpass]]</div>
+     <div class="footer-icon">[img[assets/img/icon3.png][$prevpass]]</div>
+  <div class="footer-icon">[img[assets/img/icon1.png][$pass]]</div>      <div class="footer-icon">[img[assets/img/for.png][$nextpass]]</div>
 </footer>
 
 
@@ -641,7 +641,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<include "headerpreintro">>
 <main class="logospin">
 <div class="logo-wrapper slowRotate">
-<img src="/assets/img/logo.png" alt="logo"/>
+<img src="assets/img/logo.png" alt="logo"/>
 
 </div>
   <<button "Start">>
@@ -861,17 +861,17 @@ $(document).on('click', '.thumbnail-image', function() {
 <div class="phonecall-name">
 <h2>Octopus Helpline</h2>
 <span id="phonecall-time" class="phonecall-time">Connecting...</span></div>
-<div class="phonecall-avatar opacitytwo"> <img src="/assets/img/logo.png" alt="logo"/></div>
+<div class="phonecall-avatar opacitytwo"> <img src="assets/img/logo.png" alt="logo"/></div>
 <div class="phonecall-btn-wrapper">
 <div class="phonecall-btn-container opacitytwo">
-  <div class="phonecall-btn">[img[/assets/img/icon3.png][$prevpass]]</div>
-    <div class="phonecall-btn">[img[/assets/img/icon2.png][phonecalltext]]</div>
-  <div class="phonecall-btn">[img[/assets/img/icon1.png][phonecall]]</div>
+  <div class="phonecall-btn">[img[assets/img/icon3.png][$prevpass]]</div>
+    <div class="phonecall-btn">[img[assets/img/icon2.png][phonecalltext]]</div>
+  <div class="phonecall-btn">[img[assets/img/icon1.png][phonecall]]</div>
 
 
   </div>
 
-<div class="phonecall-btn opacitytwo hangup">[img[/assets/img/phone-down.png][$nextpass]]</div>
+<div class="phonecall-btn opacitytwo hangup">[img[assets/img/phone-down.png][$nextpass]]</div>
 
 </div>
 </main>
@@ -984,7 +984,7 @@ $(document).on('click', '.thumbnail-image', function() {
 
 <main class="logospin">
 <div class="logo-wrapper fastRotate">
-<img src="/assets/img/logo.png" alt="logo"/>
+<img src="assets/img/logo.png" alt="logo"/>
 
 </div>
 <p class="octo-welcome-text"> Loading Rooter...</p>
@@ -996,7 +996,7 @@ $(document).on('click', '.thumbnail-image', function() {
 :: headerintro [nobr]
 <header class="intro">
   <div class="logo-wrapper ">
-  <img src="/assets/img/logo.png" alt="logo"/>
+  <img src="assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
     <h2 class="octo-title">OCTOPUS</h2>
@@ -1115,7 +1115,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<include "headerintro">>
 <main class="connecting">
   <div class="book-wrapper" id="wrapper">
-  <img src="/assets/img/bookflat.png" alt="open book"/>
+  <img src="assets/img/bookflat.png" alt="open book"/>
   </div>
   <div id="mount"></div>
   <<timed 0.1s>>
@@ -1161,7 +1161,7 @@ $(document).on('click', '.thumbnail-image', function() {
 <<include "footer">>
 :: headerGeraldine [nobr]
 <header class="talking">
-<div class="avatar-icon">[img[./assets/img/logo.png]]</div>
+<div class="avatar-icon">[img[assets/img/logo.png]]</div>
 <div class="userInfo">
   <h2>Geraldine</h2>
  <span class="online-dot">●</span><span>Online</span>
@@ -1268,7 +1268,7 @@ $(document).on('click', '.thumbnail-image', function() {
           <</replace>>
     <</timed>>
 
-<<goto "begone">>
+
 :: gerIntro-2 [nobr]
 <<set $prevpass to "gerIntro-1">>
 <<set $pass to "gerIntro-2">>
@@ -1451,7 +1451,7 @@ $(document).on('click', '.thumbnail-image', function() {
     <span><b>Appearance:</b> uncertain- normally invisible - images on file from previous reported encounters. </span>
   </div>
   <div class="logo-wrapper-cipher">
-  <img src="/assets/img/logo.png" alt="logo"/>
+  <img src="assets/img/logo.png" alt="logo"/>
   </div>
   </div>
 
@@ -1460,7 +1460,7 @@ $(document).on('click', '.thumbnail-image', function() {
 
 <main class="loading">
 <div class="logo-wrapper" >
-<img src="/assets/img/logo.png" alt="logo" class="fastRotate"/>
+<img src="assets/img/logo.png" alt="logo" class="fastRotate"/>
 <br/>
 
 </div>
@@ -1542,7 +1542,7 @@ $(document).on('click', '.thumbnail-image', function() {
 :: galleryheader[nobr]
 <header class="intro gallery">
   <div class="logo-wrapper ">
-  <img src="/assets/img/logo.png" alt="logo"/>
+  <img src="assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
     <h2 class="octo-title">Gallery</h2>
@@ -1563,7 +1563,7 @@ $(document).on('click', '.thumbnail-image', function() {
 
 
 <div id="imageGallery">
-    <img src="/assets/img/monster1.png" class="gallery-main">
+    <img src="assets/img/monster1.png" class="gallery-main">
 </div>
 
 <!-- Thumbnails container -->
@@ -1571,22 +1571,22 @@ $(document).on('click', '.thumbnail-image', function() {
 </main>
 
 <footer class="gallery fadeInTitle">
-<div class="footer-icon">[img[/assets/img/icon3.png][$prevpass]]</div>
+<div class="footer-icon">[img[assets/img/icon3.png][$prevpass]]</div>
 <div id="thumbnails">
 <div class="thumbnail-wrapper">
-    <img src="/assets/img/monster1.png" class="thumbnail-image active" data-full="/assets/img/monster1.png">
+    <img src="assets/img/monster1.png" class="thumbnail-image active" data-full="assets/img/monster1.png">
 </div>
 <div class="thumbnail-wrapper">
-    <img src="/assets/img/monster2.png" class="thumbnail-image" data-full="/assets/img/monster2.png">
+    <img src="assets/img/monster2.png" class="thumbnail-image" data-full="assets/img/monster2.png">
 </div>
 <div class="thumbnail-wrapper">
-    <img src="/assets/img/monster3.png" class="thumbnail-image" data-full="/assets/img/monster3.png">
+    <img src="assets/img/monster3.png" class="thumbnail-image" data-full="assets/img/monster3.png">
 </div>
 <div class="thumbnail-wrapper">
-    <img src="/assets/img/monster4.png" class="thumbnail-image" data-full="/assets/img/monster4.png">
+    <img src="assets/img/monster4.png" class="thumbnail-image" data-full="assets/img/monster4.png">
 </div>
 </div>
-   <div class="footer-icon">[img[/assets/img/for.png][$nextpass]]</div>
+   <div class="footer-icon">[img[assets/img/for.png][$nextpass]]</div>
 </footer>
 
 
@@ -1791,7 +1791,7 @@ $(document).on('click', '.thumbnail-image', function() {
 :: headerchap [nobr]
 <header class="intro">
   <div class="logo-wrapper black ">
-  <img src="/assets/img/logo.png" alt="logo"/>
+  <img src="assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
     <h2 class="octo-title">OCTOPUS</h2>
@@ -1806,7 +1806,7 @@ $(document).on('click', '.thumbnail-image', function() {
  
 <main class="chapter-title ">
 <div class="chapter-img-wrapper fadeInTitle">
-<img id="chapterImage" sc-eval:src="'/assets/img/chapter' + [$currentChapter] + '.png'"  alt="Chapter Image"/>
+<img id="chapterImage" sc-eval:src="'assets/img/chapter' + [$currentChapter] + '.png'"  alt="Chapter Image"/>
 </div>
 <h2 class="">Chapter $currentChapter</h2>
 
@@ -2373,7 +2373,7 @@ $correctans
 <<audio "rooting" play>>
 <main class="rooting">
   <div class="book-wrapper wobble-animation">
-  <img src="/assets/img/bookflat.png" alt="open book"/>
+  <img src="assets/img/bookflat.png" alt="open book"/>
   </div>
   <div id="mount"></div>
   <<timed 0.3s>>
@@ -2395,7 +2395,7 @@ $correctans
 <<audio "rooting" play>>
 <main class="rooting">
   <div class="book-wrapper wobble-animation">
-  <img src="/assets/img/bookflat.png" alt="open book"/>
+  <img src="assets/img/bookflat.png" alt="open book"/>
   </div>
   <div id="mount"></div>
   <<timed 0.3s>>
@@ -2485,7 +2485,7 @@ $correctans
   <<timed 0.1s>>
 <<replace "#mount">>
      <div class="swipe-wrapper "> 
-    <img src="/assets/img/swipe.png" alt="logo" /></div>
+    <img src="assets/img/swipe.png" alt="logo" /></div>
    <span class="swipe-word one" >GERALDINE</span>
   <span class="swipe-word two" >CHATHAM</span>
   <span class="swipe-word three" >STORIES</span>
@@ -2500,7 +2500,7 @@ $correctans
   <<timed 0.1s>>
 <<replace "#mount">>
      <div class="swipe-wrapper "> 
-    <img src="/assets/img/swipe.png" alt="logo" /></div>
+    <img src="assets/img/swipe.png" alt="logo" /></div>
    <span class="swipe-word one" >MENAGERIE</span>
   <span class="swipe-word two" >SANDWICH</span>
   <span class="swipe-word three" >DETONATION</span>
@@ -2734,7 +2734,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <div class="map-container" id="mapContainer">
 <img src="assets/img/map.png"/>
 <div class="location one pulse" id="location">
-<img src="/assets/img/arrow.png" src="arrow"/></div>
+<img src="assets/img/arrow.png" src="arrow"/></div>
 
 
 
@@ -3466,7 +3466,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 :: headerUpload [nobr]
 <header class="intro">
   <div class="logo-wrapper ">
-  <img src="/assets/img/logo.png" alt="logo"/>
+  <img src="assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
     <h2 class="octo-title">OCTOPUS</h2>
@@ -3487,7 +3487,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 </div>
 
 <div class="logo-wrapper loading" id="loadingLogo">
-<img src="/assets/img/logo.png" alt="logo" class="fastRotate"/>
+<img src="assets/img/logo.png" alt="logo" class="fastRotate"/>
 <br/>
 <h2 class="octo-title">Uploading...</h2>
 </div>
@@ -3615,7 +3615,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<audio "rooting" play>>
 <main class="rooting">
   <div class="book-wrapper wobble-animation">
-  <img src="/assets/img/open-book.png" alt="open book"/>
+  <img src="assets/img/open-book.png" alt="open book"/>
   </div>
   <div id="mount"></div>
   <<timed 0.3s>>
@@ -4070,7 +4070,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<set $nextpass to "ger11-1">>
 <<include "header360elephant">>
 	<main id="main" class="pano">
-	/* <<if $audioOn is true>><audio src="https://remote.co.com/MoTT/AgentTraining/assets/audio/Welcome1.mp3" autoplay>Audio not supported in your browser</audio><</if>> */
+	/* <<if $audioOn is true>><audio src="https://remote.co.com/MoTT/AgentTrainingassets/audio/Welcome1.mp3" autoplay>Audio not supported in your browser</audio><</if>> */
 
 <iframe width="90%" height="500px" allowFullScreen="true" allow="accelerometer; magnetometer; gyroscope" style="display:block; margin:20px auto; border:0 none; max-width:880px;border-radius:8px; box-shadow: 0 1px 1px rgba(0,0,0,0.11),0 2px 2px rgba(0,0,0,0.11),0 4px 4px rgba(0,0,0,0.11),0 6px 8px rgba(0,0,0,0.11),0 8px 16px rgba(0,0,0,0.11);" src="https://panoraven.com/en/embed/S8FIEpERCW"></iframe>
 
@@ -4363,7 +4363,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 :: headermines [nobr]
 <header class="intro">
   <div class="logo-wrapper ">
-  <img src="/assets/img/logo.png" alt="logo"/>
+  <img src="assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
     <h2 class="octo-title">OCTOPUS</h2>
@@ -4697,7 +4697,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 <<audio "rooting" play>>
 <main class="rooting">
   <div class="book-wrapper wobble-animation">
-  <img src="/assets/img/open-book.png" alt="open book"/>
+  <img src="assets/img/open-book.png" alt="open book"/>
   </div>
   <div id="mount"></div>
   <<timed 0.3s>>
@@ -5045,7 +5045,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 /* :: headerDrag [nobr]
 <header class="intro">
   <div class="logo-wrapper ">
-  <img src="/assets/img/logo.png" alt="logo"/>
+  <img src="assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
     <h2 class="octo-title">OCTOPUS</h2>
@@ -5067,11 +5067,11 @@ We need to go a different route. Re-routing.", coords: "two" },
   <div id="target-area1"></div>
    <div id="target-area2"></div>
    
-  <img id="chapter-one" class="draggable-image" src="/assets/img/chapter1-white.png" alt="Chapter 1" draggable="true">
-  <img id="chapter-two" class="draggable-image" src="/assets/img/chapter2-white.png" alt="Chapter 2" draggable="true">
-  <img id="chapter-three" class="draggable-image" src="/assets/img/chapter3-white.png" alt="Chapter 3" draggable="true">
- <img id="chapter-four" class="draggable-image" src="/assets/img/chapter4-white.png" alt="Chapter 4" draggable="true">
-  <img id="chapter-five" class="draggable-image" src="/assets/img/chapter5-white.png" alt="Chapter 5" draggable="true">
+  <img id="chapter-one" class="draggable-image" src="assets/img/chapter1-white.png" alt="Chapter 1" draggable="true">
+  <img id="chapter-two" class="draggable-image" src="assets/img/chapter2-white.png" alt="Chapter 2" draggable="true">
+  <img id="chapter-three" class="draggable-image" src="assets/img/chapter3-white.png" alt="Chapter 3" draggable="true">
+ <img id="chapter-four" class="draggable-image" src="assets/img/chapter4-white.png" alt="Chapter 4" draggable="true">
+  <img id="chapter-five" class="draggable-image" src="assets/img/chapter5-white.png" alt="Chapter 5" draggable="true">
 </div>
 <<include "footer">>
 
@@ -5093,7 +5093,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 :: headerbegone [nobr]
 <header class="intro">
   <div class="logo-wrapper black">
-  <img src="/assets/img/logo.png" alt="logo"/>
+  <img src="assets/img/logo.png" alt="logo"/>
   </div>
   <div class="octo-title-wrapper">
     <h2 class="octo-title">OCTOPUS</h2>
@@ -5185,7 +5185,7 @@ We need to go a different route. Re-routing.", coords: "two" },
 
 <main class="logospin">
 <div class="logo-wrapper black fastRotate">
-<img src="/assets/img/logo.png" alt="logo"/>
+<img src="assets/img/logo.png" alt="logo"/>
 
 </div><<type 100ms>>
 <p class="octo-welcome-text"> Loading...</p>
@@ -5221,17 +5221,17 @@ We need to go a different route. Re-routing.", coords: "two" },
 <div class="phonecall-name">
 <h2>Geraldine</h2>
 <span id="phonecall-time" class="phonecall-time">Connecting...</span></div>
-<div class="phonecall-avatar opacitytwo"> <img src="/assets/img/logo.png" alt="logo"/></div>
+<div class="phonecall-avatar opacitytwo"> <img src="assets/img/logo.png" alt="logo"/></div>
 <div class="phonecall-btn-wrapper">
 <div class="phonecall-btn-container opacitytwo">
-  <div class="phonecall-btn">[img[/assets/img/icon3.png][$prevpass]]</div>
-    <div class="phonecall-btn">[img[/assets/img/icon2.png][phonecallgertext]]</div>
-  <div class="phonecall-btn">[img[/assets/img/icon1.png][phonecallger]]</div>
+  <div class="phonecall-btn">[img[assets/img/icon3.png][$prevpass]]</div>
+    <div class="phonecall-btn">[img[assets/img/icon2.png][phonecallgertext]]</div>
+  <div class="phonecall-btn">[img[assets/img/icon1.png][phonecallger]]</div>
 
 
   </div>
 
-<div class="phonecall-btn opacitytwo hangup">[img[/assets/img/phone-down.png][$nextpass]]</div>
+<div class="phonecall-btn opacitytwo hangup">[img[assets/img/phone-down.png][$nextpass]]</div>
 
 </div>
 </main>
